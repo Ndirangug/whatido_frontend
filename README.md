@@ -32,19 +32,19 @@ git commit -m "docs: add readme docs"
 
 all avalable subjects are included below, remember engines and hooks are in strict mode.
 
-build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-docs: Documentation only changes
-chore: working on cleanups and random changes
-feat: A new feature
-fix: A bug fix
-perf: A code change that improves performance
-refactor: A code change that neither fixes a bug nor adds a feature
-revert: A code change that reverts to a previous feature
-translation: A code change translates to a modified form
-security: code to improve app security
-style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-test: Adding missing tests or correcting existing tests
+- build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+- docs: Documentation only changes
+- chore: working on cleanups and random changes
+- feat: A new feature
+- fix: A bug fix
+- perf: A code change that improves performance
+- refactor: A code change that neither fixes a bug nor adds a feature
+- revert: A code change that reverts to a previous feature
+- translation: A code change translates to a modified form
+- style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- security: code to improve app security
+- test: Adding missing tests or correcting existing tests
 
 ## Learn
 
@@ -57,7 +57,7 @@ you can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 you can learn how the app was setup
 
--[scalable next app](https://dev.to/alexeagleson/how-to-build-scalable-architecture-for-your-nextjs-project-2pb7)
+- [scalable next app](https://dev.to/alexeagleson/how-to-build-scalable-architecture-for-your-nextjs-project-2pb7)
 
 ## Deploy on Vercel
 
