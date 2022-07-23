@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import { GlobalContainer } from '../styles/global';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <GlobalContainer>
+      {/* header */}
+      <Component {...pageProps} />
+      {/* footer */}
+    </GlobalContainer>
+  );
 }
 
-export default MyApp
+export default MyApp;
