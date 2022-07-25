@@ -2,11 +2,13 @@ This is a foundational rebuild of [whatido.app](https://whatido.app/) with nextj
 
 ## Getting Started
 
-first, run installation of the app. NB: engines are set to strict mode to use node lts/fermium and yarn for installation of modules.
+first, run installation of the app.
 
 ```bash
 yarn
 ```
+
+NB: engines are set to strict mode to use node lts/fermium and yarn for installation of modules.
 
 if installation completes successfully, you can run the app with the yarn command.
 
