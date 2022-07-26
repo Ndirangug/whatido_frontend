@@ -10,6 +10,14 @@ yarn
 
 NB: engines are set to strict mode to use node lts/fermium and yarn for installation of modules.
 
+```bash
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
+  },
+```
+
 if installation completes successfully, you can run the app with the yarn command.
 
 ```bash
