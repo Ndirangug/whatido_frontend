@@ -13,7 +13,7 @@ const Header = () => {
             height={40}
             className="header-image"
           />
-          <h1 className="header-logo">whatido</h1>
+          {/* <h1 className="header-logo">whatido</h1> */}
         </div>
         <div className="header-content">
           {/* <div className="search-container">
