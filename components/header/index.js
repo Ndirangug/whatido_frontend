@@ -21,8 +21,6 @@ const Header = () => {
           </div> */}
           <div className="header-right flex-content">
             <p>home</p>
-            <p>home</p>
-            <p>home</p>
           </div>
         </div>
       </div>
