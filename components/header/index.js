@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react';
 import Image from 'next/image';
 import { HeaderContainer } from './styles';
 
@@ -11,7 +12,7 @@ const Header = () => {
             alt="whatido"
             width={40}
             height={40}
-            className="header-image"
+            // className="header-image"
           />
           {/* <h1 className="header-logo">whatido</h1> */}
         </div>
@@ -21,6 +22,9 @@ const Header = () => {
           </div> */}
           <div className="header-right flex-content">
             <p>home</p>
+            <Button colorScheme="blue" size="sm">
+              Click me
+            </Button>
           </div>
         </div>
       </div>
