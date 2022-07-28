@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react';
 import Image from 'next/image';
-import { HeaderContainer } from './styles';
+import { HeaderContainer } from '../../styles/header';
 
 const Header = () => {
   return (
@@ -10,20 +10,19 @@ const Header = () => {
           <Image
             src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
             alt="whatido"
-            width={40}
-            height={40}
-            // className="header-image"
+            width={30}
+            height={30}
+            className="header-image"
           />
-          {/* <h1 className="header-logo">whatido</h1> */}
+          <h1 className="header-logo">whatido</h1>
         </div>
         <div className="header-content">
           {/* <div className="search-container">
             <input type="text" className="search-input" />
           </div> */}
           <div className="header-right flex-content">
-            <p>home</p>
             <Button colorScheme="blue" size="sm">
-              Click me
+              Log in
             </Button>
           </div>
         </div>

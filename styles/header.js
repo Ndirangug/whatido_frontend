@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 2px solid #e6e6e6;
   box-shadow: 0 2px 2px #eee;
   position: sticky;
   top: 0;
   background-color: #fff;
   z-index: 999;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
 
   .inner-head-container {
     box-sizing: border-box;
@@ -16,13 +16,13 @@ export const HeaderContainer = styled.div`
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex: 1;
+    justify-content: flex-end;
   }
 
   .header-left {
@@ -31,8 +31,9 @@ export const HeaderContainer = styled.div`
   }
 
   .header-right {
-    flex: 1;
-    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+    align-items: flex-end;
   }
 
   .header-image {
@@ -47,6 +48,7 @@ export const HeaderContainer = styled.div`
     font-size: 2rem;
     margin-left: 0.5rem;
     line-height: 0;
+    font-weight: 800;
   }
 
   .search-container {
