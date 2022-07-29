@@ -13,7 +13,10 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
@@ -29,6 +32,8 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@next/bundle-analyzer": "^12.2.3",
+    "cross-env": "^7.0.3",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.3",
     "husky": "^8.0.1",

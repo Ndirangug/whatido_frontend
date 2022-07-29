@@ -22,7 +22,8 @@ export const HeaderContainer = styled.div`
   .header-content {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    flex: 1;
   }
 
   .header-left {

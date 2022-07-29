@@ -17,9 +17,9 @@ const Header = () => {
           <h1 className="header-logo">whatido</h1>
         </div>
         <div className="header-content">
-          {/* <div className="search-container">
+          <div className="search-container">
             <input type="text" className="search-input" />
-          </div> */}
+          </div>
           <div className="header-right flex-content">
             <Button colorScheme="blue" size="sm">
               Log in

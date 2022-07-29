@@ -9,7 +9,7 @@ export const FooterContainer = styled.div`
   z-index: 999;
   padding: 1rem 0.5rem;
 
-  .inner-head-container {
+  .inner-foot-container {
     box-sizing: border-box;
     max-width: 1280px;
     width: 100%;
@@ -34,5 +34,25 @@ export const FooterContainer = styled.div`
   .icons-btn {
     height: 1.5rem;
     width: 1.5rem;
+  }
+
+  .footer-low-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #262625;
+    width: 100%;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .inner-foot-container {
+      display: none;
+    }
+
+    .footer-low-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
