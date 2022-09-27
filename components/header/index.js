@@ -1,6 +1,5 @@
-import { Button } from '@chakra-ui/react';
 import Image from 'next/image';
-import { HeaderContainer } from '../../styles/header';
+import { HeaderContainer } from '../../styles/header.styles';
 
 const Header = () => {
   const authenticated = true;
@@ -12,8 +11,8 @@ const Header = () => {
           <Image
             src="/whatido_logo.svg"
             alt="whatido"
-            width={160}
-            height={40}
+            width={200}
+            height={50}
           />
         </div>
         <div className="header-content">
@@ -21,9 +20,7 @@ const Header = () => {
             <input type="text" className="search-input" />
           </div>
           <div className="header-right flex-content">
-            <Button colorScheme="blue" size="sm">
-              Log in
-            </Button>
+            <p>login</p>
           </div>
         </div>
       </div>

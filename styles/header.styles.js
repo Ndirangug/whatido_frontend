@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   border-bottom: 1px solid #e6e6e6;
-  box-shadow: 0 2px 2px #eee;
+  box-shadow: 0 1px 1px #eee;
   position: sticky;
   top: 0;
   background-color: #fff;
   z-index: 999;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 1rem;
 
   .inner-head-container {
     box-sizing: border-box;
@@ -37,21 +37,6 @@ export const HeaderContainer = styled.div`
     align-items: flex-end;
   }
 
-  .header-image {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    flex-shrink: 0;
-    object-fit: cover;
-  }
-
-  .header-logo {
-    font-size: 2rem;
-    margin-left: 0.5rem;
-    line-height: 0;
-    font-weight: 800;
-  }
-
   .search-container {
     display: flex;
     align-items: center;
@@ -59,15 +44,13 @@ export const HeaderContainer = styled.div`
     max-width: 34rem;
     align-items: flex-start;
     justify-content: start;
-    margin: 0.3rem 0;
-    padding: 0.5rem;
-    border: 2px solid #e5e7eb;
-
+    padding: 0.5rem 1rem;
+    border: 1px solid #e5e7eb;
     border-radius: 0.7rem;
     background-color: whitesmoke;
 
     &:focus-within {
-      border: 2px solid #161823;
+      border: 1px solid #161823;
     }
   }
 
