@@ -48,6 +48,7 @@ all avalable subjects are included below, remember engines and hooks are in stri
 - chore: working on cleanups and random changes
 - feat: A new feature
 - fix: A bug fix
+  -wip : work in progress
 - perf: A code change that improves performance
 - refactor: A code change that neither fixes a bug nor adds a feature
 - revert: A code change that reverts to a previous feature

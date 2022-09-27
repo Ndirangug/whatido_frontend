@@ -3,18 +3,18 @@ import Image from 'next/image';
 import { HeaderContainer } from '../../styles/header';
 
 const Header = () => {
+  const authenticated = true;
+
   return (
     <HeaderContainer>
       <div className="inner-head-container">
         <div className="header-left flex-content">
           <Image
-            src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
+            src="/whatido_logo.svg"
             alt="whatido"
-            width={30}
-            height={30}
-            className="header-image"
+            width={160}
+            height={40}
           />
-          <h1 className="header-logo">whatido</h1>
         </div>
         <div className="header-content">
           <div className="search-container">
