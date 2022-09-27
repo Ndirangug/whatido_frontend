@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid var(--main-border);
   box-shadow: 0 1px 1px #eee;
   position: sticky;
   top: 0;
@@ -45,12 +45,12 @@ export const HeaderContainer = styled.div`
     align-items: flex-start;
     justify-content: start;
     padding: 0.5rem 1rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--main-border);
     border-radius: 0.7rem;
     background-color: whitesmoke;
 
     &:focus-within {
-      border: 1px solid #161823;
+      border: 1px solid var(--main-black);
     }
   }
 

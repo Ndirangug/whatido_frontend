@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { HeaderContainer } from '../../styles/header.styles';
+import Button from '../utils/Button';
 
 const Header = () => {
   const authenticated = true;
@@ -13,6 +14,7 @@ const Header = () => {
             alt="whatido"
             width={200}
             height={50}
+            loading="eager"
           />
         </div>
         <div className="header-content">
@@ -20,7 +22,15 @@ const Header = () => {
             <input type="text" className="search-input" />
           </div>
           <div className="header-right flex-content">
-            <p>login</p>
+            <Button
+              name={'log in'}
+              inLine
+              evenHandler={() => console.log('click log in')}
+            />
+            <Button
+              name={'sign in'}
+              evenHandler={() => console.log('click sign in')}
+            />
           </div>
         </div>
       </div>

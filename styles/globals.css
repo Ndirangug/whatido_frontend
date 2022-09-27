@@ -4,7 +4,7 @@ body {
   margin: 0;
   height: 100%;
   font-family: 'Gilroy-Medium';
-  color: #001433;
+  color: #292d32;
 }
 
 a {
@@ -14,4 +14,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --main-background: #f3f3f3;
+  --main-border: #dddddd;
+  --main-black: #292d32;
 }
