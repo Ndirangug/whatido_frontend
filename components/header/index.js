@@ -1,10 +1,9 @@
 import Image from 'next/image';
+import { BiSearchAlt } from 'react-icons/bi';
 import { HeaderContainer } from '../../styles/header.styles';
 import Button from '../utils/Button';
 
 const Header = () => {
-  const authenticated = true;
-
   return (
     <HeaderContainer>
       <div className="inner-head-container">
@@ -19,7 +18,12 @@ const Header = () => {
         </div>
         <div className="header-content">
           <div className="search-container">
-            <input type="text" className="search-input" />
+            <BiSearchAlt className="search-icon" />
+            <input
+              type="text"
+              className="search-input"
+              placeholder="search..."
+            />
           </div>
           <div className="header-right flex-content">
             <Button
