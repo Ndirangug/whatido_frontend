@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-  padding: 10px 35px;
+  padding: 0.5rem 1rem;
   color: ${({ inLine }) => (inLine ? 'var(--main-black)' : '#fff')};
   background: ${({ inLine }) => (inLine ? '#fff' : 'var(--main-black)')};
   text-decoration: ${({ inLine }) => (inLine ? 'underline' : 'none')};
@@ -12,4 +12,5 @@ export const ButtonContainer = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 6px;
+  white-space: nowrap;
 `;

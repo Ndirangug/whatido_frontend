@@ -8,12 +8,12 @@ const Header = () => {
   return (
     <HeaderContainer>
       <div className="inner-head-container">
-        <div className="header-left flex-content">
+        <div className="header-left">
           <Image
             src="/whatido_logo.svg"
             alt="whatido"
             width={200}
-            height={50}
+            height={40}
             loading="eager"
           />
         </div>
