@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Login from '../components/auth/login/index';
 import Header from '../components/header';
 import { GlobalContainer } from '../styles/global';
 import '../styles/globals.css';
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Header />
+      <Login />
       <Component {...pageProps} />
     </GlobalContainer>
   );
