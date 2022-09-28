@@ -14,6 +14,7 @@ const Header = () => {
       },
     });
   };
+
   const handleSignup = () => {
     router.push({
       query: {

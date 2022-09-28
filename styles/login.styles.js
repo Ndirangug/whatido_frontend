@@ -32,7 +32,7 @@ export const LoginModal = styled(Modal)`
       min-height: 90%;
       max-height: 90%;
       max-width: 55%;
-      border-radius: 1.5rem;
+      border-radius: 1rem;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
     @media screen and (min-width: 1023px) {
@@ -257,10 +257,10 @@ export const CancelIcon = styled(MdOutlineCancel)`
   margin: 0 !important;
 `;
 
-// export const LinkContainer = styled(Link)`
-//   display: flex;
-//   align-items: center;
-//   padding-top: 0.5rem;
-//   padding-bottom: 0.5rem;
-//   color: #000;
-// `;
+export const LinkContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #000;
+`;
