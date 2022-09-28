@@ -59,14 +59,16 @@ export const LoginModal = styled(Modal)`
         grid-gap: 0.5rem;
 
         .logo-text {
-          font-size: 2rem;
-          font-weight: 500;
+          font-size: 1.5rem;
+          font-weight: 600;
         }
       }
     }
   }
 
   .header-body {
+    padding: 2rem;
+    overflow: scroll;
   }
 
   .login-footer {
@@ -84,6 +86,8 @@ export const LoginModal = styled(Modal)`
     margin-left: 0.5rem;
     cursor: pointer;
   }
+
+  /* below the line gets depricated */
 
   .wrapper {
     width: 100%;
@@ -269,6 +273,11 @@ export const LoginModal = styled(Modal)`
     height: 20px;
     margin-right: 10px;
   }
+`;
+
+export const LoginFormContainer = styled.form`
+  display: grid;
+  grid-gap: 0.5rem;
 `;
 
 export const CancelIcon = styled(MdOutlineCancel)`

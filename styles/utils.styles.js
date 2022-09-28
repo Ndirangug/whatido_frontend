@@ -14,3 +14,26 @@ export const ButtonContainer = styled.button`
   border-radius: 6px;
   white-space: nowrap;
 `;
+
+export const InputFieldContainer = styled.div`
+  display: grid;
+  grid-gap: 0.25rem;
+
+  .label {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .input {
+    width: 100%;
+    border: ${({ error }) =>
+      error ? '1px solid red' : '1px solid var(--main-border)'};
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    outline: none;
+
+    &focus {
+      border: 1px solid var(--main-border);
+    }
+  }
+`;
