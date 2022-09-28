@@ -1,9 +1,27 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
 import { HeaderContainer } from '../../styles/header.styles';
 import Button from '../utils/Button';
 
 const Header = () => {
+  const router = useRouter();
+
+  const handleLogin = () => {
+    router.push({
+      query: {
+        login: true,
+      },
+    });
+  };
+  const handleSignup = () => {
+    router.push({
+      query: {
+        signup: true,
+      },
+    });
+  };
+
   return (
     <HeaderContainer>
       <div className="inner-head-container">
@@ -26,15 +44,8 @@ const Header = () => {
             />
           </div>
           <div className="header-right flex-content">
-            <Button
-              name={'log in'}
-              inLine
-              evenHandler={() => console.log('click log in')}
-            />
-            <Button
-              name={'sign in'}
-              evenHandler={() => console.log('click sign in')}
-            />
+            <Button name={'log in'} inLine evenHandler={handleLogin} />
+            <Button name={'sign in'} evenHandler={handleSignup} />
           </div>
         </div>
       </div>
