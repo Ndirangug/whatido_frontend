@@ -57,7 +57,7 @@ function Login() {
           <div className="logo-container">
             <Avatar
               alt="what i do"
-              sx={{ width: 48, height: 48 }}
+              sx={{ width: 40, height: 40 }}
               src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
             />
             <Typography variant="h4" component="h4" className="logo-text">

@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { LoginFormContainer } from '../../../styles/login.styles';
+import BigButton from '../../utils/BigButton';
 import InputField from '../../utils/InputField';
 
 const schema = yup.object().shape({
@@ -22,25 +23,23 @@ function LoginForm() {
   });
   return (
     <LoginFormContainer>
-      <InputField
-        label={'email'}
-        type={'text'}
-        error={errors?.email?.message}
-        register={register('email')}
-      />
-      <InputField
-        label={'password'}
-        type={'password'}
-        error={errors?.password?.message}
-        register={register('password')}
-      />
-      {/* <InputField
-        label={'password'}
-        type={'password'}
-        placeholder={'password'}
-        error={errors?.password?.message}
-        register={register('password')}
-      /> */}
+      <div className="input-container">
+        <InputField
+          label={'email'}
+          type={'text'}
+          error={errors?.email?.message}
+          register={register('email')}
+        />
+        <InputField
+          label={'password'}
+          type={'password'}
+          error={errors?.password?.message}
+          register={register('password')}
+        />
+      </div>
+      <div className="btn-container">
+        <BigButton>log in</BigButton>
+      </div>
     </LoginFormContainer>
   );
 }

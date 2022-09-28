@@ -65,7 +65,7 @@ export const LoginModal = styled(Modal)`
     }
 
     .login-body {
-      padding: 0 2rem;
+      padding: 2rem;
       overflow: scroll;
     }
 
@@ -275,8 +275,18 @@ export const LoginModal = styled(Modal)`
 `;
 
 export const LoginFormContainer = styled.form`
+  height: 100%;
   display: grid;
-  grid-gap: 0.5rem;
+  align-items: start;
+
+  .input-container {
+    display: grid;
+    grid-gap: 0.5rem;
+  }
+
+  .btn-container {
+    margin: auto 0 1rem 0;
+  }
 `;
 
 export const CancelIcon = styled(MdOutlineCancel)`

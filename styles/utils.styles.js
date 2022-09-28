@@ -15,6 +15,21 @@ export const ButtonContainer = styled.button`
   white-space: nowrap;
 `;
 
+export const BigButtonContainer = styled.button`
+  padding: 1rem;
+  color: #fff;
+  background: var(--main-black);
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+  font-weight: 400;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  width: 100%;
+`;
+
 export const InputFieldContainer = styled.div`
   display: grid;
   grid-gap: 0.25rem;
@@ -31,6 +46,7 @@ export const InputFieldContainer = styled.div`
     padding: 0.75rem 0.5rem;
     border-radius: 0.25rem;
     outline: none;
+    font-size: 1rem;
 
     &focus {
       border: 1px solid var(--main-border);
