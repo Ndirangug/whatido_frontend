@@ -1,17 +1,11 @@
-import { Typography } from '@mui/material/Typography';
-import React from 'react';
+import Typography from '@mui/material/Typography';
 import { InputFieldContainer } from '../../styles/utils.styles';
 
-function InputField({ label, error, placeholder, register }) {
+function InputField({ label, error, type, register }) {
   return (
     <InputFieldContainer error={error}>
-      <Typography className="label">{label}</Typography>
-      <input
-        type="text"
-        className="input"
-        placeholder={placeholder}
-        {...register}
-      />
+      <Typography>{label} </Typography>
+      <input type={type} className="input" {...register} />
     </InputFieldContainer>
   );
 }

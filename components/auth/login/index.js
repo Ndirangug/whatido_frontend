@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../../constants/api';
 import { CancelIcon, LoginModal } from '../../../styles/login.styles';
+import LoginForm from './LoginForm';
 
 function Login() {
   const [open, setOpen] = useState(false);
@@ -36,7 +37,7 @@ function Login() {
   };
 
   useEffect(() => {
-    setOpen(router.query.login);
+    router.query.login ? setOpen(router.query.login) : setOpen(false);
   }, [router.query.login]);
 
   return (
@@ -64,7 +65,9 @@ function Login() {
             </Typography>
           </div>
         </div>
-        <div className="login-body"></div>
+        <div className="login-body">
+          <LoginForm />
+        </div>
         <div className="login-footer">
           <Typography>you don&apos; t have account?</Typography>
           <Typography className="login-footer-link" onClick={handleSignup}>

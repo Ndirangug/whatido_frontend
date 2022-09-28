@@ -28,7 +28,7 @@ export const InputFieldContainer = styled.div`
     width: 100%;
     border: ${({ error }) =>
       error ? '1px solid red' : '1px solid var(--main-border)'};
-    padding: 0.25rem;
+    padding: 0.75rem 0.5rem;
     border-radius: 0.25rem;
     outline: none;
 

@@ -9,7 +9,6 @@ export const LoginModal = styled(Modal)`
   width: 100vw;
   min-height: 100vh;
   height: 100%;
-  overflow: hidden;
 
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
@@ -64,27 +63,27 @@ export const LoginModal = styled(Modal)`
         }
       }
     }
-  }
 
-  .header-body {
-    padding: 2rem;
-    overflow: scroll;
-  }
+    .login-body {
+      padding: 0 2rem;
+      overflow: scroll;
+    }
 
-  .login-footer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    border-top: 1px solid var(--main-border);
-    padding: 1rem;
-  }
+    .login-footer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border-top: 1px solid var(--main-border);
+      padding: 1rem;
 
-  .login-footer-link {
-    color: var(--blue-shade);
-    margin-left: 0.5rem;
-    cursor: pointer;
+      .login-footer-link {
+        color: var(--blue-shade);
+        margin-left: 0.5rem;
+        cursor: pointer;
+      }
+    }
   }
 
   /* below the line gets depricated */
