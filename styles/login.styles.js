@@ -9,6 +9,7 @@ export const LoginModal = styled(Modal)`
   width: 100vw;
   min-height: 100vh;
   height: 100%;
+  overflow: hidden;
 
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
@@ -16,21 +17,15 @@ export const LoginModal = styled(Modal)`
     }
   }
 
-  .modal-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+  .login-container {
+    display: grid;
     background: #ffffff;
     height: 100%;
     width: 100%;
-    width: 100vw;
-    border: none;
-    outline: none;
+    grid-template-rows: auto 1fr auto;
 
     @media screen and (min-width: 767px) {
-      min-height: 90%;
-      max-height: 90%;
+      height: 80%;
       max-width: 55%;
       border-radius: 1rem;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -38,7 +33,58 @@ export const LoginModal = styled(Modal)`
     @media screen and (min-width: 1023px) {
       max-width: 40%;
     }
+
+    .login-header {
+      display: grid;
+      padding: 0.25rem 1rem;
+      position: relative;
+
+      .header-top {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        top: -10px;
+        right: 5px;
+
+        .close-icon {
+          cursor: pointer;
+          margin: 0 !important;
+        }
+      }
+
+      .logo-container {
+        display: grid;
+        place-content: center;
+        place-items: center;
+        grid-gap: 0.5rem;
+
+        .logo-text {
+          font-size: 2rem;
+          font-weight: 500;
+        }
+      }
+    }
   }
+
+  .header-body {
+  }
+
+  .login-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border-top: 1px solid var(--main-border);
+    padding: 1rem;
+  }
+
+  .login-footer-link {
+    color: var(--blue-shade);
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+
   .wrapper {
     width: 100%;
     position: relative;
@@ -93,9 +139,9 @@ export const LoginModal = styled(Modal)`
   }
 
   .login-header {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 1rem 0;
-    font-weight: 600;
+    font-weight: 400;
   }
   .avartar {
     display: flex;
@@ -178,14 +224,6 @@ export const LoginModal = styled(Modal)`
     }
   }
 
-  .close-icon2 {
-    right: 10px;
-    top: 10px;
-    font-size: 12px;
-    font-weight: 500;
-    align-self: flex-end;
-    cursor: pointer;
-  }
   .close-icon-main2 {
     margin-left: 5px;
     margin-right: 5px;
@@ -231,36 +269,11 @@ export const LoginModal = styled(Modal)`
     height: 20px;
     margin-right: 10px;
   }
-
-  .login-footer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    border-top: 2px solid #e0e0e0;
-    padding: 2rem 0 !important;
-    margin: 0 !important;
-  }
-
-  .login-footer-link {
-    color: var(--primary-color);
-  }
 `;
+
 export const CancelIcon = styled(MdOutlineCancel)`
-  height: 2.5rem;
-  width: 2.5rem;
-  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
   color: red;
   font-weight: 500;
-  flex-shrink: 0;
-  margin: 0 !important;
-`;
-
-export const LinkContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  color: #000;
 `;

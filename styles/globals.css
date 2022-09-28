@@ -1,7 +1,7 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   height: 100%;
   font-family: 'Gilroy-Medium';
   color: #292d32;
@@ -21,4 +21,7 @@ a {
   --main-border: #dddddd;
   --main-black: #292d32;
   --main-gray: #bdbdbd;
+  --main-blue: #2681f2;
+  --main-yellow: #fcc95c;
+  --blue-shade: #4692f2;
 }

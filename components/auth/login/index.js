@@ -1,15 +1,10 @@
-import { IconButton } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { RiFacebookCircleFill, RiTwitterFill } from 'react-icons/ri';
-import { API_URL, Logo } from '../../../constants/api';
-import {
-  CancelIcon,
-  LinkContainer,
-  LoginModal,
-} from '../../../styles/login.styles';
+import { API_URL } from '../../../constants/api';
+import { CancelIcon, LoginModal } from '../../../styles/login.styles';
 
 function Login() {
   const [open, setOpen] = useState(false);
@@ -47,74 +42,34 @@ function Login() {
   return (
     <LoginModal
       open={open}
-      style={{ overflow: 'scroll' }}
       onClose={handleClose}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
-      <div className="modal-container">
-        <div className="close-icon2" onClick={handleClose}>
-          <IconButton>
-            <CancelIcon />
-          </IconButton>
-        </div>
-        <div className="avatar">
-          <Avatar
-            src={Logo}
-            sx={{ m: 1, bgcolor: 'secondary.main', alignSelf: 'center' }}
-          ></Avatar>
-        </div>
-        <p className="login-header">Login </p>
-        <div className="wrapper">
-          <div className="left">
-            {/* <LoginForm unsetUserLogin={handleClose} /> */}
-
-            <div className="center">
-              <div className="login-line" />
-              <div className="or">or</div>
-            </div>
+      <div className="login-container">
+        <div className="login-header">
+          <div className="header-top">
+            <IconButton className="close-icon" onClick={handleClose}>
+              <CancelIcon />
+            </IconButton>
           </div>
-
-          <div className="right">
-            <div className="loginButton2" onClick={facebook}>
-              <RiFacebookCircleFill
-                style={{
-                  height: '2.2rem',
-                  width: '2.2rem',
-                  marginRight: '1rem',
-                  color: '#3b5998',
-                }}
-              />
-              Continue with Facebook
-            </div>
-            <div className="loginButton2" onClick={google}>
-              <FcGoogle
-                style={{
-                  height: '2rem',
-                  width: '2rem',
-                  marginRight: '1rem',
-                }}
-              />
-              Continue with Google
-            </div>
-            <div className="loginButton2" onClick={twitter}>
-              <RiTwitterFill
-                style={{
-                  height: '2rem',
-                  width: '2rem',
-                  marginRight: '1rem',
-                  color: '#1DA1F2',
-                }}
-              />
-              Continue with Twitter
-            </div>
+          <div className="logo-container">
+            <Avatar
+              alt="what i do"
+              sx={{ width: 48, height: 48 }}
+              src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
+            />
+            <Typography variant="h4" component="h4" className="logo-text">
+              log in
+            </Typography>
           </div>
         </div>
+        <div className="login-body"></div>
         <div className="login-footer">
-          <span>do not have an account?</span>&nbsp;
-          <LinkContainer className="login-footer-link" onClick={handleSignup}>
-            Sign up
-          </LinkContainer>
+          <Typography>you don&apos; t have account?</Typography>
+          <Typography className="login-footer-link" onClick={handleSignup}>
+            sign up
+          </Typography>
         </div>
       </div>
     </LoginModal>
@@ -122,3 +77,59 @@ function Login() {
 }
 
 export default Login;
+
+//    <div className="modal-container">
+
+//      <div className="avatar">
+
+//      </div>
+
+//      <div className="wrapper">
+//        <div className="left">
+//          {/* <LoginForm unsetUserLogin={handleClose} /> */}
+
+//          <div className="center">
+//            <div className="login-line" />
+//            <Typography className="or">or</Typography>
+//          </div>
+//        </div>
+
+//        <div className="right">
+//          <Typography className="loginButton2" onClick={facebook}>
+//            <RiFacebookCircleFill
+//              style={{
+//                height: '2.2rem',
+//                width: '2.2rem',
+//                marginRight: '1rem',
+//                color: '#3b5998',
+//              }}
+//            />
+//            continue with facebook
+//          </Typography>
+//          <Typography className="loginButton2" onClick={google}>
+//            <FcGoogle
+//              style={{
+//                height: '2rem',
+//                width: '2rem',
+//                marginRight: '1rem',
+//              }}
+//            />
+//            continue with google
+//          </Typography>
+//          <Typography className="loginButton2" onClick={twitter}>
+//            <RiTwitterFill
+//              style={{
+//                height: '2rem',
+//                width: '2rem',
+//                marginRight: '1rem',
+//                color: '#1DA1F2',
+//              }}
+//            />
+//            continue with twitter
+//          </Typography>
+//        </div>
+//      </div>
+//      <div className="login-footer">
+
+//      </div>
+//    </div>;
