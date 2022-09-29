@@ -68,13 +68,20 @@ export const AuthOptionContainer = styled.div`
   }
 
   .option-text {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     flex: 1;
     text-align: center;
   }
 
   .email {
     color: var(--main-color);
+  }
+
+  .fb {
+    color: #3b5998;
+  }
+  .twitter {
+    color: #1da1f2;
   }
 `;

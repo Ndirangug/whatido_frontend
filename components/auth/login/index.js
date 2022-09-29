@@ -3,15 +3,18 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { CancelIcon, LoginModal } from '../../../styles/login.styles';
+import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
+import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
 function Login() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [loginComponent, setLoginComponent] = useState(0);
 
   const handleClose = () => {
     setOpen(false);
+    handleLoginPage(0);
     router.back();
   };
 
@@ -22,6 +25,13 @@ function Login() {
       },
     });
   };
+
+  const handleLoginPage = (page) => {
+    setLoginComponent(page);
+  };
+
+  const pageComponents = [LoginOptions, LoginForm];
+  const Page = pageComponents[loginComponent];
 
   useEffect(() => {
     router.query.login ? setOpen(router.query.login) : setOpen(false);
@@ -37,6 +47,14 @@ function Login() {
       <div className="login-container">
         <div className="login-header">
           <div className="header-top">
+            {loginComponent > 0 && (
+              <IconButton
+                className="back-icon"
+                onClick={() => handleLoginPage(0)}
+              >
+                <BackIcon />
+              </IconButton>
+            )}
             <IconButton className="close-icon" onClick={handleClose}>
               <CancelIcon />
             </IconButton>
@@ -53,8 +71,7 @@ function Login() {
           </div>
         </div>
         <div className="login-body">
-          <LoginOptions />
-          {/* <LoginForm /> */}
+          <Page hangleLoginPage={handleLoginPage} />
         </div>
         <div className="login-footer">
           <Typography>you don&apos; t have account?</Typography>
