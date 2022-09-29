@@ -3,25 +3,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { API_URL } from '../../../constants/api';
 import { CancelIcon, LoginModal } from '../../../styles/login.styles';
 import LoginOptions from './LoginOptions';
 
 function Login() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-
-  const google = () => {
-    window.open(`${API_URL}/auth/google`, '_self');
-  };
-
-  const facebook = () => {
-    window.open(`${API_URL}/auth/facebook`, '_self');
-  };
-
-  const twitter = () => {
-    window.open(`${API_URL}/auth/twitter`, '_self');
-  };
 
   const handleClose = () => {
     setOpen(false);
