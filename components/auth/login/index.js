@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../../constants/api';
 import { CancelIcon, LoginModal } from '../../../styles/login.styles';
-import LoginForm from './LoginForm';
+import LoginOptions from './LoginOptions';
 
 function Login() {
   const [open, setOpen] = useState(false);
@@ -66,7 +66,8 @@ function Login() {
           </div>
         </div>
         <div className="login-body">
-          <LoginForm />
+          <LoginOptions />
+          {/* <LoginForm /> */}
         </div>
         <div className="login-footer">
           <Typography>you don&apos; t have account?</Typography>

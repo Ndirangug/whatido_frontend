@@ -53,3 +53,28 @@ export const InputFieldContainer = styled.div`
     }
   }
 `;
+
+export const AuthOptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--main-border);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  .option-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .option-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    flex: 1;
+    text-align: center;
+  }
+
+  .email {
+    color: var(--main-color);
+  }
+`;

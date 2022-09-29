@@ -289,6 +289,11 @@ export const LoginFormContainer = styled.form`
   }
 `;
 
+export const LoginOptionContainer = styled.div`
+  display: grid;
+  grid-gap: 0.75rem;
+`;
+
 export const CancelIcon = styled(MdOutlineCancel)`
   height: 2rem;
   width: 2rem;
