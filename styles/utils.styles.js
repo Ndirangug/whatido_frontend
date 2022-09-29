@@ -18,7 +18,7 @@ export const ButtonContainer = styled.button`
 export const BigButtonContainer = styled.button`
   padding: 1rem;
   color: #fff;
-  background: var(--main-black);
+  background: var(--main-blue);
   font-size: 1rem; /* 16px */
   line-height: 1.5rem; /* 24px */
   font-weight: 400;
@@ -37,6 +37,21 @@ export const InputFieldContainer = styled.div`
   .label {
     font-size: 1rem;
     font-weight: 400;
+  }
+
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .eye-icon {
+    color: var(--gray-icon);
+    height: 1.2rem;
+    width: 1.2rem;
+    position: absolute;
+    right: 0.75rem;
+    cursor: pointer;
   }
 
   .input {
@@ -58,9 +73,10 @@ export const AuthOptionContainer = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid var(--main-border);
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  width: 100%;
 
   .option-icon {
     height: 1.5rem;

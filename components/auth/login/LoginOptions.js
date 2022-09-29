@@ -12,31 +12,33 @@ function LoginOptions({ hangleLoginPage }) {
 
   return (
     <LoginOptionContainer>
-      <AuthOption
-        Icon={CgProfile}
-        text="Use email and password"
-        color={'email'}
-        eventHandler={() => hangleLoginPage(1)}
-      />
-      <AuthOption
-        Icon={FcGoogle}
-        text="Continue with Google"
-        color={'google'}
-        eventHandler={() => socials('google')}
-      />
+      <div className="option-container">
+        <AuthOption
+          Icon={CgProfile}
+          text="use email and password"
+          color={'email'}
+          eventHandler={() => hangleLoginPage(1)}
+        />
+        <AuthOption
+          Icon={FcGoogle}
+          text="continue with google"
+          color={'google'}
+          eventHandler={() => socials('google')}
+        />
 
-      <AuthOption
-        Icon={RiFacebookCircleFill}
-        text="Continue with Facebook"
-        color={'fb'}
-        eventHandler={() => socials('facebook')}
-      />
-      <AuthOption
-        Icon={RiTwitterFill}
-        text="Continue with Twitter"
-        color={'twitter'}
-        eventHandler={() => socials('twitter')}
-      />
+        <AuthOption
+          Icon={RiFacebookCircleFill}
+          text="continue with facebook"
+          color={'fb'}
+          eventHandler={() => socials('facebook')}
+        />
+        <AuthOption
+          Icon={RiTwitterFill}
+          text="continue with twitter"
+          color={'twitter'}
+          eventHandler={() => socials('twitter')}
+        />
+      </div>
     </LoginOptionContainer>
   );
 }

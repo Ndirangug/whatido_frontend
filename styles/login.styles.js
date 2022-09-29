@@ -63,6 +63,7 @@ export const LoginModal = styled(Modal)`
         place-content: center;
         place-items: center;
         grid-gap: 0.5rem;
+        margin: 1rem 0 0 0;
 
         .logo-text {
           font-size: 1.5rem;
@@ -72,7 +73,7 @@ export const LoginModal = styled(Modal)`
     }
 
     .login-body {
-      padding: 2rem;
+      padding: 1rem;
       overflow: scroll;
     }
 
@@ -110,8 +111,17 @@ export const LoginFormContainer = styled.form`
 `;
 
 export const LoginOptionContainer = styled.div`
-  display: grid;
-  grid-gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .option-container {
+    display: grid;
+    grid-gap: 1rem;
+    width: 100%;
+  }
 `;
 
 export const CancelIcon = styled(MdOutlineCancel)`

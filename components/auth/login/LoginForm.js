@@ -35,6 +35,7 @@ function LoginForm() {
           type={'password'}
           error={errors?.password?.message}
           register={register('password')}
+          password
         />
       </div>
       <div className="btn-container">
