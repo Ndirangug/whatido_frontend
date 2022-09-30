@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       state.authenticated = action.payload;
     },
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.currentUser = action.payload;
     },
     setVisibility: (state, action) => {
       state.visibility = action.payload;

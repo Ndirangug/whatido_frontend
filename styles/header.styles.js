@@ -33,6 +33,14 @@ export const HeaderContainer = styled.div`
   .header-right {
     display: flex;
     justify-content: flex-end;
+    margin-left: 1rem;
+
+    .header-icon {
+      height: 2rem;
+      width: 2rem;
+      color: var(--main-icon);
+      font-weight: 500;
+    }
   }
 
   .unAuth-container {
