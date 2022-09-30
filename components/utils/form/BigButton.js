@@ -1,5 +1,4 @@
-import React from 'react';
-import { BigButtonContainer } from '../../styles/utils.styles';
+import { BigButtonContainer } from '../../../styles/utils.styles';
 
 function BigButton({ children, eventHandler, type }) {
   return (

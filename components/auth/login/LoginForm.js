@@ -5,8 +5,8 @@ import * as yup from 'yup';
 
 import { loginAction } from '../../../store/actions/auth_actions';
 import { LoginFormContainer } from '../../../styles/login.styles';
-import BigButton from '../../utils/BigButton';
-import InputField from '../../utils/InputField';
+import BigButton from '../../utils/form/BigButton';
+import InputField from '../../utils/form/InputField';
 
 const schema = yup.object().shape({
   email: yup.string().email('email is not valid').required('email is required'),

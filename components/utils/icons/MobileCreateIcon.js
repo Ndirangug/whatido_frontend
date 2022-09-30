@@ -1,4 +1,4 @@
-function MobileCreateBtn() {
+function MobileCreateIcon() {
   return (
     <svg
       width="50"
@@ -35,4 +35,4 @@ function MobileCreateBtn() {
   );
 }
 
-export default MobileCreateBtn;
+export default MobileCreateIcon;

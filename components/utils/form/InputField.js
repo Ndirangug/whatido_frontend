@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { InputFieldContainer } from '../../styles/utils.styles';
+import { InputFieldContainer } from '../../../styles/utils.styles';
 
 function InputField({ label, error, type, register, password }) {
   const [passwordType, setPasswordType] = useState(type);

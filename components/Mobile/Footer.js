@@ -1,16 +1,16 @@
 import { FooterContainer } from '../../styles/footer.styles';
-import AudioRoomsIcon from '../utils/AudioRoomsIcon';
-import ChatIcon from '../utils/ChatIcon';
-import ExploreIcon from '../utils/ExploreIcon';
-import HomeIcon from '../utils/HomeIcon';
-import MobileCreateBtn from '../utils/MobileCreateBtn';
+import AudioRoomsIcon from '../utils/icons/AudioRoomsIcon';
+import ChatIcon from '../utils/icons/ChatIcon';
+import ExploreIcon from '../utils/icons/ExploreIcon';
+import HomeIcon from '../utils/icons/HomeIcon';
+import MobileCreateIcon from '../utils/icons/MobileCreateIcon';
 
 function Footer() {
   return (
     <FooterContainer>
       <HomeIcon selected />
       <ExploreIcon />
-      <MobileCreateBtn />
+      <MobileCreateIcon />
       <AudioRoomsIcon />
       <ChatIcon />
     </FooterContainer>

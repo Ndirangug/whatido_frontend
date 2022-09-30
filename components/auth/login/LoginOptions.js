@@ -3,7 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { RiFacebookCircleFill, RiTwitterFill } from 'react-icons/ri';
 import { API_URL } from '../../../constants/api';
 import { LoginOptionContainer } from '../../../styles/login.styles';
-import AuthOption from '../../utils/AuthOption';
+import AuthOption from '../../utils/micro/AuthOption';
 
 function LoginOptions({ hangleLoginPage }) {
   const socials = (url) => {

@@ -19,8 +19,8 @@ export const BigButtonContainer = styled.button`
   padding: 1rem;
   color: #fff;
   background: var(--main-blue);
-  font-size: 1rem; /* 16px */
-  line-height: 1.5rem; /* 24px */
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 400;
   border: none;
   outline: none;

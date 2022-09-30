@@ -4,14 +4,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
-// import { IoWallet } from 'react-icons/io';
-// import { IoNotifications } from 'react-icons/io';
+import Button from '../utils/form/Button';
 
 import { useSelector } from 'react-redux';
 import { HeaderContainer } from '../../styles/header.styles';
-import CreateIcon from '../utils/CreateIcon';
-import NotificationIcon from '../utils/NotificationIcon';
-import WalletIcon from '../utils/WalletIcon';
+import CreateIcon from '../utils/icons/CreateIcon';
+import NotificationIcon from '../utils/icons/NotificationIcon';
+import WalletIcon from '../utils/icons/WalletIcon';
 
 const Header = () => {
   const router = useRouter();
@@ -60,18 +59,19 @@ const Header = () => {
             <CreateIcon />
           </div>
           <div className="header-right">
-            {/* {!authenticated && (
+            {!authenticated && (
               <Stack direction="row" spacing={2}>
                 <Button name={'log in'} inLine evenHandler={handleLogin} />
                 <Button name={'sign up'} evenHandler={handleSignup} />
               </Stack>
-            )} */}
-
-            <Stack direction="row" spacing={2}>
-              <NotificationIcon />
-              <WalletIcon />
-              <Avatar alt={user?.firstName} src={user?.imageUrl?.cdnUrl} />
-            </Stack>
+            )}
+            {authenticated && (
+              <Stack direction="row" spacing={2}>
+                <NotificationIcon />
+                <WalletIcon />
+                <Avatar alt={user?.firstName} src={user?.imageUrl?.cdnUrl} />
+              </Stack>
+            )}
           </div>
         </div>
       </div>

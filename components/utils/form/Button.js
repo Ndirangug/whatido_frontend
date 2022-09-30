@@ -1,4 +1,4 @@
-import { ButtonContainer } from '../../styles/utils.styles';
+import { ButtonContainer } from '../../../styles/utils.styles';
 
 function Button({ name, inLine, evenHandler }) {
   return (

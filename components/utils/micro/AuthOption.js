@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import { AuthOptionContainer } from '../../styles/utils.styles';
+import { AuthOptionContainer } from '../../../styles/utils.styles';
 
 function AuthOption({ Icon, text, eventHandler, color }) {
   return (
