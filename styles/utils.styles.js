@@ -101,3 +101,27 @@ export const AuthOptionContainer = styled.div`
     color: #1da1f2;
   }
 `;
+
+export const ReelsCardContainer = styled.div`
+  position: relative;
+  width: inherit;
+  height: inherit;
+  max-width: inherit;
+  min-width: 100%;
+  max-height: inherit;
+  min-height: 100%;
+
+  .content {
+    width: 100%;
+    height: 100%;
+  }
+  .reels-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+`;

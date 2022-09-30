@@ -1,3 +1,10 @@
+import ReelsCard from '../components/utils/media/ReelsCard';
+import { HomePageContainer } from '../styles/home.styles';
+
 export default function Home() {
-  return <div>testing new templetate</div>;
+  return (
+    <HomePageContainer>
+      <ReelsCard />
+    </HomePageContainer>
+  );
 }

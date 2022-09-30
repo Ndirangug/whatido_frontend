@@ -2,7 +2,6 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import * as React from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import Button from '../utils/form/Button';
 
