@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
+import { useSelector } from 'react-redux';
 import { HeaderContainer } from '../../styles/header.styles';
 import Button from '../utils/Button';
 
 const Header = () => {
   const router = useRouter();
+  const authenticated = useSelector((state) => state.auth.authenticated);
 
   const handleLogin = () => {
     router.push({
@@ -45,8 +47,14 @@ const Header = () => {
             />
           </div>
           <div className="header-right flex-content">
-            <Button name={'log in'} inLine evenHandler={handleLogin} />
-            <Button name={'sign in'} evenHandler={handleSignup} />
+            {!authenticated && (
+              <Button name={'log in'} inLine evenHandler={handleLogin} />
+            )}
+            {!authenticated && (
+              <Button name={'sign up'} evenHandler={handleSignup} />
+            )}
+
+            {authenticated && <p>emmanuel jacob</p>}
           </div>
         </div>
       </div>

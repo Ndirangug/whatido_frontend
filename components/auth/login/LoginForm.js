@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import { loginAction } from '../../../actions/auth_actions';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/BigButton';
 import InputField from '../../utils/InputField';
@@ -11,7 +13,8 @@ const schema = yup.object().shape({
   password: yup.string().required('password is required'),
 });
 
-function LoginForm() {
+function LoginForm({ handleClose }) {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -19,11 +22,30 @@ function LoginForm() {
   } = useForm({
     resolver: yupResolver(schema),
     criteriaMode: 'all',
-    reValidateMode: 'onChange',
+    reValidateMode: 'onSubmit',
     mode: 'onChange',
   });
+  const [errorMessage, setErrormessage] = useState(null);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    dispatch(loginAction(data));
+    handleClose();
+    // .then((response) => {
+    //   if (
+    //     response.errorMessage &&
+    //     response.errorMessage !== null &&
+    //     response.errorMessage !== undefined &&
+    //     response.errorMessage !== ''
+    //   ) {
+    //     setErrormessage(response.errorMessage);
+    //   } else {
+    //     handleClose();
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log('[ERROR]:', err);
+    // });
+  };
 
   return (
     <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>

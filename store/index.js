@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import userReducer from './slice/user_reducer';
+import authReducer from './reducers/auth_reducer';
 
 const reducers = combineReducers({
-  user: userReducer,
+  auth: authReducer,
 });
 
 const store = configureStore({

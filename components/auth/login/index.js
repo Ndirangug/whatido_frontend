@@ -71,7 +71,7 @@ function Login() {
           </div>
         </div>
         <div className="login-body">
-          <Page hangleLoginPage={handleLoginPage} />
+          <Page hangleLoginPage={handleLoginPage} handleClose={handleClose} />
         </div>
         <div className="login-footer">
           <Typography>you don&apos; t have account?</Typography>
