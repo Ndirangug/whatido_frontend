@@ -56,7 +56,9 @@ const Header = () => {
               placeholder="search..."
             />
           </div>
-          <CreateIcon />
+          <div className="create-container">
+            <CreateIcon />
+          </div>
           <div className="header-right">
             {/* {!authenticated && (
               <Stack direction="row" spacing={2}>

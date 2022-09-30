@@ -38,9 +38,13 @@ export const HeaderContainer = styled.div`
     .header-icon {
       height: 2rem;
       width: 2rem;
-      color: var(--main-icon);
+      color: red;
       font-weight: 500;
     }
+  }
+
+  .create-container {
+    display: none;
   }
 
   .unAuth-container {
@@ -86,6 +90,10 @@ export const HeaderContainer = styled.div`
   @media (min-width: 768px) {
     .header-right {
       grid-gap: 2rem;
+    }
+
+    .create-container {
+      display: inline;
     }
 
     .search-container {

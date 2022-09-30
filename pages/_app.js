@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import Header from '../components/header';
+import Footer from '../components/Mobile/Footer';
 import store from '../store';
 import { GlobalContainer } from '../styles/global';
 import '../styles/globals.css';
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }) {
           <LoginModal />
         </Suspense>
         <Component {...pageProps} />
+        <Footer />
       </Provider>
     </GlobalContainer>
   );
