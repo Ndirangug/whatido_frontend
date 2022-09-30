@@ -12,15 +12,30 @@ export const userSlice = createSlice({
   },
 
   reducers: {
-    loginStart: (state) => {
-      state.isFetching = true;
+    setLoginLoading: (state, action) => {
+      state.isFetching = action.payload;
     },
-    setLoggedInState: (state, action) => {
+    setLoginError: (state, action) => {
+      state.error = action.payload;
+    },
+    setAuthState: (state, action) => {
       state.authenticated = action.payload;
+    },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    setVisibility: (state, action) => {
+      state.visibility = action.payload;
     },
   },
 });
 
-export const { setLoggedInState, loginStart } = userSlice.actions;
+export const {
+  setAuthState,
+  setLoginLoading,
+  setUser,
+  setVisibility,
+  setLoginError,
+} = userSlice.actions;
 
 export default userSlice.reducer;

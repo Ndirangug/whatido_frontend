@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
@@ -25,26 +24,24 @@ function LoginForm({ handleClose }) {
     reValidateMode: 'onSubmit',
     mode: 'onChange',
   });
-  const [errorMessage, setErrormessage] = useState(null);
 
   const onSubmit = (data) => {
-    dispatch(loginAction(data));
-    handleClose();
-    // .then((response) => {
-    //   if (
-    //     response.errorMessage &&
-    //     response.errorMessage !== null &&
-    //     response.errorMessage !== undefined &&
-    //     response.errorMessage !== ''
-    //   ) {
-    //     setErrormessage(response.errorMessage);
-    //   } else {
-    //     handleClose();
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log('[ERROR]:', err);
-    // });
+    dispatch(loginAction(data))
+      .then((response) => {
+        if (
+          response.errorMessage &&
+          response.errorMessage !== null &&
+          response.errorMessage !== undefined &&
+          response.errorMessage !== ''
+        ) {
+          console.log(response.errorMessage);
+        } else {
+          handleClose();
+        }
+      })
+      .catch((err) => {
+        console.log('auth err', err);
+      });
   };
 
   return (
