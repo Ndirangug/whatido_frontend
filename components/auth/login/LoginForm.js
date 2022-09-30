@@ -2,7 +2,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
-import { loginAction } from '../../../actions/auth_actions';
+
+import { loginAction } from '../../../store/actions/auth_actions';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/BigButton';
 import InputField from '../../utils/InputField';

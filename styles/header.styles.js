@@ -31,9 +31,23 @@ export const HeaderContainer = styled.div`
   }
 
   .header-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .unAuth-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 0.5rem;
+  }
+
+  .auth-container {
+    display: flex;
+    align-items: center;
+
+    .auth-content {
+      margin: 0 0.5rem;
+    }
   }
 
   .search-container {

@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
-import { API_URL } from '../constants/api';
+import { API_URL } from '../../constants/api';
 import {
   setAuthState,
   setLoginError,
   setLoginLoading,
   setUser,
   setVisibility,
-} from '../store/reducers/auth_reducer';
+} from '../reducers/auth_reducer';
 
 const cookies = new Cookies();
 
