@@ -14,6 +14,7 @@ const schema = yup.object().shape({
 function LoginForm() {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -21,8 +22,11 @@ function LoginForm() {
     reValidateMode: 'onChange',
     mode: 'onChange',
   });
+
+  const onSubmit = (data) => console.log(data);
+
   return (
-    <LoginFormContainer>
+    <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>
       <div className="input-container">
         <InputField
           label={'email'}
@@ -39,7 +43,7 @@ function LoginForm() {
         />
       </div>
       <div className="btn-container">
-        <BigButton>log in</BigButton>
+        <BigButton type="submit">log in</BigButton>
       </div>
     </LoginFormContainer>
   );

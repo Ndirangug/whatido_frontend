@@ -1,8 +1,11 @@
 import Head from 'next/head';
-import Login from '../components/auth/login/index';
+import { lazy, Suspense } from 'react';
+import { Provider } from 'react-redux';
 import Header from '../components/header';
+import store from '../store';
 import { GlobalContainer } from '../styles/global';
 import '../styles/globals.css';
+const LoginModal = lazy(() => import('../components/auth/login/index'));
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -19,9 +22,13 @@ function MyApp({ Component, pageProps }) {
           href="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
         />
       </Head>
-      <Header />
-      <Login />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Header />
+        <Suspense>
+          <LoginModal />
+        </Suspense>
+        <Component {...pageProps} />
+      </Provider>
     </GlobalContainer>
   );
 }
