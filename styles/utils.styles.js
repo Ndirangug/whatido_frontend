@@ -111,6 +111,23 @@ export const ReelsCardContainer = styled.div`
   max-height: inherit;
   min-height: 100%;
 
+  .reels-info-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .info-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem;
+  }
+
   .content {
     width: 100%;
     height: 100%;

@@ -1,12 +1,10 @@
-import ReelsCard from '../components/utils/media/ReelsCard';
+import Inspiring from '../components/Home/Inspiring';
 import { HomePageContainer } from '../styles/home.styles';
 
 export default function Home() {
   return (
     <HomePageContainer>
-      <ReelsCard />
-      <ReelsCard />
-      <ReelsCard />
+      <Inspiring />
     </HomePageContainer>
   );
 }
