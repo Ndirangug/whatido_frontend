@@ -2,7 +2,7 @@ import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/form/BigButton';
 import InputField from '../../utils/form/InputField';
 
-const Password = ({ handleSignupPage }) => {
+const Password = () => {
   return (
     <LoginFormContainer>
       <div className="input-container">

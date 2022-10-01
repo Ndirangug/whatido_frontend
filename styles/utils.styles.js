@@ -110,6 +110,7 @@ export const ReelsCardContainer = styled.div`
   min-width: 100%;
   max-height: inherit;
   min-height: 100%;
+  scroll-snap-align: start;
 
   .reels-info-container {
     position: absolute;

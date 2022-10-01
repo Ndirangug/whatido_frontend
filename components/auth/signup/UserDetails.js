@@ -5,13 +5,9 @@ import BigButton from '../../utils/form/BigButton';
 import InputField from '../../utils/form/InputField';
 
 const UserDetails = ({ handleSignupPage }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     handleSignupPage(3);
   };
 
