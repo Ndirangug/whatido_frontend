@@ -73,7 +73,7 @@ function SignUp() {
           </div>
         </div>
         <div className="login-body">
-          <Page handleSignupPage={handleSignupPage} handleClose={handleClose} />
+          {/* <Page handleSignupPage={handleSignupPage} handleClose={handleClose} /> */}
         </div>
         <div className="login-footer">
           <Typography>already have an account?</Typography>

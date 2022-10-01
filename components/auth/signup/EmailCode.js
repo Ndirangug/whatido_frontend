@@ -6,7 +6,7 @@ const EmailCode = ({ handleSignupPage }) => {
   return (
     <ComponentsContainer>
       <div className="input-container">
-        <InputField label={'email*'} type={'text'} />
+        <InputField label={'email'} type={'text'} />
         <InputField type={'number'} />
 
         <BigButton>Send code</BigButton>
