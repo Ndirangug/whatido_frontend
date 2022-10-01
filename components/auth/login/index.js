@@ -74,7 +74,7 @@ function Login() {
           <Page hangleLoginPage={handleLoginPage} handleClose={handleClose} />
         </div>
         <div className="login-footer">
-          <Typography>you don&apos; t have account?</Typography>
+          <Typography>don&apos; t have an account?</Typography>
           <Typography className="login-footer-link" onClick={handleSignup}>
             sign up
           </Typography>
