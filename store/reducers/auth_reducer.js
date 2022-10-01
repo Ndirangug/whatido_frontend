@@ -4,7 +4,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     isFetching: false,
-    authenticated: true,
+    authenticated: false,
     currentUser: null,
     visibility: false,
     location: {},
