@@ -1,14 +1,17 @@
-import Image from 'next/image';
 import { ReelsCardContainer } from '../../../styles/utils.styles';
 
 function ReelsCard() {
   return (
     <ReelsCardContainer>
-      <Image
-        src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"
-        alt="media"
-        layout="fill"
-        objectFit="cover"
+      <video
+        src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654636052567__06f60217-d306-4e8e-ad76-4d498f9485d6__2022-05-13_11-56-36.mp4"
+        controlsList="nofullscreen nodownload"
+        preload="auto"
+        loop
+        playsInline
+        autoPlay="autoplay"
+        muted
+        id="video-player"
         className="content"
       />
     </ReelsCardContainer>

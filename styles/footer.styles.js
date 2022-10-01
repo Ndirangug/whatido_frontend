@@ -8,8 +8,8 @@ export const FooterContainer = styled.div`
   background: var(--main-black);
   width: 100%;
   height: max-content;
-  position: fixed;
-  bottom: 0;
+  // position: fixed;
+  // bottom: 0;
 
   .footer-icon {
     height: 4rem;

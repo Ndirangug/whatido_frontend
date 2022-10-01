@@ -114,6 +114,9 @@ export const ReelsCardContainer = styled.div`
   .content {
     width: 100%;
     height: 100%;
+    background: var(--main-background);
+    margin-bottom: 2rem;
+    object-fit: cover;
   }
   .reels-footer {
     position: absolute;
