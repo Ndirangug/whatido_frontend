@@ -7,6 +7,7 @@ import store from '../store';
 import { GlobalContainer } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
+const SignupModal = lazy(() => import('../components/auth/signup/index'));
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -27,6 +28,9 @@ function MyApp({ Component, pageProps }) {
         <Header />
         <Suspense>
           <LoginModal />
+        </Suspense>
+        <Suspense>
+          <SignupModal />
         </Suspense>
         <Component {...pageProps} />
         <Footer />
