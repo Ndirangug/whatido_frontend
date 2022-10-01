@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.div`
   border-bottom: 1px solid var(--main-border);
   box-shadow: 0 1px 1px #eee;
-  position: sticky;
-  top: 0;
   background-color: #fff;
   z-index: 999;
   padding: 0.5rem;

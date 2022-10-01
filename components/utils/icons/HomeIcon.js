@@ -2,14 +2,15 @@ import IconButton from '@mui/material/IconButton';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
-  border-radius: 4px;
+  border-radius: 0px;
   padding: 0;
+  border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
 `;
 
 function HomeIcon({ selected }) {
   let color = selected ? '#ffffff' : '#808080';
   return (
-    <StyledIconBtn>
+    <StyledIconBtn selected={selected}>
       <svg
         width="56"
         height="56"
