@@ -1,7 +1,5 @@
 import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
-import useSWR from 'swr';
-import { API_URL } from '../../../constants/api';
 import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
 import { ReelsCardContainer } from '../../../styles/utils.styles';
 import NotificationIcon from '../icons/NotificationIcon';
@@ -9,9 +7,6 @@ import WalletIcon from '../icons/WalletIcon';
 import MdUserHeader from '../micro/MdUserHeader';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
-  const { data: userData } = useSWR(
-    `${API_URL}/getExpertDetail/${media.userSlug}`
-  );
 
   const callBackFunction = useCallback((entries) => {
     const [entry] = entries;
