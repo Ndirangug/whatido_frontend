@@ -1,9 +1,6 @@
-import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
 import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
 import { ReelsCardContainer } from '../../../styles/utils.styles';
-import NotificationIcon from '../icons/NotificationIcon';
-import WalletIcon from '../icons/WalletIcon';
 import MdUserHeader from '../micro/MdUserHeader';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
@@ -54,10 +51,10 @@ function ReelsCard({ media }) {
               <MdUserHeader userSlug={media.userSlug} />
             </Suspense>
           </ErrorBoundary>
-          <Stack direction="column" spacing={2}>
+          {/* <Stack direction="column" spacing={2}>
             <NotificationIcon />
             <WalletIcon />
-          </Stack>
+          </Stack> */}
         </div>
       </div>
       <video

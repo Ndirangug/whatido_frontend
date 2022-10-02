@@ -1,6 +1,7 @@
 import Stack from '@mui/material/Stack';
 import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
+import { UserContainer } from '../../../styles/utils.styles';
 import { BaseAvatar } from './Avatar';
 import { TextSM } from './Typography';
 
@@ -10,14 +11,16 @@ function MdUserHeader({ userSlug }) {
   });
 
   return (
-    <Stack direction="row" spacing={1} alignItems="center">
-      <BaseAvatar src={data?.data?.imageUrl?.cdnUrl} />
-      <Stack direction="column" spacing={0}>
-        <TextSM>
-          {data?.data?.profile?.firstName} {data?.data?.profile?.lastName}
-        </TextSM>
+    <UserContainer onClick={() => console.log('clicked')}>
+      <Stack direction="row" spacing={1} alignItems="center">
+        <BaseAvatar src={data?.data?.imageUrl?.cdnUrl} />
+        <Stack direction="column" spacing={0}>
+          <TextSM>
+            {data?.data?.profile?.firstName} {data?.data?.profile?.lastName}
+          </TextSM>
+        </Stack>
       </Stack>
-    </Stack>
+    </UserContainer>
   );
 }
 
