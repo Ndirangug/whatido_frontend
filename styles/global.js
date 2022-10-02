@@ -4,6 +4,7 @@ export const GlobalContainer = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
+  width: 100vw;
   position: fixed;
 
   @media not all and (min-resolution: 0.001dpcm) {

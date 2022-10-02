@@ -1,21 +1,64 @@
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
+import useSWR from 'swr';
+import { API_URL } from '../../../constants/api';
+import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
 import { ReelsCardContainer } from '../../../styles/utils.styles';
 import NotificationIcon from '../icons/NotificationIcon';
 import WalletIcon from '../icons/WalletIcon';
+import MdUserHeader from '../micro/MdUserHeader';
+function ReelsCard({ media }) {
+  const videoRef = useRef(null);
+  const { data: userData } = useSWR(
+    `${API_URL}/getExpertDetail/${media.userSlug}`
+  );
 
-function ReelsCard() {
+  const callBackFunction = useCallback((entries) => {
+    const [entry] = entries;
+
+    if (entry.isIntersecting) {
+      //play intersecting video and pause old videos and set as global video
+      entry.target.play();
+    } else {
+      entry.target.pause();
+    }
+  }, []);
+
+  const callBackOptions = useMemo(
+    () => ({
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    }),
+    []
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      callBackFunction,
+      callBackOptions
+    );
+
+    const current = videoRef.current;
+
+    if (videoRef.current) observer.observe(videoRef.current);
+
+    return () => {
+      if (current) observer.unobserve(current);
+    };
+
+    // dependency array
+  }, [callBackFunction, callBackOptions]);
+
   return (
     <ReelsCardContainer>
       <div className="reels-info-container">
         <div className="info-content">
-          <Stack direction="row" spacing={2}>
-            <Avatar alt="n" />
-            <Typography variant="h4" component="h4">
-              ngwu
-            </Typography>
-          </Stack>
+          <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
+            <Suspense fallback={<div>loading...</div>}>
+              <MdUserHeader userSlug={media.userSlug} />
+            </Suspense>
+          </ErrorBoundary>
           <Stack direction="column" spacing={2}>
             <NotificationIcon />
             <WalletIcon />
@@ -23,7 +66,8 @@ function ReelsCard() {
         </div>
       </div>
       <video
-        src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654636052567__06f60217-d306-4e8e-ad76-4d498f9485d6__2022-05-13_11-56-36.mp4"
+        poster={media.thumbnail[0]?.cdnUrl}
+        src={media.file[0]?.cdnUrl}
         controlsList="nofullscreen nodownload"
         preload="auto"
         loop
@@ -32,6 +76,7 @@ function ReelsCard() {
         muted
         id="video-player"
         className="content"
+        ref={videoRef}
       />
     </ReelsCardContainer>
   );
