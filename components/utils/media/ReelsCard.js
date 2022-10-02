@@ -1,6 +1,4 @@
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
 import { FaCommentDots, FaPlay } from 'react-icons/fa';
 import { FiHeart } from 'react-icons/fi';
@@ -63,17 +61,6 @@ function ReelsCard({ media }) {
             <WalletIcon />
           </Stack> */}
 
-          <Stack direction="row" spacing={2}>
-            <Avatar alt="n" />
-            <Stack>
-              <Typography variant="h5" component="h4" color="white">
-                ngwu stephen
-              </Typography>
-              <Typography variant="h7" component="h4" color="gray">
-                software engineer
-              </Typography>
-            </Stack>
-          </Stack>
           <Stack direction="column" spacing={2}>
             <FiHeart className="icons" />
             <FaCommentDots className="icons" />
