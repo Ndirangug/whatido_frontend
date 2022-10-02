@@ -22,10 +22,15 @@ function Footer() {
       router.push('/create');
     }
   };
+
+  const handleExplore = () => {
+    router.push('/explore');
+  };
+
   return (
     <FooterContainer>
       <HomeIcon selected />
-      <ExploreIcon />
+      <ExploreIcon handleExplore={handleExplore} />
       <MobileCreateIcon handleCreate={handleCreate} />
       <AudioRoomsIcon />
       <ChatIcon />

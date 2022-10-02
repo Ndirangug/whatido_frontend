@@ -6,10 +6,10 @@ const StyledIconBtn = styled(IconButton)`
   padding: 0;
 `;
 
-function ExploreIcon({ selected }) {
+function ExploreIcon({ selected, handleExplore }) {
   let color = selected ? '#ffffff' : '#808080';
   return (
-    <StyledIconBtn>
+    <StyledIconBtn onClick={handleExplore}>
       <svg
         width="56"
         height="56"
