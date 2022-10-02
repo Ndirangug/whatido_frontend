@@ -145,4 +145,17 @@ export const ReelsCardContainer = styled.div`
     align-items: flex-end;
     justify-content: space-between;
   }
+
+  .play-icon {
+    position: absolute;
+    top: 45%;
+    left: 47%;
+    width: 100%;
+  }
+
+  .icons {
+    color: #fafafa;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 `;
