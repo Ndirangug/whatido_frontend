@@ -151,6 +151,9 @@ export const ReelsCardContainer = styled.div`
     top: 45%;
     left: 47%;
     width: 100%;
+    color: #fafafa;
+    height: 2rem;
+    width: 2rem;
   }
 
   .icons {

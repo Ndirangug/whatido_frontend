@@ -9,7 +9,7 @@ import { ReelsCardContainer } from '../../../styles/utils.styles';
 function ReelsCard() {
   return (
     <ReelsCardContainer>
-      <FaPlay className="icons play-icon" />
+      <FaPlay className="play-icon" />
       <div className="reels-info-container">
         <div className="info-content">
           <Stack direction="row" spacing={2}>
