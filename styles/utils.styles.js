@@ -111,6 +111,7 @@ export const ReelsCardContainer = styled.div`
   max-height: inherit;
   min-height: 100%;
   scroll-snap-align: start;
+  border-radius: 8px;
 
   .reels-info-container {
     position: absolute;
@@ -161,4 +162,9 @@ export const ReelsCardContainer = styled.div`
     height: 1.5rem;
     width: 1.5rem;
   }
+`;
+
+export const UserContainer = styled.div`
+  cursor: pointer;
+  z-index: 9999px;
 `;

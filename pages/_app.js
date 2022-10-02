@@ -1,6 +1,9 @@
+import axios from 'axios';
 import Head from 'next/head';
 import { lazy, Suspense } from 'react';
+import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
+import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/Mobile/Footer';
 import store from '../store';
@@ -8,6 +11,10 @@ import { GlobalContainer } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
 const SignupModal = lazy(() => import('../components/auth/signup/index'));
+
+const fetcher = (...args) => {
+  return axios(...args).then((res) => res.data);
+};
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -24,17 +31,21 @@ function MyApp({ Component, pageProps }) {
           href="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
         />
       </Head>
-      <Provider store={store}>
-        <Header />
-        <Suspense>
-          <LoginModal />
-        </Suspense>
-        <Suspense>
-          <SignupModal />
-        </Suspense>
-        <Component {...pageProps} />
-        <Footer />
-      </Provider>
+      <CookiesProvider>
+        <Provider store={store}>
+          <SWRConfig value={{ fetcher }}>
+            <Header />
+            <Suspense>
+              <LoginModal />
+            </Suspense>
+            <Suspense>
+              <SignupModal />
+            </Suspense>
+            <Component {...pageProps} />
+            <Footer />
+          </SWRConfig>
+        </Provider>
+      </CookiesProvider>
     </GlobalContainer>
   );
 }

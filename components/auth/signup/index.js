@@ -4,10 +4,10 @@ import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
-import EmailCode from './EmailCode';
-import Password from './Password';
-import SignupOptions from './SignupOptions';
-import UserDetails from './UserDetails';
+// import EmailCode from './EmailCode';
+// import Password from './Password';
+// import SignupOptions from './SignupOptions';
+// import UserDetails from './UserDetails';
 
 function SignUp() {
   const [open, setOpen] = useState(false);
@@ -32,8 +32,8 @@ function SignUp() {
     setSignupComponent(page);
   };
 
-  const pageComponents = [SignupOptions, EmailCode, UserDetails, Password];
-  const Page = pageComponents[signupComponent];
+  // const pageComponents = [SignupOptions, EmailCode, UserDetails, Password];
+  // const Page = pageComponents[signupComponent];
 
   useEffect(() => {
     router.query.signup ? setOpen(router.query.signup) : setOpen(false);

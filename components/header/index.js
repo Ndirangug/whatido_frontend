@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
 import Button from '../utils/form/Button';
 
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { HeaderContainer } from '../../styles/header.styles';
 import CreateIcon from '../utils/icons/CreateIcon';
@@ -15,7 +16,6 @@ const Header = () => {
   const router = useRouter();
   const authenticated = useSelector((state) => state.auth.authenticated);
   const user = useSelector((state) => state.auth.currentUser);
-  console.log('user', user);
 
   const handleLogin = () => {
     router.push({
@@ -37,13 +37,15 @@ const Header = () => {
     <HeaderContainer>
       <div className="inner-head-container">
         <div className="header-left">
-          <Image
-            src="/whatido_logo.svg"
-            alt="whatido"
-            width={200}
-            height={40}
-            loading="eager"
-          />
+          <Link href="/">
+            <Image
+              src="/whatido_logo.svg"
+              alt="whatido"
+              width={200}
+              height={40}
+              loading="eager"
+            />
+          </Link>
         </div>
         <div className="header-content">
           <div className="search-container">
