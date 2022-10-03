@@ -111,7 +111,6 @@ export const ReelsCardContainer = styled.div`
   max-height: inherit;
   min-height: 100%;
   scroll-snap-align: start;
-  border-radius: 8px;
 
   .reels-info-container {
     position: absolute;
@@ -120,6 +119,7 @@ export const ReelsCardContainer = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+    z-index: 2;
   }
 
   .info-content {
@@ -136,6 +136,7 @@ export const ReelsCardContainer = styled.div`
     background: var(--main-background);
     margin-bottom: 2rem;
     object-fit: cover;
+    z-index: 1;
   }
   .reels-footer {
     position: absolute;

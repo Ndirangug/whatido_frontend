@@ -1,6 +1,12 @@
+import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
 import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
 import { ReelsCardContainer } from '../../../styles/utils.styles';
+import CommentIcon from '../icons/CommentIcon';
+import LikeIcon from '../icons/LikeIcon';
+import OptionsIcon from '../icons/OptionsIcon';
+import ShareIcon from '../icons/ShareIcon';
+import SubscribeIcon from '../icons/SubscribeIcon';
 import MdUserHeader from '../micro/MdUserHeader';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
@@ -51,10 +57,13 @@ function ReelsCard({ media }) {
               <MdUserHeader userSlug={media.userSlug} />
             </Suspense>
           </ErrorBoundary>
-          {/* <Stack direction="column" spacing={2}>
-            <NotificationIcon />
-            <WalletIcon />
-          </Stack> */}
+          <Stack direction="column" spacing={2}>
+            <SubscribeIcon />
+            <LikeIcon />
+            <CommentIcon />
+            <ShareIcon />
+            <OptionsIcon />
+          </Stack>
         </div>
       </div>
       <video
