@@ -7,7 +7,7 @@ const Search = () => {
     <SearchContainer>
       <SearchIcon />
       <input placeholder="Search" type="text" className="search-input" />
-      <MicrophoneIcon className="search-icons" />
+      <MicrophoneIcon />
     </SearchContainer>
   );
 };

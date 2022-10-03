@@ -2,7 +2,7 @@ import IconButton from '@mui/material/IconButton';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
-  padding: 0;
+  padding: 0.5rem;
 `;
 
 function SearchIcon() {
