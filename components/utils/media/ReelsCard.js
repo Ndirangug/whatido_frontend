@@ -1,10 +1,12 @@
 import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
-import { FaCommentDots, FaPlay } from 'react-icons/fa';
-import { FiHeart } from 'react-icons/fi';
-import { IoIosShareAlt } from 'react-icons/io';
 import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
 import { ReelsCardContainer } from '../../../styles/utils.styles';
+import CommentIcon from '../icons/CommentIcon';
+import LikeIcon from '../icons/LikeIcon';
+import OptionsIcon from '../icons/OptionsIcon';
+import ShareIcon from '../icons/ShareIcon';
+import SubscribeIcon from '../icons/SubscribeIcon';
 import MdUserHeader from '../micro/MdUserHeader';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
@@ -48,7 +50,6 @@ function ReelsCard({ media }) {
 
   return (
     <ReelsCardContainer>
-      <FaPlay className="play-icon" />
       <div className="reels-info-container">
         <div className="info-content">
           <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
@@ -56,15 +57,12 @@ function ReelsCard({ media }) {
               <MdUserHeader userSlug={media.userSlug} />
             </Suspense>
           </ErrorBoundary>
-          {/* <Stack direction="column" spacing={2}>
-            <NotificationIcon />
-            <WalletIcon />
-          </Stack> */}
-
           <Stack direction="column" spacing={2}>
-            <FiHeart className="icons" />
-            <FaCommentDots className="icons" />
-            <IoIosShareAlt className="icons" />
+            <SubscribeIcon />
+            <LikeIcon />
+            <CommentIcon />
+            <ShareIcon />
+            <OptionsIcon />
           </Stack>
         </div>
       </div>
