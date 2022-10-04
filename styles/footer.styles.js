@@ -7,7 +7,7 @@ export const FooterContainer = styled.div`
   overflow: hidden;
   background: var(--main-black);
   width: 100%;
-  height: max-content;
+  /* height: max-content; */
   // position: fixed;
   // bottom: 0;
 

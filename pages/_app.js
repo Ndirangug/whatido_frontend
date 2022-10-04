@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }) {
             <Suspense>
               <SignupModal />
             </Suspense>
+
             <Component {...pageProps} />
             <Footer />
           </SWRConfig>
