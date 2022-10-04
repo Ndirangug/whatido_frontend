@@ -1,9 +1,14 @@
+import { useState, lazy, Suspense } from 'react';
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
 
+const Notification = lazy(() => import('../../Notification/index'));
+
 function NotificationIcon() {
+  const [options, setOptions] = useState(false);
+
   return (
-    <IconButton>
+    <IconButton onClick={() => setOptions((prev) => !prev)}>
       <Icon className="header-icon">
         <svg
           width="32"
@@ -22,6 +27,11 @@ function NotificationIcon() {
           />
         </svg>
       </Icon>
+      {options && (
+        <Suspense fallback={<div>loading...</div>}>
+          <Notification />
+        </Suspense>
+      )}
     </IconButton>
   );
 }
