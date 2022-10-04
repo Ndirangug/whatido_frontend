@@ -34,8 +34,11 @@ export const ContentPageContainer = styled.div`
     height: 11.5rem;
     top: 8rem;
     background: #d9d9d9;
-    background-image: url('https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg');
     object-fit: fill;
+    border-radius: 7px;
+  }
+
+  .banner-img {
     border-radius: 7px;
   }
 
@@ -95,22 +98,12 @@ export const CardContainer = styled.div`
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
     height: 70px;
     flex: none;
     order: 0;
     flex-grow: 0;
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    scroll-snap-type: x mandatory;
-
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 
   .img {
