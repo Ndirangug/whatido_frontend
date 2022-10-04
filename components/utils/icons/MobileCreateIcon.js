@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
-  padding: 1px;
+  padding: 0;
 `;
 
 function MobileCreateIcon() {

@@ -14,3 +14,11 @@ export const TextSM = styled(Typography)`
   font-weight: 400;
   color: white;
 `;
+
+export const CreateText = styled(Typography)`
+  font-size: 1.2rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+`;
