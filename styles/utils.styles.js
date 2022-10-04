@@ -15,6 +15,15 @@ export const ButtonContainer = styled.button`
   white-space: nowrap;
 `;
 
+export const SelectButtonContainer = styled.button`
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background: var(--main-indigo);
+  color: white;
+  border: none;
+  outline: none;
+`;
+
 export const BigButtonContainer = styled.button`
   padding: 1rem;
   color: #fff;

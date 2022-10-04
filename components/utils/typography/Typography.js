@@ -21,4 +21,13 @@ export const CreateText = styled(Typography)`
   font-weight: 500;
   width: 100%;
   text-align: center;
+  color: var(--main-indigo);
+`;
+
+export const ShareText = styled(Typography)`
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.408px;
+  color: var(--main-gray);
 `;
