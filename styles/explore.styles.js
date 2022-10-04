@@ -17,15 +17,10 @@ export const ContentPageContainer = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  .explore-header {
+  .text-position {
     position: absolute;
-    width: 5.25rem;
-    height: 1rem;
     top: 1rem;
-    font-size: 1.5rem;
-    line-height: 1rem;
-    letter-spacing: 0.025rem;
-    color: #001433;
+    color: var(--main-black);
   }
 
   .rectangle-container {
@@ -36,6 +31,10 @@ export const ContentPageContainer = styled.div`
     background: #d9d9d9;
     object-fit: fill;
     border-radius: 7px;
+
+    @media (min-width: 475px) {
+      height: 15.5rem;
+    }
   }
 
   .banner-img {
@@ -43,8 +42,14 @@ export const ContentPageContainer = styled.div`
   }
 
   .categories {
+    position: absolute;
     top: 21.5rem;
     font-size: 1.2rem;
+    color: var(--main-black);
+
+    @media (min-width: 475px) {
+      top: 25rem;
+    }
   }
 `;
 
@@ -62,7 +67,6 @@ export const SearchContainer = styled.div`
 
   .search-input {
     height: 24px;
-    font-family: 'Gilroy-Regular';
     font-size: 16px;
     line-height: 24px;
     color: #666666;
@@ -70,6 +74,10 @@ export const SearchContainer = styled.div`
     flex-grow: 1;
     border: none;
     outline: none;
+
+    ::placeholder {
+      color: var(--main-gray);
+    }
   }
 `;
 
@@ -79,6 +87,10 @@ export const ExploreCardsContainer = styled.div`
   display: grid;
   grid-gap: 25px;
   top: 24rem;
+
+  @media (min-width: 475px) {
+    top: 27rem;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -93,17 +105,54 @@ export const CardContainer = styled.div`
   overflow: hidden;
   padding: 0.5rem;
 
+  @media (min-width: 475px) {
+    height: 180px;
+  }
+
   .img-wrapper {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-around;
     padding: 0px;
+    margin-bottom: 0.5rem;
     gap: 0.5rem;
     width: 100%;
     height: 70px;
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    @media (min-width: 475px) {
+      display: none;
+    }
+  }
+
+  .large-img-wrapper {
+    display: none;
+
+    @media (min-width: 475px) {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-around;
+      padding: 0px;
+      margin-bottom: 2.5rem;
+      gap: 0.5rem;
+      width: 100%;
+      height: 70px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+
+    // @media (min-width: 576px) {
+    //   margin-bottom: 2.3rem;
+    // }
+
+    @media (min-width: 666px) {
+      margin-bottom: 3rem;
+    }
   }
 
   .img {
@@ -113,7 +162,6 @@ export const CardContainer = styled.div`
     flex: none;
     order: 0;
     flex-grow: 0;
-    scroll-snap-align: start;
   }
 
   .details-container {
@@ -128,6 +176,14 @@ export const CardContainer = styled.div`
     flex: none;
     order: 1;
     flex-grow: 0;
+
+    @media (min-width: 675px) {
+      padding: 0 0.5rem;
+    }
+
+    @media (min-width: 746px) {
+      padding: 0 1rem;
+    }
   }
 
   .details-wrapper {
@@ -144,15 +200,10 @@ export const CardContainer = styled.div`
   }
 
   .category-title {
-    width: 97px;
-    height: 22px;
     font-size: 12px;
     line-height: 22px;
-    letter-spacing: -0.408px;
-    color: #001433;
+    color: var(--main-black);
     flex: none;
-    order: 0;
-    flex-grow: 0;
   }
 
   .experts-wrapper {
@@ -169,7 +220,7 @@ export const CardContainer = styled.div`
   .num-of-experts {
     width: 44px;
     height: 22px;
-    font-family: 'Gilroy-Medium';
+    font-family: none;
     font-size: 10px;
     line-height: 22px;
     color: rgba(0, 20, 51, 0.5);
@@ -203,9 +254,7 @@ export const CardContainer = styled.div`
   }
 
   .num-of-posts {
-    width: 41px;
-    height: 22px;
-    font-family: 'Gilroy-Medium';
+    font-family: none;
     font-size: 10px;
     line-height: 22px;
     letter-spacing: -0.408px;
@@ -238,16 +287,16 @@ export const CardContainer = styled.div`
     gap: 4px;
     width: 80px;
     height: 22px;
+    cursor: pointer;
   }
 
   .follow-all {
     width: 56px;
     height: 22px;
-    font-family: 'Gilroy-Medium';
     font-size: 13px;
     line-height: 22px;
     letter-spacing: -0.408px;
-    color: #001433;
+    color: var(--main-black);
     flex: none;
     order: 1;
     flex-grow: 0;

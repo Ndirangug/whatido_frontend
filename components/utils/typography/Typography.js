@@ -31,3 +31,9 @@ export const ShareText = styled(Typography)`
   letter-spacing: -0.408px;
   color: var(--main-gray);
 `;
+export const ExploreText = styled(Typography)`
+  font-size: 1.5rem;
+  line-height: 1rem;
+  letter-spacing: 0.025rem;
+  color: #001433;
+`;
