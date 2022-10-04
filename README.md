@@ -49,6 +49,7 @@ all avalable subjects are included below, remember engines and hooks are in stri
 - feat: A new feature
 - fix: A bug fix
   -wip : work in progress
+  -develop : routing and architecture
 - perf: A code change that improves performance
 - refactor: A code change that neither fixes a bug nor adds a feature
 - revert: A code change that reverts to a previous feature
