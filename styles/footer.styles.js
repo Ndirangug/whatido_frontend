@@ -8,6 +8,7 @@ export const FooterContainer = styled.div`
   background: var(--main-black);
   width: 100%;
   height: max-content;
+  z-index: 999;
   // position: fixed;
   // bottom: 0;
 

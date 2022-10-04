@@ -13,3 +13,10 @@ export const TextXS = styled(Typography)`
   font-weight: 400;
   color: white;
 `;
+
+export const ExploreText = styled(Typography)`
+  font-size: 1.5rem;
+  line-height: 1rem;
+  letter-spacing: 0.025rem;
+  color: #001433;
+`;

@@ -1,9 +1,11 @@
 import { ExploreCardsContainer } from '../../styles/explore.styles';
-import Card from './Card';
+import Card from '../utils/explore/Card';
 
 const ExploreCards = () => {
   return (
     <ExploreCardsContainer>
+      <Card />
+      <Card />
       <Card />
     </ExploreCardsContainer>
   );
