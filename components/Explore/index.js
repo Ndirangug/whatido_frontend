@@ -1,7 +1,7 @@
 import { Stack } from '@mui/system';
 import Image from 'next/image';
 import { ContentPageContainer } from '../../styles/explore.styles';
-import { ExploreText } from '../utils/micro/Typography';
+import { ExploreText } from '../utils/typography/Typography';
 import ExploreCards from './ExploreCards';
 import Search from './Search';
 

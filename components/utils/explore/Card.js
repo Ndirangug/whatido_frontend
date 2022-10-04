@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { CardContainer } from '../../../styles/explore.styles';
+import { BaseAvatar } from '../avatars/Avatar';
 import PlusIcon from '../icons/PlusIcon';
-import { BaseAvatar } from '../micro/Avatar';
-import { TextXS } from '../micro/Typography';
+import { TextXS } from '../typography/Typography';
 
 const Card = () => {
   return (
