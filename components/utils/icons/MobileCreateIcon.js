@@ -1,13 +1,30 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
-  padding: 0;
+  padding: 1px;
 `;
 
-function MobileCreateIcon({ handleCreate }) {
+function MobileCreateIcon() {
+  const router = useRouter();
+  const selected = router.asPath === '/create';
+  const authenticated = useSelector((state) => state.auth.authenticated);
+
+  const handleCreate = () => {
+    if (!authenticated) {
+      router.push({
+        query: {
+          login: true,
+        },
+      });
+    } else {
+      router.push('/create');
+    }
+  };
   return (
-    <StyledIconBtn onClick={handleCreate}>
+    <StyledIconBtn selected={selected} onClick={handleCreate}>
       <svg
         width="50"
         height="50"

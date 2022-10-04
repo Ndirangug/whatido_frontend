@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import { TextXS } from '../typography/Typography';
 
 const BtnContainer = styled.div`
-  background: var(--main-indigo);
-  border: 1px solid var(--main-indigo);
+  background: ${({ following }) =>
+    following ? 'transparent ' : ' var(--main-indigo)'};
+  border: ${({ following }) =>
+    following ? '1px solid #fff ' : '1px solid var(--main-indigo)'};
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -20,7 +22,7 @@ const BtnContainer = styled.div`
 function FollowButton({ following }) {
   let text = following ? 'following' : 'follow';
   return (
-    <BtnContainer>
+    <BtnContainer following={following}>
       <TextXS>{text}</TextXS>
     </BtnContainer>
   );

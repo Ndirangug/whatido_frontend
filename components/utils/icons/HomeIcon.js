@@ -1,4 +1,5 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -7,10 +8,13 @@ const StyledIconBtn = styled(IconButton)`
   border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
 `;
 
-function HomeIcon({ selected }) {
+function HomeIcon() {
+  const router = useRouter();
+  const selected = router.asPath === '/';
   let color = selected ? '#ffffff' : '#808080';
+
   return (
-    <StyledIconBtn selected={selected}>
+    <StyledIconBtn selected={selected} onClick={() => router.push('/')}>
       <svg
         width="56"
         height="56"

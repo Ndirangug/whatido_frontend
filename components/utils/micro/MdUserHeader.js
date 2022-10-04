@@ -24,7 +24,7 @@ function MdUserHeader({ userSlug }) {
         </TextSM>
       </Link>
 
-      <FollowButton following={false} />
+      <FollowButton following={true} />
     </Stack>
   );
 }
