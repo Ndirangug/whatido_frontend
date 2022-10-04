@@ -37,6 +37,7 @@ module.exports = {
         'feat',
         'fix',
         'wip',
+        'develop',
         'perf',
         'refactor',
         'revert',

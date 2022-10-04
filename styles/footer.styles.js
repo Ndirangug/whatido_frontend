@@ -5,10 +5,10 @@ export const FooterContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  background: var(--main-black);
+  background: var(--main-indigo);
   width: 100%;
-  height: max-content;
   z-index: 999;
+  /* height: max-content; */
   // position: fixed;
   // bottom: 0;
 

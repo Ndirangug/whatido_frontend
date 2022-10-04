@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { ContentPageContainer } from '../../styles/home.styles';
-import ReelsCard from '../utils/media/ReelsCard';
+import ReelsCard from '../utils/cards/media/ReelsCard';
 
 function Inspiring() {
   let url = `${API_URL}/feed/for-you?page=0`;

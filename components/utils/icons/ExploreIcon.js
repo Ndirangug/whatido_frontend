@@ -1,15 +1,20 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
-  border-radius: 4px;
+  border-radius: 0;
   padding: 0;
+  border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
 `;
 
-function ExploreIcon({ selected, handleExplore }) {
+function ExploreIcon() {
+  const router = useRouter();
+  const selected = router.asPath === '/explore';
   let color = selected ? '#ffffff' : '#808080';
+
   return (
-    <StyledIconBtn onClick={handleExplore}>
+    <StyledIconBtn selected={selected} onClick={() => router.push('/explore')}>
       <svg
         width="56"
         height="56"

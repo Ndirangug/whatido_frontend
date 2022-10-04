@@ -122,6 +122,19 @@ export const ReelsCardContainer = styled.div`
     z-index: 2;
   }
 
+  .info-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 20rem;
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
   .info-content {
     display: flex;
     align-items: flex-end;
@@ -163,9 +176,4 @@ export const ReelsCardContainer = styled.div`
     height: 1.5rem;
     width: 1.5rem;
   }
-`;
-
-export const UserContainer = styled.div`
-  cursor: pointer;
-  z-index: 9999px;
 `;
