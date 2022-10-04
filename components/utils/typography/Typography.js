@@ -15,6 +15,22 @@ export const TextSM = styled(Typography)`
   color: white;
 `;
 
+export const CreateText = styled(Typography)`
+  font-size: 1.2rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  color: var(--main-indigo);
+`;
+
+export const ShareText = styled(Typography)`
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.408px;
+  color: var(--main-gray);
+`;
 export const ExploreText = styled(Typography)`
   font-size: 1.5rem;
   line-height: 1rem;
