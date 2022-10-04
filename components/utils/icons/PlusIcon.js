@@ -1,13 +1,5 @@
-import IconButton from '@mui/material/IconButton';
-import styled from 'styled-components';
-
-const StyledIconBtn = styled(IconButton)`
-  padding: 0rem;
-`;
-
 function PlusIcon() {
   return (
-    // <StyledIconBtn>
     <svg
       width="20"
       height="20"
@@ -22,7 +14,6 @@ function PlusIcon() {
         strokeLinecap="round"
       />
     </svg>
-    // </StyledIconBtn>
   );
 }
 
