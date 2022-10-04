@@ -7,13 +7,10 @@ export const LoginModal = styled(Modal)`
   align-items: center;
   justify-content: center;
   width: 100vw;
-  min-height: 100vh;
-  height: 100%;
+  height: 100vh;
 
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-appearance: none) {
-      min-height: -webkit-fill-available !important;
-    }
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available !important;
   }
 
   .login-container {

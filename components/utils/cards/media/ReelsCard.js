@@ -1,15 +1,15 @@
 import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
-import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
-import { ReelsCardContainer } from '../../../styles/utils.styles';
-import CommentIcon from '../icons/CommentIcon';
-import LikeIcon from '../icons/LikeIcon';
-import OptionsIcon from '../icons/OptionsIcon';
-import PlayIcon from '../icons/PlayIcon';
-import ShareIcon from '../icons/ShareIcon';
-import SubscribeIcon from '../icons/SubscribeIcon';
-import MdUserHeader from '../micro/MdUserHeader';
-import { TextSM, TextXS } from '../micro/Typography';
+import { ErrorBoundary } from '../../../../hooks/ErrorBoundary';
+import { ReelsCardContainer } from '../../../../styles/utils.styles';
+import CommentIcon from '../../icons/CommentIcon';
+import LikeIcon from '../../icons/LikeIcon';
+import OptionsIcon from '../../icons/OptionsIcon';
+import PlayIcon from '../../icons/PlayIcon';
+import ShareIcon from '../../icons/ShareIcon';
+import SubscribeIcon from '../../icons/SubscribeIcon';
+import MdUserHeader from '../../micro/MdUserHeader';
+import { TextSM, TextXS } from '../../typography/Typography';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
 

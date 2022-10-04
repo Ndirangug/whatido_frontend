@@ -1,6 +1,6 @@
 import { ComponentsContainer } from '../../../styles/signUp.styles';
-import BigButton from '../../utils/form/BigButton';
-import InputField from '../../utils/form/InputField';
+import BigButton from '../../utils/buttons/BigButton';
+import InputField from '../../utils/inputs/InputField';
 
 const EmailCode = ({ handleSignupPage }) => {
   return (

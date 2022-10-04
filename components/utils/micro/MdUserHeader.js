@@ -2,8 +2,8 @@ import Stack from '@mui/material/Stack';
 import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
 import { UserContainer } from '../../../styles/utils.styles';
+import { TextSM } from '../typography/Typography';
 import { BaseAvatar } from './Avatar';
-import { TextSM } from './Typography';
 
 function MdUserHeader({ userSlug }) {
   const { data } = useSWR(`${API_URL}/getExpertDetail/${userSlug}`, {

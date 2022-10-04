@@ -2,7 +2,7 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
 // import EmailCode from './EmailCode';
 // import Password from './Password';

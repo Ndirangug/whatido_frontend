@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 
 import { LoginFormContainer } from '../../../styles/login.styles';
-import BigButton from '../../utils/form/BigButton';
-import InputField from '../../utils/form/InputField';
+import BigButton from '../../utils/buttons/BigButton';
+import InputField from '../../utils/inputs/InputField';
 
 const UserDetails = ({ handleSignupPage }) => {
   const { handleSubmit } = useForm();

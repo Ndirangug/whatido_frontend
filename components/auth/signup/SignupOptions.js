@@ -1,11 +1,11 @@
-import { CgProfile } from 'react-icons/cg';
+// import { CgProfile } from 'react-icons/cg';
 import { FcGoogle } from 'react-icons/fc';
 import { RiFacebookCircleFill, RiTwitterFill } from 'react-icons/ri';
 import { API_URL } from '../../../constants/api';
 import { LoginOptionContainer } from '../../../styles/login.styles';
 import AuthOption from '../../utils/micro/AuthOption';
 
-function SignupOptions({ handleSignupPage }) {
+function SignupOptions() {
   const socials = (url) => {
     window.open(`${API_URL}/auth/${url}`, '_self');
   };
@@ -13,12 +13,12 @@ function SignupOptions({ handleSignupPage }) {
   return (
     <LoginOptionContainer>
       <div className="option-container">
-        <AuthOption
+        {/* <AuthOption
           Icon={CgProfile}
           text="use email and password"
           color={'email'}
           eventHandler={() => handleSignupPage(1)}
-        />
+        /> */}
         <AuthOption
           Icon={FcGoogle}
           text="continue with google"

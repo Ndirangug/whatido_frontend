@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
-import Button from '../utils/form/Button';
+import Button from '../utils/buttons/Button';
 
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
