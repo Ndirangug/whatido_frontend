@@ -5,9 +5,11 @@ import { ReelsCardContainer } from '../../../styles/utils.styles';
 import CommentIcon from '../icons/CommentIcon';
 import LikeIcon from '../icons/LikeIcon';
 import OptionsIcon from '../icons/OptionsIcon';
+import PlayIcon from '../icons/PlayIcon';
 import ShareIcon from '../icons/ShareIcon';
 import SubscribeIcon from '../icons/SubscribeIcon';
 import MdUserHeader from '../micro/MdUserHeader';
+import { TextSM, TextXS } from '../micro/Typography';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
 
@@ -54,7 +56,27 @@ function ReelsCard({ media }) {
         <div className="info-content">
           <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
             <Suspense fallback={<div>loading...</div>}>
-              <MdUserHeader userSlug={media.userSlug} />
+              <Stack direction="column" spacing={0.5}>
+                <MdUserHeader userSlug={media.userSlug} />
+                <Stack direction="column" spacing={0.5}>
+                  <TextXS className="info-description">
+                    check out my new post osbwuvnaoei oiahoivban is sdhoanvn
+                    anks inainoin veoinaoisnvaoin eiwanosini asiodnvaoisnd ini
+                  </TextXS>
+                  <div className="info-description">
+                    <Stack direction="row" spacing={1}>
+                      <TextXS>#nft</TextXS>
+                      <TextXS>#nft</TextXS>
+                      <TextXS>#nft</TextXS>
+                      <TextXS>#nft</TextXS>
+                      <TextXS>#nft</TextXS>
+                    </Stack>
+                  </div>
+                  <Stack direction="row" spacing={1}>
+                    <PlayIcon /> <TextSM>24k</TextSM>
+                  </Stack>
+                </Stack>
+              </Stack>
             </Suspense>
           </ErrorBoundary>
           <Stack direction="column" spacing={2}>
