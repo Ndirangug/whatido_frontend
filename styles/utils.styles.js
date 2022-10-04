@@ -177,8 +177,3 @@ export const ReelsCardContainer = styled.div`
     width: 1.5rem;
   }
 `;
-
-export const UserContainer = styled.div`
-  cursor: pointer;
-  z-index: 9999px;
-`;
