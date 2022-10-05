@@ -124,31 +124,8 @@ export const CardContainer = styled.div`
     flex-grow: 0;
 
     @media (min-width: 475px) {
-      display: none;
-    }
-  }
-
-  .large-img-wrapper {
-    display: none;
-
-    @media (min-width: 475px) {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-around;
-      padding: 0px;
       margin-bottom: 2.5rem;
-      gap: 0.5rem;
-      width: 100%;
-      height: 70px;
-      flex: none;
-      order: 0;
-      flex-grow: 0;
     }
-
-    // @media (min-width: 576px) {
-    //   margin-bottom: 2.3rem;
-    // }
 
     @media (min-width: 666px) {
       margin-bottom: 3rem;
