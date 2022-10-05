@@ -6,7 +6,7 @@ export const NotificationContainer = styled.div`
   width: 292px;
   height: 301px;
   left: -150px;
-  top: 60px;
+  top: 59px;
   background: #ffffff;
   border: none;
   box-shadow: 3px 19px 11px rgba(0, 0, 0, 0.05), 0px 2px 5px rgba(0, 0, 0, 0.1),

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/Mobile/Footer';
+import { TransactionProvider } from '../context/TransactionContext';
 import store from '../store';
 import { GlobalContainer } from '../styles/global';
 import '../styles/globals.css';
@@ -33,18 +34,20 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <CookiesProvider>
         <Provider store={store}>
-          <SWRConfig value={{ fetcher }}>
-            <Header />
-            <Suspense>
-              <LoginModal />
-            </Suspense>
-            <Suspense>
-              <SignupModal />
-            </Suspense>
+          <TransactionProvider>
+            <SWRConfig value={{ fetcher }}>
+              <Header />
+              <Suspense>
+                <LoginModal />
+              </Suspense>
+              <Suspense>
+                <SignupModal />
+              </Suspense>
 
-            <Component {...pageProps} />
-            <Footer />
-          </SWRConfig>
+              <Component {...pageProps} />
+              <Footer />
+            </SWRConfig>
+          </TransactionProvider>
         </Provider>
       </CookiesProvider>
     </GlobalContainer>

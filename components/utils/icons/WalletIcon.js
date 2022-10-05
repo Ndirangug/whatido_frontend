@@ -1,9 +1,20 @@
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
+import { lazy, Suspense, useContext } from 'react';
+
+import { TransactionContext } from '../../../context/TransactionContext';
+const Wallet = lazy(() => import('../../SideDrawer/Wallet'));
 
 function WalletIcon() {
+  const { toggleSideDrawer, setToggleSideDrawer } =
+    useContext(TransactionContext);
+
+  const handleClick = () => {
+    setToggleSideDrawer(!toggleSideDrawer);
+  };
+
   return (
-    <IconButton>
+    <IconButton onClick={handleClick}>
       <Icon className="header-icon">
         <svg
           width="32"
@@ -26,6 +37,12 @@ function WalletIcon() {
           />
         </svg>
       </Icon>
+
+      {toggleSideDrawer && (
+        <Suspense fallback={<div>loading...</div>}>
+          <Wallet />
+        </Suspense>
+      )}
     </IconButton>
   );
 }
