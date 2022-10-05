@@ -1,4 +1,3 @@
-import Stack from '@mui/material/Stack';
 import ActionButton from '../components/create/ActionButton';
 import DragDrop from '../components/create/DragDrop';
 import SelectFeatures from '../components/create/SelectFeatures';
@@ -11,20 +10,18 @@ import { CreatePageContainer } from '../styles/create.styles';
 function create() {
   return (
     <CreatePageContainer>
-      <Stack direction="column" spacing={2}>
-        <Stack direction="column" spacing={2}>
-          <CreateText>share what you do</CreateText>
-          <DragDrop />
-        </Stack>
-        <Stack direction="column" spacing={1}>
-          <UploadInputPreview />
-          <TagUser />
-          <TagLocation />
-          <SelectFeatures />
-        </Stack>
+      <div className="create-content">
+        <CreateText>share what you do</CreateText>
+        <DragDrop />
+      </div>
 
-        <ActionButton />
-      </Stack>
+      <div className="create-content">
+        <UploadInputPreview />
+        <TagUser />
+        <TagLocation />
+        <SelectFeatures />
+      </div>
+      <ActionButton />
     </CreatePageContainer>
   );
 }

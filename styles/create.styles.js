@@ -2,9 +2,17 @@ import styled from 'styled-components';
 
 export const CreatePageContainer = styled.div`
   width: 100%;
-  height: 100%;
   overflow: scroll;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
+  display: grid;
+  grid-gap: 0.5rem;
+  height: 100%;
+
+  .create-content {
+    display: grid;
+    grid-gap: 0.5rem;
+    width: 100%;
+  }
 `;
 
 export const DragDropContainer = styled.div`
@@ -50,7 +58,7 @@ export const UploadInputPreviewContainer = styled.div`
 `;
 
 export const TagLocateContainer = styled.div`
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--main-border);
@@ -92,6 +100,21 @@ export const CreateButtonContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 1rem;
   grid-gap: 1rem;
+  margin-top: auto;
+`;
+
+export const PostButtonContainer = styled.button`
+  color: #fff;
+  background: ${({ color }) => color};
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  width: 100%;
+  height: 2rem;
 `;
