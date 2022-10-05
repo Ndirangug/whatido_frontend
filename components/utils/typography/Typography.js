@@ -32,6 +32,17 @@ export const CreateCaptionText = styled(Typography)`
   margin-right: 0.5rem;
 `;
 
+export const SelectHeading = styled(Typography)`
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+  color: var(--sub-indigo);
+`;
+export const SelectText = styled(Typography)`
+  font-size: 12px;
+  line-height: 8px;
+  color: var(--main-indigo);
+`;
+
 export const ShareText = styled(Typography)`
   font-size: 14px;
   line-height: 22px;

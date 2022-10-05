@@ -5,6 +5,7 @@ export const GlobalContainer = styled.div`
   grid-template-rows: auto 1fr auto;
   height: 100vh;
   width: 100vw;
+  position: fixed;
 
   @supports (-webkit-touch-callout: none) {
     height: -webkit-fill-available !important;

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const CreatePageContainer = styled.div`
   width: 100%;
+  height: 100%;
+  overflow: scroll;
   padding: 1rem 0.5rem;
 `;
 
@@ -67,4 +69,29 @@ export const TagLocateContainer = styled.div`
       color: var(--main-gray);
     }
   }
+`;
+
+export const SelectFeatureContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  .select {
+    border-radius: 2px;
+    border: 1px solid var(--main-border);
+    margin-right: 0.5rem;
+
+    &focus {
+      border: 1px solid var(--main-black);
+      background: 1px solid var(--main-black);
+      color: #fff;
+    }
+  }
+`;
+
+export const CreateButtonContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  grid-gap: 1rem;
 `;
