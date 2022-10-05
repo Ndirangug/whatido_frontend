@@ -28,7 +28,6 @@ const NotificationCard = ({ notification }) => {
       direction="row"
       spacing={1}
       alignItems="center"
-      justifyContent="center"
       onClick={viewNotification}
       className="notification-wrapper"
     >

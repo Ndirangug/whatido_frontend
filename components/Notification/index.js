@@ -1,3 +1,4 @@
+import { Stack } from '@mui/system';
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
@@ -11,9 +12,16 @@ const Notification = () => {
 
   return (
     <NotificationContainer>
-      {notifications?.map((notification) => (
-        <NotificationCard key={notification?._id} notification={notification} />
-      ))}
+      {notifications?.length > 0 && (
+        <Stack className="border-top">
+          {notifications?.map((notification) => (
+            <NotificationCard
+              key={notification?._id}
+              notification={notification}
+            />
+          ))}
+        </Stack>
+      )}
     </NotificationContainer>
   );
 };
