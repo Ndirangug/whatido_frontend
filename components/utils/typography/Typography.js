@@ -16,12 +16,18 @@ export const TextSM = styled(Typography)`
 `;
 
 export const CreateText = styled(Typography)`
-  font-size: 1.2rem; /* 16px */
+  font-size: 1rem; /* 16px */
   line-height: 1.5rem; /* 24px */
   font-weight: 500;
   width: 100%;
   text-align: center;
   color: var(--main-indigo);
+`;
+
+export const CreateCaptionText = styled(Typography)`
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  font-weight: 400;
 `;
 
 export const ShareText = styled(Typography)`

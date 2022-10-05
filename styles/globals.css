@@ -17,15 +17,16 @@ a {
 }
 
 :root {
-  --main-background: #f3f3f3;
-  --main-border: #dddddd;
-  --main-black: #292d32;
-  --main-gray: #bdbdbd;
+  --main-black: #001433;
+  --main-icon: #001433;
+  --main-indigo: #001433;
   --main-blue: #2681f2;
   --blue-shade: #4692f2;
-  --main-icon: #001433;
-  --gray-icon: #b3b3b3;
   --main-yellow: #fcc95c;
-  --main-indigo: #001433;
+  --main-background: #f3f3f3;
+  --main-border: #dddddd;
+  --main-gray: #bdbdbd;
+  --gray-icon: #b3b3b3;
   --gray-text: #808999;
+  --gray-variant-i: #d9d9d9;
 }
