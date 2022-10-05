@@ -28,6 +28,8 @@ export const CreateCaptionText = styled(Typography)`
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
   font-weight: 400;
+  white-space: nowrap;
+  margin-right: 0.5rem;
 `;
 
 export const ShareText = styled(Typography)`

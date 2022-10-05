@@ -33,9 +33,6 @@ export const UploadInputPreviewContainer = styled.div`
     font-size: 1rem;
     resize: none;
     font-family: 'Gilroy-Medium' !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     ::placeholder {
       color: var(--main-gray);
@@ -52,4 +49,22 @@ export const UploadInputPreviewContainer = styled.div`
 
 export const TagLocateContainer = styled.div`
   padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--main-border);
+  width: 100%;
+
+  .input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 2rem;
+    background-color: transparent;
+    font-size: 1rem;
+    font-family: 'Gilroy-Medium' !important;
+
+    ::placeholder {
+      color: var(--main-gray);
+    }
+  }
 `;
