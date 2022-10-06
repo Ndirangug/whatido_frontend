@@ -127,3 +127,15 @@ export const HeaderContainer = styled.div`
     }
   }
 `;
+
+export const NotificationDot = styled.div`
+  position: absolute;
+  left: 60%;
+  right: 2%;
+  top: 20%;
+  bottom: 69.45%;
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+  background: #ff5c5c;
+`;

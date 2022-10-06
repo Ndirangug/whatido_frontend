@@ -1,3 +1,4 @@
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/image';
 import { CardContainer } from '../../../styles/explore.styles';
 import { BaseAvatar } from '../avatars/Avatar';
@@ -5,67 +6,38 @@ import PlusIcon from '../icons/PlusIcon';
 import { TextXS } from '../typography/Typography';
 
 const Card = () => {
+  const largeScreen = useMediaQuery('(min-width:475px)');
+
   return (
     <CardContainer>
       <div className="img-wrapper">
         <Image
           src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/profile/1655931996055__ab2869f2-801b-4a6f-96f1-f9ffd7b88574__IMG_20220623_000620.jpg"
           alt="explore"
-          width="80px"
-          height="70px"
+          width={largeScreen ? '140px' : '80px'}
+          height={largeScreen ? '110px' : '70px'}
           className="img"
         />
 
         <Image
           src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654782230047__9dab90b0-3c0f-42bc-af77-6713ee220241__tesla.jpg"
           alt="explore"
-          width="80px"
-          height="70px"
+          width={largeScreen ? '140px' : '80px'}
+          height={largeScreen ? '110px' : '70px'}
           className="img"
         />
         <Image
           src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
           alt="explore"
-          width="80px"
-          height="70px"
+          width={largeScreen ? '140px' : '80px'}
+          height={largeScreen ? '110px' : '70px'}
           className="img"
         />
         <Image
           src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654782230047__9dab90b0-3c0f-42bc-af77-6713ee220241__tesla.jpg"
           alt="explore"
-          width="80px"
-          height="70px"
-          className="img"
-        />
-      </div>
-      <div className="large-img-wrapper">
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/profile/1655931996055__ab2869f2-801b-4a6f-96f1-f9ffd7b88574__IMG_20220623_000620.jpg"
-          alt="explore"
-          width="140px"
-          height="110px"
-          className="img"
-        />
-
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654782230047__9dab90b0-3c0f-42bc-af77-6713ee220241__tesla.jpg"
-          alt="explore"
-          width="140px"
-          height="110px"
-          className="img"
-        />
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
-          alt="explore"
-          width="140px"
-          height="110px"
-          className="img"
-        />
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654782230047__9dab90b0-3c0f-42bc-af77-6713ee220241__tesla.jpg"
-          alt="explore"
-          width="140px"
-          height="110px"
+          width={largeScreen ? '140px' : '80px'}
+          height={largeScreen ? '110px' : '70px'}
           className="img"
         />
       </div>
