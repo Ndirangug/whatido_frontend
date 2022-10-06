@@ -36,7 +36,6 @@ const NotificationCard = ({ notification }) => {
         <BaseAvatar
           src={senderDetails?.data?.imageUrl?.cdnUrl}
           alt="avatar"
-          justifyContent="center"
           className="user-avatar"
         />
         <TextSM className="notification-text">{notification?.title}</TextSM>

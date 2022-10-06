@@ -16,6 +16,8 @@ function NotificationsAlert({ options }) {
     setNotify(unreadNotifications?.length);
   }, [unreadNotifications]);
 
+  const notOptions = !options;
+
   useEffect(() => {
     if (notify > 0) {
       axios.put(`${API_URL}/notifications/${user?.slug}`, {
@@ -23,7 +25,7 @@ function NotificationsAlert({ options }) {
       });
       mutate(unreadNotificationsUrl, [], false);
     }
-  }, [!options]);
+  }, [notOptions]);
 
   if (notify > 0) {
     return <NotificationDot />;
