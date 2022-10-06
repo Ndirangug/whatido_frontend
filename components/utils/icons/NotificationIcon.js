@@ -36,7 +36,7 @@ function NotificationIcon() {
       </Suspense>
 
       {options && (
-        <Suspense fallback={<div>.</div>}>
+        <Suspense>
           <Notification />
         </Suspense>
       )}

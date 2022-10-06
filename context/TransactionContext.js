@@ -44,14 +44,6 @@ export const TransactionProvider = ({ children }) => {
     window.location.reload(false);
   };
 
-  const accountChanged = async (accounts) => {
-    if (accounts.length > 0) {
-      setCurrentAccount(accounts[0]);
-      const wallet = await getWalletBalance();
-      setWalletBalance(wallet);
-    }
-  };
-
   useEffect(() => {
     checkIfWalletIsConnected();
     (async () => {
@@ -59,7 +51,13 @@ export const TransactionProvider = ({ children }) => {
       setWalletBalance(wallet);
     })();
     window.ethereum?.on('chainChanged', networkChanged);
-    window.ethereum?.on('accountsChanged', accountChanged);
+    window.ethereum?.on('accountsChanged', async (accounts) => {
+      if (accounts.length > 0) {
+        setCurrentAccount(accounts[0]);
+        const wallet = await getWalletBalance();
+        setWalletBalance(wallet);
+      }
+    });
   }, []);
 
   const metamaskConnect = async (metamask = eth) => {

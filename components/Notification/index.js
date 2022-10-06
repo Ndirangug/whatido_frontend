@@ -22,6 +22,8 @@ const Notification = () => {
           ))}
         </Stack>
       )}
+
+      {notifications?.length === 0 && <Stack>No Notifications</Stack>}
     </NotificationContainer>
   );
 };
