@@ -22,12 +22,9 @@ export const NotificationContainer = styled.div`
   scrollbar-width: none;
 
   .border-top {
-    padding-top: 0.8rem;
     border-top: 1px solid #dddddd;
   }
   .notification-wrapper {
-    padding-bottom: 0.8rem;
-    margin-bottom: 0.8rem;
     border-bottom: 1px solid #dddddd;
   }
 
@@ -38,6 +35,8 @@ export const NotificationContainer = styled.div`
     flex: none;
     order: 0;
     flex-grow: 0;
+    margin: 0.5rem 0;
+    margin-right: 0.5rem;
   }
 
   .notification-text {

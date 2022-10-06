@@ -36,7 +36,7 @@ function NotificationIcon() {
       </Suspense>
 
       {options && (
-        <Suspense fallback={<div>loading...</div>}>
+        <Suspense fallback={<div>.</div>}>
           <Notification />
         </Suspense>
       )}

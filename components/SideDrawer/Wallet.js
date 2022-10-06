@@ -1,10 +1,10 @@
 import Drawer from '@mui/material/Drawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Stack } from '@mui/system';
-import { useContext } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 
 import { TransactionContext } from '../../context/TransactionContext';
-import WalletSideDrawer from './WalletSideDrawer';
+const WalletSideDrawer = lazy(() => import('./WalletSideDrawer'));
 
 const Wallet = () => {
   const { toggleSideDrawer, setToggleSideDrawer } =
@@ -15,6 +15,7 @@ const Wallet = () => {
   return (
     <>
       <Drawer
+        transitionDuration={0}
         style={{
           zIndex: 888,
           backgroundColor: 'rgba(0,0,0,.1)',
@@ -42,10 +43,12 @@ const Wallet = () => {
         variant="temporary"
         anchor="right"
         open={toggleSideDrawer}
-        onClose={() => setToggleSideDrawer(false)}
+        onClose={() => setToggleSideDrawer(true)}
       >
         <Stack className="wallet-option">
-          <WalletSideDrawer />
+          <Suspense fallback={<div>loading...</div>}>
+            <WalletSideDrawer />
+          </Suspense>
         </Stack>
       </Drawer>
     </>
