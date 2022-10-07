@@ -128,3 +128,13 @@ export const PostButtonContainer = styled.button`
   width: 100%;
   height: 2rem;
 `;
+
+export const PreviewContainer = styled.div`
+  width: 100%;
+  height: 10rem;
+  .video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+`;

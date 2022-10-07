@@ -1,4 +1,3 @@
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
@@ -60,11 +59,6 @@ function Login() {
             </IconButton>
           </div>
           <div className="logo-container">
-            <Avatar
-              alt="what i do"
-              sx={{ width: 40, height: 40 }}
-              src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
-            />
             <Typography variant="h4" component="h4" className="logo-text">
               log in
             </Typography>

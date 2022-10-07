@@ -1,8 +1,8 @@
-import { CgProfile } from 'react-icons/cg';
 import { FcGoogle } from 'react-icons/fc';
 import { RiFacebookCircleFill, RiTwitterFill } from 'react-icons/ri';
 import { API_URL } from '../../../constants/api';
 import { LoginOptionContainer } from '../../../styles/login.styles';
+import UserIcon from '../../utils/icons/UserIcon';
 import AuthOption from '../../utils/micro/AuthOption';
 
 function LoginOptions({ hangleLoginPage }) {
@@ -14,7 +14,7 @@ function LoginOptions({ hangleLoginPage }) {
     <LoginOptionContainer>
       <div className="option-container">
         <AuthOption
-          Icon={CgProfile}
+          Icon={UserIcon}
           text="use email and password"
           color={'email'}
           eventHandler={() => hangleLoginPage(1)}
