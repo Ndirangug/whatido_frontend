@@ -25,7 +25,7 @@ function NotificationsAlert({ notificationDropdown }) {
       });
       mutate(unreadNotificationsUrl, [], false);
     }
-  }, [notOptions]);
+  }, [notOptions, notify, unreadNotificationsUrl, user?.slug]);
 
   if (notify > 0) {
     return <NotificationDot />;

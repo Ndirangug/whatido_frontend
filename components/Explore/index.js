@@ -1,14 +1,12 @@
 import { Stack } from '@mui/system';
 import Image from 'next/image';
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import { ExploreText } from '../utils/typography/Typography';
 import ExploreCards from './ExploreCards';
 import Search from './Search';
 
 const ExplorePage = () => {
-  const { data: posts } = useSWR(`${API_URL}/feed/discover`);
+  // const { data: posts } = useSWR(`${API_URL}/feed/discover`);
 
   return (
     <ContentPageContainer>
