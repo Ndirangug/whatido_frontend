@@ -5,7 +5,7 @@ import useSWR, { mutate } from 'swr';
 import { API_URL } from '../../constants/api';
 import { NotificationDot } from '../../styles/header.styles';
 
-function NotificationsAlert({ options }) {
+function NotificationsAlert({ notificationDropdown }) {
   const [notify, setNotify] = useState(0);
   const user = useSelector((state) => state.auth.currentUser);
 
@@ -16,7 +16,7 @@ function NotificationsAlert({ options }) {
     setNotify(unreadNotifications?.length);
   }, [unreadNotifications]);
 
-  const notOptions = !options;
+  const notOptions = !notificationDropdown;
 
   useEffect(() => {
     if (notify > 0) {

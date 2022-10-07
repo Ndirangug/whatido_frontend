@@ -39,6 +39,7 @@ export const TransactionProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [txHash, setTxHash] = useState('');
   const [toggleSideDrawer, setToggleSideDrawer] = useState(false);
+  const [notificationDropdown, setNotificationDropdown] = useState(false);
 
   const networkChanged = async () => {
     window.location.reload(false);
@@ -358,6 +359,8 @@ export const TransactionProvider = ({ children }) => {
         setUsdEquivalent,
         toggleSideDrawer,
         setToggleSideDrawer,
+        notificationDropdown,
+        setNotificationDropdown,
       }}
     >
       {children}

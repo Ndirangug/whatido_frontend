@@ -3,15 +3,14 @@ import styled from 'styled-components';
 export const NotificationContainer = styled.div`
   box-sizing: border-box;
   position: absolute;
-  width: 292px;
-  height: 301px;
-  left: -150px;
-  top: 59px;
+  width: 100%;
+  height: 203px;
+  right: 0px;
+  top: 65px;
   background: #ffffff;
   border: none;
   box-shadow: 3px 19px 11px rgba(0, 0, 0, 0.05), 0px 2px 5px rgba(0, 0, 0, 0.1),
     0px 0px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
   padding: 3rem 2rem;
   overflow-y: scroll;
 
@@ -20,6 +19,17 @@ export const NotificationContainer = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  @media (min-width: 475px) {
+    width: 292px;
+    height: 301px;
+    right: 6rem;
+    border-radius: 12px;
+  }
+
+  @media (min-width: 1500px) {
+    right: 15rem;
+  }
 
   .border-top {
     border-top: 1px solid #dddddd;

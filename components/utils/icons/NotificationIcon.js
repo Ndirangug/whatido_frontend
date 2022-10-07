@@ -1,17 +1,18 @@
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useContext } from 'react';
+import { TransactionContext } from '../../../context/TransactionContext';
 
-const Notification = lazy(() => import('../../Notification/index'));
 const NotificationsAlert = lazy(() =>
   import('../../Notification/NotificationsAlert')
 );
 
 function NotificationIcon() {
-  const [options, setOptions] = useState(false);
+  const { notificationDropdown, setNotificationDropdown } =
+    useContext(TransactionContext);
 
   return (
-    <IconButton onClick={() => setOptions((prev) => !prev)}>
+    <IconButton onClick={() => setNotificationDropdown((prev) => !prev)}>
       <Icon className="header-icon">
         <svg
           width="32"
@@ -32,14 +33,8 @@ function NotificationIcon() {
       </Icon>
 
       <Suspense>
-        <NotificationsAlert options={options} />
+        <NotificationsAlert notificationDropdown={notificationDropdown} />
       </Suspense>
-
-      {options && (
-        <Suspense>
-          <Notification />
-        </Suspense>
-      )}
     </IconButton>
   );
 }
