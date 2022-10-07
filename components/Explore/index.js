@@ -9,6 +9,7 @@ import Search from './Search';
 
 const ExplorePage = () => {
   const { data: posts } = useSWR(`${API_URL}/feed/discover`);
+  // console.log(posts);
 
   return (
     <ContentPageContainer>
@@ -23,7 +24,17 @@ const ExplorePage = () => {
         />
       </Stack>
       <ExploreText className="categories">Categories</ExploreText>
-      <ExploreCards />
+      {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
+        <ExploreCards
+          key={_id}
+          category={_id}
+          count={count}
+          thumbnail={thumbnail}
+          userSlug={userSlug}
+          avatars={posts?.avatars}
+          experts={posts?.totalExperts}
+        />
+      ))}
     </ContentPageContainer>
   );
 };

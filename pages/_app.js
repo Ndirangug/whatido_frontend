@@ -1,11 +1,12 @@
 import axios from 'axios';
 import Head from 'next/head';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/Mobile/Footer';
+import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
 import { TransactionProvider } from '../context/TransactionContext';
 import store from '../store';
 import { GlobalContainer } from '../styles/global';
@@ -18,6 +19,10 @@ const fetcher = (...args) => {
 };
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    serviceWorker.register();
+  }, []);
+
   return (
     <GlobalContainer>
       <Head>
