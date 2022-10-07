@@ -26,6 +26,16 @@ export const DragDropContainer = styled.div`
   align-items: center;
   padding: 1rem;
   cursor: pointer;
+  position: relative;
+
+  .drop-input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 999px;
+    opacity: 0;
+    cursor: pointer;
+  }
 `;
 
 export const UploadInputPreviewContainer = styled.div`
