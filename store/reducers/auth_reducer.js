@@ -38,4 +38,4 @@ export const {
   setLoginError,
 } = userSlice.actions;
 
-export default userSlice.reducer;
+export default usernvSlice.reducer;
