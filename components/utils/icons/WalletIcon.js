@@ -1,9 +1,20 @@
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
+import { useContext } from 'react';
+
+import { TransactionContext } from '../../../context/TransactionContext';
+import Wallet from '../../SideDrawer/Wallet';
 
 function WalletIcon() {
+  const { toggleSideDrawer, setToggleSideDrawer } =
+    useContext(TransactionContext);
+
+  const handleClick = () => {
+    setToggleSideDrawer(!toggleSideDrawer);
+  };
+
   return (
-    <IconButton>
+    <IconButton onClick={handleClick}>
       <Icon className="header-icon">
         <svg
           width="32"
@@ -26,6 +37,8 @@ function WalletIcon() {
           />
         </svg>
       </Icon>
+
+      {toggleSideDrawer && <Wallet />}
     </IconButton>
   );
 }

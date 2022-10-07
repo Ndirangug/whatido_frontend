@@ -1,3 +1,4 @@
+import ListItem from '@mui/material/ListItem';
 import { Stack } from '@mui/system';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -31,13 +32,14 @@ const NotificationCard = ({ notification }) => {
       onClick={viewNotification}
       className="notification-wrapper"
     >
-      <BaseAvatar
-        src={senderDetails?.data?.imageUrl?.cdnUrl}
-        alt="avatar"
-        justifyContent="center"
-        className="user-avatar"
-      />
-      <TextSM className="notification-text">{notification?.title}</TextSM>
+      <ListItem button>
+        <BaseAvatar
+          src={senderDetails?.data?.imageUrl?.cdnUrl}
+          alt="avatar"
+          className="user-avatar"
+        />
+        <TextSM className="notification-text">{notification?.title}</TextSM>
+      </ListItem>
     </Stack>
   );
 };

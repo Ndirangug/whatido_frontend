@@ -44,7 +44,7 @@ all avalable subjects are included below, remember engines and hooks are in stri
 
 - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
 - ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-- docs: Documentation only changes
+- docs: documentation only changes
 - chore: working on cleanups and random changes
 - feat: A new feature
 - fix: A bug fix
