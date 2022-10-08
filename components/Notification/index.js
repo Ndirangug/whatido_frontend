@@ -11,20 +11,20 @@ const Notification = () => {
   const { data: notifications } = useSWR(notificationsUrl);
 
   return (
-    <NotificationContainer>
+    <>
       {notifications?.length > 0 && (
-        <Stack className="border-top">
-          {notifications?.map((notification) => (
-            <NotificationCard
-              key={notification?._id}
-              notification={notification}
-            />
-          ))}
-        </Stack>
+        <NotificationContainer>
+          <Stack className="border-top">
+            {notifications?.map((notification) => (
+              <NotificationCard
+                key={notification?._id}
+                notification={notification}
+              />
+            ))}
+          </Stack>
+        </NotificationContainer>
       )}
-
-      {notifications?.length === 0 && <Stack>No Notifications</Stack>}
-    </NotificationContainer>
+    </>
   );
 };
 

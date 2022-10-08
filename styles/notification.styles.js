@@ -11,7 +11,7 @@ export const NotificationContainer = styled.div`
   border: none;
   box-shadow: 3px 19px 11px rgba(0, 0, 0, 0.05), 0px 2px 5px rgba(0, 0, 0, 0.1),
     0px 0px 0px rgba(0, 0, 0, 0.1);
-  padding: 3rem 2rem;
+  padding: 1rem 2rem;
   overflow-y: scroll;
 
   ::-webkit-scrollbar {
@@ -25,6 +25,7 @@ export const NotificationContainer = styled.div`
     height: 301px;
     right: 6rem;
     border-radius: 12px;
+    padding: 3rem 2rem;
   }
 
   @media (min-width: 1500px) {
