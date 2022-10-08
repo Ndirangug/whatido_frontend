@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Head from 'next/head';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { SWRConfig } from 'swr';
@@ -19,9 +19,7 @@ const fetcher = (...args) => {
 };
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    serviceWorker.register();
-  }, []);
+  serviceWorker.register();
 
   return (
     <GlobalContainer>

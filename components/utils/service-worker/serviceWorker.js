@@ -1,3 +1,4 @@
+/* eslint-disable */
 let isLocalhost;
 if (typeof window !== 'undefined') {
   isLocalhost = Boolean(
@@ -12,34 +13,38 @@ if (typeof window !== 'undefined') {
 }
 
 export function register(config) {
-  if ('serviceWorker' in navigator) {
-    // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (publicUrl.origin !== window.location.origin) {
-      return;
-    }
-
-    window.addEventListener('load', () => {
-      const swFileName = 'sw.js';
-      const swUrl = `${process.env.PUBLIC_URL}/${swFileName}`;
-
-      if (isLocalhost) {
-        // This is running on localhost. Let's check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl, config);
-
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://bit.ly/CRA-PWA'
-          );
-        });
-      } else {
-        // Is not localhost. Just register service worker
-        registerValidSW(swUrl, config);
+  if (typeof navigator !== 'undefined') {
+    if ('serviceWorker' in navigator) {
+      // The URL constructor is available in all browsers that support SW.
+      const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+      if (publicUrl.origin !== window.location.origin) {
+        return;
       }
-    });
+
+      // window.addEventListener('DOMContentLoaded', () => {
+
+      window.onload = () => {
+        const swFileName = 'sw.js';
+        const swUrl = `/${swFileName}`;
+
+        if (isLocalhost) {
+          // This is running on localhost. Let's check if a service worker still exists or not.
+          checkValidServiceWorker(swUrl, config);
+
+          // Add some additional logging to localhost, pointing developers to the
+          // service worker/PWA documentation.
+          navigator.serviceWorker.ready.then(() => {
+            console.log(
+              'This web app is being served cache-first by a service ' +
+                'worker. To learn more, visit https://bit.ly/CRA-PWA'
+            );
+          });
+        } else {
+          // Is not localhost. Just register service worker
+          registerValidSW(swUrl, config);
+        }
+      };
+    }
   }
 }
 

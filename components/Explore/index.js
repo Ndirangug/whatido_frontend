@@ -1,11 +1,14 @@
 import { Stack } from '@mui/system';
 import Image from 'next/image';
+import { lazy, Suspense } from 'react';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import { ExploreText } from '../utils/typography/Typography';
-import ExploreCards from './ExploreCards';
+// import ExploreCards from './ExploreCards';
 import Search from './Search';
+
+const ExploreCards = lazy(() => import('./ExploreCards'));
 
 const ExplorePage = () => {
   const { data: posts } = useSWR(`${API_URL}/feed/discover`);
@@ -24,17 +27,19 @@ const ExplorePage = () => {
         />
       </Stack>
       <ExploreText className="categories">Categories</ExploreText>
-      {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
-        <ExploreCards
-          key={_id}
-          category={_id}
-          count={count}
-          thumbnail={thumbnail}
-          userSlug={userSlug}
-          avatars={posts?.avatars}
-          experts={posts?.totalExperts}
-        />
-      ))}
+      <Suspense fallback={<div>loading...</div>}>
+        {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
+          <ExploreCards
+            key={_id}
+            category={_id}
+            count={count}
+            thumbnail={thumbnail}
+            userSlug={userSlug}
+            avatars={posts?.avatars}
+            experts={posts?.totalExperts}
+          />
+        ))}
+      </Suspense>
     </ContentPageContainer>
   );
 };
