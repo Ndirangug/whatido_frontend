@@ -2,24 +2,23 @@ import styled from 'styled-components';
 
 export const ExplorePageContainer = styled.div`
   height: 100%;
-  margin: 1rem;
   overflow: hidden;
 `;
 export const ContentPageContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  position: relative;
+  display: grid;
+  grid-gap: 2rem;
   overflow-y: scroll;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
 
-  ::-webkit-scrollbar {
-    display: none;
+  .category-container {
+    display: grid;
+    grid-gap: 1rem;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 
   .text-position {
-    position: absolute;
-    top: 1rem;
     color: var(--main-black);
   }
 
@@ -56,14 +55,7 @@ export const ContentPageContainer = styled.div`
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0rem;
-  margin: auto;
-  position: absolute;
-  width: 100%;
-  height: 3rem;
-  top: 4rem;
-  background: #ffffff;
-  box-shadow: inset 0rem -0.063rem 0rem #bebebe;
+  border-bottom: 1px solid var(--main-border);
 
   .search-input {
     height: 24px;

@@ -6,7 +6,7 @@ import PlusIcon from '../icons/PlusIcon';
 import { TextXS } from '../typography/Typography';
 
 const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
-  const largeScreen = useMediaQuery('(min-width:475px)');
+
 
   return (
     <>
@@ -18,8 +18,7 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
                 key={thumbnail[0]?.key}
                 src={thumbnail[0]?.cdnUrl}
                 alt="explore"
-                width={largeScreen ? '140px' : '80px'}
-                height={largeScreen ? '110px' : '70px'}
+                layout="fill"
                 className="img"
               />
             ))}

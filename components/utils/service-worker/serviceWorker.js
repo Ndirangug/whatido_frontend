@@ -12,25 +12,24 @@ if (typeof window !== 'undefined') {
   );
 }
 
-export function register(config) {
-  if (typeof navigator !== 'undefined') {
+export function register() {
+  //checks if app can call browser navigator browser element
+  if (typeof navigator) {
+    //checks if browser na supports service worker
     if ('serviceWorker' in navigator) {
-      // The URL constructor is available in all browsers that support SW.
+      //genarate new url from environment and the https origin
       const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+
       if (publicUrl.origin !== window.location.origin) {
         return;
       }
-
       // window.addEventListener('DOMContentLoaded', () => {
-
       window.onload = () => {
         const swFileName = 'sw.js';
         const swUrl = `/${swFileName}`;
-
         if (isLocalhost) {
           // This is running on localhost. Let's check if a service worker still exists or not.
-          checkValidServiceWorker(swUrl, config);
-
+          checkValidServiceWorker(swUrl);
           // Add some additional logging to localhost, pointing developers to the
           // service worker/PWA documentation.
           navigator.serviceWorker.ready.then(() => {
@@ -41,7 +40,7 @@ export function register(config) {
           });
         } else {
           // Is not localhost. Just register service worker
-          registerValidSW(swUrl, config);
+          registerValidSW(swUrl);
         }
       };
     }

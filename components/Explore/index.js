@@ -1,33 +1,23 @@
-import { Stack } from '@mui/system';
-import Image from 'next/image';
-import { lazy, Suspense } from 'react';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { ContentPageContainer } from '../../styles/explore.styles';
-import { ExploreText } from '../utils/typography/Typography';
+import { Text2XL } from '../utils/typography/Typography';
 // import ExploreCards from './ExploreCards';
 import Search from './Search';
 
-const ExploreCards = lazy(() => import('./ExploreCards'));
-
 const ExplorePage = () => {
-  const { data: posts } = useSWR(`${API_URL}/feed/discover`);
-  // console.log(posts);
+  let pageUrl = `${API_URL}/feed/discover`;
+  const { data: posts } = useSWR(pageUrl, { suspense: true });
+  console.log(posts);
 
   return (
     <ContentPageContainer>
-      <ExploreText className="text-position">Explore</ExploreText>
-      <Search />
-      <Stack className="rectangle-container">
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
-          alt="what i do"
-          layout="fill"
-          className="banner-img"
-        />
-      </Stack>
-      <ExploreText className="categories">Categories</ExploreText>
-      <Suspense fallback={<div>loading...</div>}>
+      <div className="category-container">
+        <Text2XL>Explore</Text2XL>
+        <Search />
+      </div>
+
+      {/* <div className="category-container">
         {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
           <ExploreCards
             key={_id}
@@ -39,7 +29,7 @@ const ExplorePage = () => {
             experts={posts?.totalExperts}
           />
         ))}
-      </Suspense>
+      </div> */}
     </ContentPageContainer>
   );
 };

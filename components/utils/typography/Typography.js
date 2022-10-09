@@ -51,8 +51,16 @@ export const ShareText = styled(Typography)`
   color: var(--main-gray);
 `;
 export const ExploreText = styled(Typography)`
-  font-size: 1.5rem;
-  line-height: 1rem;
-  letter-spacing: 0.025rem;
-  color: #001433;
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+`;
+
+export const Text2XL = styled(Typography)`
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+`;
+
+export const TextXL = styled(Typography)`
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
 `;

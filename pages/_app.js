@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Head from 'next/head';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -21,7 +21,9 @@ const fetcher = (...args) => {
 };
 
 function MyApp({ Component, pageProps }) {
-  serviceWorker.register();
+  useEffect(() => {
+    serviceWorker.register();
+  }, []);
 
   return (
     <>
