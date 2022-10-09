@@ -104,6 +104,7 @@ export const CardContainer = styled.div`
   flex-grow: 0;
   overflow: hidden;
   padding: 0.5rem;
+  margin-bottom: 2rem;
 
   @media (min-width: 475px) {
     height: 180px;
@@ -195,7 +196,7 @@ export const CardContainer = styled.div`
   }
 
   .num-of-experts {
-    width: 44px;
+    width: 60px;
     height: 22px;
     font-family: none;
     font-size: 10px;

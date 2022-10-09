@@ -5,86 +5,56 @@ import { BaseAvatar } from '../avatars/Avatar';
 import PlusIcon from '../icons/PlusIcon';
 import { TextXS } from '../typography/Typography';
 
-const Card = () => {
+const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
   const largeScreen = useMediaQuery('(min-width:475px)');
 
   return (
-    <CardContainer>
-      <div className="img-wrapper">
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/profile/1655931996055__ab2869f2-801b-4a6f-96f1-f9ffd7b88574__IMG_20220623_000620.jpg"
-          alt="explore"
-          width={largeScreen ? '140px' : '80px'}
-          height={largeScreen ? '110px' : '70px'}
-          className="img"
-        />
+    <>
+      {thumbnail?.length >= 4 && (
+        <CardContainer>
+          <div className="img-wrapper">
+            {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
+              <Image
+                key={thumbnail[0]?.key}
+                src={thumbnail[0]?.cdnUrl}
+                alt="explore"
+                width={largeScreen ? '140px' : '80px'}
+                height={largeScreen ? '110px' : '70px'}
+                className="img"
+              />
+            ))}
+          </div>
 
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654782230047__9dab90b0-3c0f-42bc-af77-6713ee220241__tesla.jpg"
-          alt="explore"
-          width={largeScreen ? '140px' : '80px'}
-          height={largeScreen ? '110px' : '70px'}
-          className="img"
-        />
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
-          alt="explore"
-          width={largeScreen ? '140px' : '80px'}
-          height={largeScreen ? '110px' : '70px'}
-          className="img"
-        />
-        <Image
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1654782230047__9dab90b0-3c0f-42bc-af77-6713ee220241__tesla.jpg"
-          alt="explore"
-          width={largeScreen ? '140px' : '80px'}
-          height={largeScreen ? '110px' : '70px'}
-          className="img"
-        />
-      </div>
-
-      <div className="details-container">
-        <div className="details-wrapper">
-          <TextXS className="category-title">Academic Tutoring</TextXS>
-          <div className="experts-wrapper">
-            <TextXS className="num-of-experts">25 experts</TextXS>
-            <div className="experts-avatars">
-              <BaseAvatar
-                alt="what i do"
-                sx={{ width: '19px', height: '19px' }}
-                src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/profile/1655931996055__ab2869f2-801b-4a6f-96f1-f9ffd7b88574__IMG_20220623_000620.jpg"
-                className="avatar"
-              />
-              <BaseAvatar
-                alt="what i do"
-                sx={{ width: '19px', height: '19px' }}
-                src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
-                className="avatar"
-              />
-              <BaseAvatar
-                alt="what i do"
-                sx={{ width: '19px', height: '19px' }}
-                src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
-                className="avatar"
-              />
-              <BaseAvatar
-                alt="what i do"
-                sx={{ width: '19px', height: '19px' }}
-                src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/profile/1655931996055__ab2869f2-801b-4a6f-96f1-f9ffd7b88574__IMG_20220623_000620.jpg"
-                className="avatar"
-              />
+          <div className="details-container">
+            <div className="details-wrapper">
+              <TextXS className="category-title">{category}</TextXS>
+              <div className="experts-wrapper">
+                <TextXS className="num-of-experts">{`${numOfExperts?.count} experts`}</TextXS>
+                <div className="experts-avatars">
+                  {avatar?.slice(0, 4)?.map(({ imageUrl }) => (
+                    <BaseAvatar
+                      key={imageUrl?.key}
+                      alt="what i do"
+                      sx={{ width: '19px', height: '19px' }}
+                      src={imageUrl?.cdnUrl}
+                      className="avatar"
+                    />
+                  ))}
+                </div>
+                <div className="ellipse" />
+                <TextXS className="num-of-posts">{`${count} posts`}</TextXS>
+              </div>
             </div>
-            <div className="ellipse" />
-            <TextXS className="num-of-posts">15k posts</TextXS>
+            <div className="follow-btn-container">
+              <div className="follow-btn-wrapper">
+                <PlusIcon />
+                <TextXS className="follow-all">Follow All</TextXS>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="follow-btn-container">
-          <div className="follow-btn-wrapper">
-            <PlusIcon />
-            <TextXS className="follow-all">Follow All</TextXS>
-          </div>
-        </div>
-      </div>
-    </CardContainer>
+        </CardContainer>
+      )}
+    </>
   );
 };
 

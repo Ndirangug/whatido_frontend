@@ -9,6 +9,7 @@ import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/Mobile/Footer';
 import NextProgress from '../components/utils/micro/Nprogress';
+import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
 import store from '../store';
 import { GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
@@ -20,6 +21,8 @@ const fetcher = (...args) => {
 };
 
 function MyApp({ Component, pageProps }) {
+  serviceWorker.register();
+
   return (
     <>
       <Head>
