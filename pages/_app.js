@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/Mobile/Footer';
+import NextProgress from '../components/utils/micro/Nprogress';
 import store from '../store';
 import { GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
@@ -44,6 +45,8 @@ function MyApp({ Component, pageProps }) {
               <Suspense>
                 <SignupModal />
               </Suspense>
+
+              <NextProgress color="#001433" height={3} />
 
               <Component {...pageProps} />
               <ToastContainer
