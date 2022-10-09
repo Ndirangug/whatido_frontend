@@ -1,7 +1,11 @@
 import { PostButtonContainer } from '../../../styles/create.styles';
 
-function PostButton({ children, color }) {
-  return <PostButtonContainer color={color}>{children}</PostButtonContainer>;
+function PostButton({ children, color, event }) {
+  return (
+    <PostButtonContainer onClick={event} color={color}>
+      {children}
+    </PostButtonContainer>
+  );
 }
 
 export default PostButton;

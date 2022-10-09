@@ -7,6 +7,7 @@ export const mediaSlice = createSlice({
     isUploading: false,
     previewComponent: 'DROPZONE',
     preUploadFile: {},
+    caption: '',
     error: null,
   },
 
@@ -20,6 +21,9 @@ export const mediaSlice = createSlice({
 
     setPreUploadFile: (state, action) => {
       state.preUploadFile = action.payload;
+    },
+    setCaption: (state, action) => {
+      state.caption = action.payload;
     },
     setMediaPreview: (state, action) => {
       state.previewComponent = action.payload;
@@ -36,6 +40,7 @@ export const {
   setPreUploadFile,
   setMediaPreview,
   setMediaUploading,
+  setCaption,
 } = mediaSlice.actions;
 
 export default mediaSlice.reducer;

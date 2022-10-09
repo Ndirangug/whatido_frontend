@@ -14,3 +14,10 @@ export const getMediaProcessed = (data, urlPoint) => {
     body: data,
   });
 };
+
+export const postNewMedia = (data, token) => {
+  return axios.post(`${API_URL}/media/create`, data, {
+    'Content-Type': 'multipart/form-data',
+    headers: { Authorization: token },
+  });
+};

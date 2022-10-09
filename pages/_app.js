@@ -3,12 +3,13 @@ import Head from 'next/head';
 import { lazy, Suspense } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/Mobile/Footer';
-import { TransactionProvider } from '../context/TransactionContext';
 import store from '../store';
-import { GlobalContainer } from '../styles/global';
+import { GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
 const SignupModal = lazy(() => import('../components/auth/signup/index'));
@@ -19,7 +20,7 @@ const fetcher = (...args) => {
 
 function MyApp({ Component, pageProps }) {
   return (
-    <GlobalContainer>
+    <>
       <Head>
         <title>what I do</title>
         <meta name="what I do" content="share your passion for what you" />
@@ -32,9 +33,9 @@ function MyApp({ Component, pageProps }) {
           href="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
         />
       </Head>
-      <CookiesProvider>
-        <Provider store={store}>
-          <TransactionProvider>
+      <GlobalStyleProvider>
+        <CookiesProvider>
+          <Provider store={store}>
             <SWRConfig value={{ fetcher }}>
               <Header />
               <Suspense>
@@ -45,12 +46,23 @@ function MyApp({ Component, pageProps }) {
               </Suspense>
 
               <Component {...pageProps} />
+              <ToastContainer
+                position="top-center"
+                autoClose={4000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
               <Footer />
             </SWRConfig>
-          </TransactionProvider>
-        </Provider>
-      </CookiesProvider>
-    </GlobalContainer>
+          </Provider>
+        </CookiesProvider>
+      </GlobalStyleProvider>
+    </>
   );
 }
 

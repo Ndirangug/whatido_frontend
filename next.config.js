@@ -11,6 +11,9 @@ module.exports = withTM({
   images: {
     domains: ['donnysliststory.sfo3.cdn.digitaloceanspaces.com'],
   },
+  compiler: {
+    styledComponents: true,
+  },
 
   webpack: (config) => {
     config.resolve.alias = {

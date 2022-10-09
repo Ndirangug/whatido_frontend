@@ -12,6 +12,7 @@ export const CreatePageContainer = styled.div`
     display: grid;
     grid-gap: 0.5rem;
     width: 100%;
+    align-items: flex-start;
   }
 `;
 
@@ -44,6 +45,12 @@ export const UploadInputPreviewContainer = styled.div`
   display: flex;
   align-items: center;
 
+  .preview-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
   .input {
     border: none;
     outline: none;
@@ -64,6 +71,7 @@ export const UploadInputPreviewContainer = styled.div`
     height: 5rem;
     width: 5rem;
     margin-right: 0.5rem;
+    overflow: none;
   }
 `;
 
@@ -131,7 +139,7 @@ export const PostButtonContainer = styled.button`
 
 export const PreviewContainer = styled.div`
   width: 100%;
-  height: 10rem;
+  height: 12rem;
   .video {
     height: 100%;
     width: 100%;

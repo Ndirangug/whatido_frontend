@@ -6,22 +6,16 @@ import { BiSearchAlt } from 'react-icons/bi';
 import Button from '../utils/buttons/Button';
 
 import Link from 'next/link';
-import { lazy, Suspense, useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { TransactionContext } from '../../context/TransactionContext';
 import { HeaderContainer } from '../../styles/header.styles';
 import CreateIcon from '../utils/icons/CreateIcon';
 import NotificationIcon from '../utils/icons/NotificationIcon';
 import WalletIcon from '../utils/icons/WalletIcon';
 
-const Notification = lazy(() => import('../Notification/index'));
-
 const Header = () => {
   const router = useRouter();
   const authenticated = useSelector((state) => state.auth.authenticated);
   const user = useSelector((state) => state.auth.currentUser);
-
-  const { notificationDropdown } = useContext(TransactionContext);
 
   const handleLogin = () => {
     router.push({
@@ -82,11 +76,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {notificationDropdown && (
-        <Suspense>
-          <Notification />
-        </Suspense>
-      )}
     </HeaderContainer>
   );
 };
