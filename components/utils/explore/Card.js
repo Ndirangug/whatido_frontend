@@ -1,4 +1,3 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/image';
 import { CardContainer } from '../../../styles/explore.styles';
 import { BaseAvatar } from '../avatars/Avatar';
@@ -6,8 +5,6 @@ import PlusIcon from '../icons/PlusIcon';
 import { TextXS } from '../typography/Typography';
 
 const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
-
-
   return (
     <>
       {thumbnail?.length >= 4 && (
@@ -18,7 +15,8 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
                 key={thumbnail[0]?.key}
                 src={thumbnail[0]?.cdnUrl}
                 alt="explore"
-                layout="fill"
+                height="85px"
+                width="60px"
                 className="img"
               />
             ))}
@@ -34,7 +32,7 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
                     <BaseAvatar
                       key={imageUrl?.key}
                       alt="what i do"
-                      sx={{ width: '19px', height: '19px' }}
+                      sx={{ width: '21px', height: '21px' }}
                       src={imageUrl?.cdnUrl}
                       className="avatar"
                     />

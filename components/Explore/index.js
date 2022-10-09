@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import { Text3XL } from '../utils/typography/Typography';
-// import ExploreCards from './ExploreCards';
+import ExploreCards from './ExploreCards';
 import Search from './Search';
 
 const ExplorePage = () => {
@@ -16,7 +16,7 @@ const ExplorePage = () => {
         <Search />
       </div>
 
-      {/* <div className="category-container">
+      <div className="category-container">
         {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
           <ExploreCards
             key={_id}
@@ -28,7 +28,7 @@ const ExplorePage = () => {
             experts={posts?.totalExperts}
           />
         ))}
-      </div> */}
+      </div>
     </ContentPageContainer>
   );
 };
