@@ -55,6 +55,10 @@ export const ExploreText = styled(Typography)`
   line-height: 2rem; /* 32px */
 `;
 
+export const Text3XL = styled(Typography)`
+  font-size: 1.75rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+`;
 export const Text2XL = styled(Typography)`
   font-size: 1.5rem; /* 24px */
   line-height: 2rem; /* 32px */
