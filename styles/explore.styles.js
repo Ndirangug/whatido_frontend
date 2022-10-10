@@ -4,6 +4,7 @@ export const ExplorePageContainer = styled.div`
   height: 100%;
   overflow-y: scroll;
   background: #fff;
+  width: 100%;
 `;
 export const ContentPageContainer = styled.div`
   display: grid;
