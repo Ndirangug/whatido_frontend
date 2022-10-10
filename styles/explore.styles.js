@@ -72,9 +72,6 @@ export const CardContainer = styled.div`
   height: 140px;
   border: 1px solid rgba(0, 20, 51, 0.3);
   border-radius: 6px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
   overflow: hidden;
   padding: 0.5rem;
 
@@ -93,6 +90,11 @@ export const CardContainer = styled.div`
     @media (min-width: 475px) {
       height: 85px;
       margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      height: 100px;
+      margin-bottom: 1rem;
     }
   }
 

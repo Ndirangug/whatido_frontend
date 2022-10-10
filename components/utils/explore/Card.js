@@ -15,7 +15,7 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
                 key={thumbnail[0]?.key}
                 src={thumbnail[0]?.cdnUrl}
                 alt="explore"
-                height="85px"
+                height="100px"
                 width="60px"
                 className="img"
               />
