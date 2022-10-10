@@ -12,7 +12,7 @@ function ChatIcon() {
   const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
   const selected = router.asPath === '/chat';
-  let color = selected ? '#ffffff' : '#808080';
+  let color = selectedRoute ? '#ffffff' : '#808080';
 
   useEffect(() => {
     selected ? setSelectedRoute(true) : setSelectedRoute(false);

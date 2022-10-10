@@ -1,4 +1,4 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/image';
 import { CardContainer } from '../../../styles/explore.styles';
 import { BaseAvatar } from '../avatars/Avatar';
@@ -6,8 +6,6 @@ import PlusIcon from '../icons/PlusIcon';
 import { TextXS } from '../typography/Typography';
 
 const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
-
-
   return (
     <>
       {thumbnail?.length >= 4 && (

@@ -1,13 +1,13 @@
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
+// import useSWR from 'swr';
+// import { API_URL } from '../../constants/api';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import { Text3XL } from '../utils/typography/Typography';
 // import ExploreCards from './ExploreCards';
 import Search from './Search';
 
 const ExplorePage = () => {
-  let pageUrl = `${API_URL}/feed/discover`;
-  const { data: posts } = useSWR(pageUrl, { suspense: true });
+  // let pageUrl = `${API_URL}/feed/discover`;
+  // const { data: posts } = useSWR(pageUrl, { suspense: true });
 
   return (
     <ContentPageContainer>
