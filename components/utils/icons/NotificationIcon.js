@@ -1,8 +1,11 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
 
 function NotificationIcon() {
+  const router = useRouter();
+
   return (
-    <IconButton>
+    <IconButton onClick={() => router.push('/notifications')}>
       <svg
         width="32"
         height="32"

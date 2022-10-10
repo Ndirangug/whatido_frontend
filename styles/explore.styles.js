@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ExplorePageContainer = styled.div`
   height: 100%;
   overflow-y: scroll;
+  background: #fff;
 `;
 export const ContentPageContainer = styled.div`
   display: grid;

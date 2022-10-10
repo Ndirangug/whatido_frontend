@@ -1,10 +1,8 @@
-import ListItem from '@mui/material/ListItem';
-import { Stack } from '@mui/system';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { BaseAvatar } from '../utils/avatars/Avatar';
-import { TextSM } from '../utils/typography/Typography';
+import { TextXL } from '../utils/typography/Typography';
 
 const NotificationCard = ({ notification }) => {
   const router = useRouter();
@@ -25,22 +23,17 @@ const NotificationCard = ({ notification }) => {
   };
 
   return (
-    <Stack
-      direction="row"
-      spacing={1}
-      alignItems="center"
-      onClick={viewNotification}
-      className="notification-wrapper"
-    >
-      <ListItem button>
-        <BaseAvatar
-          src={senderDetails?.data?.imageUrl?.cdnUrl}
-          alt="avatar"
-          className="user-avatar"
-        />
-        <TextSM className="notification-text">{notification?.title}</TextSM>
-      </ListItem>
-    </Stack>
+    <div className="notification-details" onClick={viewNotification}>
+      <BaseAvatar
+        alt="what i do"
+        sx={{ width: '45px', height: '45px' }}
+        src={senderDetails?.data?.imageUrl?.cdnUrl}
+      />
+
+      <div className="notification-text-wrapper">
+        <TextXL>{notification?.title}</TextXL>
+      </div>
+    </div>
   );
 };
 
