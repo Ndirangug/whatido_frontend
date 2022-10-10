@@ -1,4 +1,6 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -6,8 +8,16 @@ const StyledIconBtn = styled(IconButton)`
   padding: 0;
 `;
 
-function ChatIcon({ selected }) {
+function ChatIcon() {
+  const [selectedRoute, setSelectedRoute] = useState(false);
+  const router = useRouter();
+  const selected = router.asPath === '/chat';
   let color = selected ? '#ffffff' : '#808080';
+
+  useEffect(() => {
+    selected ? setSelectedRoute(true) : setSelectedRoute(false);
+  }, [selected]);
+
   return (
     <StyledIconBtn>
       <svg

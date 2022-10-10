@@ -16,8 +16,9 @@ function DragDrop() {
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
-    if (file.size > 1000000000) {
-      console.log('upload maximum file size 1gb');
+    if (file.size > 2500000000) {
+      dispatch(setMediaError('upload maximum file size 250mb'));
+      return;
     } else {
       dispatch(setIsFetchingMediaInfo(true));
       const videoData = new FormData();
@@ -26,7 +27,8 @@ function DragDrop() {
       const res = await getMediaProcessed(videoData, 'thumbnail');
       if (!res.ok) {
         dispatch(setIsFetchingMediaInfo(false));
-        dispatch(setMediaError('creating thumbnail failed'));
+        dispatch(setMediaError('failed to get media metadata'));
+        return;
       }
 
       const thumbnailBlob = await res.blob();
