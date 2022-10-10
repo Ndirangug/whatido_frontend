@@ -12,12 +12,11 @@ const StyledIconBtn = styled(IconButton)`
 function HomeIcon() {
   const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
-  const selected = router.asPath === '/';
-  let color = selected ? '#ffffff' : '#808080';
+  let color = selectedRoute ? '#ffffff' : '#808080';
 
   useEffect(() => {
-    selected ? setSelectedRoute(true) : setSelectedRoute(false);
-  }, [selected]);
+    router.asPath === '/' ? setSelectedRoute(true) : setSelectedRoute(false);
+  }, [router.asPath]);
 
   return (
     <StyledIconBtn selected={selectedRoute} onClick={() => router.push('/')}>

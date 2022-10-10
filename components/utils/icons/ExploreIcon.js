@@ -12,12 +12,13 @@ const StyledIconBtn = styled(IconButton)`
 function ExploreIcon() {
   const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
-  const selected = router.asPath === '/explore';
-  let color = selected ? '#ffffff' : '#808080';
+  let color = selectedRoute ? '#ffffff' : '#808080';
 
   useEffect(() => {
-    selected ? setSelectedRoute(true) : setSelectedRoute(false);
-  }, [selected]);
+    router.asPath === '/explore'
+      ? setSelectedRoute(true)
+      : setSelectedRoute(false);
+  }, [router.asPath]);
 
   return (
     <StyledIconBtn
