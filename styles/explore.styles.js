@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ExplorePageContainer = styled.div`
   height: 100%;
+  width: 100%;
   overflow: hidden;
 `;
 export const ContentPageContainer = styled.div`
