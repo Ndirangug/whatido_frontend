@@ -15,8 +15,52 @@ export const ContentPageContainer = styled.div`
   padding: 1rem;
 
   .category-container {
+    // position: sticky
     display: grid;
     grid-gap: 1rem;
+  }
+
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .search-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 0.5rem;
+    color: var(--main-gray);
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    align-items: flex-start;
+    justify-content: start;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--main-border);
+    border-radius: 0.7rem;
+    background-color: var(--main-background);
+  }
+
+  .search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1rem;
+
+    ::placeholder {
+      color: var(--main-gray);
+    }
   }
 
   .text-position {
@@ -24,11 +68,9 @@ export const ContentPageContainer = styled.div`
   }
 
   .rectangle-container {
-    position: absolute;
     width: 100%;
     height: 11.5rem;
     background: #d9d9d9;
-    object-fit: fill;
     border-radius: 7px;
 
     @media (min-width: 475px) {
@@ -71,11 +113,12 @@ export const ExploreCardsContainer = styled.div`
 export const CardContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
-  height: 140px;
-  border: 1px solid rgba(0, 20, 51, 0.3);
-  border-radius: 6px;
+  height: 145px;
+  border: 1px solid var(--main-border);
+  border-radius: 12px;
   overflow: hidden;
-  padding: 0.5rem;
+  // padding: 0.5rem;
+  margin: 1rem 0;
 
   @media (min-width: 475px) {
     height: 180px;
@@ -84,14 +127,14 @@ export const CardContainer = styled.div`
   .img-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 0.5rem;
+    grid-gap: 0.1rem;
     object-fit: cover;
     margin-bottom: 0.8rem;
-    height: 70px;
+    height: 80px;
 
     @media (min-width: 475px) {
-      height: 85px;
-      margin-bottom: 2rem;
+      height: 110px;
+      margin-bottom: 1rem;
     }
 
     @media (min-width: 640px) {
@@ -100,9 +143,21 @@ export const CardContainer = styled.div`
     }
   }
 
+  .experts-img-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0.1rem;
+    object-fit: cover;
+    margin-top: 1rem;
+
+    @media (min-width: 475px) {
+      margin-top: 1.5rem;
+    }
+  }
+
   .img {
     background: var(--main-gray);
-    border-radius: 4px;
+    // border-radius: 4px;
   }
 
   .details-container {
@@ -110,6 +165,11 @@ export const CardContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: 0.5rem;
+
+    @media (min-width: 475px) {
+      margin: 0.8rem 0.5rem;
+    }
   }
 
   .details-wrapper {
@@ -119,7 +179,9 @@ export const CardContainer = styled.div`
 
   .category-title {
     font-size: 12px;
+    font-weight: 600;
     color: var(--main-black);
+    margin-bottom: 0.2rem;
   }
 
   .experts-wrapper {
@@ -140,6 +202,14 @@ export const CardContainer = styled.div`
     display: flex;
     flex-direction: row;
     padding-right: 0.5rem;
+  }
+
+  .avatar-details {
+    display: flex;
+  }
+
+  .user-avatar-wrapper {
+    margin-right: 0.5rem;
   }
 
   .avatar {
@@ -170,7 +240,7 @@ export const CardContainer = styled.div`
     width: 100px;
     height: 40px;
     background: rgba(0, 20, 51, 0.1);
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
   }
 

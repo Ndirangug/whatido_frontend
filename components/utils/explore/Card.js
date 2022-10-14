@@ -15,7 +15,7 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
                 key={thumbnail[0]?.key}
                 src={thumbnail[0]?.cdnUrl}
                 alt="explore"
-                height="100px"
+                height="150px"
                 width="60px"
                 className="img"
               />
@@ -45,7 +45,7 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
             <div className="follow-btn-container">
               <div className="follow-btn-wrapper">
                 <PlusIcon />
-                <TextXS className="follow-all">Follow All</TextXS>
+                <TextXS className="follow-all">Follow</TextXS>
               </div>
             </div>
           </div>
