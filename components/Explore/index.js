@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
 import useSWR from 'swr';
@@ -8,15 +7,12 @@ import { Text3XL, TextSM } from '../utils/typography/Typography';
 import ExploreCards from './ExploreCards';
 import ExploreExpertsCards from './ExploreExpertsCards';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import Image from 'next/image';
 
 const ExplorePage = () => {
   const router = useRouter();
   let pageUrl = `${API_URL}/feed/discover`;
   const { data: posts } = useSWR(pageUrl);
-
   const page = router.query.explore;
 
   const handleCategory = () => {
@@ -46,30 +42,6 @@ const ExplorePage = () => {
           <input type="text" className="search-input" placeholder="Search" />
         </div>
       </div>
-
-      {/* <Swiper
-        slidesPerView={1}
-        spaceBetween={50}
-        width="100%"
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-      >
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"
-            alt="whatido"
-            width="100%"
-            height="200px"
-            className="banner-img"
-          />
-        </SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-      </Swiper> */}
 
       <Image
         src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"

@@ -1,5 +1,6 @@
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -9,12 +10,16 @@ const StyledIconBtn = styled(IconButton)`
 `;
 
 function HomeIcon() {
+  const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
-  const selected = router.asPath === '/';
-  let color = selected ? '#ffffff' : '#808080';
+  let color = selectedRoute ? '#ffffff' : '#808080';
+
+  useEffect(() => {
+    router.asPath === '/' ? setSelectedRoute(true) : setSelectedRoute(false);
+  }, [router.asPath]);
 
   return (
-    <StyledIconBtn selected={selected} onClick={() => router.push('/')}>
+    <StyledIconBtn selected={selectedRoute} onClick={() => router.push('/')}>
       <svg
         width="56"
         height="56"

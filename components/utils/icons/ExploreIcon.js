@@ -1,5 +1,6 @@
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -9,12 +10,21 @@ const StyledIconBtn = styled(IconButton)`
 `;
 
 function ExploreIcon() {
+  const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
-  const selected = router.asPath === '/explore';
-  let color = selected ? '#ffffff' : '#808080';
+  let color = selectedRoute ? '#ffffff' : '#808080';
+
+  useEffect(() => {
+    router.asPath === '/explore'
+      ? setSelectedRoute(true)
+      : setSelectedRoute(false);
+  }, [router.asPath]);
 
   return (
-    <StyledIconBtn selected={selected} onClick={() => router.push('/explore')}>
+    <StyledIconBtn
+      selected={selectedRoute}
+      onClick={() => router.push('/explore')}
+    >
       <svg
         width="56"
         height="56"

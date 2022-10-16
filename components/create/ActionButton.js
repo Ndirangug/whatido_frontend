@@ -20,6 +20,7 @@ function ActionButton() {
   const dispatch = useDispatch();
   const mediaFile = useSelector((state) => state.media.preUploadFile);
   const caption = useSelector((state) => state.media.caption);
+  const previewComponent = useSelector((state) => state.media.previewComponent);
   const id = useId();
   const user = useSelector((state) => state.auth.currentUser);
   const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
@@ -57,19 +58,23 @@ function ActionButton() {
   };
 
   const uploadMedia = () => {
-    const mediaData = new FormData();
-    mediaData.append('mediaId', id);
-    mediaData.append('mediaType', 'video');
-    mediaData.append('media', mediaFile?.file);
-    mediaData.append('thumbnail', mediaFile?.thumbnail);
-    mediaData.append('text', caption);
-    mediaData.append('userSlug', user?.slug);
-    mediaData.append('community', getExpertCommunity()?.slug);
-    mediaData.append('tags', [user?.expertCategories[0]]);
-    mediaData.append('youtubeLink', null);
-    dispatch(setMediaUploading(true));
-    uploadNewMedia(mediaData);
-    discardMedia();
+    if (previewComponent === 'PREVIEW') {
+      const mediaData = new FormData();
+      mediaData.append('mediaId', id);
+      mediaData.append('mediaType', 'video');
+      mediaData.append('media', mediaFile?.file);
+      mediaData.append('thumbnail', mediaFile?.thumbnail);
+      mediaData.append('text', caption);
+      mediaData.append('userSlug', user?.slug);
+      mediaData.append('community', getExpertCommunity()?.slug);
+      mediaData.append('tags', [user?.expertCategories[0]]);
+      mediaData.append('youtubeLink', null);
+      dispatch(setMediaUploading(true));
+      uploadNewMedia(mediaData);
+      discardMedia();
+    } else {
+      dispatch(setMediaError('select video file'));
+    }
   };
 
   return (
