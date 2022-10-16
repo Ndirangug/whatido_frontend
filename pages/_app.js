@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
-import Footer from '../components/Mobile/Footer';
+import Footer from '../components/mobile/Footer';
 import NextProgress from '../components/utils/micro/Nprogress';
 import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
 import store from '../store';

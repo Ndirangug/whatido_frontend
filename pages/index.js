@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import Inspiring from '../components/Home/Inspiring';
+import Inspiring from '../components/home/Inspiring';
 import { ErrorBoundary } from '../hooks/ErrorBoundary';
 import { HomePageContainer } from '../styles/home.styles';
 

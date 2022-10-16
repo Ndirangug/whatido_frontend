@@ -7,6 +7,7 @@ export const CreatePageContainer = styled.div`
   display: grid;
   grid-gap: 0.5rem;
   height: 100%;
+  background: #fff;
 
   .create-content {
     display: grid;

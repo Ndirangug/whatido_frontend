@@ -1,5 +1,12 @@
+import ProfileInfo from '../../components/profile/ProfileInfo';
+import { ProfilePageContainer } from '../../styles/profile.styles';
+
 function Profile() {
-  return <div>profile</div>;
+  return (
+    <ProfilePageContainer>
+      <ProfileInfo />
+    </ProfilePageContainer>
+  );
 }
 
 export default Profile;
