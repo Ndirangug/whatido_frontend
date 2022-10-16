@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { CategoryPostsContainer } from '../../../styles/explore.styles';
 import BackIcon from '../icons/BackIcon';
 import PlusIcon from '../icons/PlusIcon';
-import { TextXL, TextXS } from '../typography/Typography';
+import { TextSM, TextXL, TextXS } from '../typography/Typography';
 import PostsThumbnail from './PostsThumbnail';
 
 const CategoryPosts = ({ category }) => {
@@ -39,6 +39,11 @@ const CategoryPosts = ({ category }) => {
         <div className="tags">#moon</div>
         <div className="tags">#sky</div>
         <div className="tags">#nightwalker</div>
+      </div>
+
+      <div className="tab-wrapper">
+        <TextSM className="selected-tab">posts</TextSM>
+        <TextSM className="select-tab">experts</TextSM>
       </div>
 
       <PostsThumbnail />

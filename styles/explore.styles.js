@@ -89,10 +89,19 @@ export const ContentPageContainer = styled.div`
     gap: 1rem;
   }
 
-  .select-tab {
+  .selected-tab {
     font-size: 14px;
     font-weight: 600;
-    color: var(--main-black);
+    color: var(--main-indigo);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--main-indigo);
+  }
+
+  .select-tab {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--main-indigo);
+    padding-bottom: 0.6rem;
   }
 `;
 
@@ -365,6 +374,28 @@ export const CategoryPostsContainer = styled.div`
     padding: 0.1rem 0.5rem;
     font-size: 14px;
   }
+
+  .tab-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0.5rem;
+  }
+
+  .selected-tab {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--main-indigo);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--main-indigo);
+  }
+
+  .select-tab {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--main-indigo);
+    padding-bottom: 0.6rem;
+  }
 `;
 
 export const CategoryThumbnailContainer = styled.div`
@@ -373,6 +404,7 @@ export const CategoryThumbnailContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   margin: 0 0.5rem;
   margin-bottom: 1rem;
+  margin-top: -1rem;
 
   .thumbnail-card {
     width: 100%;

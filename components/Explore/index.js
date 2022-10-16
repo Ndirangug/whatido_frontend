@@ -53,10 +53,18 @@ const ExplorePage = () => {
 
       <div>
         <div className="tab-wrapper">
-          <TextSM className="select-tab" onClick={handleCategory}>
+          <TextSM
+            className={
+              !page || page === 'category' ? 'selected-tab' : 'select-tab'
+            }
+            onClick={handleCategory}
+          >
             categories
           </TextSM>
-          <TextSM className="select-tab" onClick={handleExpert}>
+          <TextSM
+            className={page === 'expert' ? 'selected-tab' : 'select-tab'}
+            onClick={handleExpert}
+          >
             experts
           </TextSM>
         </div>
