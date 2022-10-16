@@ -19,6 +19,12 @@ export const ProfileInfoContainer = styled.div`
     margin-top: -5rem;
     padding: 1rem;
   }
+
+  .info-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const NoBigAvatarContainer = styled.div`
