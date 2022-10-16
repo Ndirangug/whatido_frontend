@@ -5,7 +5,7 @@ export const ProfilePageContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 export const ProfileInfoContainer = styled.div`
