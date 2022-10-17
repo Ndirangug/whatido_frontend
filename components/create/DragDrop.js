@@ -9,7 +9,10 @@ import {
 import { DragDropContainer } from '../../styles/create.styles';
 import { SelectButtonContainer } from '../../styles/utils.styles';
 import UploadIcon from '../utils/icons/UploadIcon';
-import { ShareText } from '../utils/typography/Typography';
+import {
+  ShareHeadingText,
+  ShareParaText,
+} from '../utils/typography/Typography';
 
 function DragDrop() {
   const dispatch = useDispatch();
@@ -45,8 +48,15 @@ function DragDrop() {
   return (
     <DragDropContainer>
       <UploadIcon />
-      <ShareText>select video file</ShareText>
-      <SelectButtonContainer>select file</SelectButtonContainer>
+      <div className="margin-bottom">
+        <ShareHeadingText>Select video to upload</ShareHeadingText>
+        <ShareParaText>Or drag and drop a file</ShareParaText>
+      </div>
+      <ShareParaText>MP4 or WebM</ShareParaText>
+      <ShareParaText>720x1280 resolution or higher</ShareParaText>
+      <ShareParaText>Up to 5 minutes</ShareParaText>
+      <ShareParaText>Less than 2 GB</ShareParaText>
+      <SelectButtonContainer>Select file</SelectButtonContainer>
       <input
         type="file"
         className="drop-input"
