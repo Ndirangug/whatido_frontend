@@ -5,7 +5,7 @@ export const ProfilePageContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: scroll;
 `;
 
 export const ProfileInfoContainer = styled.div`
@@ -74,4 +74,12 @@ export const ProfileMediaContainer = styled.div`
     width: 100%;
     grid-gap: 1rem;
   }
+`;
+
+export const SelectTabContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-bottom: 2px solid var(--main-border);
 `;

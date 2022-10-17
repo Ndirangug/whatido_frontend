@@ -1,7 +1,7 @@
-import React from 'react';
+import { SelectTabContainer } from '../../styles/profile.styles';
 
 function SelectTab() {
-  return <div>SelectTab</div>;
+  return <SelectTabContainer>SelectTab</SelectTabContainer>;
 }
 
 export default SelectTab;
