@@ -19,6 +19,7 @@ export const ContentPageContainer = styled.div`
     // position: sticky
     display: grid;
     grid-gap: 1rem;
+    width: 100%;
   }
 
   .cards-container {
@@ -115,8 +116,6 @@ export const SearchContainer = styled.div`
     font-size: 16px;
     line-height: 24px;
     color: #666666;
-    flex: none;
-    flex-grow: 1;
     border: none;
     outline: none;
 

@@ -9,7 +9,7 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
   return (
     <>
       {thumbnail?.length >= 4 && (
-        <Link href={`/${category}`}>
+        <Link href={`/category/${category}`}>
           <CardContainer>
             <div className="img-wrapper">
               {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
