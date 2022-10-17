@@ -15,7 +15,7 @@ function ExploreIcon() {
   let color = selectedRoute ? '#ffffff' : '#808080';
 
   useEffect(() => {
-    router.asPath === '/explore'
+    router.asPath.includes('/explore')
       ? setSelectedRoute(true)
       : setSelectedRoute(false);
   }, [router.asPath]);
