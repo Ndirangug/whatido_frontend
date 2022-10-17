@@ -1,9 +1,10 @@
 import { FooterContainer } from '../../styles/footer.styles';
-import AudioRoomsIcon from '../utils/icons/AudioRoomsIcon';
-import ChatIcon from '../utils/icons/ChatIcon';
+
 import ExploreIcon from '../utils/icons/ExploreIcon';
 import HomeIcon from '../utils/icons/HomeIcon';
 import MobileCreateIcon from '../utils/icons/MobileCreateIcon';
+import NotificationsIcon from '../utils/icons/NotificationsIcon';
+import ProfileIcon from '../utils/icons/ProfileIcon';
 
 function Footer() {
   return (
@@ -11,8 +12,8 @@ function Footer() {
       <HomeIcon />
       <ExploreIcon />
       <MobileCreateIcon />
-      <AudioRoomsIcon />
-      <ChatIcon />
+      <NotificationsIcon />
+      <ProfileIcon />
     </FooterContainer>
   );
 }

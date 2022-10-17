@@ -68,3 +68,19 @@ export const TextXL = styled(Typography)`
   font-size: 1.25rem; /* 20px */
   line-height: 1.75rem; /* 28px */
 `;
+export const TextLG = styled(Typography)`
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+`;
+export const TextBase = styled(Typography)`
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+`;
+export const TextSm = styled(Typography)`
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+`;
+export const TextxS = styled(Typography)`
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+`;

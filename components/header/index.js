@@ -1,4 +1,3 @@
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -8,14 +7,14 @@ import Button from '../utils/buttons/Button';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { HeaderContainer } from '../../styles/header.styles';
+import AudioRoomsIcon from '../utils/icons/AudioRoomsIcon';
+import ChatIcon from '../utils/icons/ChatIcon';
 import CreateIcon from '../utils/icons/CreateIcon';
-import NotificationIcon from '../utils/icons/NotificationIcon';
 import WalletIcon from '../utils/icons/WalletIcon';
 
 const Header = () => {
   const router = useRouter();
   const authenticated = useSelector((state) => state.auth.authenticated);
-  const user = useSelector((state) => state.auth.currentUser);
 
   const handleLogin = () => {
     router.push({
@@ -68,9 +67,9 @@ const Header = () => {
             )}
             {authenticated && (
               <Stack direction="row" spacing={2}>
-                <NotificationIcon />
+                <AudioRoomsIcon />
+                <ChatIcon />
                 <WalletIcon />
-                <Avatar alt={user?.firstName} src={user?.imageUrl?.cdnUrl} />
               </Stack>
             )}
           </div>
