@@ -307,7 +307,7 @@ export const CategoryPostsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin: 0 0.5rem;
+    margin: 0 1rem;
     margin-top: -1rem;
   }
 
@@ -363,7 +363,7 @@ export const CategoryPostsContainer = styled.div`
     justify-content: flex-start;
     width: 100%;
     gap: 0.5rem;
-    margin: 0 0.5rem;
+    margin: 0 1rem;
   }
 
   .tags {
@@ -378,7 +378,7 @@ export const CategoryPostsContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin: 0 0.5rem;
+    margin: 0 1rem;
   }
 
   .selected-tab {
@@ -401,7 +401,7 @@ export const CategoryThumbnailContainer = styled.div`
   display: grid;
   grid-gap: 0.5rem;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  margin: 0 0.5rem;
+  margin: 0 1rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
 
@@ -447,5 +447,52 @@ export const CategoryThumbnailContainer = styled.div`
     border: 2px solid #780206; /* fallback for old browsers */
     border: 2px solid -webkit-linear-gradient(to right, #061161, #780206); /* Chrome 10-25, Safari 5.1-6 */
     border: 2px solid linear-gradient(to right, #061161, #780206); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+`;
+
+export const UserCardsContainer = styled.div`
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+
+  .cards-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .user-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .username {
+    color: #001433;
+  }
+
+  .user-category {
+    color: rgba(0, 20, 51, 0.5);
+  }
+
+  .follow-btn {
+    padding: 10px;
+    background: rgba(0, 20, 51, 0.1);
+    border-radius: 5px;
+    border: none;
+  }
+
+  .following-btn {
+    padding: 10px;
+    color: #fff;
+    background: #001433;
+    border-radius: 5px;
+    border: none;
   }
 `;

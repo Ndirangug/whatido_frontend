@@ -1,13 +1,26 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../../styles/explore.styles';
 import BackIcon from '../icons/BackIcon';
 import PlusIcon from '../icons/PlusIcon';
 import { TextSM, TextXL, TextXS } from '../typography/Typography';
 import PostsThumbnail from './PostsThumbnail';
+import UserCards from './UserCards';
 
 const CategoryPosts = ({ category }) => {
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.category.selectedComponent);
   const router = useRouter();
+
+  const handlePosts = () => {
+    dispatch(setCategoryComponent('posts'));
+  };
+
+  const handleExperts = () => {
+    dispatch(setCategoryComponent('experts'));
+  };
 
   return (
     <CategoryPostsContainer>
@@ -42,11 +55,22 @@ const CategoryPosts = ({ category }) => {
       </div>
 
       <div className="tab-wrapper">
-        <TextSM className="selected-tab">posts</TextSM>
-        <TextSM className="select-tab">experts</TextSM>
+        <TextSM
+          className={page === 'posts' ? 'selected-tab' : 'select-tab'}
+          onClick={handlePosts}
+        >
+          posts
+        </TextSM>
+        <TextSM
+          className={page === 'experts' ? 'selected-tab' : 'select-tab'}
+          onClick={handleExperts}
+        >
+          experts
+        </TextSM>
       </div>
 
-      <PostsThumbnail />
+      {page === 'posts' && <PostsThumbnail />}
+      {page === 'experts' && <UserCards />}
     </CategoryPostsContainer>
   );
 };
