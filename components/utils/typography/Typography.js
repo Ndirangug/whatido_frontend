@@ -82,5 +82,5 @@ export const TextSm = styled(Typography)`
 `;
 export const TextxS = styled(Typography)`
   font-size: 0.75rem; /* 12px */
-  line-height: 1rem; /* 16px */
+  line-height: 1.1rem; /* 16px */
 `;

@@ -80,6 +80,17 @@ export const SelectTabContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  border-bottom: 2px solid var(--main-border);
+  padding-bottom: 1rem;
+  border-bottom: ${({ selected }) =>
+    selected ? '2px solid var(--main-border)' : 'none'};
+
+  .feed-icon {
+    position: relative;
+  }
+
+  .text {
+    position: absolute;
+    bottom: -5px;
+    right: -1rem;
+  }
 `;
