@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
+import CarouselImage from '../utils/explore/CarouselImage';
 import { Text2XL, TextSM } from '../utils/typography/Typography';
 import CardsContainer from './CardsContainer';
 import Search from './Search';
@@ -29,13 +30,7 @@ const ExplorePage = () => {
         <Search />
       </div>
 
-      {/* <Image
-        src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"
-        alt="whatido"
-        width="100%"
-        height="200px"
-        className="banner-img"
-      /> */}
+      <CarouselImage />
 
       <div>
         <div className="tab-wrapper">

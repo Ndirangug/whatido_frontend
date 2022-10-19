@@ -28,6 +28,7 @@ const CategoryPosts = ({ category, posts }) => {
         alt="whatido"
         width="100%"
         height="150px"
+        objectFit="cover"
         className="banner-img"
       />
       <div className="back-icon" onClick={() => router.back()}>

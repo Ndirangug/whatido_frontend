@@ -80,10 +80,6 @@ export const ContentPageContainer = styled.div`
     }
   }
 
-  .banner-img {
-    border-radius: 7px;
-  }
-
   .tab-wrapper {
     display: flex;
     align-items: center;
@@ -125,6 +121,20 @@ export const SearchContainer = styled.div`
   }
 `;
 
+export const CarouselContainer = styled.div`
+  position: relative;
+
+  .img-container {
+    position: relative;
+    height: 200px;
+    width: 100%;
+  }
+
+  .banner-img {
+    border-radius: 5px;
+  }
+`;
+
 export const ExploreCardsContainer = styled.div`
   width: 100%;
   display: grid;
@@ -140,6 +150,7 @@ export const CardContainer = styled.div`
   overflow: hidden;
   // padding: 0.5rem;
   margin: 1rem 0;
+  cursor: pointer;
 
   @media (min-width: 475px) {
     height: 180px;
@@ -274,6 +285,7 @@ export const CardContainer = styled.div`
 
   .follow-all {
     font-size: 13px;
+    font-weight: bold;
     letter-spacing: -0.408px;
     color: var(--main-black);
   }
