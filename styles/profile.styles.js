@@ -94,3 +94,16 @@ export const SelectTabContainer = styled.div`
     right: -1rem;
   }
 `;
+
+export const FeedContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.25rem;
+  padding: 0.5rem 0;
+`;
+
+export const FeedCardContainer = styled.div`
+  border-radius: 4px;
+  width: 100%;
+  overflow: hidden;
+`;

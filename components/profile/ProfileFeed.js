@@ -1,7 +1,17 @@
-import React from 'react';
+import { FeedContainer } from '../../styles/profile.styles';
+import FeedCard from '../utils/cards/feed/FeedCard';
 
 function ProfileFeed() {
-  return <div>ProfileFeed</div>;
+  return (
+    <FeedContainer>
+      <FeedCard />
+      <FeedCard />
+      <FeedCard />
+      <FeedCard />
+      <FeedCard />
+      <FeedCard />
+    </FeedContainer>
+  );
 }
 
 export default ProfileFeed;
