@@ -87,17 +87,13 @@ export const ContentPageContainer = styled.div`
   }
 
   .selected-tab {
-    font-size: 14px;
-    font-weight: 600;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--main-indigo);
+    border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--main-indigo);
+    color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
 `;
@@ -210,8 +206,6 @@ export const CardContainer = styled.div`
   }
 
   .category-title {
-    font-size: 12px;
-    font-weight: 600;
     color: var(--main-black);
     margin-bottom: 0.2rem;
   }
@@ -225,8 +219,6 @@ export const CardContainer = styled.div`
 
   .num-of-experts {
     padding-right: 0.5rem;
-    font-family: none;
-    font-size: 10px;
     color: rgba(0, 20, 51, 0.5);
   }
 
@@ -259,9 +251,6 @@ export const CardContainer = styled.div`
   }
 
   .num-of-posts {
-    font-family: none;
-    font-size: 10px;
-    letter-spacing: -0.408px;
     color: rgba(0, 20, 51, 0.5);
   }
 
@@ -284,9 +273,6 @@ export const CardContainer = styled.div`
   }
 
   .follow-all {
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: -0.408px;
     color: var(--main-black);
   }
 `;
@@ -325,9 +311,7 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .title {
-    color: var(--main-black)
-    font-size: 14px;
-    font-weight: 600;
+    color: var(--main-black);
   }
 
   .details-container {
@@ -345,7 +329,6 @@ export const CategoryPostsContainer = styled.div`
 
   .details {
     color: var(--main-gray);
-    font-size: 12px;
   }
 
   .follow-btn-wrapper {
@@ -379,7 +362,7 @@ export const CategoryPostsContainer = styled.div`
     color: #fff;
   }
 
-  .tags-container{
+  .tags-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -404,17 +387,13 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .selected-tab {
-    font-size: 14px;
-    font-weight: 600;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--main-indigo);
+    border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--main-indigo);
+    color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
 `;

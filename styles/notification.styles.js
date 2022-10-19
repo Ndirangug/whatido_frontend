@@ -102,10 +102,6 @@ export const NotificationPageContainer = styled.div`
     }
   }
 
-  .header {
-    font-weight: bold;
-  }
-
   .details-container {
     display: grid;
     grid-template-rows: 0.5fr auto;
@@ -116,7 +112,6 @@ export const NotificationPageContainer = styled.div`
     border-bottom: 1px solid var(--main-border);
     padding: 0.5rem 1rem;
     margin-right: 1rem;
-    font-weight: 600;
 
     @media (min-width: 768px) {
       padding: 0.5rem 4rem;

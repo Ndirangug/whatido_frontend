@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { CardContainer } from '../../../styles/explore.styles';
 import { BaseAvatar } from '../avatars/Avatar';
 import PlusIcon from '../icons/PlusIcon';
-import { TextXS } from '../typography/Typography';
+import { TextSm, TextxS } from '../typography/Typography';
 
 const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
   const router = useRouter();
@@ -11,7 +11,6 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
   return (
     <>
       {thumbnail?.length >= 4 && (
-        // <Link href={`/category/${category}`}>
         <CardContainer onClick={() => router.push(`/category/${category}`)}>
           <div className="img-wrapper">
             {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
@@ -28,33 +27,40 @@ const Card = ({ category, count, thumbnail, avatar, numOfExperts }) => {
 
           <div className="details-container">
             <div className="details-wrapper">
-              <TextXS className="category-title">{category}</TextXS>
+              <div className="category-title">
+                <TextSm>{category}</TextSm>
+              </div>
               <div className="experts-wrapper">
-                <TextXS className="num-of-experts">{`${numOfExperts} experts`}</TextXS>
+                <div className="num-of-experts">
+                  <TextxS>{`${numOfExperts} experts`}</TextxS>
+                </div>
                 <div className="experts-avatars">
                   {avatar?.slice(0, 4)?.map(({ imageUrl }) => (
                     <BaseAvatar
                       key={imageUrl?.key}
                       alt="what i do"
-                      sx={{ width: '21px', height: '21px' }}
+                      sx={{ width: '23px', height: '23px' }}
                       src={imageUrl?.cdnUrl}
                       className="avatar"
                     />
                   ))}
                 </div>
                 <div className="ellipse" />
-                <TextXS className="num-of-posts">{`${count} posts`}</TextXS>
+                <div className="num-of-posts">
+                  <TextxS>{`${count} posts`}</TextxS>
+                </div>
               </div>
             </div>
             <div className="follow-btn-container">
               <div className="follow-btn-wrapper">
                 <PlusIcon />
-                <TextXS className="follow-all">Follow</TextXS>
+                <div className="follow-all">
+                  <TextSm>Follow</TextSm>
+                </div>
               </div>
             </div>
           </div>
         </CardContainer>
-        // </Link>
       )}
     </>
   );

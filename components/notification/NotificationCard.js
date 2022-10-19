@@ -29,9 +29,7 @@ const NotificationCard = () => {
         />
 
         <div className="notification-text-wrapper">
-          <TextBase>
-            A new message from <b className="bold-text">Donny Dey</b>
-          </TextBase>
+          <TextBase>A new message from Donny Dey</TextBase>
         </div>
       </div>
 
@@ -43,9 +41,7 @@ const NotificationCard = () => {
         />
 
         <div className="notification-text-wrapper">
-          <TextBase>
-            A new message from <b className="bold-text">Donny Dey</b>
-          </TextBase>
+          <TextBase>A new message from Donny Dey</TextBase>
         </div>
       </div>
     </>

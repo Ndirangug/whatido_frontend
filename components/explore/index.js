@@ -4,7 +4,7 @@ import { API_URL } from '../../constants/api';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import CarouselImage from '../utils/explore/CarouselImage';
-import { Text2XL, TextSM } from '../utils/typography/Typography';
+import { Text2XL, TextSm } from '../utils/typography/Typography';
 import CardsContainer from './CardsContainer';
 import Search from './Search';
 
@@ -34,20 +34,20 @@ const ExplorePage = () => {
 
       <div>
         <div className="tab-wrapper">
-          <TextSM
+          <div
             className={
               !page || page === 'category' ? 'selected-tab' : 'select-tab'
             }
             onClick={handleCategory}
           >
-            categories
-          </TextSM>
-          <TextSM
+            <TextSm>categories</TextSm>
+          </div>
+          <div
             className={page === 'expert' ? 'selected-tab' : 'select-tab'}
             onClick={handleExpert}
           >
-            experts
-          </TextSM>
+            <TextSm>experts</TextSm>
+          </div>
         </div>
         {/* {!page && <CardsContainer posts={posts} page="category" />} */}
 

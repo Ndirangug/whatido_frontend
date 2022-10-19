@@ -1,5 +1,5 @@
 import { NotificationPageContainer } from '../../styles/notification.styles';
-import { TextBase, TextXL } from '../utils/typography/Typography';
+import { Text2XL, TextLG } from '../utils/typography/Typography';
 import NotificationCard from './NotificationCard';
 
 const Notification = () => {
@@ -11,13 +11,13 @@ const Notification = () => {
   return (
     <NotificationPageContainer>
       <div className="header-container">
-        <TextXL className="header">Notifications</TextXL>
+        <Text2XL>Notifications</Text2XL>
       </div>
 
       <div className="details-container">
-        <TextBase className="notification-date">
-          Today - 10th October, 2022
-        </TextBase>
+        <div className="notification-date">
+          <TextLG>Today - 10th October, 2022</TextLG>
+        </div>
 
         {/* {notifications?.map((notification) => (
           <NotificationCard

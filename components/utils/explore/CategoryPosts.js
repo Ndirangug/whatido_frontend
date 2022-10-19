@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../../styles/explore.styles';
 import BackIcon from '../icons/BackIcon';
-import { TextSM, TextXL, TextXS } from '../typography/Typography';
+import { TextLG, TextSm, TextxS } from '../typography/Typography';
 import PostsThumbnail from './PostsThumbnail';
 import UserCards from './UserCards';
 
@@ -36,39 +36,52 @@ const CategoryPosts = ({ category, posts }) => {
       </div>
 
       <div className="title-container">
-        <TextXL className="title">{category}</TextXL>
+        <div>
+          <TextLG>{category}</TextLG>
+        </div>
         <div className="details-container">
-          <TextXS className="details">1,110 Followers</TextXS>
+          <div className="details">
+            <TextxS>1,110 Followers</TextxS>
+          </div>
           <div className="ellipse" />
-          <TextXS className="details">2k Posts</TextXS>
+          <div className="details">
+            <TextxS>2k Posts</TextxS>
+          </div>
         </div>
         {/* <div className="follow-btn-wrapper">
           <PlusIcon />
           <TextXS className="follow-all">Follow</TextXS>
         </div> */}
 
-        <button className="follow-all-btn">Follow All</button>
+        <button className="follow-all-btn">Follow</button>
       </div>
 
       <div className="tags-container">
-        <div className="tags">#moon</div>
-        <div className="tags">#sky</div>
-        <div className="tags">#nightwalker</div>
+        <div className="tags">
+          <TextxS>#moon</TextxS>
+        </div>
+        <div className="tags">
+          <TextxS>#sky</TextxS>
+        </div>
+        <div className="tags">
+          <TextxS>#nightwalker</TextxS>
+        </div>
       </div>
 
       <div className="tab-wrapper">
-        <TextSM
+        <div
           className={page === 'posts' ? 'selected-tab' : 'select-tab'}
           onClick={handlePosts}
         >
-          posts
-        </TextSM>
-        <TextSM
+          <TextSm>posts</TextSm>
+        </div>
+
+        <div
           className={page === 'experts' ? 'selected-tab' : 'select-tab'}
           onClick={handleExperts}
         >
-          experts
-        </TextSM>
+          <TextSm>experts</TextSm>
+        </div>
       </div>
 
       {page === 'posts' && <PostsThumbnail posts={posts} />}
