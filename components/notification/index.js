@@ -1,16 +1,12 @@
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
 import { NotificationPageContainer } from '../../styles/notification.styles';
 import { TextBase, TextXL } from '../utils/typography/Typography';
 import NotificationCard from './NotificationCard';
 
 const Notification = () => {
-  const router = useRouter();
-  const user = useSelector((state) => state.auth.currentUser);
-  const notificationsUrl = `${API_URL}/notifications/${user?.slug}?page=${0}`;
-  const { data: notifications } = useSWR(notificationsUrl);
+  // const router = useRouter();
+  // const user = useSelector((state) => state.auth.currentUser);
+  // const notificationsUrl = `${API_URL}/notifications/${user?.slug}?page=${0}`;
+  // const { data: notifications } = useSWR(notificationsUrl);
 
   return (
     <NotificationPageContainer>

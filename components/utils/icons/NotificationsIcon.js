@@ -12,7 +12,7 @@ const StyledIconBtn = styled(IconButton)`
 function NotificationsIcon() {
   const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
-  let color = selectedRoute ? '#ffffff' : '#808080';
+  // let color = selectedRoute ? '#ffffff' : '#808080';
 
   useEffect(() => {
     router.asPath.includes('/notifications')
