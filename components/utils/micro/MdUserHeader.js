@@ -10,7 +10,6 @@ function MdUserHeader({ userSlug }) {
   const { data } = useSWR(`${API_URL}/getExpertDetail/${userSlug}`, {
     suspense: true,
   });
-  // console.log('user data', data.data);
 
   return (
     <Stack direction="row" spacing={1} alignItems="center">

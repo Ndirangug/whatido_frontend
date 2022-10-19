@@ -67,6 +67,7 @@ export const ProfileInfoContainer = styled.div`
 
 export const ProfileMediaContainer = styled.div`
   padding: 0 1rem;
+  width: 100%;
 
   .content-select-tab {
     display: grid;
@@ -113,11 +114,17 @@ export const ProfileReviewContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
   padding: 0.5rem 0;
+  width: 100%;
 `;
 
 export const ReviewCardContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+  width: 100%;
+
+  .review-info-container {
+    width: 100%;
+  }
 
   .star-flex {
     display: flex;
@@ -130,6 +137,7 @@ export const ReviewCardContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
   .review-time {
     color: rgba(0, 20, 51, 0.5);

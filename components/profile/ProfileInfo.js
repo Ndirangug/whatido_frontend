@@ -3,38 +3,27 @@ import BigAvatar from '../utils/avatars/BigAvatar';
 import EditProfileButton from '../utils/buttons/EditProfileButton';
 import { TextSm, TextXL } from '../utils/typography/Typography';
 
-function ProfileInfo() {
+function ProfileInfo({ user }) {
   return (
     <ProfileInfoContainer>
       <div className="banner-conatiner"></div>
       <div className="info-conatiner">
-        <BigAvatar />
+        <BigAvatar src={user?.imageUrl?.cdnUrl} />
         <div className="info-name-container">
           <div className="info">
-            <TextXL>Emmanuel Jacob</TextXL>
+            <TextXL>{user?.firstName + ' ' + user?.lastName}</TextXL>
           </div>
           <EditProfileButton />
         </div>
         <div className="info">
-          <TextSm>
-            focus on web development, music, tech, blockchain, swift, frontend,
-            backend
-          </TextSm>
+          <TextSm>focus on {user?.expertFocusExpertise}</TextSm>
         </div>
         <div className="category-container">
-          <div className="category">
-            <TextSm>frontend</TextSm>
-          </div>
-          <div className="category">
-            <TextSm>frontend</TextSm>
-          </div>
-          <div className="category">
-            <TextSm>frontend</TextSm>
-          </div>
-
-          <div className="category">
-            <TextSm>frontend</TextSm>
-          </div>
+          {user?.expertCategories.map((category, i) => (
+            <div className="category" key={category + i}>
+              <TextSm>{category}</TextSm>
+            </div>
+          ))}
         </div>
 
         <div className="follow-container">

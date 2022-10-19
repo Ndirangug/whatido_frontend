@@ -6,7 +6,7 @@ import ProfileFeed from './ProfileFeed';
 import ProfileReview from './ProfileReview';
 import SelectTab from './SelectTab';
 
-function ProfileMedia() {
+function ProfileMedia({ user }) {
   const router = useRouter();
 
   const handleReview = () => {
@@ -42,7 +42,11 @@ function ProfileMedia() {
           selected={router.query.review}
         />
       </div>
-      {router.query.review ? <ProfileReview /> : <ProfileFeed />}
+      {router.query.review ? (
+        <ProfileReview user={user} />
+      ) : (
+        <ProfileFeed user={user} />
+      )}
     </ProfileMediaContainer>
   );
 }

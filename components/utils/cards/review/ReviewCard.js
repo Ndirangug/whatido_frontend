@@ -1,28 +1,26 @@
+import { format } from 'timeago.js';
 import { ReviewCardContainer } from '../../../../styles/profile.styles';
 import BaseAvatar from '../../avatars/BaseAvatar';
 import StarIcon from '../../icons/StarIcon';
 import { TextBase, TextSm } from '../../typography/Typography';
 
-function ReviewCard() {
+function ReviewCard({ review }) {
   return (
     <ReviewCardContainer>
-      <BaseAvatar />
+      <BaseAvatar src={review?.usersAvatar} />
       <div className="review-info-container">
         <div className="review-into-top">
-          <TextBase>Emmanuel Jacob</TextBase>
+          <TextBase> {review?.userFullName} </TextBase>
           <div className="star-flex">
-            <TextBase>4.5</TextBase>
+            <TextBase>{review?.rating}</TextBase>
             <StarIcon />
           </div>
         </div>
         <div className="review-time">
-          <TextSm>3 days ago</TextSm>
+          <TextSm>{format(review?.createdAt)}</TextSm>
         </div>
         <div className="review-comment">
-          <TextBase>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius elit
-            amet, tincidunt dictumst. Varius iaculis
-          </TextBase>
+          <TextBase>{review?.review}</TextBase>
         </div>
       </div>
     </ReviewCardContainer>
