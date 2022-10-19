@@ -1,13 +1,9 @@
-import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
-import {
-  CancelIcon,
-  NotificationPageContainer,
-} from '../../styles/notification.styles';
-import { Text2XL, TextXL } from '../utils/typography/Typography';
+import { NotificationPageContainer } from '../../styles/notification.styles';
+import { TextBase, TextXL } from '../utils/typography/Typography';
 import NotificationCard from './NotificationCard';
 
 const Notification = () => {
@@ -19,23 +15,22 @@ const Notification = () => {
   return (
     <NotificationPageContainer>
       <div className="header-container">
-        <Text2XL>Notifications</Text2XL>
-        <IconButton className="" onClick={() => router.back()}>
-          <CancelIcon />
-        </IconButton>
+        <TextXL className="header">Notifications</TextXL>
       </div>
 
       <div className="details-container">
-        <TextXL className="notification-title">
+        <TextBase className="notification-date">
           Today - 10th October, 2022
-        </TextXL>
+        </TextBase>
 
-        {notifications?.map((notification) => (
+        {/* {notifications?.map((notification) => (
           <NotificationCard
             key={notification?._id}
             notification={notification}
           />
-        ))}
+        ))} */}
+
+        <NotificationCard />
       </div>
     </NotificationPageContainer>
   );

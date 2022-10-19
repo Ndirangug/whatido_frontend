@@ -7,31 +7,33 @@ const CardsContainer = ({ page, posts }) => {
     <div>
       {page === 'expert' ? (
         <>
-          {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
-            <ExploreExpertsCards
-              key={_id}
-              category={_id}
-              count={count}
-              thumbnail={thumbnail}
-              userSlug={userSlug}
-              avatars={posts?.avatars}
-              experts={posts?.totalExperts}
-            />
-          ))}
+          {posts?.totalExperts?.map(
+            ({ _id, total_post, thumbnail, total_users, avater }) => (
+              <ExploreExpertsCards
+                key={_id}
+                category={_id}
+                count={total_post}
+                thumbnail={thumbnail}
+                avatars={avater}
+                experts={total_users}
+              />
+            )
+          )}
         </>
       ) : (
         <>
-          {posts?.totalPost?.map(({ _id, count, thumbnail, userSlug }) => (
-            <ExploreCards
-              key={_id}
-              category={_id}
-              count={count}
-              thumbnail={thumbnail}
-              userSlug={userSlug}
-              avatars={posts?.avatars}
-              experts={posts?.totalExperts}
-            />
-          ))}
+          {posts?.totalExperts?.map(
+            ({ _id, total_post, thumbnail, total_users, avater }) => (
+              <ExploreCards
+                key={_id}
+                category={_id}
+                count={total_post}
+                thumbnail={thumbnail}
+                avatars={avater}
+                experts={total_users}
+              />
+            )
+          )}
         </>
       )}
     </div>

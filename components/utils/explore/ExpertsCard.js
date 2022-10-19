@@ -23,7 +23,7 @@ const ExpertsCard = ({ category, count, thumbnail, avatar, numOfExperts }) => {
               <div className="details-wrapper">
                 <TextXS className="category-title">{category}</TextXS>
                 <div className="experts-wrapper">
-                  <TextXS className="num-of-experts">{`${numOfExperts?.count}`}</TextXS>
+                  <TextXS className="num-of-experts">{`${numOfExperts}`}</TextXS>
                   <div className="experts-avatars">
                     {avatar?.slice(0, 4)?.map(({ imageUrl }) => (
                       <BaseAvatar

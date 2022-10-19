@@ -285,6 +285,7 @@ export const CategoryPostsLgContainer = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   position: relative;
+  background: #fff;
 `;
 
 export const CategoryPostsContainer = styled.div`
@@ -328,7 +329,6 @@ export const CategoryPostsContainer = styled.div`
     height: 4px;
     background: #d0d0d0;
     border-radius: 50%;
-    margin-right: 0.3rem;
   }
 
   .details {
@@ -337,12 +337,12 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .follow-btn-wrapper {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
     align-items: center;
     justify-contents: center;
-    gap: 4px;
-    background: rgba(0, 20, 51, 0.1);
+    // gap: 4px;
+    background: #001433;
+    color: #fff;
     padding: 10px 15px;
     width: 100px;
     height: 35px;
@@ -351,10 +351,20 @@ export const CategoryPostsContainer = styled.div`
     margin-top: 0.5rem;
   }
 
+  .follow-all-btn {
+    padding: 10px;
+    color: #fff;
+    background: #001433;
+    border-radius: 5px;
+    border: none;
+    width: 100px;
+    margin-top: 0.5rem;
+  }
+
   .follow-all {
     font-size: 13px;
     letter-spacing: -0.408px;
-    color: var(--main-black);
+    color: #fff;
   }
 
   .tags-container{
@@ -408,7 +418,7 @@ export const CategoryThumbnailContainer = styled.div`
   .thumbnail-card {
     width: 100%;
     height: 15rem;
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     background: #262626;
     position: relative;
     overflow: hidden;

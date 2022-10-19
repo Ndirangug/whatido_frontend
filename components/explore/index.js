@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
-import { Text3XL, TextSM } from '../utils/typography/Typography';
+import { Text2XL, TextSM } from '../utils/typography/Typography';
 import CardsContainer from './CardsContainer';
 import Search from './Search';
 
@@ -25,7 +25,7 @@ const ExplorePage = () => {
   return (
     <ContentPageContainer>
       <div className="category-container">
-        <Text3XL>explore</Text3XL>
+        <Text2XL>explore</Text2XL>
         <Search />
       </div>
 

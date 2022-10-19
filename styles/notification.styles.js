@@ -63,19 +63,18 @@ export const NotificationContainer = styled.div`
     flex-grow: 0;
   }
 `;
+
+export const LgContainer = styled.div`
+  background: lightgray;
+`;
 export const NotificationLgContainer = styled.div`
   display: grid;
   grid-gap: 2rem;
   max-width: 1200px;
   width: 100%;
-  margin: 1rem auto;
   padding: 1rem;
   padding-left: 0rem !important;
-  border-radius: 10px;
   background: #fff;
-`;
-
-export const NotificationPageContainer = styled.div`
   overflow-y: scroll;
 
   ::-webkit-scrollbar {
@@ -84,28 +83,40 @@ export const NotificationPageContainer = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 
+  @media (min-width: 1200px) {
+    margin: 1rem auto;
+    border-radius: 10px;
+  }
+`;
+
+export const NotificationPageContainer = styled.div`
   .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 0 0 1rem;
-    font-weight: bold;
+    padding-left: 0.5rem;
+    margin: 0.5rem 0;
 
     @media (min-width: 768px) {
-      padding: 0 0 0 2rem;
+      padding-left: 2rem;
     }
+  }
+
+  .header {
+    font-weight: bold;
   }
 
   .details-container {
     display: grid;
     grid-template-rows: 0.5fr auto;
-    margin: 2rem 0;
+    margin: 1rem 0;
   }
 
-  .notification-title {
+  .notification-date {
     border-bottom: 1px solid var(--main-border);
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     margin-right: 1rem;
+    font-weight: 600;
 
     @media (min-width: 768px) {
       padding: 0.5rem 4rem;
@@ -117,7 +128,7 @@ export const NotificationPageContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 2rem;
+    padding: 0 1rem;
     margin: 1rem 0;
     gap: 0.5rem;
     cursor: pointer;
@@ -130,10 +141,11 @@ export const NotificationPageContainer = styled.div`
   .notification-text-wrapper {
     display: flex;
     align-items: center;
+    color: rgba(0, 0, 0, 0.6);
   }
 
-  .notification-text {
-    font-weight: 600;
+  .bold-text {
+    color: var(--main-indigo);
   }
 `;
 

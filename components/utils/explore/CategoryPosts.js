@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../../styles/explore.styles';
 import BackIcon from '../icons/BackIcon';
-import PlusIcon from '../icons/PlusIcon';
 import { TextSM, TextXL, TextXS } from '../typography/Typography';
 import PostsThumbnail from './PostsThumbnail';
 import UserCards from './UserCards';
 
-const CategoryPosts = ({ category }) => {
+const CategoryPosts = ({ category, posts }) => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.category.selectedComponent);
   const router = useRouter();
@@ -42,10 +41,12 @@ const CategoryPosts = ({ category }) => {
           <div className="ellipse" />
           <TextXS className="details">2k Posts</TextXS>
         </div>
-        <div className="follow-btn-wrapper">
+        {/* <div className="follow-btn-wrapper">
           <PlusIcon />
           <TextXS className="follow-all">Follow</TextXS>
-        </div>
+        </div> */}
+
+        <button className="follow-all-btn">Follow All</button>
       </div>
 
       <div className="tags-container">
@@ -69,7 +70,7 @@ const CategoryPosts = ({ category }) => {
         </TextSM>
       </div>
 
-      {page === 'posts' && <PostsThumbnail />}
+      {page === 'posts' && <PostsThumbnail posts={posts} />}
       {page === 'experts' && <UserCards />}
     </CategoryPostsContainer>
   );
