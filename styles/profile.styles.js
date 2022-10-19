@@ -108,3 +108,36 @@ export const FeedCardContainer = styled.div`
   width: 100%;
   overflow: hidden;
 `;
+
+export const ProfileReviewContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  padding: 0.5rem 0;
+`;
+
+export const ReviewCardContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+
+  .star-flex {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
+  }
+
+  .review-into-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .review-time {
+    color: rgba(0, 20, 51, 0.5);
+  }
+  .review-comment {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+`;

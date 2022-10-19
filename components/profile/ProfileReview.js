@@ -1,7 +1,14 @@
-import React from 'react';
+import { ProfileReviewContainer } from '../../styles/profile.styles';
+import ReviewCard from '../utils/cards/review/ReviewCard';
 
 function ProfileReview() {
-  return <div>ProfileReview</div>;
+  return (
+    <ProfileReviewContainer>
+      <ReviewCard />
+      <ReviewCard />
+      <ReviewCard />
+    </ProfileReviewContainer>
+  );
 }
 
 export default ProfileReview;
