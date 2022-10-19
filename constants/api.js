@@ -9,3 +9,11 @@ export const CLIENT_ROOT_URL = 'http://localhost:3000';
 // export const API_URL = 'http://172.20.10.2:3012';
 export const Logo =
   'https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg';
+
+//list of used api on the app
+//${API_URL}/auth/google
+//${API_URL}/auth/facebook
+//${API_URL}/auth/twitter
+//${API_URL}/auth/login
+//${API_URL}/feed/for-you
+//`${API_URL}/getExpertDetail/${userSlug}

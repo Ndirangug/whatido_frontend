@@ -67,6 +67,7 @@ export const ProfileInfoContainer = styled.div`
 
 export const ProfileMediaContainer = styled.div`
   padding: 0 1rem;
+  width: 100%;
 
   .content-select-tab {
     display: grid;
@@ -80,6 +81,71 @@ export const SelectTabContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  border-bottom: 2px solid var(--main-border);
+  padding-bottom: 1rem;
+  cursor: pointer;
+  border-bottom: ${({ selected }) =>
+    selected ? '2px solid var(--main-border)' : 'none'};
+
+  .feed-icon {
+    position: relative;
+  }
+
+  .text {
+    position: absolute;
+    bottom: -5px;
+    right: -1rem;
+  }
+`;
+
+export const FeedContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.25rem;
+  padding: 0.5rem 0;
+`;
+
+export const FeedCardContainer = styled.div`
+  border-radius: 4px;
+  width: 100%;
+  overflow: hidden;
+`;
+
+export const ProfileReviewContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  padding: 0.5rem 0;
+  width: 100%;
+`;
+
+export const ReviewCardContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+
+  .review-info-container {
+    width: 100%;
+  }
+
+  .star-flex {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
+  }
+
+  .review-into-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .review-time {
+    color: rgba(0, 20, 51, 0.5);
+  }
+  .review-comment {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 `;
