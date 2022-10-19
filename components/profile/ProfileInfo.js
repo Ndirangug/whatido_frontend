@@ -1,5 +1,5 @@
 import { ProfileInfoContainer } from '../../styles/profile.styles';
-import NoBigAvatar from '../utils/avatars/NoBigAvatar';
+import BigAvatar from '../utils/avatars/BigAvatar';
 import EditProfileButton from '../utils/buttons/EditProfileButton';
 import { TextSm, TextXL } from '../utils/typography/Typography';
 
@@ -8,7 +8,7 @@ function ProfileInfo() {
     <ProfileInfoContainer>
       <div className="banner-conatiner"></div>
       <div className="info-conatiner">
-        <NoBigAvatar />
+        <BigAvatar />
         <div className="info-name-container">
           <div className="info">
             <TextXL>Emmanuel Jacob</TextXL>

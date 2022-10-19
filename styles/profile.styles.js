@@ -81,6 +81,7 @@ export const SelectTabContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding-bottom: 1rem;
+  cursor: pointer;
   border-bottom: ${({ selected }) =>
     selected ? '2px solid var(--main-border)' : 'none'};
 
