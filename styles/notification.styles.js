@@ -1,4 +1,3 @@
-import { MdOutlineCancel } from 'react-icons/md';
 import styled from 'styled-components';
 
 export const NotificationContainer = styled.div`
@@ -118,13 +117,15 @@ export const NotificationPageContainer = styled.div`
       margin-right: 2rem;
     }
   }
+`;
 
+export const NotificationCardContainer = styled.div`
   .notification-details {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 0 1rem;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     gap: 0.5rem;
     cursor: pointer;
 
@@ -142,10 +143,4 @@ export const NotificationPageContainer = styled.div`
   .bold-text {
     color: var(--main-indigo);
   }
-`;
-
-export const CancelIcon = styled(MdOutlineCancel)`
-  height: 2rem;
-  width: 2rem;
-  font-weight: 500;
 `;

@@ -1,16 +1,15 @@
 import moment from 'moment';
-import { useRouter } from 'next/router';
 import { NotificationPageContainer } from '../../styles/notification.styles';
 import { Text2XL, TextLG } from '../utils/typography/Typography';
 import NotificationCard from './NotificationCard';
 
 const Notification = ({ notifications }) => {
-  const router = useRouter();
-
+  // filter notifications to return and sort from oldest to latest
   const filteredNotifications = notifications?.sort((a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt);
   });
 
+  // group filtered notifications into date groups and notifications of each day to be in chronological order
   const groupedNotifications = filteredNotifications.reduce(
     (acc, notification) => {
       const date = moment(notification?.createdAt).calendar(null, {
@@ -32,6 +31,7 @@ const Notification = ({ notifications }) => {
     {}
   );
 
+  //arrange filtered notifications into array of date groups and notifications of each day to be in chronological order
   const dateSortedNotifications =
     groupedNotifications !== undefined &&
     Object?.keys(groupedNotifications)?.map((date) => {
@@ -41,28 +41,43 @@ const Notification = ({ notifications }) => {
       };
     });
 
-  console.log('date sorted', dateSortedNotifications);
-
   return (
     <NotificationPageContainer>
       <div className="header-container">
         <Text2XL>Notifications</Text2XL>
       </div>
 
-      <div className="details-container">
-        <div className="notification-date">
-          <TextLG>Today - 10th October, 2022</TextLG>
+      {dateSortedNotifications?.map(({ date, notifications }) => (
+        <div key={date} className="details-container">
+          <div className="notification-date">
+            <TextLG>{date}</TextLG>
+          </div>
+          {notifications
+            ?.sort((a, b) => {
+              return new Date(b.createdAt) - new Date(a.createdAt);
+            })
+            ?.map(
+              ({
+                _id,
+                endUrl,
+                redirectUrl,
+                senderSlug,
+                receiverSlug,
+                title,
+              }) => (
+                <NotificationCard
+                  key={_id}
+                  endUrl={endUrl}
+                  redirectUrl={redirectUrl}
+                  senderSlug={senderSlug}
+                  receiverSlug={receiverSlug}
+                  title={title}
+                  mediaId={_id}
+                />
+              )
+            )}
         </div>
-
-        {/* {notifications?.map((notification) => (
-          <NotificationCard
-            key={notification?._id}
-            notification={notification}
-          />
-        ))} */}
-
-        <NotificationCard />
-      </div>
+      ))}
     </NotificationPageContainer>
   );
 };

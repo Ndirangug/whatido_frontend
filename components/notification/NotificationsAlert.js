@@ -25,7 +25,8 @@ function NotificationsAlert({ notificationDropdown }) {
       });
       mutate(unreadNotificationsUrl, [], false);
     }
-  }, [notOptions, notify, unreadNotificationsUrl, user?.slug]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notOptions]);
 
   if (notify > 0) {
     return <NotificationDot />;
