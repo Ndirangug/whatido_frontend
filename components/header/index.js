@@ -1,11 +1,11 @@
 import Stack from '@mui/material/Stack';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { BiSearchAlt } from 'react-icons/bi';
 import Button from '../utils/buttons/Button';
 
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthComonent } from '../../store/reducers/app_surface_reducer';
 import { HeaderContainer } from '../../styles/header.styles';
 import AudioRoomsIcon from '../utils/icons/AudioRoomsIcon';
 import ChatIcon from '../utils/icons/ChatIcon';
@@ -13,23 +13,15 @@ import CreateIcon from '../utils/icons/CreateIcon';
 import WalletIcon from '../utils/icons/WalletIcon';
 
 const Header = () => {
-  const router = useRouter();
+  const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.auth.authenticated);
 
   const handleLogin = () => {
-    router.push({
-      query: {
-        login: true,
-      },
-    });
+    dispatch(setAuthComonent('LOGIN'));
   };
 
   const handleSignup = () => {
-    router.push({
-      query: {
-        signup: true,
-      },
-    });
+    dispatch(setAuthComonent('SIGNUP'));
   };
 
   return (

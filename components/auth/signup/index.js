@@ -1,31 +1,23 @@
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
-// import EmailCode from './EmailCode';
-// import Password from './Password';
-// import SignupOptions from './SignupOptions';
-// import UserDetails from './UserDetails';
 
 function SignUp() {
-  const [open, setOpen] = useState(false);
   const [signupComponent, setSignupComponent] = useState(0);
-  const router = useRouter();
+  const authModal = useSelector((state) => state.appSurface.authModal);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(setAuthComonent(null));
     handleSignupPage(0);
-    router.back();
   };
 
   const handleLogin = () => {
-    router.push({
-      query: {
-        login: true,
-      },
-    });
+    dispatch(setAuthComonent('LOGIN'));
   };
 
   const handleSignupPage = (page) => {
@@ -35,13 +27,9 @@ function SignUp() {
   // const pageComponents = [SignupOptions, EmailCode, UserDetails, Password];
   // const Page = pageComponents[signupComponent];
 
-  useEffect(() => {
-    router.query.signup ? setOpen(router.query.signup) : setOpen(false);
-  }, [router.query.signup]);
-
   return (
     <LoginModal
-      open={open}
+      open={authModal === 'SIGNUP'}
       onClose={handleClose}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"

@@ -1,6 +1,5 @@
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -10,18 +9,9 @@ const StyledIconBtn = styled(IconButton)`
 function MobileCreateIcon() {
   const router = useRouter();
   const selected = router.asPath === '/create';
-  const authenticated = useSelector((state) => state.auth.authenticated);
 
   const handleCreate = () => {
-    if (!authenticated) {
-      router.push({
-        query: {
-          login: true,
-        },
-      });
-    } else {
-      router.push('/create');
-    }
+    router.push('/create');
   };
   return (
     <StyledIconBtn selected={selected} onClick={handleCreate}>

@@ -6,13 +6,12 @@ import { CategoryPostsLgContainer } from '../../styles/explore.styles';
 
 const Category = () => {
   const router = useRouter();
-  const { category } = router.query;
-  const communityUrl = `${API_URL}/feed/community/${category}`;
+  const communityUrl = `${API_URL}/feed/community/${router.query.id}?page=0`;
   const { data: posts } = useSWR(communityUrl);
 
   return (
     <CategoryPostsLgContainer>
-      <CategoryPosts category={category} posts={posts} />
+      <CategoryPosts category={router.query.id} posts={posts} />
     </CategoryPostsLgContainer>
   );
 };

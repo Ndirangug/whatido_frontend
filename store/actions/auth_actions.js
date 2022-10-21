@@ -31,7 +31,6 @@ export const loginAction = ({ email, password }) => {
         `${API_URL}/auth/login`,
         { email, password },
         {
-          withCredentials: true,
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': 'http://localhost:3000/',
