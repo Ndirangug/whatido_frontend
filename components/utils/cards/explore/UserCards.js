@@ -1,8 +1,8 @@
 import useSWR from 'swr';
-import { API_URL } from '../../../constants/api';
-import { UserCardsContainer } from '../../../styles/explore.styles';
-import { BaseAvatar } from '../avatars/Avatar';
-import { TextSm, TextxS } from '../typography/Typography';
+import { API_URL } from '../../../../constants/api';
+import { UserCardsContainer } from '../../../../styles/explore.styles';
+import { BaseAvatar } from '../../avatars/Avatar';
+import { TextSm, TextxS } from '../../typography/Typography';
 
 const UserCards = ({ category }) => {
   const expertsUrl = `${API_URL}/feed/discover-expert-community/${category}?page=0`;
@@ -10,12 +10,12 @@ const UserCards = ({ category }) => {
 
   return (
     <UserCardsContainer>
-      {experts?.map(({ _id, profile, expertMainCategory, email }) => (
+      {experts?.map(({ _id, profile, expertMainCategory, email, imageUrl }) => (
         <div key={_id} className="cards-wrapper">
           <div className="user-wrapper">
             <BaseAvatar
               sx={{ width: '55px', height: '55px' }}
-              src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
+              src={imageUrl?.cdnUrl}
               className="avatar"
             />
             <div className="user-details">

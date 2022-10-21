@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import useSWR from 'swr';
-import { API_URL } from '../../../constants/api';
-import { CarouselContainer } from '../../../styles/explore.styles';
+import { API_URL } from '../../../../constants/api';
+import { CarouselContainer } from '../../../../styles/explore.styles';
 
 const CarouselImage = () => {
   const carouselUrl = `${API_URL}/feed/discover-banner`;

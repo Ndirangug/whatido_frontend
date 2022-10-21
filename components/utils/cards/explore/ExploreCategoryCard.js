@@ -22,8 +22,9 @@ function ExploreCategoryCard({
             key={thumbnail[0]?.key}
             src={thumbnail[0]?.cdnUrl}
             alt="explore"
-            height="150px"
+            height="75px"
             width="60px"
+            objectFit="cover"
             className="img"
           />
         ))}

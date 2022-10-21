@@ -155,10 +155,11 @@ export const CardContainer = styled.div`
   .img-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
     grid-gap: 0.1rem;
     object-fit: cover;
     margin-bottom: 0.8rem;
-    height: 80px;
+    height: 75px;
 
     @media (min-width: 475px) {
       height: 110px;
@@ -174,6 +175,7 @@ export const CardContainer = styled.div`
   .experts-img-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
     grid-gap: 0.1rem;
     object-fit: cover;
     margin-top: 1rem;
@@ -500,5 +502,5 @@ export const UserCardsContainer = styled.div`
 
 export const ExploreListContainer = styled.div`
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
 `;

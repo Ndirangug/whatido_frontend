@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
-import CarouselImage from '../utils/explore/CarouselImage';
+import CarouselImage from '../utils/cards/explore/CarouselImage';
 import { Text2XL, TextSm } from '../utils/typography/Typography';
 import CategoryList from './CategoryList';
 import ExpertList from './ExpertList';
@@ -45,7 +45,6 @@ const ExplorePage = () => {
             <TextSm>experts</TextSm>
           </div>
         </div>
-        {/* {!page && <CardsContainer posts={posts} page="category" />} */}
 
         {page === 'category' && <CategoryList />}
 

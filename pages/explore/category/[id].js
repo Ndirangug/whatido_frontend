@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import CategoryPosts from '../../../components/explore/CategoryPosts';
 import { API_URL } from '../../../constants/api';
-import CategoryPosts from '../../components/utils/explore/CategoryPosts';
-import { CategoryPostsLgContainer } from '../../styles/explore.styles';
+import { CategoryPostsLgContainer } from '../../../styles/explore.styles';
 
 const Category = () => {
   const router = useRouter();

@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
-import { CategoryPostsContainer } from '../../../styles/explore.styles';
-import { TextLG, TextSm, TextxS } from '../typography/Typography';
-import PostsThumbnail from './PostsThumbnail';
-import UserCards from './UserCards';
+import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
+import { CategoryPostsContainer } from '../../styles/explore.styles';
+import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
+import UserCards from '../utils/cards/explore/UserCards';
+import { TextLG, TextSm, TextxS } from '../utils/typography/Typography';
 
 const CategoryPosts = ({ category }) => {
   const dispatch = useDispatch();
