@@ -1,11 +1,16 @@
 import * as coordinateToCountry from 'coordinate_to_country';
+import { ethers } from 'ethers';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GiBuyCard } from 'react-icons/gi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useSwr from 'swr';
 import { API_URL } from '../../constants/api';
-import { TransactionContext } from '../../context/TransactionContext';
+import {
+  setCurrentAccount,
+  setToggleSideDrawer,
+  setWalletBalance,
+} from '../../store/reducers/wallet_reducer';
 
 import ListItem from '@mui/material/ListItem';
 import CoinbaseIcon from '../utils/icons/CoinbaseIcon';
@@ -18,6 +23,12 @@ import { Stack } from '@mui/system';
 import { CloseIcon, WalletSidebarContainer } from '../../styles/drawer.styles';
 import { TextSM } from '../utils/typography/Typography';
 
+let eth;
+
+if (typeof window !== 'undefined') {
+  eth = window.ethereum;
+}
+
 const WalletSidebar = () => {
   const [username, setUsername] = useState();
   const [isPaystackAvailable, setIsPaystackAvailable] = useState(false);
@@ -25,6 +36,9 @@ const WalletSidebar = () => {
 
   // const [{ token }] = useCookies(['token']);
   const user = useSelector((state) => state.auth.currentUser);
+  const currentAccount = useSelector((state) => state.wallet.currentAccount);
+  const walletBalance = useSelector((state) => state.wallet.walletBalance);
+  const dispatch = useDispatch();
 
   const connectUrl = `${API_URL}/stripe-connect/account/${user?.slug}`;
   const { data: stripeAccount } = useSwr(connectUrl);
@@ -32,23 +46,12 @@ const WalletSidebar = () => {
   const paystackUrl = `${API_URL}/paystack/${user?.slug}`;
   const { data: paystackAccount } = useSwr(paystackUrl);
 
-  // const { data: locationDetails } = useSwr("http://ip-api.com/json");
-
   // get experts country code from latlng
   const expertCountry = coordinateToCountry(
     user?.locationLat,
     user?.locationLng,
     true
   );
-
-  const {
-    coinbaseConnect,
-    metamaskConnect,
-    currentAccount,
-    walletBalance,
-    disconnectWallet,
-    setToggleSideDrawer,
-  } = useContext(TransactionContext);
 
   // getting coinbase provider from browser
   const coinbaseProvider = window.ethereum?.providers?.find(
@@ -73,6 +76,123 @@ const WalletSidebar = () => {
       coinbaseConnect();
     } else {
       return window.open('https://www.coinbase.com/wallet', '_blank');
+    }
+  };
+
+  const metamaskConnect = async (metamask = eth) => {
+    const metamaskProvider = window.ethereum?.providers?.find(
+      (provider) => provider.isMetaMask
+    );
+
+    let provider;
+
+    if (metamaskProvider) {
+      provider = metamaskProvider;
+    } else {
+      provider = metamask;
+    }
+
+    try {
+      const accounts = await provider.request({
+        method: 'eth_requestAccounts',
+      });
+
+      const balance = await provider.request({
+        method: 'eth_getBalance',
+        params: [accounts[0], 'latest'],
+      });
+
+      let acctBalance = ethers.utils.formatEther(balance);
+
+      dispatch(setCurrentAccount(accounts[0]));
+      dispatch(setWalletBalance(acctBalance));
+      return ethers.utils.formatEther(balance);
+    } catch (error) {
+      if (error.code === 4001) {
+        // EIP-1193 userRejectedRequest error
+        console.log('Permissions needed to continue.');
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
+  const coinbaseConnect = async (coinbase = eth) => {
+    const coinbaseProvider = window.ethereum?.providers?.find(
+      (provider) => provider.isCoinbaseWallet
+    );
+
+    let provider;
+
+    if (coinbaseProvider) {
+      provider = coinbaseProvider;
+    } else {
+      provider = coinbase;
+    }
+
+    try {
+      const accounts = await provider.request({
+        method: 'eth_requestAccounts',
+      });
+
+      const balance = await provider.request({
+        method: 'eth_getBalance',
+        params: [accounts[0], 'latest'],
+      });
+
+      let acctBalance = ethers.utils.formatEther(balance);
+
+      dispatch(setCurrentAccount(accounts[0]));
+      dispatch(setWalletBalance(acctBalance));
+      return ethers.utils.formatEther(balance);
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const disconnectWallet = async () => {
+    try {
+      // const disconnect = await window.ethereum.close();
+      dispatch(setCurrentAccount(''));
+      dispatch(setWalletBalance(''));
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const getWalletBalance = async () => {
+    const metamaskProvider = window.ethereum?.providers?.find(
+      (provider) => provider.isMetaMask
+    );
+
+    const coinbaseProvider = window.ethereum?.providers?.find(
+      (provider) => provider.isCoinbaseWallet
+    );
+
+    let provider;
+
+    if (metamaskProvider) {
+      provider = metamaskProvider;
+    } else if (coinbaseProvider) {
+      provider = coinbaseProvider;
+    } else {
+      provider = eth;
+    }
+
+    try {
+      const accounts = await provider.request({ method: 'eth_accounts' });
+
+      if (accounts.length) {
+        const balance = await provider.request({
+          method: 'eth_getBalance',
+          params: [accounts[0], 'latest'],
+        });
+
+        return ethers.utils.formatEther(balance);
+      }
+    } catch (error) {
+      return error;
+      // throw new Error("No ethereum object.");
     }
   };
 
@@ -157,7 +277,7 @@ const WalletSidebar = () => {
   // };
 
   const goToProfile = () => {
-    setToggleSideDrawer(false);
+    dispatch(setToggleSideDrawer(false));
     router.push(`/transaction-router/${user?.slug}`);
   };
 
@@ -177,11 +297,64 @@ const WalletSidebar = () => {
     }
   }, [expertCountry]);
 
+  useEffect(() => {
+    // checks if wallet is connected
+    async () => {
+      try {
+        if (!eth) return;
+
+        const metamaskProvider = window.ethereum?.providers?.find(
+          (provider) => provider.isMetaMask
+        );
+
+        const coinbaseProvider = window.ethereum?.providers?.find(
+          (provider) => provider.isCoinbaseWallet
+        );
+
+        let provider;
+
+        if (metamaskProvider) {
+          provider = metamaskProvider;
+        } else if (coinbaseProvider) {
+          provider = coinbaseProvider;
+        } else {
+          provider = eth;
+        }
+
+        const accounts = await provider.request({ method: 'eth_accounts' });
+
+        if (accounts.length) {
+          dispatch(setCurrentAccount(accounts[0]));
+        }
+      } catch (error) {
+        return error;
+      }
+    };
+
+    // gets wallet balance
+    (async () => {
+      const wallet = await getWalletBalance();
+      dispatch(setWalletBalance(wallet));
+    })();
+
+    window.ethereum?.on('chainChanged', async () => {
+      window.location.reload(false);
+    });
+
+    window.ethereum?.on('accountsChanged', async (accounts) => {
+      if (accounts.length > 0) {
+        dispatch(setCurrentAccount(accounts[0]));
+        const wallet = await getWalletBalance();
+        dispatch(setWalletBalance(wallet));
+      }
+    });
+  }, [dispatch]);
+
   return (
     <WalletSidebarContainer>
       <Stack direction="row" className="wallet-sidebar-option">
         <Stack direction="row" className="close-icon-container">
-          <CloseIcon onClick={() => setToggleSideDrawer(false)} />
+          <CloseIcon onClick={() => dispatch(setToggleSideDrawer(false))} />
           <TextSM style={{ color: 'black' }} className="wallet-header">
             My wallet
           </TextSM>
@@ -232,7 +405,7 @@ const WalletSidebar = () => {
             <Button
               className="stripe-disconnect-btn"
               onClick={() => {
-                setToggleSideDrawer(false);
+                dispatch(setToggleSideDrawer(false));
               }}
             >
               disconnect
@@ -240,7 +413,7 @@ const WalletSidebar = () => {
             <Button
               className="stripe-withdraw-btn"
               onClick={() => {
-                setToggleSideDrawer(false);
+                dispatch(setToggleSideDrawer(false));
               }}
             >
               withdraw funds
