@@ -1,50 +1,46 @@
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import { API_URL } from '../../constants/api';
+import { NotificationCardContainer } from '../../styles/notification.styles';
 import { BaseAvatar } from '../utils/avatars/Avatar';
 import { TextBase } from '../utils/typography/Typography';
 
-const NotificationCard = () => {
-  // const router = useRouter();
+const NotificationCard = ({
+  endUrl,
+  redirectUrl,
+  senderSlug,
+  title,
+  mediaId,
+}) => {
+  const router = useRouter();
 
-  // const senderDetailsUrl = `${API_URL}/getExpertDetail/${notification?.senderSlug}`;
-  // const { data: senderDetails } = useSWR(senderDetailsUrl);
+  const senderDetailsUrl = `${API_URL}/getExpertDetail/${senderSlug}`;
+  const { data: senderDetails } = useSWR(senderDetailsUrl);
 
-  // const viewNotification = () => {
-  //   if (notification?.title.includes('media post')) {
-  //     history.push({
-  //       state: { media: true, mediaId: notification?.mediaId },
-  //     });
-  //   } else {
-  //     notification?.redirectUrl
-  //       ? window.open(notification?.redirectUrl, '_blank')
-  //       : router.push(notification?.endUrl);
-  //   }
-  // };
+  const viewNotification = () => {
+    if (title.includes('media post')) {
+      history.push({
+        state: { media: true, mediaId: mediaId },
+      });
+    } else {
+      redirectUrl ? window.open(redirectUrl, '_blank') : router.push(endUrl);
+    }
+  };
 
   return (
-    <>
+    <NotificationCardContainer onClick={viewNotification}>
       <div className="notification-details">
         <BaseAvatar
           alt="what i do"
           sx={{ width: '45px', height: '45px' }}
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
+          src={senderDetails?.data?.imageUrl?.cdnUrl}
         />
 
         <div className="notification-text-wrapper">
-          <TextBase>A new message from Donny Dey</TextBase>
+          <TextBase>{title}</TextBase>
         </div>
       </div>
-
-      <div className="notification-details">
-        <BaseAvatar
-          alt="what i do"
-          sx={{ width: '45px', height: '45px' }}
-          src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
-        />
-
-        <div className="notification-text-wrapper">
-          <TextBase>A new message from Donny Dey</TextBase>
-        </div>
-      </div>
-    </>
+    </NotificationCardContainer>
   );
 };
 

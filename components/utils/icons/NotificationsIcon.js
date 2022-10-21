@@ -1,6 +1,7 @@
 import { IconButton } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -14,6 +15,20 @@ function NotificationsIcon() {
   const router = useRouter();
   // let color = selectedRoute ? '#ffffff' : '#808080';
 
+  const authenticated = useSelector((state) => state.auth.authenticated);
+
+  const goNotifications = () => {
+    if (!authenticated) {
+      router.push({
+        query: {
+          login: true,
+        },
+      });
+    } else {
+      router.push(`/notifications`);
+    }
+  };
+
   useEffect(() => {
     router.asPath.includes('/notifications')
       ? setSelectedRoute(true)
@@ -21,10 +36,7 @@ function NotificationsIcon() {
   }, [router.asPath]);
 
   return (
-    <StyledIconBtn
-      selected={selectedRoute}
-      onClick={() => router.push('/notifications')}
-    >
+    <StyledIconBtn selected={selectedRoute} onClick={goNotifications}>
       <svg
         width="65"
         height="62"
