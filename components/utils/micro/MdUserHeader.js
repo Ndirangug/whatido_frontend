@@ -15,9 +15,7 @@ function MdUserHeader({ userSlug }) {
     <Stack direction="row" spacing={1} alignItems="center">
       <XsAvatar src={data?.data?.imageUrl?.cdnUrl} />
 
-      <Link
-        href={`/expert/${data?.data?.expertCategories[0]}/${data?.data?.slug}`}
-      >
+      <Link href={`/explore/expert/${data?.data?.slug}`}>
         <TextSM>
           {data?.data?.profile?.firstName} {data?.data?.profile?.lastName}
         </TextSM>
