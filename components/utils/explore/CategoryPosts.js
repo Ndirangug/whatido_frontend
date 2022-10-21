@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../../styles/explore.styles';
@@ -7,10 +6,9 @@ import { TextLG, TextSm, TextxS } from '../typography/Typography';
 import PostsThumbnail from './PostsThumbnail';
 import UserCards from './UserCards';
 
-const CategoryPosts = ({ category, posts }) => {
+const CategoryPosts = ({ category }) => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.category.selectedComponent);
-  const router = useRouter();
 
   const handlePosts = () => {
     dispatch(setCategoryComponent('posts'));
@@ -37,7 +35,7 @@ const CategoryPosts = ({ category, posts }) => {
         </div>
         <div className="details-container">
           <div className="details">
-            <TextxS>1,110 Followers</TextxS>
+            <TextxS>1,110 Experts</TextxS>
           </div>
           <div className="ellipse" />
           <div className="details">
