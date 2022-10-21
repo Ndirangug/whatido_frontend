@@ -134,7 +134,7 @@ export const CarouselContainer = styled.div`
 export const ExploreCardsContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-gap: 25px;
+  // grid-gap: 25px;
 `;
 
 export const CardContainer = styled.div`

@@ -1,6 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import CarouselImage from '../utils/explore/CarouselImage';
@@ -11,9 +9,6 @@ import Search from './Search';
 const ExplorePage = () => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.explore.selectedComponent);
-
-  let pageUrl = `${API_URL}/feed/discover`;
-  const { data: posts } = useSWR(pageUrl);
 
   const handleCategory = () => {
     dispatch(setSelectedComponent('category'));
@@ -51,9 +46,9 @@ const ExplorePage = () => {
         </div>
         {/* {!page && <CardsContainer posts={posts} page="category" />} */}
 
-        {page === 'category' && <CardsContainer posts={posts} page={page} />}
+        {page === 'category' && <CardsContainer page={page} />}
 
-        {page === 'expert' && <CardsContainer posts={posts} page={page} />}
+        {page === 'expert' && <CardsContainer page={page} />}
       </div>
     </ContentPageContainer>
   );

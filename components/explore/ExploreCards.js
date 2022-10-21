@@ -1,16 +1,26 @@
+import useSWR from 'swr';
+import { API_URL } from '../../constants/api';
 import { ExploreCardsContainer } from '../../styles/explore.styles';
 import Card from '../utils/explore/Card';
 
-const ExploreCards = ({ category, count, thumbnail, avatars, experts }) => {
+const ExploreCards = () => {
+  let pageUrl = `${API_URL}/feed/discover`;
+  const { data: posts } = useSWR(pageUrl);
+
   return (
     <ExploreCardsContainer>
-      <Card
-        category={category}
-        count={count}
-        thumbnail={thumbnail}
-        avatar={avatars}
-        numOfExperts={experts}
-      />
+      {posts?.totalExperts?.map(
+        ({ _id, total_post, thumbnail, total_users, avater }) => (
+          <Card
+            key={_id}
+            category={_id}
+            count={total_post}
+            thumbnail={thumbnail}
+            avatar={avater}
+            numOfExperts={total_users}
+          />
+        )
+      )}
     </ExploreCardsContainer>
   );
 };

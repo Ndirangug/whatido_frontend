@@ -1,9 +1,14 @@
 import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import useSWR from 'swr';
+import { API_URL } from '../../../constants/api';
 import { CarouselContainer } from '../../../styles/explore.styles';
 
 const CarouselImage = () => {
+  const carouselUrl = `${API_URL}/feed/discover-banner`;
+  const { data: carouselImages } = useSWR(carouselUrl);
+
   return (
     <CarouselContainer>
       <Carousel
@@ -14,25 +19,17 @@ const CarouselImage = () => {
         showStatus={false}
         showArrows={false}
       >
-        <div className="img-container">
-          <Image
-            src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"
-            alt="whatido"
-            layout="fill"
-            objectFit="cover"
-            className="banner-img"
-          />
-        </div>
-
-        <div className="img-container">
-          <Image
-            src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1664753846198__3e054487-1425-43b9-a9fe-282925398382__My%20project.jpg"
-            alt="whatido"
-            layout="fill"
-            objectFit="cover"
-            className="banner-img"
-          />
-        </div>
+        {carouselImages?.totalExperts?.map?.(({ _id, thumbnail }) => (
+          <div key={_id} className="img-container">
+            <Image
+              src={thumbnail[0]?.thumbnail[0]}
+              alt="whatido"
+              layout="fill"
+              objectFit="cover"
+              className="banner-img"
+            />
+          </div>
+        ))}
       </Carousel>
     </CarouselContainer>
   );

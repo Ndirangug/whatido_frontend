@@ -5,7 +5,14 @@ import { BaseAvatar } from '../avatars/Avatar';
 import PlusIcon from '../icons/PlusIcon';
 import { TextSm, TextxS } from '../typography/Typography';
 
-const ExpertsCard = ({ category, count, thumbnail, avatar, numOfExperts }) => {
+const ExpertsCard = ({
+  profile,
+  thumbnail,
+  avatar,
+  total_followers,
+  total_inspired,
+  total_post,
+}) => {
   return (
     <>
       {thumbnail?.length >= 4 && (
@@ -16,32 +23,32 @@ const ExpertsCard = ({ category, count, thumbnail, avatar, numOfExperts }) => {
                 <BaseAvatar
                   alt="what i do"
                   sx={{ width: '32px', height: '32px' }}
-                  src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"
+                  src={avatar[0]?.avater}
                   className="avatar"
                 />
               </div>
               <div className="details-wrapper">
                 <div className="category-title">
-                  <TextSm>{category}</TextSm>
+                  <TextSm>{`${profile[0]?.profile?.firstName} ${profile[0]?.profile?.lastName}`}</TextSm>
                 </div>
                 <div className="experts-wrapper">
                   <div className="num-of-experts">
-                    <TextxS>{`${numOfExperts}`}</TextxS>
+                    <TextxS>{`${total_inspired} followers`}</TextxS>
                   </div>
                   <div className="experts-avatars">
-                    {avatar?.slice(0, 4)?.map(({ imageUrl }) => (
+                    {total_followers?.slice(0, 4)?.map(({ avater }) => (
                       <BaseAvatar
-                        key={imageUrl?.key}
+                        key={avater}
                         alt="what i do"
                         sx={{ width: '23px', height: '23px' }}
-                        src={imageUrl?.cdnUrl}
+                        src={avater}
                         className="avatar"
                       />
                     ))}
                   </div>
                   <div className="ellipse" />
                   <div className="num-of-posts">
-                    <TextxS>{`${count} posts`}</TextxS>
+                    <TextxS>{`${total_post} posts`}</TextxS>
                   </div>
                 </div>
               </div>
@@ -59,8 +66,8 @@ const ExpertsCard = ({ category, count, thumbnail, avatar, numOfExperts }) => {
           <div className="experts-img-wrapper">
             {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
               <Image
-                key={thumbnail[0]?.key}
-                src={thumbnail[0]?.cdnUrl}
+                key={thumbnail[0]}
+                src={thumbnail[0]}
                 alt="explore"
                 height="150px"
                 width="60px"

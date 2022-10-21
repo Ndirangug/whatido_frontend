@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../../styles/explore.styles';
-import BackIcon from '../icons/BackIcon';
 import { TextLG, TextSm, TextxS } from '../typography/Typography';
 import PostsThumbnail from './PostsThumbnail';
 import UserCards from './UserCards';
@@ -31,9 +30,6 @@ const CategoryPosts = ({ category, posts }) => {
         objectFit="cover"
         className="banner-img"
       />
-      <div className="back-icon" onClick={() => router.back()}>
-        <BackIcon />
-      </div>
 
       <div className="title-container">
         <div>
@@ -48,10 +44,6 @@ const CategoryPosts = ({ category, posts }) => {
             <TextxS>2k Posts</TextxS>
           </div>
         </div>
-        {/* <div className="follow-btn-wrapper">
-          <PlusIcon />
-          <TextXS className="follow-all">Follow</TextXS>
-        </div> */}
 
         <button className="follow-all-btn">Follow</button>
       </div>
@@ -84,8 +76,8 @@ const CategoryPosts = ({ category, posts }) => {
         </div>
       </div>
 
-      {page === 'posts' && <PostsThumbnail posts={posts} />}
-      {page === 'experts' && <UserCards />}
+      {page === 'posts' && <PostsThumbnail category={category} />}
+      {page === 'experts' && <UserCards category={category} />}
     </CategoryPostsContainer>
   );
 };
