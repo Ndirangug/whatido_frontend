@@ -497,3 +497,8 @@ export const UserCardsContainer = styled.div`
     border: none;
   }
 `;
+
+export const ExploreListContainer = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+`;

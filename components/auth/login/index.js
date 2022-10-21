@@ -1,28 +1,24 @@
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
 function Login() {
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
   const [loginComponent, setLoginComponent] = useState(0);
+  const authModal = useSelector((state) => state.appSurface.authModal);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
-    setOpen(false);
     handleLoginPage(0);
-    router.back();
+    dispatch(setAuthComonent(null));
   };
 
   const handleSignup = () => {
-    router.push({
-      query: {
-        signup: true,
-      },
-    });
+    dispatch(setAuthComonent('SIGNUP'));
   };
 
   const handleLoginPage = (page) => {
@@ -32,13 +28,9 @@ function Login() {
   const pageComponents = [LoginOptions, LoginForm];
   const Page = pageComponents[loginComponent];
 
-  useEffect(() => {
-    router.query.login ? setOpen(router.query.login) : setOpen(false);
-  }, [router.query.login]);
-
   return (
     <LoginModal
-      open={open}
+      open={authModal === 'LOGIN'}
       onClose={handleClose}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"

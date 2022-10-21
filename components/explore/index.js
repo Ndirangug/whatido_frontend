@@ -3,7 +3,8 @@ import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import CarouselImage from '../utils/explore/CarouselImage';
 import { Text2XL, TextSm } from '../utils/typography/Typography';
-import CardsContainer from './CardsContainer';
+import CategoryList from './CategoryList';
+import ExpertList from './ExpertList';
 import Search from './Search';
 
 const ExplorePage = () => {
@@ -46,9 +47,9 @@ const ExplorePage = () => {
         </div>
         {/* {!page && <CardsContainer posts={posts} page="category" />} */}
 
-        {page === 'category' && <CardsContainer page={page} />}
+        {page === 'category' && <CategoryList />}
 
-        {page === 'expert' && <CardsContainer page={page} />}
+        {page === 'expert' && <ExpertList />}
       </div>
     </ContentPageContainer>
   );
