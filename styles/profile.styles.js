@@ -38,6 +38,7 @@ export const ProfileInfoContainer = styled.div`
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
+    margin: 0.25rem 0;
   }
   .category {
     background: var(--main-tag);

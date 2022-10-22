@@ -11,7 +11,9 @@ function ProfileInfo({ user }) {
         <BigAvatar src={user?.imageUrl?.cdnUrl} />
         <div className="info-name-container">
           <div className="info">
-            <TextXL>{user?.firstName + ' ' + user?.lastName}</TextXL>
+            <TextXL>
+              {user?.profile?.firstName + ' ' + user?.profile?.lastName}
+            </TextXL>
           </div>
           <EditProfileButton />
         </div>

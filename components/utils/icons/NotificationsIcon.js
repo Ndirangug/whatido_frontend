@@ -1,7 +1,9 @@
 import { IconButton } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 
 const StyledIconBtn = styled(IconButton)`
   border-radius: 0;
@@ -14,8 +16,15 @@ function NotificationsIcon() {
   const router = useRouter();
   // let color = selectedRoute ? '#ffffff' : '#808080';
 
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const dispatch = useDispatch();
+
   const goNotifications = () => {
-    router.push(`/notifications`);
+    if (!authenticated) {
+      dispatch(setAuthComonent('LOGIN'));
+    } else {
+      router.push(`/notifications`);
+    }
   };
 
   useEffect(() => {
