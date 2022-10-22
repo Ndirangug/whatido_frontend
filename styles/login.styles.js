@@ -39,6 +39,7 @@ export const LoginModal = styled(Modal)`
 
       .header-top {
         display: flex;
+        align-items: center;
         justify-content: flex-end;
         position: absolute;
         top: 5px;
@@ -60,7 +61,7 @@ export const LoginModal = styled(Modal)`
         place-content: center;
         place-items: center;
         grid-gap: 0.5rem;
-        margin: 1rem 0 0 0;
+        margin: 2.5rem 0 0 0;
 
         .logo-text {
           font-size: 1.5rem;
@@ -84,6 +85,18 @@ export const LoginModal = styled(Modal)`
       padding: 1rem;
 
       .login-footer-link {
+        color: var(--blue-shade);
+        margin-left: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    .terms-condition {
+      margin: 0.5rem 1rem;
+      text-align: center;
+      color: #001433;
+
+      .terms-condition-link {
         color: var(--blue-shade);
         margin-left: 0.5rem;
         cursor: pointer;

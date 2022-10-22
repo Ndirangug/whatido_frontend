@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
-import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
+import { CancelIcon, LoginModal } from '../../../styles/login.styles';
+import BackIcon from '../../utils/icons/BackIcon';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
@@ -39,12 +40,9 @@ function Login() {
         <div className="login-header">
           <div className="header-top">
             {loginComponent > 0 && (
-              <IconButton
-                className="back-icon"
-                onClick={() => handleLoginPage(0)}
-              >
+              <div className="back-icon" onClick={() => handleLoginPage(0)}>
                 <BackIcon />
-              </IconButton>
+              </div>
             )}
             <IconButton className="close-icon" onClick={handleClose}>
               <CancelIcon />

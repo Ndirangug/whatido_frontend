@@ -4,7 +4,12 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
-import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
+import { CancelIcon, LoginModal } from '../../../styles/login.styles';
+import BackIcon from '../../utils/icons/BackIcon';
+import Email from './Email';
+import Password from './Password';
+import SignupOptions from './SignupOptions';
+import UserDetails from './UserDetails';
 
 function SignUp() {
   const [signupComponent, setSignupComponent] = useState(0);
@@ -24,8 +29,8 @@ function SignUp() {
     setSignupComponent(page);
   };
 
-  // const pageComponents = [SignupOptions, EmailCode, UserDetails, Password];
-  // const Page = pageComponents[signupComponent];
+  const pageComponents = [SignupOptions, Email, UserDetails, Password];
+  const Page = pageComponents[signupComponent];
 
   return (
     <LoginModal
@@ -38,12 +43,9 @@ function SignUp() {
         <div className="login-header">
           <div className="header-top">
             {signupComponent > 0 && (
-              <IconButton
-                className="back-icon"
-                onClick={() => handleSignupPage(0)}
-              >
+              <div className="back-icon" onClick={() => handleSignupPage(0)}>
                 <BackIcon />
-              </IconButton>
+              </div>
             )}
             <IconButton className="close-icon" onClick={handleClose}>
               <CancelIcon />
@@ -61,7 +63,14 @@ function SignUp() {
           </div>
         </div>
         <div className="login-body">
-          {/* <Page handleSignupPage={handleSignupPage} handleClose={handleClose} /> */}
+          <Page handleSignupPage={handleSignupPage} handleClose={handleClose} />
+        </div>
+        <div className="terms-condition">
+          <Typography>
+            {
+              "By continuing, you agree to WhatIdo's Terms of Service and consent that you've read WhatIdo's Privacy Policy"
+            }
+          </Typography>
         </div>
         <div className="login-footer">
           <Typography>already have an account?</Typography>
