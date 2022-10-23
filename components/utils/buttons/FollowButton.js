@@ -34,15 +34,15 @@ function FollowButton({ peer }) {
   let text = following ? 'following' : 'follow';
 
   const followUpEvent = async () => {
-    console.log('follow', following);
     const endpoint = following ? `unfollow/${peer}` : `follow/${peer}`;
     const body = {
       type: 'expert',
       following: user?.slug,
     };
-    followAction(endpoint, body);
+    followAction(endpoint, body, token);
     mutate(checkFollowUrl, !following);
   };
+
   return (
     <BtnContainer following={following} onClick={followUpEvent}>
       <TextXS>{text}</TextXS>
