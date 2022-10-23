@@ -1,10 +1,11 @@
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
-import { CancelIcon, LoginModal } from '../../../styles/login.styles';
+import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
+import WhatidoIcon from '../../utils/icons/WhatidoIcon';
+import { Text3XL } from '../../utils/typography/Typography';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
@@ -26,6 +27,14 @@ function Login() {
     setLoginComponent(page);
   };
 
+  const goBack = () => {
+    if (loginComponent <= 0) {
+      handleClose();
+    } else {
+      handleLoginPage(0);
+    }
+  };
+
   const pageComponents = [LoginOptions, LoginForm];
   const Page = pageComponents[loginComponent];
 
@@ -39,19 +48,16 @@ function Login() {
       <div className="login-container">
         <div className="login-header">
           <div className="header-top">
-            {loginComponent > 0 && (
-              <div className="back-icon" onClick={() => handleLoginPage(0)}>
-                <BackIcon />
-              </div>
-            )}
-            <IconButton className="close-icon" onClick={handleClose}>
-              <CancelIcon />
-            </IconButton>
+            <div className="back-icon" onClick={goBack}>
+              <BackIcon />
+            </div>
+
+            <WhatidoIcon />
           </div>
           <div className="logo-container">
-            <Typography variant="h4" component="h4" className="logo-text">
-              log in
-            </Typography>
+            <div className="header-text">
+              <Text3XL>log in</Text3XL>
+            </div>
           </div>
         </div>
         <div className="login-body">

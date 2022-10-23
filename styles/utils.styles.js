@@ -39,6 +39,21 @@ export const BigButtonContainer = styled.button`
   width: 100%;
 `;
 
+export const CancelButtonContainer = styled.button`
+  padding: 1rem;
+  color: ${({ textColor }) => textColor};
+  background: ${({ color }) => color};
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  border: 1px solid rgba(0, 20, 51, 0.3);
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  width: 100%;
+`;
+
 export const InputFieldContainer = styled.div`
   display: grid;
   grid-gap: 0.25rem;

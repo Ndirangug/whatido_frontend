@@ -3,7 +3,15 @@ import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { InputFieldContainer } from '../../../styles/utils.styles';
 
-function InputField({ label, placeholder, error, type, register, password }) {
+function InputField({
+  label,
+  placeholder,
+  error,
+  type,
+  register,
+  password,
+  disabled,
+}) {
   const [passwordType, setPasswordType] = useState(type);
   const passwordToggle = () => {
     if (passwordType === 'text') {
@@ -32,6 +40,7 @@ function InputField({ label, placeholder, error, type, register, password }) {
           placeholder={placeholder}
           className="input"
           {...register}
+          disabled={disabled}
         />
         {password && passwordToggle()}
       </div>

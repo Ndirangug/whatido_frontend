@@ -51,8 +51,7 @@ export const LoginModal = styled(Modal)`
         }
         .back-icon {
           cursor: pointer;
-          margin-right: auto;
-          margin-left: 1rem;
+          margin: 1rem auto 0 1rem;
         }
       }
 
@@ -61,11 +60,25 @@ export const LoginModal = styled(Modal)`
         place-content: center;
         place-items: center;
         grid-gap: 0.5rem;
-        margin: 2.5rem 0 0 0;
+        margin: 0.5rem 0 0 0;
 
         .logo-text {
           font-size: 1.5rem;
-          font-weight: 600;
+          margin-top: 1.5rem;
+        }
+
+        .logo-wrapper {
+          margin-top: -0.5rem;
+        }
+
+        .header-text {
+          color: #001433;
+          margin-top: 2rem;
+        }
+
+        .info-text {
+          color: rgba(0, 20, 51, 0.3);
+          text-align: center;
         }
       }
     }
@@ -117,6 +130,26 @@ export const LoginFormContainer = styled.form`
 
   .btn-container {
     margin: auto 0 1rem 0;
+  }
+
+  .button-container {
+    margin: 5rem 0 1rem 0;
+  }
+
+  .select-input {
+    font-size: 1rem;
+    width: 100%;
+    height: 50px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .error-container {
+    color: red;
   }
 `;
 
