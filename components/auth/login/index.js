@@ -5,7 +5,7 @@ import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
-import { Text3XL } from '../../utils/typography/Typography';
+import { Text3XL, TextBase } from '../../utils/typography/Typography';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
@@ -38,6 +38,10 @@ function Login() {
   const pageComponents = [LoginOptions, LoginForm];
   const Page = pageComponents[loginComponent];
 
+  const headerComponents = ['log in', 'welcome back!'];
+
+  const infoComponents = ['', 'please enter your details below.'];
+
   return (
     <LoginModal
       open={authModal === 'LOGIN'}
@@ -56,12 +60,24 @@ function Login() {
           </div>
           <div className="logo-container">
             <div className="header-text">
-              <Text3XL>log in</Text3XL>
+              <Text3XL>{headerComponents[loginComponent]}</Text3XL>
+            </div>
+            <div className="info-text">
+              <TextBase>{infoComponents[loginComponent]}</TextBase>
             </div>
           </div>
         </div>
         <div className="login-body">
           <Page hangleLoginPage={handleLoginPage} handleClose={handleClose} />
+        </div>
+        <div className="terms-condition">
+          {loginComponent === 0 && (
+            <TextBase>
+              {
+                "By continuing, you agree to WhatIdo's Terms of Service and consent that you've read WhatIdo's Privacy Policy"
+              }
+            </TextBase>
+          )}
         </div>
         <div className="login-footer">
           <Typography>don&apos; t have an account?</Typography>

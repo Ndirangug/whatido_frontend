@@ -136,6 +136,29 @@ export const LoginFormContainer = styled.form`
     margin: 5rem 0 1rem 0;
   }
 
+  .forget-password-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-wrapper {
+      input[type='checkbox'] {
+        accent-color: var(--main-indigo);
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .forget-password {
+      color: #0085ff;
+    }
+  }
+
   .select-input {
     font-size: 1rem;
     width: 100%;
