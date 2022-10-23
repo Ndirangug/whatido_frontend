@@ -1,7 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { useState } from 'react';
+import { decryptQueryParams } from 'query-string-hash';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
@@ -109,6 +110,19 @@ function SignUp() {
     'please enter your details to sign up with whatIdo ',
     `we've sent a code to ${email}`,
   ];
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const userCode = queryParams.get('token');
+    const userEmail = decodeURI(window.location.pathname.split('/')[2]);
+
+    if (userEmail && userCode) {
+      const decryptedCode = decryptQueryParams(userCode);
+
+      setValue('email', userEmail);
+      setValue('code', decryptedCode?.code);
+    }
+  }, [setValue]);
 
   return (
     <LoginModal

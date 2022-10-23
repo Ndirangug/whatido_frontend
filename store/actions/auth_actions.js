@@ -6,7 +6,6 @@ import {
   setLoginError,
   setLoginLoading,
   setUser,
-  setVisibility,
 } from '../reducers/auth_reducer';
 
 const cookies = new Cookies();
@@ -62,7 +61,7 @@ export const loginAction = ({ email, password }) => {
             expires: expiringDate,
           });
           //set user visibility
-          dispatch(setVisibility(response.data.user.locationVisbility));
+          // dispatch(setVisibility(response.data.user.locationVisbility));
           dispatch(setAuthState(true));
           dispatch(setLoginLoading(false));
           dispatch(setLoginError(false));

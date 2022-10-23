@@ -4,6 +4,7 @@ import appSurfaceReducer from './reducers/app_surface_reducer';
 import authReducer from './reducers/auth_reducer';
 import categoryReducer from './reducers/category_page_reducer';
 import exploreReducer from './reducers/explore_reducer';
+import categoryListReducer from './reducers/list_reducer';
 import mediaReducer from './reducers/media_reducer';
 import walletReducer from './reducers/wallet_reducer';
 
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   category: categoryReducer,
   wallet: walletReducer,
   appSurface: appSurfaceReducer,
+  list: categoryListReducer,
 });
 
 const store = configureStore({

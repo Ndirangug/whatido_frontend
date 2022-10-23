@@ -1,7 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 
+import { API_URL } from '../../../constants/api';
+import { setCategoryList } from '../../../store/reducers/list_reducer';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/buttons/BigButton';
 import InputField from '../../utils/inputs/InputField';
@@ -24,6 +29,16 @@ const schema = yup.object().shape({
 });
 
 const UserDetails = ({ handleSignupPage, setValue }) => {
+  const categoryList = useSelector((state) => state.list.List);
+  const dispatch = useDispatch();
+  const [categoryExpertiseList, setCategoryExpertiseList] = useState([]);
+
+  let categoryData = axios
+    .get(`${API_URL}/getExpertsCategoryList`)
+    .then((res) => {
+      return res.data;
+    });
+
   const {
     getValues,
     register,
@@ -36,6 +51,14 @@ const UserDetails = ({ handleSignupPage, setValue }) => {
     mode: 'onChange',
   });
 
+  const onChangeAreaOfExpertise = (e) => {
+    const updateCategoryList = categoryList.find(
+      ({ slug }) => slug === e.target.value
+    );
+
+    setCategoryExpertiseList(updateCategoryList?.subcategories);
+  };
+
   const onSubmit = async () => {
     const { firstName, lastName, category, subCategory } = getValues();
     setValue('firstName', firstName);
@@ -46,40 +69,55 @@ const UserDetails = ({ handleSignupPage, setValue }) => {
     handleSignupPage(4);
   };
 
+  useEffect(() => {
+    (async () => {
+      const res = await categoryData;
+      if (categoryList?.length === 0 && res) {
+        dispatch(setCategoryList(res));
+      }
+    })();
+  }, [categoryList?.length, categoryData, dispatch]);
+
   return (
     <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>
       <div className="input-container">
         <InputField
-          label={'first name*'}
+          label={'first name'}
           type={'text'}
           error={errors?.firstName?.message}
           register={register('firstName')}
         />
         <InputField
-          label={'last name*'}
+          label={'last name'}
           type={'text'}
           error={errors?.lastName?.message}
           register={register('lastName')}
         />
         <select
           name="categories"
+          id="categories"
           className="select-input"
           {...register('category')}
+          onChange={onChangeAreaOfExpertise}
         >
-          <option value="">area of expertise*</option>
-          <option value={'slug'} key={'slug'}>
-            Academic Tutoring
-          </option>
+          <option value="">area of expertise</option>
+          {categoryList?.map(({ name, slug }) => (
+            <option value={slug} key={slug}>
+              {name}
+            </option>
+          ))}
         </select>
         <select
           className="select-input"
           name="categories"
           {...register('subCategory')}
         >
-          <option value="">focus of expertise*</option>
-          <option value={'slug'} key={'slug'}>
-            Academic Tutoring
-          </option>
+          <option value="">focus of expertise</option>
+          {categoryExpertiseList?.map(({ name, slug }) => (
+            <option value={slug} key={slug}>
+              {name}
+            </option>
+          ))}
         </select>
       </div>
 

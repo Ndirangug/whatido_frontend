@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { API_URL } from '../../../constants/api';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/buttons/BigButton';
 import InputField from '../../utils/inputs/InputField';
@@ -24,10 +26,18 @@ const Email = ({ handleSignupPage, setValue }) => {
     mode: 'onChange',
   });
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const { email } = getValues();
-    setValue('email', email);
-    handleSignupPage(2);
+    const res = await axios.post(`${API_URL}/auth/otp`, {
+      email: email,
+    });
+
+    if (res?.data?.success) {
+      setValue('email', email);
+      handleSignupPage(2);
+    } else {
+      alert(res?.data?.error);
+    }
   };
 
   return (

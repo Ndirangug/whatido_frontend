@@ -1,13 +1,20 @@
 import { Typography } from '@mui/material';
+import axios from 'axios';
 import { useState } from 'react';
 import OtpInput from 'react-otp-input';
 import { SignupFormContainer } from '../../../styles/signup.styles';
 
 import { useForm } from 'react-hook-form';
+import { API_URL } from '../../../constants/api';
 import BigButton from '../../utils/buttons/BigButton';
 import CancelButton from '../../utils/buttons/CancelButton';
 
-const InputOtp = ({ handleSignupPage, setValue, handleClose }) => {
+const InputOtp = ({
+  handleSignupPage,
+  setValue,
+  handleClose,
+  getAllValues,
+}) => {
   const [state, setState] = useState({ otp: '' });
   const [error, setError] = useState('');
 
@@ -18,12 +25,38 @@ const InputOtp = ({ handleSignupPage, setValue, handleClose }) => {
 
   const { handleSubmit } = useForm();
 
-  const onSubmit = () => {
-    if (state.otp?.length === 4) {
-      setValue('code', state.otp);
-      handleSignupPage(3);
+  const onSubmit = async () => {
+    try {
+      const formValues = getAllValues();
+      const data = {
+        email: formValues?.email,
+        otp: state.otp,
+      };
+
+      const res = await axios.post(`${API_URL}/auth/otpValidate`, data);
+      if (res.data?.code) {
+        setValue('code', res.data?.code);
+        handleSignupPage(3);
+      }
+
+      if (res.data?.success === false) {
+        setError('invalid code');
+      }
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const resendOtp = async () => {
+    const formValues = getAllValues();
+    const res = await axios.post(`${API_URL}/auth/otp`, {
+      email: formValues?.email,
+    });
+
+    if (res?.data?.success) {
+      alert('otp sent');
     } else {
-      setError('invalid code');
+      alert(res?.data?.error);
     }
   };
 
@@ -39,7 +72,9 @@ const InputOtp = ({ handleSignupPage, setValue, handleClose }) => {
 
         <div className="resend-container">
           <Typography>{"didn't get a code?"}</Typography>
-          <Typography className="resend-link">resend</Typography>
+          <Typography className="resend-link" onClick={resendOtp}>
+            resend
+          </Typography>
         </div>
       </div>
 

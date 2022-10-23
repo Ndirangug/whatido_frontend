@@ -1,6 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { API_URL } from '../../../constants/api';
 
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/buttons/BigButton';
@@ -41,7 +43,21 @@ const Password = ({ setValue, getAllValues, handleSignupPage }) => {
     setValue('password', data?.password);
     setValue('confirm_password', data?.confirm_password);
     const formValues = getAllValues();
-    handleSignupPage(6);
+
+    try {
+      const response = await axios.post(
+        `${API_URL}/auth/register2`,
+        formValues
+      );
+
+      if (response.data.success) {
+        handleSignupPage(6);
+      } else {
+        return alert('error creating account');
+      }
+    } catch (error) {
+      return error;
+    }
   };
 
   return (
