@@ -1,6 +1,8 @@
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 
 const StyledIconBtn = styled(IconButton)`
   padding: 0;
@@ -10,8 +12,15 @@ function MobileCreateIcon() {
   const router = useRouter();
   const selected = router.asPath === '/create';
 
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const dispatch = useDispatch();
+
   const handleCreate = () => {
-    router.push('/create');
+    if (!authenticated) {
+      dispatch(setAuthComonent('LOGIN'));
+    } else {
+      router.push('/create');
+    }
   };
   return (
     <StyledIconBtn selected={selected} onClick={handleCreate}>

@@ -5,12 +5,13 @@ import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PersistGate } from 'redux-persist/integration/react';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
 import Footer from '../components/mobile/Footer';
 import NextProgress from '../components/utils/micro/Nprogress';
 import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
-import store from '../store';
+import store, { persistor } from '../store';
 import { GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
@@ -42,31 +43,33 @@ function MyApp({ Component, pageProps }) {
       <GlobalStyleProvider>
         <CookiesProvider>
           <Provider store={store}>
-            <SWRConfig value={{ fetcher }}>
-              <Header />
-              <Suspense>
-                <LoginModal />
-              </Suspense>
-              <Suspense>
-                <SignupModal />
-              </Suspense>
+            <PersistGate loading={null} persistor={persistor}>
+              <SWRConfig value={{ fetcher }}>
+                <Header />
+                <Suspense>
+                  <LoginModal />
+                </Suspense>
+                <Suspense>
+                  <SignupModal />
+                </Suspense>
 
-              <NextProgress color="#001433" height={3} />
+                <NextProgress color="#001433" height={3} />
 
-              <Component {...pageProps} />
-              <ToastContainer
-                position="top-center"
-                autoClose={4000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
-              <Footer />
-            </SWRConfig>
+                <Component {...pageProps} />
+                <ToastContainer
+                  position="top-center"
+                  autoClose={4000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
+                <Footer />
+              </SWRConfig>
+            </PersistGate>
           </Provider>
         </CookiesProvider>
       </GlobalStyleProvider>
