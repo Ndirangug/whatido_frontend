@@ -2,11 +2,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { decryptQueryParams } from 'query-string-hash';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
+import { setSignupStep } from '../../../store/reducers/signup_reducer';
 import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
@@ -52,8 +53,9 @@ const schema = yup.object().shape({
 });
 
 function SignUp() {
-  const [signupComponent, setSignupComponent] = useState(0);
+  // const [signupComponent, setSignupComponent] = useState(0);
   const authModal = useSelector((state) => state.appSurface.authModal);
+  const signupComponent = useSelector((state) => state.signup.signupStep);
   const dispatch = useDispatch();
 
   const {
@@ -80,7 +82,7 @@ function SignUp() {
   };
 
   const handleSignupPage = (page) => {
-    setSignupComponent(page);
+    dispatch(setSignupStep(page));
   };
 
   const goBack = () => {
