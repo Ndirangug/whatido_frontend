@@ -40,11 +40,15 @@ const CategoryPosts = ({ category }) => {
         </div>
         <div className="details-container">
           <div className="details">
-            <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
+            {total[0]?.total_users && (
+              <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
+            )}
           </div>
           <div className="ellipse" />
           <div className="details">
-            <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
+            {total[1]?.total_post && (
+              <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
+            )}
           </div>
         </div>
 
