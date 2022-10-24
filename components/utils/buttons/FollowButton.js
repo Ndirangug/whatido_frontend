@@ -37,10 +37,10 @@ function FollowButton({ peer }) {
     const endpoint = following ? `unfollow/${peer}` : `follow/${peer}`;
     const body = {
       type: 'expert',
-      following: user?.slug,
+      userSlug: user?.slug,
     };
     followAction(endpoint, body, token);
-    mutate(checkFollowUrl, !following);
+    mutate(checkFollowUrl);
   };
 
   if (user.slug === peer) return;

@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
-import CarouselImage from '../utils/explore/CarouselImage';
+import CarouselImage from '../utils/cards/explore/CarouselImage';
 import { Text2XL, TextSm } from '../utils/typography/Typography';
 import CategoryList from './CategoryList';
 import ExpertList from './ExpertList';
@@ -12,9 +10,6 @@ import Search from './Search';
 const ExplorePage = () => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.explore.selectedComponent);
-
-  let pageUrl = `${API_URL}/feed/discover`;
-  const { data: posts } = useSWR(pageUrl);
 
   const handleCategory = () => {
     dispatch(setSelectedComponent('category'));
@@ -50,7 +45,6 @@ const ExplorePage = () => {
             <TextSm>experts</TextSm>
           </div>
         </div>
-        {/* {!page && <CardsContainer posts={posts} page="category" />} */}
 
         {page === 'category' && <CategoryList />}
 

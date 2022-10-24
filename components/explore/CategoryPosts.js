@@ -1,17 +1,19 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategoryComponent } from '../../../store/reducers/category_page_reducer';
-import { CategoryPostsContainer } from '../../../styles/explore.styles';
-import BackIcon from '../icons/BackIcon';
-import { TextLG, TextSm, TextxS } from '../typography/Typography';
-import PostsThumbnail from './PostsThumbnail';
-import UserCards from './UserCards';
+import useSWR from 'swr';
+import { API_URL } from '../../constants/api';
+import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
+import { CategoryPostsContainer } from '../../styles/explore.styles';
+import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
+import UserCards from '../utils/cards/explore/UserCards';
+import { TextLG, TextSm, TextxS } from '../utils/typography/Typography';
 
-const CategoryPosts = ({ category, posts }) => {
+const CategoryPosts = ({ category }) => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.category.selectedComponent);
-  const router = useRouter();
+
+  const totalUrl = `${API_URL}/feed/total/${category}`;
+  const { data: total } = useSWR(totalUrl);
 
   const handlePosts = () => {
     dispatch(setCategoryComponent('posts'));
@@ -31,9 +33,6 @@ const CategoryPosts = ({ category, posts }) => {
         objectFit="cover"
         className="banner-img"
       />
-      <div className="back-icon" onClick={() => router.back()}>
-        <BackIcon />
-      </div>
 
       <div className="title-container">
         <div>
@@ -41,17 +40,13 @@ const CategoryPosts = ({ category, posts }) => {
         </div>
         <div className="details-container">
           <div className="details">
-            <TextxS>1,110 Followers</TextxS>
+            {total && <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>}
           </div>
           <div className="ellipse" />
           <div className="details">
-            <TextxS>2k Posts</TextxS>
+            {total && <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>}
           </div>
         </div>
-        {/* <div className="follow-btn-wrapper">
-          <PlusIcon />
-          <TextXS className="follow-all">Follow</TextXS>
-        </div> */}
 
         <button className="follow-all-btn">Follow</button>
       </div>
@@ -84,8 +79,8 @@ const CategoryPosts = ({ category, posts }) => {
         </div>
       </div>
 
-      {page === 'posts' && <PostsThumbnail posts={posts} />}
-      {page === 'experts' && <UserCards />}
+      {page === 'posts' && <PostsThumbnail category={category} />}
+      {page === 'experts' && <UserCards category={category} />}
     </CategoryPostsContainer>
   );
 };

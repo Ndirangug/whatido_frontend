@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import CategoryPosts from '../../../components/utils/explore/CategoryPosts';
+import CategoryPosts from '../../../components/explore/CategoryPosts';
 import { API_URL } from '../../../constants/api';
 import { CategoryPostsLgContainer } from '../../../styles/explore.styles';
 

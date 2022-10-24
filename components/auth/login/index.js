@@ -1,9 +1,11 @@
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
-import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
+import { LoginModal } from '../../../styles/login.styles';
+import BackIcon from '../../utils/icons/BackIcon';
+import WhatidoIcon from '../../utils/icons/WhatidoIcon';
+import { Text3XL, TextBase } from '../../utils/typography/Typography';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
@@ -25,8 +27,20 @@ function Login() {
     setLoginComponent(page);
   };
 
+  const goBack = () => {
+    if (loginComponent <= 0) {
+      handleClose();
+    } else {
+      handleLoginPage(0);
+    }
+  };
+
   const pageComponents = [LoginOptions, LoginForm];
   const Page = pageComponents[loginComponent];
+
+  const headerComponents = ['log in', 'welcome back!'];
+
+  const infoComponents = ['', 'please enter your details below.'];
 
   return (
     <LoginModal
@@ -38,26 +52,32 @@ function Login() {
       <div className="login-container">
         <div className="login-header">
           <div className="header-top">
-            {loginComponent > 0 && (
-              <IconButton
-                className="back-icon"
-                onClick={() => handleLoginPage(0)}
-              >
-                <BackIcon />
-              </IconButton>
-            )}
-            <IconButton className="close-icon" onClick={handleClose}>
-              <CancelIcon />
-            </IconButton>
+            <div className="back-icon" onClick={goBack}>
+              <BackIcon />
+            </div>
+
+            <WhatidoIcon />
           </div>
           <div className="logo-container">
-            <Typography variant="h4" component="h4" className="logo-text">
-              log in
-            </Typography>
+            <div className="header-text">
+              <Text3XL>{headerComponents[loginComponent]}</Text3XL>
+            </div>
+            <div className="info-text">
+              <TextBase>{infoComponents[loginComponent]}</TextBase>
+            </div>
           </div>
         </div>
         <div className="login-body">
           <Page hangleLoginPage={handleLoginPage} handleClose={handleClose} />
+        </div>
+        <div className="terms-condition">
+          {loginComponent === 0 && (
+            <TextBase>
+              {
+                "By continuing, you agree to WhatIdo's Terms of Service and consent that you've read WhatIdo's Privacy Policy"
+              }
+            </TextBase>
+          )}
         </div>
         <div className="login-footer">
           <Typography>don&apos; t have an account?</Typography>

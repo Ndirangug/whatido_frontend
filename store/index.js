@@ -15,7 +15,10 @@ import appSurfaceReducer from './reducers/app_surface_reducer';
 import authReducer from './reducers/auth_reducer';
 import categoryReducer from './reducers/category_page_reducer';
 import exploreReducer from './reducers/explore_reducer';
+import categoryListReducer from './reducers/list_reducer';
 import mediaReducer from './reducers/media_reducer';
+import signupReducer from './reducers/signup_reducer';
+import walletReducer from './reducers/wallet_reducer';
 
 const persistConfig = {
   key: 'root',
@@ -29,7 +32,10 @@ const reducers = combineReducers({
   media: mediaReducer,
   explore: exploreReducer,
   category: categoryReducer,
+  wallet: walletReducer,
   appSurface: appSurfaceReducer,
+  list: categoryListReducer,
+  signup: signupReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
