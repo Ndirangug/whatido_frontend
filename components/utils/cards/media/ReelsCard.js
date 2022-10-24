@@ -59,21 +59,17 @@ function ReelsCard({ media }) {
               <Stack direction="column" spacing={0.5}>
                 <MdUserHeader userSlug={media.userSlug} />
                 <Stack direction="column" spacing={0.5}>
-                  <TextXS className="info-description">
-                    check out my new post osbwuvnaoei oiahoivban is sdhoanvn
-                    anks inainoin veoinaoisnvaoin eiwanosini asiodnvaoisnd ini
-                  </TextXS>
-                  <div className="info-description">
+                  <TextXS className="info-description">{media.text.toLowerCase()}</TextXS>
+                  <div
+                    className="info-description"
+                    style={{ marginLeft: '0.5rem' }}
+                  >
                     <Stack direction="row" spacing={1}>
-                      <TextXS>#nft</TextXS>
-                      <TextXS>#nft</TextXS>
-                      <TextXS>#nft</TextXS>
-                      <TextXS>#nft</TextXS>
-                      <TextXS>#nft</TextXS>
+                      <TextXS>#{media.community}</TextXS>
                     </Stack>
                   </div>
                   <Stack direction="row" spacing={1}>
-                    <PlayIcon /> <TextSM>24k</TextSM>
+                    <PlayIcon /> <TextSM>{media.inspired_count}</TextSM>
                   </Stack>
                 </Stack>
               </Stack>

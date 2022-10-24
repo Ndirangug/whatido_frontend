@@ -43,6 +43,8 @@ function FollowButton({ peer }) {
     mutate(checkFollowUrl, !following);
   };
 
+  if (user.slug === peer) return;
+
   return (
     <BtnContainer following={following} onClick={followUpEvent}>
       <TextXS>{text}</TextXS>

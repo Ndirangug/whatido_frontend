@@ -13,7 +13,7 @@ function ProfileActionButton() {
     return <EditProfileButton />;
   }
 
-  return <div>ProfileActionButton</div>;
+  return;
 }
 
 export default ProfileActionButton;

@@ -1,9 +1,26 @@
+import useSWR from 'swr';
+import { API_URL } from '../../constants/api';
 import { ProfileInfoContainer } from '../../styles/profile.styles';
 import BigAvatar from '../utils/avatars/BigAvatar';
-import EditProfileButton from '../utils/buttons/EditProfileButton';
 import { TextSm, TextXL } from '../utils/typography/Typography';
+import ProfileActionButton from './ProfileActionButton';
 
 function ProfileInfo({ user }) {
+  const { data: followers } = useSWR(`${API_URL}/follwers/${user?.slug}`);
+  const { data: followings } = useSWR(`${API_URL}/following/${user?.slug}`);
+
+  console.log('following', followings);
+  console.log('followers', followers);
+
+  function numFormatter(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
+    } else if (num < 900) {
+      return num; // if value < 1000, nothing to do
+    }
+  }
   return (
     <ProfileInfoContainer>
       <div className="banner-conatiner"></div>
@@ -15,7 +32,7 @@ function ProfileInfo({ user }) {
               {user?.profile?.firstName + ' ' + user?.profile?.lastName}
             </TextXL>
           </div>
-          <EditProfileButton />
+          <ProfileActionButton />
         </div>
         <div className="info">
           <TextSm>focus on {user?.expertFocusExpertise}</TextSm>
@@ -31,13 +48,13 @@ function ProfileInfo({ user }) {
         <div className="follow-container">
           <div className="follow-content">
             <div className="count-container">
-              <TextSm>10.2k</TextSm>
+              <TextSm>{numFormatter(followers?.length)}</TextSm>
             </div>
             <TextSm>followers</TextSm>
           </div>
           <div className="follow-content">
             <div className="count-container">
-              <TextSm>1.2k</TextSm>
+              <TextSm>{numFormatter(followings?.length)}</TextSm>
             </div>
             <TextSm>following</TextSm>
           </div>

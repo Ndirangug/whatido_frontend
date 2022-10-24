@@ -4,8 +4,7 @@ import { FeedContainer } from '../../styles/profile.styles';
 import FeedCard from '../utils/cards/feed/FeedCard';
 
 function ProfileFeed({ user }) {
-  const url = `${API_URL}/media/page/${user?.slug}?page=0`;
-  const { data } = useSWR(url);
+  const { data } = useSWR(`${API_URL}/media/page/${user?.slug}?page=0`);
   return (
     <FeedContainer>
       {data?.map((media) => (
