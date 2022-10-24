@@ -10,7 +10,7 @@ const UserCards = ({ category }) => {
 
   return (
     <UserCardsContainer>
-      {experts?.map(({ _id, profile, expertMainCategory, email, imageUrl }) => (
+      {experts?.map(({ _id, profile, expertCategories, email, imageUrl }) => (
         <div key={_id} className="cards-wrapper">
           <div className="user-wrapper">
             <BaseAvatar
@@ -23,7 +23,7 @@ const UserCards = ({ category }) => {
                 <TextSm>{`${profile?.firstName} ${profile?.lastName}`}</TextSm>
               </div>
               <div className="user-category">
-                <TextxS>{expertMainCategory}</TextxS>
+                <TextxS>{expertCategories[0]}</TextxS>
               </div>
               <div className="user-category">
                 {/* to be replaced with "followed by ${follower}" */}

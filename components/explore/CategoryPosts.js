@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
+import useSWR from 'swr';
+import { API_URL } from '../../constants/api';
 import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../styles/explore.styles';
 import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
@@ -9,6 +11,9 @@ import { TextLG, TextSm, TextxS } from '../utils/typography/Typography';
 const CategoryPosts = ({ category }) => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.category.selectedComponent);
+
+  const totalUrl = `${API_URL}/feed/total/${category}`;
+  const { data: total } = useSWR(totalUrl);
 
   const handlePosts = () => {
     dispatch(setCategoryComponent('posts'));
@@ -35,11 +40,11 @@ const CategoryPosts = ({ category }) => {
         </div>
         <div className="details-container">
           <div className="details">
-            <TextxS>1,110 Experts</TextxS>
+            <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
           </div>
           <div className="ellipse" />
           <div className="details">
-            <TextxS>2k Posts</TextxS>
+            <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
           </div>
         </div>
 
