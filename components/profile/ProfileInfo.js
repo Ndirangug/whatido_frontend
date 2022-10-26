@@ -9,9 +9,6 @@ function ProfileInfo({ user }) {
   const { data: followers } = useSWR(`${API_URL}/follwers/${user?.slug}`);
   const { data: followings } = useSWR(`${API_URL}/following/${user?.slug}`);
 
-  console.log('following', followings);
-  console.log('followers', followers);
-
   function numFormatter(num) {
     if (num > 999 && num < 1000000) {
       return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
