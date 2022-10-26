@@ -1,6 +1,6 @@
 import { SelectTabContainer } from '../../styles/profile.styles';
 
-function SelectTab({ Icon, count, selected, handleClick }) {
+function SelectTab({ Icon, selected, handleClick }) {
   return (
     <SelectTabContainer selected={selected} onClick={handleClick}>
       <div className="feed-icon">
