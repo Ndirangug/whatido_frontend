@@ -135,13 +135,11 @@ export const AuthOptionContainer = styled.div`
 
 export const ReelsCardContainer = styled.div`
   position: relative;
-  width: inherit;
-  height: inherit;
-  max-width: inherit;
-  min-width: 100%;
-  max-height: inherit;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   scroll-snap-align: start;
+  max-width: 475px;
+  margin: 0 auto;
 
   .reels-info-container {
     position: absolute;

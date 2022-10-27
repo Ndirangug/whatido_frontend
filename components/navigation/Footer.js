@@ -1,4 +1,4 @@
-import { FooterContainer } from '../../styles/footer.styles';
+import { FooterContainer } from '../../styles/navigation.styles';
 
 import ExploreIcon from '../utils/icons/ExploreIcon';
 import HomeIcon from '../utils/icons/HomeIcon';

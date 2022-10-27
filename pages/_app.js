@@ -8,11 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SWRConfig } from 'swr';
 import Header from '../components/header';
-import Footer from '../components/mobile/Footer';
+import Footer from '../components/navigation/Footer';
+import SideBar from '../components/navigation/SideBar';
 import NextProgress from '../components/utils/micro/Nprogress';
 import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
 import store, { persistor } from '../store';
-import { GlobalStyleProvider } from '../styles/global';
+import { DesktopNavigation, GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
 const SignupModal = lazy(() => import('../components/auth/signup/index'));
@@ -54,8 +55,10 @@ function MyApp({ Component, pageProps }) {
                 </Suspense>
 
                 <NextProgress color="#001433" height={3} />
-
-                <Component {...pageProps} />
+                <DesktopNavigation>
+                  <SideBar />
+                  <Component {...pageProps} />
+                </DesktopNavigation>
                 <ToastContainer
                   position="top-center"
                   autoClose={4000}
