@@ -9,6 +9,11 @@ const StyledIconBtn = styled(IconButton)`
   border-radius: 0;
   padding: 0;
   border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+
+  @media (min-width: 475px) {
+    border-top: none;
+    border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+  }
 `;
 
 function NotificationsIcon() {

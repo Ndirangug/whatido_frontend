@@ -29,5 +29,7 @@ export const SidebarContainer = styled.div`
     background: var(--main-indigo);
     padding: 1rem;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 `;
