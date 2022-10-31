@@ -84,15 +84,18 @@ export const ContentPageContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .selected-tab {
+    cursor: pointer;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
     border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
+    cursor: pointer;
     color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
@@ -134,7 +137,7 @@ export const CarouselContainer = styled.div`
 export const ExploreCardsContainer = styled.div`
   width: 100%;
   display: grid;
-  // grid-gap: 25px;
+  grid-gap: 25px;
 `;
 
 export const CardContainer = styled.div`
@@ -145,7 +148,7 @@ export const CardContainer = styled.div`
   border-radius: 12px;
   overflow: hidden;
   // padding: 0.5rem;
-  margin: 1rem 0;
+  // margin: 1rem 0;
   cursor: pointer;
 
   @media (min-width: 475px) {
@@ -155,7 +158,6 @@ export const CardContainer = styled.div`
   .img-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
     grid-gap: 0.1rem;
     object-fit: cover;
     margin-bottom: 0.8rem;
@@ -389,12 +391,14 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .selected-tab {
+    cursor: pointer;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
     border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
+    cursor: pointer;
     color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
