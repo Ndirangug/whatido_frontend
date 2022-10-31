@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useSWR, { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
-import { followAction } from '../../../store/actions/follow_actions';
+import { followAction } from '../../../store/actions/user_actions';
 import { TextXS } from '../typography/Typography';
 
 const BtnContainer = styled.div`
