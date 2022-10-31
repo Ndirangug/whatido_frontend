@@ -9,6 +9,11 @@ const StyledIconBtn = styled(IconButton)`
   border-radius: 0px;
   padding: 0 0.5rem;
   border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+
+  @media (min-width: 475px) {
+    border-top: none;
+    border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+  }
 `;
 
 function ProfileIcon() {

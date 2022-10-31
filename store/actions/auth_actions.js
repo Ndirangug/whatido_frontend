@@ -38,7 +38,6 @@ export const loginAction = ({ email, password }) => {
         }
       )
       .then((response) => {
-        console.log(response.status);
         if (response.data?.errorMessage) {
           dispatch(setLoginLoading(false));
           dispatch(setLoginError(true));
@@ -73,7 +72,7 @@ export const loginAction = ({ email, password }) => {
       .catch((error) => {
         dispatch(setLoginLoading(false));
         dispatch(setLoginError(true));
-        console.log(error);
+
         return error;
       });
   };

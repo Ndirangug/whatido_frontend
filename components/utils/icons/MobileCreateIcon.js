@@ -10,8 +10,6 @@ const StyledIconBtn = styled(IconButton)`
 
 function MobileCreateIcon() {
   const router = useRouter();
-  const selected = router.asPath === '/create';
-
   const authenticated = useSelector((state) => state.auth.authenticated);
   const dispatch = useDispatch();
 
@@ -23,7 +21,7 @@ function MobileCreateIcon() {
     }
   };
   return (
-    <StyledIconBtn selected={selected} onClick={handleCreate}>
+    <StyledIconBtn onClick={handleCreate}>
       <svg
         width="50"
         height="50"

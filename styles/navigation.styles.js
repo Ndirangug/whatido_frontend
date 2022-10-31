@@ -17,7 +17,19 @@ export const FooterContainer = styled.div`
     width: 4rem;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 475px) {
     display: none;
+  }
+`;
+
+export const SidebarContainer = styled.div`
+  display: none;
+
+  @media (min-width: 475px) {
+    background: var(--main-indigo);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 `;

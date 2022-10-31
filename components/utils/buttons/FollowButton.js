@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useSWR, { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
-import { followAction } from '../../../store/actions/follow_actions';
+import { followAction } from '../../../store/actions/user_actions';
 import { TextXS } from '../typography/Typography';
 
 const BtnContainer = styled.div`
@@ -39,8 +39,11 @@ function FollowButton({ peer }) {
       type: 'expert',
       userSlug: user?.slug,
     };
-    followAction(endpoint, body, token);
-    mutate(checkFollowUrl);
+    const res = await followAction(endpoint, body, token);
+
+    if (res.status === 200) {
+      mutate(checkFollowUrl, !following);
+    }
   };
 
   if (user.slug === peer) return;
