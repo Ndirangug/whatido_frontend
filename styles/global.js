@@ -21,4 +21,5 @@ export const DesktopNavigation = styled.div`
   width: 100vw;
   height: 100%;
   overflow: hidden;
+  background: var(--main-background);
 `;

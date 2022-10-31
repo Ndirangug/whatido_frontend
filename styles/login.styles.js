@@ -30,6 +30,7 @@ export const LoginModal = styled(Modal)`
     }
     @media screen and (min-width: 1023px) {
       max-width: 40%;
+      height: 90%;
     }
 
     .login-header {
