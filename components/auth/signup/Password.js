@@ -54,7 +54,7 @@ const Password = ({ setValue, handleSignupPage, handleClose }) => {
           register={register('password')}
           error={errors?.password?.message}
         />
-        <div className="error-container">
+        <div className="error">
           <TextBase>{errors?.password?.message}</TextBase>
         </div>
 
@@ -64,7 +64,7 @@ const Password = ({ setValue, handleSignupPage, handleClose }) => {
           register={register('confirm_password')}
           error={errors?.confirm_password?.message}
         />
-        <div className="error-container">
+        <div className="error">
           <TextBase>{errors?.confirm_password?.message}</TextBase>
         </div>
       </div>

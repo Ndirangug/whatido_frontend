@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -14,6 +15,8 @@ const schema = yup.object().shape({
 });
 
 const Email = ({ handleSignupPage, setValue }) => {
+  const [processing, setProcessing] = useState('');
+
   const {
     getValues,
     register,
@@ -27,6 +30,8 @@ const Email = ({ handleSignupPage, setValue }) => {
   });
 
   const onSubmit = async () => {
+    setProcessing('Sending...');
+
     try {
       const { email } = getValues();
       const res = await axios.post(`${API_URL}/auth/otp`, {
@@ -37,9 +42,11 @@ const Email = ({ handleSignupPage, setValue }) => {
         setValue('email', email);
         handleSignupPage(2);
       } else {
+        setProcessing('');
         alert(res?.data?.error);
       }
     } catch (error) {
+      setProcessing('');
       return error;
     }
   };
@@ -59,7 +66,9 @@ const Email = ({ handleSignupPage, setValue }) => {
         </div>
       </div>
       <div className="btn-container">
-        <BigButton type="submit">Next</BigButton>
+        <BigButton type="submit">
+          {processing === '' ? 'Next' : `${processing}`}
+        </BigButton>
       </div>
     </LoginFormContainer>
   );

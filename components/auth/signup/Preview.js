@@ -19,7 +19,7 @@ const Preview = ({ handleSignupPage, register, getAllValues }) => {
       );
 
       if (response.data.success) {
-        handleSignupPage(6);
+        handleSignupPage(7);
       } else {
         return alert('error creating account');
       }
@@ -64,7 +64,7 @@ const Preview = ({ handleSignupPage, register, getAllValues }) => {
       </div>
 
       <div className="button-container">
-        <BigButton type="submit">Confirm Info</BigButton>
+        <BigButton type="submit">Sign Up</BigButton>
       </div>
     </LoginFormContainer>
   );

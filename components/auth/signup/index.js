@@ -12,6 +12,7 @@ import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
 import { Text3XL, TextBase } from '../../utils/typography/Typography';
+import DetailsSvg from './DetailsSvg';
 import Email from './Email';
 import FinishPage from './FinishPage';
 import InputOtp from './InputOtp';
@@ -98,6 +99,7 @@ function SignUp() {
     Email,
     InputOtp,
     Password,
+    DetailsSvg,
     UserDetails,
     Preview,
     FinishPage,
@@ -149,7 +151,7 @@ function SignUp() {
             {signupComponent <= 3 && <WhatidoIcon />}
           </div>
           <div className="logo-container">
-            {signupComponent >= 4 && (
+            {signupComponent >= 5 && (
               <div className="logo-wrapper">
                 <Image
                   src="/whatido_logo.svg"
