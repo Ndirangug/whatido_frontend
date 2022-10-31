@@ -39,8 +39,11 @@ function FollowButton({ peer }) {
       type: 'expert',
       userSlug: user?.slug,
     };
-    followAction(endpoint, body, token);
-    mutate(checkFollowUrl);
+    const res = await followAction(endpoint, body, token);
+
+    if (res.status === 200) {
+      mutate(checkFollowUrl, !following);
+    }
   };
 
   if (user.slug === peer) return;
