@@ -111,8 +111,6 @@ export const LoginModal = styled(Modal)`
 
       .terms-condition-link {
         color: var(--blue-shade);
-        margin-left: 0.5rem;
-        cursor: pointer;
       }
     }
   }
