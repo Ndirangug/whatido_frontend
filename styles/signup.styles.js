@@ -7,6 +7,7 @@ export const SignupFormContainer = styled.form`
 
   .input-container {
     display: grid;
+    grid-gap: 0.5rem;
   }
 
   .btn-container {

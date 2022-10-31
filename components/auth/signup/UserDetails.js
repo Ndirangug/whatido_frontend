@@ -66,7 +66,7 @@ const UserDetails = ({ handleSignupPage, setValue }) => {
     setValue('category', category);
     setValue('subCategory', subCategory);
 
-    handleSignupPage(4);
+    handleSignupPage(6);
   };
 
   useEffect(() => {

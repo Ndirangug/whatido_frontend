@@ -17,6 +17,7 @@ const InputOtp = ({
 }) => {
   const [state, setState] = useState({ otp: '' });
   const [error, setError] = useState('');
+  const [processing, setProcessing] = useState('');
 
   const handleChange = (otp) => {
     setError('');
@@ -33,6 +34,7 @@ const InputOtp = ({
         otp: state.otp,
       };
 
+      setProcessing('Verifying...');
       const res = await axios.post(`${API_URL}/auth/otpValidate`, data);
       if (res.data?.code) {
         setValue('code', res.data?.code);
@@ -40,9 +42,11 @@ const InputOtp = ({
       }
 
       if (res.data?.success === false) {
+        setProcessing('');
         setError('invalid code');
       }
     } catch (error) {
+      setProcessing('');
       return error;
     }
   };
@@ -86,7 +90,9 @@ const InputOtp = ({
         >
           Cancel
         </CancelButton>
-        <BigButton type="submit">Verify</BigButton>
+        <BigButton type="submit">
+          {processing === '' ? 'Verify' : `${processing}`}
+        </BigButton>
       </div>
     </SignupFormContainer>
   );

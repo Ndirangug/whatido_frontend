@@ -1,11 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { API_URL } from '../../../constants/api';
 
-import { LoginFormContainer } from '../../../styles/login.styles';
+import { SignupFormContainer } from '../../../styles/signup.styles';
 import BigButton from '../../utils/buttons/BigButton';
+import CancelButton from '../../utils/buttons/CancelButton';
 import InputField from '../../utils/inputs/InputField';
 import { TextBase } from '../../utils/typography/Typography';
 
@@ -27,7 +26,7 @@ const schema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'password must match'),
 });
 
-const Password = ({ setValue, getAllValues, handleSignupPage }) => {
+const Password = ({ setValue, handleSignupPage, handleClose }) => {
   const {
     register,
     handleSubmit,
@@ -42,26 +41,12 @@ const Password = ({ setValue, getAllValues, handleSignupPage }) => {
   const onSubmit = async (data) => {
     setValue('password', data?.password);
     setValue('confirm_password', data?.confirm_password);
-    const formValues = getAllValues();
 
-    try {
-      const response = await axios.post(
-        `${API_URL}/auth/register2`,
-        formValues
-      );
-
-      if (response.data.success) {
-        handleSignupPage(6);
-      } else {
-        return alert('error creating account');
-      }
-    } catch (error) {
-      return error;
-    }
+    handleSignupPage(4);
   };
 
   return (
-    <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>
+    <SignupFormContainer onSubmit={handleSubmit(onSubmit)}>
       <div className="input-container">
         <InputField
           label={'password'}
@@ -69,7 +54,7 @@ const Password = ({ setValue, getAllValues, handleSignupPage }) => {
           register={register('password')}
           error={errors?.password?.message}
         />
-        <div className="error-container">
+        <div className="error">
           <TextBase>{errors?.password?.message}</TextBase>
         </div>
 
@@ -79,14 +64,22 @@ const Password = ({ setValue, getAllValues, handleSignupPage }) => {
           register={register('confirm_password')}
           error={errors?.confirm_password?.message}
         />
-        <div className="error-container">
+        <div className="error">
           <TextBase>{errors?.confirm_password?.message}</TextBase>
         </div>
       </div>
+
       <div className="btn-container">
-        <BigButton type="submit">Sign Up</BigButton>
+        <CancelButton
+          eventHandler={handleClose}
+          color={'#fff'}
+          textColor={'#001433'}
+        >
+          Cancel
+        </CancelButton>
+        <BigButton type="submit">Verify</BigButton>
       </div>
-    </LoginFormContainer>
+    </SignupFormContainer>
   );
 };
 

@@ -12,6 +12,7 @@ import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
 import { Text3XL, TextBase } from '../../utils/typography/Typography';
+import DetailsSvg from './DetailsSvg';
 import Email from './Email';
 import FinishPage from './FinishPage';
 import InputOtp from './InputOtp';
@@ -97,20 +98,27 @@ function SignUp() {
     SignupOptions,
     Email,
     InputOtp,
+    Password,
+    DetailsSvg,
     UserDetails,
     Preview,
-    Password,
     FinishPage,
   ];
   const Page = pageComponents[signupComponent];
 
   const { email } = getValues();
-  const headerComponents = ['sign up', 'email sign up', 'verification'];
+  const headerComponents = [
+    'sign up',
+    'email sign up',
+    'verification',
+    'verification',
+  ];
 
   const infoComponents = [
     '',
     'please enter your details to sign up with whatIdo ',
     `we've sent a code to ${email}`,
+    'choose a strong password',
   ];
 
   useEffect(() => {
@@ -140,10 +148,10 @@ function SignUp() {
               <BackIcon />
             </div>
 
-            {signupComponent <= 2 && <WhatidoIcon />}
+            {signupComponent <= 3 && <WhatidoIcon />}
           </div>
           <div className="logo-container">
-            {signupComponent >= 3 && (
+            {signupComponent >= 5 && (
               <div className="logo-wrapper">
                 <Image
                   src="/whatido_logo.svg"
@@ -175,9 +183,7 @@ function SignUp() {
         <div className="terms-condition">
           {signupComponent === 0 && (
             <TextBase>
-              {
-                "By continuing, you agree to WhatIdo's Terms of Service and consent that you've read WhatIdo's Privacy Policy"
-              }
+              {`by continuing, you agree to whatIdo's terms of service and consent that you've read whatIdo's privacy policy`}
             </TextBase>
           )}
         </div>
