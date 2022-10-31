@@ -27,16 +27,20 @@ const Email = ({ handleSignupPage, setValue }) => {
   });
 
   const onSubmit = async () => {
-    const { email } = getValues();
-    const res = await axios.post(`${API_URL}/auth/otp`, {
-      email: email,
-    });
+    try {
+      const { email } = getValues();
+      const res = await axios.post(`${API_URL}/auth/otp`, {
+        email: email,
+      });
 
-    if (res?.data?.success) {
-      setValue('email', email);
-      handleSignupPage(2);
-    } else {
-      alert(res?.data?.error);
+      if (res?.data?.success) {
+        setValue('email', email);
+        handleSignupPage(2);
+      } else {
+        alert(res?.data?.error);
+      }
+    } catch (error) {
+      return error;
     }
   };
 

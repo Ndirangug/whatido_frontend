@@ -97,20 +97,26 @@ function SignUp() {
     SignupOptions,
     Email,
     InputOtp,
+    Password,
     UserDetails,
     Preview,
-    Password,
     FinishPage,
   ];
   const Page = pageComponents[signupComponent];
 
   const { email } = getValues();
-  const headerComponents = ['sign up', 'email sign up', 'verification'];
+  const headerComponents = [
+    'sign up',
+    'email sign up',
+    'verification',
+    'verification',
+  ];
 
   const infoComponents = [
     '',
     'please enter your details to sign up with whatIdo ',
     `we've sent a code to ${email}`,
+    'choose a strong password',
   ];
 
   useEffect(() => {
@@ -140,10 +146,10 @@ function SignUp() {
               <BackIcon />
             </div>
 
-            {signupComponent <= 2 && <WhatidoIcon />}
+            {signupComponent <= 3 && <WhatidoIcon />}
           </div>
           <div className="logo-container">
-            {signupComponent >= 3 && (
+            {signupComponent >= 4 && (
               <div className="logo-wrapper">
                 <Image
                   src="/whatido_logo.svg"
