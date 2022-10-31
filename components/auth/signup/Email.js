@@ -30,7 +30,7 @@ const Email = ({ handleSignupPage, setValue }) => {
   });
 
   const onSubmit = async () => {
-    setProcessing('Sending...');
+    setProcessing('Validating...');
 
     try {
       const { email } = getValues();

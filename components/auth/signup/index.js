@@ -183,9 +183,7 @@ function SignUp() {
         <div className="terms-condition">
           {signupComponent === 0 && (
             <TextBase>
-              {
-                "By continuing, you agree to WhatIdo's Terms of Service and consent that you've read WhatIdo's Privacy Policy"
-              }
+              {`by continuing, you agree to whatIdo's terms of service and consent that you've read whatIdo's privacy policy`}
             </TextBase>
           )}
         </div>
