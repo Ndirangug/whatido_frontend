@@ -5,14 +5,39 @@ export const ProfilePageContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  background: var(--main-background);
+  @media (min-width: 475px) {
+    margin: 1rem;
+  }
+`;
+
+export const ProfileLeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const ProfileRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 24rem;
 `;
 
 export const ProfileInfoContainer = styled.div`
+  background: #fff;
+  @media (min-width: 475px) {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
   .banner-conatiner {
     width: 100%;
     height: 9rem;
     background: var(--main-indigo);
+    @media (min-width: 475px) {
+      border-radius: 1rem;
+      overflow: hidden;
+    }
   }
 
   .info-conatiner {
@@ -67,8 +92,12 @@ export const ProfileInfoContainer = styled.div`
 `;
 
 export const ProfileMediaContainer = styled.div`
-  padding: 0 1rem;
   width: 100%;
+  background: #fff;
+  @media (min-width: 475px) {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
 
   .content-select-tab {
     display: grid;
@@ -84,6 +113,8 @@ export const SelectTabContainer = styled.div`
   justify-content: center;
   padding-bottom: 1rem;
   cursor: pointer;
+  margin: 1rem 0;
+
   border-bottom: ${({ selected }) =>
     selected ? '2px solid var(--main-border)' : 'none'};
 
