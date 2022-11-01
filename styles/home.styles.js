@@ -9,6 +9,6 @@ export const HomePageContainer = styled.div`
 export const ContentPageContainer = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   scroll-snap-type: y mandatory;
 `;
