@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import React from 'react';
+import { useRouter } from 'next/router';
 import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
 import PlusIcon from '../../icons/PlusIcon';
 import { TextSm, TextxS } from '../../typography/Typography';
 
 function ExploreExpertCard({
+  slug,
   profile,
   thumbnail,
   avatar,
@@ -13,8 +14,10 @@ function ExploreExpertCard({
   total_inspired,
   total_post,
 }) {
+  const router = useRouter();
+
   return (
-    <CardContainer>
+    <CardContainer onClick={() => router.push(`/explore/expert/${slug}`)}>
       <div className="details-container">
         <div className="avatar-details">
           <div className="user-avatar-wrapper">
