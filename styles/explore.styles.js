@@ -134,7 +134,7 @@ export const CarouselContainer = styled.div`
 export const ExploreCardsContainer = styled.div`
   width: 100%;
   display: grid;
-  // grid-gap: 25px;
+  grid-gap: 1rem;
 `;
 
 export const CardContainer = styled.div`
@@ -144,8 +144,6 @@ export const CardContainer = styled.div`
   border: 1px solid var(--main-border);
   border-radius: 12px;
   overflow: hidden;
-  // padding: 0.5rem;
-  margin: 1rem 0;
   cursor: pointer;
 
   @media (min-width: 475px) {

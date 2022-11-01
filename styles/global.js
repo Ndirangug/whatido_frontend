@@ -20,6 +20,5 @@ export const DesktopNavigation = styled.div`
   display: flex;
   width: 100vw;
   height: 100%;
-  overflow: hidden;
-  background: var(--main-background);
+  overflow: scroll;
 `;

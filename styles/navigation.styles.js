@@ -31,5 +31,7 @@ export const SidebarContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    position: sticky;
+    top: 0;
   }
 `;
