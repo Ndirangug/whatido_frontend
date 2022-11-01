@@ -336,7 +336,6 @@ export const CategoryPostsContainer = styled.div`
   .follow-btn-wrapper {
     // display: flex;
     align-items: center;
-    justify-contents: center;
     // gap: 4px;
     background: #001433;
     color: #fff;

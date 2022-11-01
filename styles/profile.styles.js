@@ -5,7 +5,6 @@ export const ProfilePageContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
   background: var(--main-background);
   @media (min-width: 475px) {
     margin: 1rem;
@@ -16,9 +15,13 @@ export const ProfileLeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  @media (min-width: 475px) {
-    gap: 2rem;
-  }
+`;
+
+export const ProfileRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 24rem;
 `;
 
 export const ProfileInfoContainer = styled.div`
@@ -111,6 +114,7 @@ export const SelectTabContainer = styled.div`
   padding-bottom: 1rem;
   cursor: pointer;
   margin: 1rem 0;
+
   border-bottom: ${({ selected }) =>
     selected ? '2px solid var(--main-border)' : 'none'};
 
