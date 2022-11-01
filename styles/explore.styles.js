@@ -84,15 +84,18 @@ export const ContentPageContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .selected-tab {
+    cursor: pointer;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
     border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
+    cursor: pointer;
     color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
@@ -153,7 +156,6 @@ export const CardContainer = styled.div`
   .img-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
     grid-gap: 0.1rem;
     object-fit: cover;
     margin-bottom: 0.8rem;
@@ -387,12 +389,14 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .selected-tab {
+    cursor: pointer;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
     border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
+    cursor: pointer;
     color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }

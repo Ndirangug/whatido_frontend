@@ -1,11 +1,12 @@
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
-import { Text3XL, TextBase } from '../../utils/typography/Typography';
+import { Text3XL, TextBase, TextSm } from '../../utils/typography/Typography';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
@@ -72,11 +73,16 @@ function Login() {
         </div>
         <div className="terms-condition">
           {loginComponent === 0 && (
-            <TextBase>
-              {
-                "By continuing, you agree to WhatIdo's Terms of Service and consent that you've read WhatIdo's Privacy Policy"
-              }
-            </TextBase>
+            <TextSm>
+              by continuing, you agree to {`whatido's`}{' '}
+              <span className="terms-condition-link">
+                <Link href="/"> terms of service </Link>
+              </span>
+              and consent that you have read {`whatido's`}{' '}
+              <span className="terms-condition-link">
+                <Link href="/">privacy policy</Link>
+              </span>
+            </TextSm>
           )}
         </div>
         <div className="login-footer">

@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import Link from 'next/link';
 import { decryptQueryParams } from 'query-string-hash';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -11,7 +12,7 @@ import { setSignupStep } from '../../../store/reducers/signup_reducer';
 import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
-import { Text3XL, TextBase } from '../../utils/typography/Typography';
+import { Text3XL, TextBase, TextSm } from '../../utils/typography/Typography';
 import DetailsSvg from './DetailsSvg';
 import Email from './Email';
 import FinishPage from './FinishPage';
@@ -182,9 +183,16 @@ function SignUp() {
         </div>
         <div className="terms-condition">
           {signupComponent === 0 && (
-            <TextBase>
-              {`by continuing, you agree to whatIdo's terms of service and consent that you've read whatIdo's privacy policy`}
-            </TextBase>
+            <TextSm>
+              by continuing, you agree to {`whatido's`}{' '}
+              <span className="terms-condition-link">
+                <Link href="/"> terms of service </Link>
+              </span>
+              and consent that you have read {`whatido's`}{' '}
+              <span className="terms-condition-link">
+                <Link href="/">privacy policy</Link>
+              </span>
+            </TextSm>
           )}
         </div>
         <div className="login-footer">
