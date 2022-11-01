@@ -59,7 +59,9 @@ function ReelsCard({ media }) {
               <Stack direction="column" spacing={0.5}>
                 <MdUserHeader userSlug={media.userSlug} />
                 <Stack direction="column" spacing={0.5}>
-                  <TextXS className="info-description">{media.text.toLowerCase()}</TextXS>
+                  <TextXS className="info-description">
+                    {media.text.toLowerCase()}
+                  </TextXS>
                   <div
                     className="info-description"
                     style={{ marginLeft: '0.5rem' }}
@@ -77,7 +79,7 @@ function ReelsCard({ media }) {
           </ErrorBoundary>
           <Stack direction="column" spacing={2}>
             <SubscribeIcon />
-            <LikeIcon />
+            <LikeIcon inspired={media?.inspired} id={media?._id} />
             <CommentIcon />
             <ShareIcon />
             <OptionsIcon />

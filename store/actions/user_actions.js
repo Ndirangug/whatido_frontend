@@ -6,3 +6,9 @@ export const followAction = (endpoint, data, token) => {
     headers: { Authorization: token },
   });
 };
+
+export const likeAction = (endpoint, data, token) => {
+  return axios.post(`${API_URL}/${endpoint}`, data, {
+    headers: { Authorization: token },
+  });
+};

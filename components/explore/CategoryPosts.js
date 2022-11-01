@@ -51,7 +51,7 @@ const CategoryPosts = ({ category }) => {
         <button className="follow-all-btn">Follow</button>
       </div>
 
-      <div className="tags-container">
+      {/* <div className="tags-container">
         <div className="tags">
           <TextxS>#moon</TextxS>
         </div>
@@ -61,7 +61,7 @@ const CategoryPosts = ({ category }) => {
         <div className="tags">
           <TextxS>#nightwalker</TextxS>
         </div>
-      </div>
+      </div> */}
 
       <div className="tab-wrapper">
         <div
