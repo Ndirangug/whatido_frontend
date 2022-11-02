@@ -69,7 +69,6 @@ export const LgContainer = styled.div`
 export const NotificationLgContainer = styled.div`
   display: grid;
   grid-gap: 2rem;
-  max-width: 1200px;
   width: 100%;
   padding: 1rem;
   padding-left: 0rem !important;
@@ -82,8 +81,8 @@ export const NotificationLgContainer = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  @media (min-width: 1200px) {
-    margin: 1rem auto;
+  @media (min-width: 475px) {
+    margin: 1rem;
     border-radius: 10px;
   }
 `;
