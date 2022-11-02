@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SWRConfig } from 'swr';
+import { useAudioCallSetup } from '../audiorooms-client/utils/useAudioCallSetup';
 import Header from '../components/header';
 import Footer from '../components/mobile/Footer';
 import NextProgress from '../components/utils/micro/Nprogress';
@@ -13,6 +14,7 @@ import * as serviceWorker from '../components/utils/service-worker/serviceWorker
 import store from '../store';
 import { GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
+import { EstablishingAudioConnection } from '../components/audioChat/loadingScreen';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
 const SignupModal = lazy(() => import('../components/auth/signup/index'));
 
@@ -24,6 +26,8 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     serviceWorker.register();
   }, []);
+
+  useAudioCallSetup();
 
   return (
     <>
@@ -65,6 +69,17 @@ function MyApp({ Component, pageProps }) {
                 draggable
                 pauseOnHover
               />
+
+              <div id="audio-chatroom-container"></div>
+              <div id="audio-chatroom-streams"></div>
+              <audio
+                crossOrigin="anonymous"
+                muted
+                autoPlay
+                id="audio-chatroom-notifications-element"
+              ></audio>
+              <EstablishingAudioConnection />
+              
               <Footer />
             </SWRConfig>
           </Provider>
