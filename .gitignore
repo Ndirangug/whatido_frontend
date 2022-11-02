@@ -33,3 +33,4 @@ yarn-error.log*
 
 .yarn
 *.code-workspace
+.yarnrc.yml
