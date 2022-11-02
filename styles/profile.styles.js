@@ -6,6 +6,7 @@ export const ProfilePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: var(--main-background);
+
   @media (min-width: 475px) {
     margin: 1rem;
   }
