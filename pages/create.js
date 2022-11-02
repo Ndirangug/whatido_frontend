@@ -1,4 +1,5 @@
 import Alert from '@mui/material/Alert';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ActionButton from '../components/create/ActionButton';
 import DragDrop from '../components/create/DragDrop';
@@ -17,6 +18,8 @@ import {
 function Create() {
   const previewComponent = useSelector((state) => state.media.previewComponent);
   const error = useSelector((state) => state.media.error);
+  const [screenShots, setscreenShots] = useState([]);
+  const [selectedSS, setSelectedSS] = useState('');
 
   return (
     <CreatePageContainer>
@@ -26,12 +29,21 @@ function Create() {
       </div>
       <UploadMainContainer>
         <div className="drapAndDropContainer">
-          {previewComponent === 'DROPZONE' && <DragDrop />}
+          {previewComponent === 'DROPZONE' && (
+            <DragDrop
+              setScreenShots={setscreenShots}
+              setSelectedSS={setSelectedSS}
+            />
+          )}
           {previewComponent === 'PREVIEW' && <Preview />}
         </div>
 
         <div className="inputContainer">
-          <UploadInputPreview />
+          <UploadInputPreview
+            screenShots={screenShots}
+            imgClicked={selectedSS}
+            setimgClicked={setSelectedSS}
+          />
           {error && <Alert severity="error">{error} </Alert>}
           <ActionButton />
         </div>

@@ -8,11 +8,13 @@ export const CreatePageContainer = styled.div`
 `;
 
 export const DragDropContainer = styled.div`
-  border: 2px dashed var(--main-border);
+  border: ${(props) =>
+    props.isBorder ? '2px dashed var(--main-border)' : 'none'};
   gap: 10px;
   width: 80%;
+  min-height: 500px;
   margin: 0 auto;
-  padding-block: 10vh;
+  // padding-block: 10vh;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -23,7 +25,8 @@ export const DragDropContainer = styled.div`
   trasition: all 2s ease-in;
 
   &:hover {
-    background: var(--main-background);
+    background: ${(props) =>
+      props?.isBorder ? 'var(--main-background)' : 'none'};
   }
 
   .margin-bottom {
@@ -175,7 +178,7 @@ export const PreviewContainer = styled.div`
   .video {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

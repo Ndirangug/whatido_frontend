@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCaption } from '../../store/reducers/media_reducer';
 import {
@@ -7,8 +8,7 @@ import {
   UploadInputPreviewContainer,
 } from '../../styles/create.styles';
 import { LabelText, LearnMoreText } from '../utils/typography/Typography';
-
-function UploadInputPreview() {
+function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
   const mediaFile = useSelector((state) => state.media.preUploadFile);
   const caption = useSelector((state) => state.media.caption);
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ function UploadInputPreview() {
   const handleChange = (e) => {
     dispatch(setCaption(e.target.value));
   };
+  const [imgSrc, setimgSrc] = useState('');
 
   return (
     <UploadInputPreviewContainer>
@@ -31,7 +32,31 @@ function UploadInputPreview() {
       </div>
       <div className="labelAndFieldContainer">
         <LabelText>Cover</LabelText>
-        <InputField className="extraHeight" />
+        <div className="previewComp">
+          {screenShots?.length !== 0
+            ? screenShots?.map((e, i) => (
+                <div className="previewCompChild" key={i}>
+                  <img
+                    src={`http://localhost:4000${e}`}
+                    style={{
+                      position: 'relative',
+                      zIndex: imgClicked === e ? '10' : '0',
+                      border: imgClicked === e ? '7px solid white' : 'none',
+                      borderRadius: imgClicked === e ? '10px' : '0px',
+                      boxShadow:
+                        imgClicked === e ? '0px 10px 50px 0px #e3e2e1' : 'none',
+                      opacity: imgClicked === e ? '100%' : '50%',
+                      scale: imgClicked === e ? '1.1' : '1',
+                      transition: 'scale ease 0.3s',
+                    }}
+                    onClick={() => {
+                      setimgClicked(e);
+                    }}
+                  ></img>
+                </div>
+              ))
+            : null}
+        </div>
       </div>
       <div className="labelAndFieldContainer">
         <LabelText>Who can view this video</LabelText>
