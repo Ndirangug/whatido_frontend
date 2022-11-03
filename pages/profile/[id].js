@@ -1,14 +1,31 @@
-import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
 import ProfileInfo from '../../components/profile/ProfileInfo';
 import ProfileMedia from '../../components/profile/ProfileMedia';
-import { ProfilePageContainer } from '../../styles/profile.styles';
+import { API_URL } from '../../constants/api';
+import {
+  ProfileLeftContainer,
+  ProfilePageContainer,
+  ProfileRightContainer,
+} from '../../styles/profile.styles';
 
 function Profile() {
-  const user = useSelector((state) => state.auth.currentUser);
+  const router = useRouter();
+  const { data } = useSWR(`${API_URL}/getExpertDetail/${router?.query?.id}`);
+  const user = data?.data;
+
   return (
     <ProfilePageContainer>
-      <ProfileInfo user={user} />
-      <ProfileMedia user={user} />
+      <ProfileLeftContainer>
+        <ProfileInfo user={user} />
+        <ProfileMedia user={user} />
+      </ProfileLeftContainer>
+      <ProfileRightContainer>
+        {/* connect container  */}
+        {/* suggest experts */}
+        {/* write review*/}
+        {/* logout */}
+      </ProfileRightContainer>
     </ProfilePageContainer>
   );
 }

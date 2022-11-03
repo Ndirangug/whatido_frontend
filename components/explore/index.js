@@ -1,19 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
-import CarouselImage from '../utils/explore/CarouselImage';
-import { Text2XL, TextSM } from '../utils/typography/Typography';
-import CardsContainer from './CardsContainer';
+import CarouselImage from '../utils/cards/explore/CarouselImage';
+import { Text2XL, TextSm } from '../utils/typography/Typography';
+import CategoryList from './CategoryList';
+import ExpertList from './ExpertList';
 import Search from './Search';
 
 const ExplorePage = () => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.explore.selectedComponent);
-
-  let pageUrl = `${API_URL}/feed/discover`;
-  const { data: posts } = useSWR(pageUrl);
 
   const handleCategory = () => {
     dispatch(setSelectedComponent('category'));
@@ -34,26 +30,25 @@ const ExplorePage = () => {
 
       <div>
         <div className="tab-wrapper">
-          <TextSM
+          <div
             className={
               !page || page === 'category' ? 'selected-tab' : 'select-tab'
             }
             onClick={handleCategory}
           >
-            categories
-          </TextSM>
-          <TextSM
+            <TextSm>categories</TextSm>
+          </div>
+          <div
             className={page === 'expert' ? 'selected-tab' : 'select-tab'}
             onClick={handleExpert}
           >
-            experts
-          </TextSM>
+            <TextSm>experts</TextSm>
+          </div>
         </div>
-        {/* {!page && <CardsContainer posts={posts} page="category" />} */}
 
-        {page === 'category' && <CardsContainer posts={posts} page={page} />}
+        {page === 'category' && <CategoryList />}
 
-        {page === 'expert' && <CardsContainer posts={posts} page={page} />}
+        {page === 'expert' && <ExpertList />}
       </div>
     </ContentPageContainer>
   );

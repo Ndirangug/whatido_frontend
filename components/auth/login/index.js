@@ -1,44 +1,51 @@
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { BackIcon, CancelIcon, LoginModal } from '../../../styles/login.styles';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
+import { LoginModal } from '../../../styles/login.styles';
+import BackIcon from '../../utils/icons/BackIcon';
+import WhatidoIcon from '../../utils/icons/WhatidoIcon';
+import { Text3XL, TextBase, TextSm } from '../../utils/typography/Typography';
 import LoginForm from './LoginForm';
 import LoginOptions from './LoginOptions';
 
 function Login() {
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
   const [loginComponent, setLoginComponent] = useState(0);
+  const authModal = useSelector((state) => state.appSurface.authModal);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
-    setOpen(false);
     handleLoginPage(0);
-    router.back();
+    dispatch(setAuthComonent(null));
   };
 
   const handleSignup = () => {
-    router.push({
-      query: {
-        signup: true,
-      },
-    });
+    dispatch(setAuthComonent('SIGNUP'));
   };
 
   const handleLoginPage = (page) => {
     setLoginComponent(page);
   };
 
+  const goBack = () => {
+    if (loginComponent <= 0) {
+      handleClose();
+    } else {
+      handleLoginPage(0);
+    }
+  };
+
   const pageComponents = [LoginOptions, LoginForm];
   const Page = pageComponents[loginComponent];
 
-  useEffect(() => {
-    router.query.login ? setOpen(router.query.login) : setOpen(false);
-  }, [router.query.login]);
+  const headerComponents = ['log in', 'welcome back!'];
+
+  const infoComponents = ['', 'please enter your details below.'];
 
   return (
     <LoginModal
-      open={open}
+      open={authModal === 'LOGIN'}
       onClose={handleClose}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
@@ -46,26 +53,37 @@ function Login() {
       <div className="login-container">
         <div className="login-header">
           <div className="header-top">
-            {loginComponent > 0 && (
-              <IconButton
-                className="back-icon"
-                onClick={() => handleLoginPage(0)}
-              >
-                <BackIcon />
-              </IconButton>
-            )}
-            <IconButton className="close-icon" onClick={handleClose}>
-              <CancelIcon />
-            </IconButton>
+            <div className="back-icon" onClick={goBack}>
+              <BackIcon />
+            </div>
+
+            <WhatidoIcon />
           </div>
           <div className="logo-container">
-            <Typography variant="h4" component="h4" className="logo-text">
-              log in
-            </Typography>
+            <div className="header-text">
+              <Text3XL>{headerComponents[loginComponent]}</Text3XL>
+            </div>
+            <div className="info-text">
+              <TextBase>{infoComponents[loginComponent]}</TextBase>
+            </div>
           </div>
         </div>
         <div className="login-body">
           <Page hangleLoginPage={handleLoginPage} handleClose={handleClose} />
+        </div>
+        <div className="terms-condition">
+          {loginComponent === 0 && (
+            <TextSm>
+              by continuing, you agree to {`whatido's`}{' '}
+              <span className="terms-condition-link">
+                <Link href="/"> terms of service </Link>
+              </span>
+              and consent that you have read {`whatido's`}{' '}
+              <span className="terms-condition-link">
+                <Link href="/">privacy policy</Link>
+              </span>
+            </TextSm>
+          )}
         </div>
         <div className="login-footer">
           <Typography>don&apos; t have an account?</Typography>

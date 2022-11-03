@@ -31,7 +31,6 @@ export const loginAction = ({ email, password }) => {
         `${API_URL}/auth/login`,
         { email, password },
         {
-          withCredentials: true,
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': 'http://localhost:3000/',
@@ -39,7 +38,6 @@ export const loginAction = ({ email, password }) => {
         }
       )
       .then((response) => {
-        console.log(response.status);
         if (response.data?.errorMessage) {
           dispatch(setLoginLoading(false));
           dispatch(setLoginError(true));
@@ -74,7 +72,7 @@ export const loginAction = ({ email, password }) => {
       .catch((error) => {
         dispatch(setLoginLoading(false));
         dispatch(setLoginError(true));
-        console.log(error);
+
         return error;
       });
   };

@@ -1,18 +1,36 @@
 import { IconButton } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 
 const StyledIconBtn = styled(IconButton)`
   border-radius: 0;
   padding: 0;
   border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+
+  @media (min-width: 475px) {
+    border-top: none;
+    border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+  }
 `;
 
 function NotificationsIcon() {
   const [selectedRoute, setSelectedRoute] = useState(false);
   const router = useRouter();
   // let color = selectedRoute ? '#ffffff' : '#808080';
+
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const dispatch = useDispatch();
+
+  const goNotifications = () => {
+    if (!authenticated) {
+      dispatch(setAuthComonent('LOGIN'));
+    } else {
+      router.push(`/notifications`);
+    }
+  };
 
   useEffect(() => {
     router.asPath.includes('/notifications')
@@ -21,10 +39,7 @@ function NotificationsIcon() {
   }, [router.asPath]);
 
   return (
-    <StyledIconBtn
-      selected={selectedRoute}
-      onClick={() => router.push('/notifications')}
-    >
+    <StyledIconBtn selected={selectedRoute} onClick={goNotifications}>
       <svg
         width="65"
         height="62"

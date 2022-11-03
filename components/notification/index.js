@@ -1,33 +1,83 @@
+import moment from 'moment';
 import { NotificationPageContainer } from '../../styles/notification.styles';
-import { TextBase, TextXL } from '../utils/typography/Typography';
+import { Text2XL, TextLG } from '../utils/typography/Typography';
 import NotificationCard from './NotificationCard';
 
-const Notification = () => {
-  // const router = useRouter();
-  // const user = useSelector((state) => state.auth.currentUser);
-  // const notificationsUrl = `${API_URL}/notifications/${user?.slug}?page=${0}`;
-  // const { data: notifications } = useSWR(notificationsUrl);
+const Notification = ({ notifications }) => {
+  // filter notifications to return and sort from oldest to latest
+  const filteredNotifications = notifications?.sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
+  // group filtered notifications into date groups and notifications of each day to be in chronological order
+  const groupedNotifications = filteredNotifications.reduce(
+    (acc, notification) => {
+      const date = moment(notification?.createdAt).calendar(null, {
+        lastDay: '[Yesterday]',
+        sameDay: '[Today]',
+        nextDay: '[Tomorrow]',
+        lastWeek: '[last] dddd',
+        nextWeek: 'dddd',
+        sameElse: 'ddd, L',
+      });
+
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+
+      acc[date].push(notification);
+      return acc;
+    },
+    {}
+  );
+
+  //arrange filtered notifications into array of date groups and notifications of each day to be in chronological order
+  const dateSortedNotifications =
+    groupedNotifications !== undefined &&
+    Object?.keys(groupedNotifications)?.map((date) => {
+      return {
+        date: date,
+        notifications: groupedNotifications[date],
+      };
+    });
 
   return (
     <NotificationPageContainer>
       <div className="header-container">
-        <TextXL className="header">Notifications</TextXL>
+        <Text2XL>Notifications</Text2XL>
       </div>
 
-      <div className="details-container">
-        <TextBase className="notification-date">
-          Today - 10th October, 2022
-        </TextBase>
-
-        {/* {notifications?.map((notification) => (
-          <NotificationCard
-            key={notification?._id}
-            notification={notification}
-          />
-        ))} */}
-
-        <NotificationCard />
-      </div>
+      {dateSortedNotifications?.map(({ date, notifications }) => (
+        <div key={date} className="details-container">
+          <div className="notification-date">
+            <TextLG>{date}</TextLG>
+          </div>
+          {notifications
+            ?.sort((a, b) => {
+              return new Date(b.createdAt) - new Date(a.createdAt);
+            })
+            ?.map(
+              ({
+                _id,
+                endUrl,
+                redirectUrl,
+                senderSlug,
+                receiverSlug,
+                title,
+              }) => (
+                <NotificationCard
+                  key={_id}
+                  endUrl={endUrl}
+                  redirectUrl={redirectUrl}
+                  senderSlug={senderSlug}
+                  receiverSlug={receiverSlug}
+                  title={title}
+                  mediaId={_id}
+                />
+              )
+            )}
+        </div>
+      ))}
     </NotificationPageContainer>
   );
 };
