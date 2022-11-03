@@ -79,11 +79,19 @@ function ActionButton() {
 
   return (
     <CreateButtonContainer>
-      <PostButton color={'var(--gray-variant-i)'} event={discardMedia}>
-        discard
+      <PostButton
+        textColor={'var(--main-black)'}
+        color={'var(--main-background)'}
+        event={discardMedia}
+      >
+        Discard
       </PostButton>
-      <PostButton color={'var(--main-black)'} event={uploadMedia}>
-        post
+      <PostButton
+        textColor={'#fff'}
+        color={'var(--main-black)'}
+        event={uploadMedia}
+      >
+        Post
       </PostButton>
     </CreateButtonContainer>
   );
