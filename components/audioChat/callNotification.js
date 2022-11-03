@@ -8,8 +8,6 @@ export function AudioCallNotification({
   message,
   accept,
   reject,
-  closeToast,
-  toastProps,
   acceptText,
   rejectText,
 }) {

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Close, Add } from "@material-ui/icons";
-import { TopicsList } from "./addTopics";
-import { RoomMember } from "./liveRoom";
-import { createRoom, inviteParticipant, startPingRoom } from "../../webRTC";
+import { Add, Close } from '@material-ui/icons';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   createRoom as createRoomAction,
   setRoomCreated,
   updateHostControls,
-} from "../../actions/audio_chat_room";
-import store from "../../store";
-import { socket } from "../../webRTC/socketEvents";
-import { toast } from "react-toastify";
+} from '../../actions/audio_chat_room';
+import store from '../../store';
+import { createRoom, inviteParticipant, startPingRoom } from '../../webRTC';
+import { socket } from '../../webRTC/socketEvents';
+import { TopicsList } from './addTopics';
+import { RoomMember } from './liveRoom';
 //import { useDispatch } from "react-redux";
 
 const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
@@ -36,36 +36,36 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
   const _createRoom = () => {
     if (verifyRoomValidity()) {
       setCreatingRoom(true);
-      document.getElementById("create-room-btn").setAttribute("disabled", true);
+      document.getElementById('create-room-btn').setAttribute('disabled', true);
 
       createRoom(room)
         .then(async (createdRoom) => {
           if (!(createdRoom instanceof Error)) {
             store.subscribe(() => {
               if (store.getState().audioRoom.roomCreated) {
-                console.log("room truly created:");
+                console.log('room truly created:');
 
-                setSegment("live");
+                setSegment('live');
                 setCreatingRoom(false);
               }
             });
 
-            socket.emit("host-created-audio-room", createdRoom);
+            socket.emit('host-created-audio-room', createdRoom);
 
-            console.log("created room in db");
+            console.log('created room in db');
             console.log(createdRoom);
 
             store.dispatch(createRoomAction(createdRoom));
             store.dispatch(updateHostControls(true));
             store.dispatch(setRoomCreated(true));
             startPingRoom(createdRoom._id);
-            await inviteParticipant(createdRoom, room.hosts[1], "Co-host");
+            await inviteParticipant(createdRoom, room.hosts[1], 'Co-host');
           } else {
             //TODO CLEAN UP THIS ERROR HANDLING MAKE IT A LIL USERFRIENDLY
             if (
               createdRoom.message
                 .toLowerCase()
-                .includes("user with the following peerid not found")
+                .includes('user with the following peerid not found')
             ) {
               toast.error(
                 "Oops! We couldn't create your room due to an outdated peerId.Just refresh your tab.",
@@ -74,7 +74,7 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
             } else {
               toast.error(createdRoom.message, { delay: 10000 });
             }
-            console.warn("Error creating room,", createdRoom);
+            console.warn('Error creating room,', createdRoom);
           }
         })
         .catch((err) => {
@@ -83,8 +83,8 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
         });
       // setTimeout(() => setSegment("live"), 5000);
     } else {
-      toast.warn("Room name and topics are required!", { delay: 10000 });
-      console.error("missing room info");
+      toast.warn('Room name and topics are required!', { delay: 10000 });
+      console.error('missing room info');
     }
   };
   const closeRoom = () => {
@@ -93,13 +93,13 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
   };
 
   const _addTopics = () => {
-    setSegment("topics");
+    setSegment('topics');
   };
 
   return (
     <section className="">
       <div className="audio-chat-header">
-        <h2 className="">{creatingRoom ? room.title : "create your room"}</h2>
+        <h2 className="">{creatingRoom ? room.title : 'create your room'}</h2>
         <Close onClick={closeRoom}></Close>
       </div>
       <div className="audio-chat-body">
@@ -116,7 +116,7 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
               <div className="audio-chat-inner-body">
                 <div className="chat-participants-list">
                   {room.hosts.map((_user) => (
-                    <RoomMember user={_user} />
+                    <RoomMember key={_user.id || _user._id} user={_user} />
                   ))}
                 </div>
               </div>
@@ -132,7 +132,7 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
               placeholder="Name your room"
             />
             <div className="audio-chat-inner-body">
-              <p class="audio-chat-instructions">
+              <p className="audio-chat-instructions">
                 What do you want to talk about?
               </p>
               {room.topics.length ? (
@@ -162,8 +162,8 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
                 className="room-private-checkbox"
                 id="room-private"
               />
-              <label for="room-private"> Private </label>
-              <p class="private-tip">
+              <label htmlFor="room-private"> Private </label>
+              <p className="private-tip">
                 Private rooms are only accessible via a private link shared to
                 indiviual memebers. The room will not be listed in the public
                 rooms page.
@@ -177,7 +177,7 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
             id="create-room-btn"
             onClick={_createRoom}
           >
-            {creatingRoom ? "Creating Room ..." : " Create Room"}
+            {creatingRoom ? 'Creating Room ...' : ' Create Room'}
           </button>
         </div>
       </div>

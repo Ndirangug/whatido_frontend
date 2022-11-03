@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import {
-  KeyboardArrowDown,
   Close,
+  ExitToAppRounded,
+  FiberManualRecord,
+  KeyboardArrowDown,
   Mic,
   MicOff,
-  MicRounded,
-  FiberManualRecord,
-  PeopleAltOutlined,
-  PanTool,
   MicOffRounded,
-  ShareOutlined,
-  PersonAddOutlined,
-  ExitToAppRounded,
+  MicRounded,
   MoreVert,
-} from "@material-ui/icons";
+  PanTool,
+  PeopleAltOutlined,
+  PersonAddOutlined,
+  ShareOutlined,
+} from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { toggleRecording as toggleRecordingAction } from '../../actions/audio_chat_room';
+import { CLIENT_ROOT_URL } from '../../constants/api';
+import store from '../../store';
 import {
-  toggleRaiseHand,
-  toggleMuteAudio,
   leaveRoom,
+  toggleMuteAudio,
+  toggleRaiseHand,
   updateUserRole,
-} from "../../webRTC";
-import * as recorder from "../../webRTC/recorder";
-import { toggleRecording as toggleRecordingAction } from "../../actions/audio_chat_room";
-import LazyImage from "../common/LazyImage";
-import store from "../../store";
-import { toast } from "react-toastify";
-import { AudioCallNotification } from "./callNotification";
-import { CLIENT_ROOT_URL } from "../../constants/api";
-const default_url = "/img/profile.png";
+} from '../../webRTC';
+import * as recorder from '../../webRTC/recorder';
+import LazyImage from '../common/LazyImage';
+import { AudioCallNotification } from './callNotification';
+const default_url = '/img/profile.png';
 
 export const BriefUserDetails = ({ user }) => {
   return (
@@ -53,7 +53,7 @@ export const BriefUserDetails = ({ user }) => {
 export const RoomMember = ({ user, _index }) => {
   const [actionsVisible, setActionsVisible] = useState(false);
   // reaction: if user makes a reaction e.g laughs or raises hand
-  const canSpeak = ["Host", "Co-host", "Speaker"];
+  const canSpeak = ['Host', 'Co-host', 'Speaker'];
   const userCanSpeak = canSpeak.includes(user.audioRoomRole);
   //const isAdmin = user.audioRoomRole === "Host" || user.audioRoomRole === "Co-host";
   const isAdmin = useSelector((state) => state.audioRoom.hostControls);
@@ -63,7 +63,7 @@ export const RoomMember = ({ user, _index }) => {
   // const muted = useSelector((state) => state.audioRoom.muted);
   const changeUserRole = (event) => {
     const _newRole = event.target.dataset.value;
-    console.log("update user role check user", user);
+    console.log('update user role check user', user);
     const roomId = store.getState().audioRoom.room._id;
     updateUserRole(user._id, roomId, _newRole);
     // toggleActionsVisibility();
@@ -74,13 +74,13 @@ export const RoomMember = ({ user, _index }) => {
 
   try {
     if (
-      typeof user.profileImage === "undefined" ||
+      typeof user.profileImage === 'undefined' ||
       user.profileImage.length < 1
     ) {
       user.profileImage = user.imageUrl?.cdnUrl;
     }
   } catch (error) {
-    console.log("error setting profile  image: ", error);
+    console.log('error setting profile  image: ', error);
   }
 
   return (
@@ -89,7 +89,7 @@ export const RoomMember = ({ user, _index }) => {
         {userCanSpeak ? (
           <div className="visualizer-wrapper -canvas">
             <canvas
-              id={"canvas-" + user.peerId}
+              id={'canvas-' + user.peerId}
               width="70"
               height="60"
             ></canvas>
@@ -124,7 +124,7 @@ export const RoomMember = ({ user, _index }) => {
       <div className="room-member-actions-container">
         <div>
           <p className="room-user-name">
-            {user.firstName || user.profile.firstName}.{" "}
+            {user.firstName || user.profile.firstName}.{' '}
             {(user.lastName || user.profile.lastName)[0]}
           </p>
           <p className="room-user-role">{user.audioRoomRole}</p>
@@ -134,17 +134,17 @@ export const RoomMember = ({ user, _index }) => {
             <MoreVert onClick={toggleActionsVisibility}></MoreVert>
             {actionsVisible ? (
               <div className="room-member-role-list">
-                {user.audioRoomRole !== "Co-host" ? (
+                {user.audioRoomRole !== 'Co-host' ? (
                   <span data-value="Co-host" onClick={changeUserRole}>
                     Make Co-Host
                   </span>
                 ) : null}
-                {user.audioRoomRole !== "Speaker" ? (
+                {user.audioRoomRole !== 'Speaker' ? (
                   <span data-value="Speaker" onClick={changeUserRole}>
                     Make Speaker
                   </span>
                 ) : null}
-                {user.audioRooomRole !== "Listener" ? (
+                {user.audioRooomRole !== 'Listener' ? (
                   <span data-value="Audience" onClick={changeUserRole}>
                     Make Listener
                   </span>
@@ -160,7 +160,7 @@ export const RoomMember = ({ user, _index }) => {
 
 const QuickActions = () => {
   const muted = useSelector((state) => state.audioRoom.muted);
-  console.log("audio muted: ", muted);
+  console.log('audio muted: ', muted);
   const user = useSelector((state) => state.user.profile);
   const room = useSelector((state) => state.audioRoom.room);
 
@@ -186,7 +186,7 @@ const QuickActions = () => {
             className="mic-on"
           ></MicRounded>
         )}
-        <span>{muted ? "Muted" : "Mic is on"}</span>
+        <span>{muted ? 'Muted' : 'Mic is on'}</span>
       </button>
 
       <button
@@ -207,7 +207,7 @@ const MinimizedRoom = ({
   toggleMinimize,
   _leaveRoom,
 }) => {
-  console.log("minimized room: ");
+  console.log('minimized room: ');
   console.log(room);
   const host = room.hosts[0];
   return (
@@ -220,7 +220,7 @@ const MinimizedRoom = ({
         {/* <BriefUserDetails user={user} /> */}
         <p className="room-title">{room.title}</p>
       </div>
-      <div onClick={toggleMinimize} style={{ cursor: "pointer" }}>
+      <div onClick={toggleMinimize} style={{ cursor: 'pointer' }}>
         <div className="minimized-room-summary">
           {/* <p className="room-title">{room.title}</p> */}
           {/* <FiberManualRecord className="dot-seperator"></FiberManualRecord> */}
@@ -277,7 +277,7 @@ const RoomLoader = ({ _leaveRoom }) => {
   return (
     <div className="liveroom-ghost">
       <div className="audio-chat-header">
-        <h2>{""}</h2>
+        <h2>{''}</h2>
         <Close onClick={_leaveRoom}></Close>
       </div>
       <div className="audio-chat-body">
@@ -289,7 +289,7 @@ const RoomLoader = ({ _leaveRoom }) => {
         <div className="audio-chat-inner-body">
           <div className="chat-participants-list">
             {[...Array(Math.ceil(2))].map((_user) => (
-              <div className="room-member">
+              <div key={_user.id || _user._id} className="room-member">
                 <div className="room-member-avatar-container"></div>
                 <p className="room-user-name"></p>
                 <p className="room-user-role"></p>
@@ -308,12 +308,12 @@ export const LiveRoomFooter = ({ _leaveRoom, setSegment }) => {
     navigator.clipboard
       .writeText(`${CLIENT_ROOT_URL}/rooms/?id=${roomId}`)
       .then(() => {
-        toast.success("Room URL copied to clipboard");
+        toast.success('Room URL copied to clipboard');
       });
   };
 
   const _invitePeople = () => {
-    setSegment("invite");
+    setSegment('invite');
   };
 
   return (
@@ -360,7 +360,7 @@ const LiveRoom = ({ user, animate, setSegment }) => {
     if (isAdmin) {
       toast(
         <AudioCallNotification
-          message={"You are currently the room host. Leaving will end the room"}
+          message={'You are currently the room host. Leaving will end the room'}
           acceptText="CONFIRM"
           rejectText="CANCEL"
           accept={() => {
@@ -388,8 +388,8 @@ const LiveRoom = ({ user, animate, setSegment }) => {
     //   .classList.toggle("minimized-room-state");
     if (!minimized) {
       document
-        .getElementById("audio-chat-container")
-        .classList.add("minimized-room-state");
+        .getElementById('audio-chat-container')
+        .classList.add('minimized-room-state');
     }
     setMinimized(!minimized);
   };
@@ -404,15 +404,15 @@ const LiveRoom = ({ user, animate, setSegment }) => {
     room.hosts.length + room.speakers.length + room.otherUsers.length;
 
   const toggleRecording = async () => {
-    console.log("start recording");
+    console.log('start recording');
     //TODO rememmber to check permisons
     // and update status of the recording feature
     if (!recording) {
-      console.log("set to recording");
+      console.log('set to recording');
       dispatch(toggleRecordingAction(true));
       recorder.startRecording();
     } else {
-      console.log("set to not recording");
+      console.log('set to not recording');
       dispatch(toggleRecordingAction(false));
       recorder.stopRecording();
     }
@@ -445,7 +445,7 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                 <p
                   onClick={toggleRecording}
                   className={`detail-btn recording-btn ${
-                    recording ? "blink" : ""
+                    recording ? 'blink' : ''
                   }`}
                 >
                   <FiberManualRecord className="recording-icon"></FiberManualRecord>
@@ -470,7 +470,7 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                       <RoomMember
                         key={_index}
                         user={_user}
-                        _index={"host" + _index}
+                        _index={'host' + _index}
                       />
                     ))}
                   </div>
@@ -480,8 +480,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                       <div className="chat-participants-list">
                         {waitlist.map((_user, _index) => (
                           <RoomMember
+                            key={_index}
                             user={_user}
-                            _index={"waitlist" + _index}
+                            _index={'waitlist' + _index}
                           />
                         ))}
                       </div>
@@ -493,8 +494,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                       <div className="chat-participants-list">
                         {room.speakers.map((_user, _index) => (
                           <RoomMember
+                            key={_index}
                             user={_user}
-                            _index={"speakers" + _index}
+                            _index={'speakers' + _index}
                           />
                         ))}
                       </div>
@@ -506,8 +508,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                       <div className="chat-participants-list">
                         {room.otherUsers.map((_user, _index) => (
                           <RoomMember
+                            key={_index}
                             user={_user}
-                            _index={"otherUsers" + _index}
+                            _index={'otherUsers' + _index}
                           />
                         ))}
                       </div>

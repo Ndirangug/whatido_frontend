@@ -22,7 +22,6 @@ import { AUDIOROOM_CDN_URL } from '../../constants/audio-room';
 import useQuery from '../../utils/useQuery';
 
 const default_url = '/img/profile.png';
-const live_img_url = '/img/audio-skimming.png';
 
 const colorOptions = [
   { top: '#b61b78', bottom: '#871158' },
@@ -73,11 +72,6 @@ const ListenersList = ({ list }) => {
 const RoomCard = ({ room, index }) => {
   const dispatch = useDispatch();
   const [isPlaying, setIsPlaying] = useState(false);
-  const getRandomColor = () => {
-    return (
-      '00000' + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)
-    ).slice(-6);
-  };
 
   const cardColor = setCardColor(index);
   // const cardColor = getRandomColor();
@@ -239,9 +233,6 @@ const RoomsPage = () => {
     audioElementRef.current.audio.current.pause();
   };
 
-  const pausePlayBack = () => {
-    audioElementRef.current.audio.current.pause();
-  };
 
   useEffect(() => {
     console.log('fetching room');
@@ -298,7 +289,7 @@ const RoomsPage = () => {
 
   useEffect(() => {
     console.log('initialize observer');
-    let observer = new IntersectionObserver((entries, observer) => {
+    let observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         console.log('entry o is intersection', entries[0]);
         if (hasNext.current || page === 1) {
@@ -416,7 +407,7 @@ const RoomsPage = () => {
             ref={audioElementRef}
             autoPlay
             src={recordingUrl}
-            onPlay={(e) => console.log('onPlay')}
+            onPlay={() => console.log('onPlay')}
             customAdditionalControls={[]}
             // other props here
           />

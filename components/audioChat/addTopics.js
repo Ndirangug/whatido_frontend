@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowBackIos,
   ArrowForwardIos,
@@ -77,7 +77,7 @@ export const TopicsList = ({
   );
 };
 
-const AddTopics = ({ room, animate, setRoom, setSegment }) => {
+const AddTopics = ({ room, setRoom, setSegment }) => {
   const [showSubCategories, setShowSubCategories] = useState(false);
   const [error, setError] = useState("");
   const [searchInvoked, setSearchInvoked] = useState(false);

@@ -24,7 +24,7 @@ const cookies = new Cookies().getAll();
     @param callBack: function - the callback to call when the call is complete 
     @returns {Promise} - An  promise that resolves to a Room object when successful or an Error if creating the room fails
 */
-export const createRoom = async (roomInfo, callBack = null) => {
+export const createRoom = async (roomInfo, _callBack = null) => {
   console.log('creating room inside creating room');
   console.log(roomInfo);
 
@@ -45,7 +45,7 @@ export const inviteParticipant = async (
   user,
   role = 'Audience',
   forceRecreatePeer = true,
-  callBack = () => {}
+  _callBack = () => {}
 ) => {
   if ('_id' in user) user['id'] = user._id; //map _id filed to id field
 
@@ -159,7 +159,7 @@ export const playAudio = (src, loop = false) => {
   audioElement.loop = loop;
   audioElement
     .play()
-    .then((result) => {})
+    .then((_result) => {})
     .catch((err) => {
       console.error('error playing audio', err);
     });
