@@ -31,7 +31,6 @@ export const loginAction = ({ email, password }) => {
         `${API_URL}/auth/login`,
         { email, password },
         {
-          withCredentials: true,
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': 'http://localhost:3000/',
@@ -39,7 +38,6 @@ export const loginAction = ({ email, password }) => {
         }
       )
       .then((response) => {
-        console.log(response.status);
         if (response.data?.errorMessage) {
           dispatch(setLoginLoading(false));
           dispatch(setLoginError(true));
@@ -64,36 +62,6 @@ export const loginAction = ({ email, password }) => {
           });
           //set user visibility
           dispatch(setVisibility(response.data.user.locationVisbility));
-          let data = {
-            locationLat: '',
-            locationLng: '',
-            email: email,
-          };
-
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-              data.locationLat = position.coords.latitude;
-              data.locationLng = position.coords.longitude;
-              axios.put(`${API_URL}/location`, data).then((response) => {
-                return console.log(response.data);
-              });
-            });
-          } else {
-            alert('Geolocation is not supported by this browser.');
-          }
-
-          // axios
-          //   .get(`${API_URL}/getExpert/${email}`)
-          //   .then((res) => {
-          //     var slug = res.data[0].slug;
-          //     var category = res.data[0].expertCategories[0];
-          //     localStorage.setItem('slug', slug);
-          //     localStorage.setItem('category', category);
-          //   })
-          //   .catch((err) => {
-          //     console.error(err);
-          //   });
-
           dispatch(setAuthState(true));
           dispatch(setLoginLoading(false));
           dispatch(setLoginError(false));
@@ -104,7 +72,7 @@ export const loginAction = ({ email, password }) => {
       .catch((error) => {
         dispatch(setLoginLoading(false));
         dispatch(setLoginError(true));
-        console.log(error);
+
         return error;
       });
   };

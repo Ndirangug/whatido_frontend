@@ -1,18 +1,85 @@
-import { LoginFormContainer } from '../../../styles/login.styles';
-import BigButton from '../../utils/buttons/BigButton';
-import InputField from '../../utils/inputs/InputField';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
-const Password = () => {
+import { SignupFormContainer } from '../../../styles/signup.styles';
+import BigButton from '../../utils/buttons/BigButton';
+import CancelButton from '../../utils/buttons/CancelButton';
+import InputField from '../../utils/inputs/InputField';
+import { TextBase } from '../../utils/typography/Typography';
+
+const schema = yup.object().shape({
+  password: yup
+    .string()
+    .required('password is required')
+    .min(6, 'at least 6 characters')
+    .matches(RegExp('(.*[a-z].*)'), 'at least one lowercase letter')
+    .matches(RegExp('(.*[A-Z].*)'), 'at least one uppercase letter')
+    .matches(RegExp('(.*\\d.*)'), 'at least one number')
+    .matches(
+      RegExp('[!@#$%^&*(),.?":{}|<>]'),
+      'at least one special character'
+    ),
+  confirm_password: yup
+    .string()
+    .required('confirm your password')
+    .oneOf([yup.ref('password'), null], 'password must match'),
+});
+
+const Password = ({ setValue, handleSignupPage, handleClose }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    criteriaMode: 'all',
+    reValidateMode: 'onChange',
+    mode: 'onChange',
+  });
+
+  const onSubmit = async (data) => {
+    setValue('password', data?.password);
+    setValue('confirm_password', data?.confirm_password);
+
+    handleSignupPage(4);
+  };
+
   return (
-    <LoginFormContainer>
+    <SignupFormContainer onSubmit={handleSubmit(onSubmit)}>
       <div className="input-container">
-        <InputField label={'password'} type={'password'} />
-        <InputField label={'confirm password'} type={'password'} />
+        <InputField
+          label={'password'}
+          type={'password'}
+          register={register('password')}
+          error={errors?.password?.message}
+        />
+        <div className="error">
+          <TextBase>{errors?.password?.message}</TextBase>
+        </div>
+
+        <InputField
+          label={'confirm password'}
+          type={'password'}
+          register={register('confirm_password')}
+          error={errors?.confirm_password?.message}
+        />
+        <div className="error">
+          <TextBase>{errors?.confirm_password?.message}</TextBase>
+        </div>
       </div>
+
       <div className="btn-container">
-        <BigButton type="submit">Sign Up</BigButton>
+        <CancelButton
+          eventHandler={handleClose}
+          color={'#fff'}
+          textColor={'#001433'}
+        >
+          Cancel
+        </CancelButton>
+        <BigButton type="submit">Verify</BigButton>
       </div>
-    </LoginFormContainer>
+    </SignupFormContainer>
   );
 };
 

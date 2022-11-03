@@ -5,6 +5,7 @@ body {
   height: 100%;
   font-family: 'Gilroy-Medium';
   color: #292d32;
+  background-color: #f3f3f3;
 }
 
 a {
@@ -21,11 +22,13 @@ a {
   --main-icon: #001433;
   --main-indigo: #001433;
   --sub-indigo: rgba(0, 20, 51, 0.7);
+  --gray-indigo: rgba(0, 20, 51, 0.2);
   --main-blue: #2681f2;
   --blue-shade: #4692f2;
   --main-yellow: #fcc95c;
   --main-background: #f3f3f3;
   --main-border: #dddddd;
+  --main-tag: #cecece;
   --main-gray: #bdbdbd;
   --gray-icon: #b3b3b3;
   --gray-text: #808999;

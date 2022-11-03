@@ -1,7 +1,8 @@
-import { FcGoogle } from 'react-icons/fc';
-import { RiFacebookCircleFill, RiTwitterFill } from 'react-icons/ri';
 import { API_URL } from '../../../constants/api';
 import { LoginOptionContainer } from '../../../styles/login.styles';
+import FacebookIcon from '../../utils/icons/FacebookIcon';
+import GoogleIcon from '../../utils/icons/GoogleIcon';
+import TwitterIcon from '../../utils/icons/TwitterIcon';
 import UserIcon from '../../utils/icons/UserIcon';
 import AuthOption from '../../utils/micro/AuthOption';
 
@@ -20,20 +21,20 @@ function LoginOptions({ hangleLoginPage }) {
           eventHandler={() => hangleLoginPage(1)}
         />
         <AuthOption
-          Icon={FcGoogle}
+          Icon={GoogleIcon}
           text="continue with google"
           color={'google'}
           eventHandler={() => socials('google')}
         />
 
         <AuthOption
-          Icon={RiFacebookCircleFill}
+          Icon={FacebookIcon}
           text="continue with facebook"
           color={'fb'}
           eventHandler={() => socials('facebook')}
         />
         <AuthOption
-          Icon={RiTwitterFill}
+          Icon={TwitterIcon}
           text="continue with twitter"
           color={'twitter'}
           eventHandler={() => socials('twitter')}

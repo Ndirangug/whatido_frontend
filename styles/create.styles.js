@@ -5,6 +5,14 @@ export const CreatePageContainer = styled.div`
   overflow: scroll;
   padding: 0.5rem;
   height: 100%;
+  background: #fff;
+
+  .create-content {
+    display: grid;
+    grid-gap: 0.5rem;
+    width: 100%;
+    align-items: flex-start;
+  }
 `;
 
 export const DragDropContainer = styled.div`

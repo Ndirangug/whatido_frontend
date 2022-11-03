@@ -1,8 +1,8 @@
-import Stack from '@mui/material/Stack';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
-import { BaseAvatar } from '../avatars/Avatar';
+import XsAvatar from '../avatars/XsAvatar';
 import FollowButton from '../buttons/FollowButton';
 import { TextSM } from '../typography/Typography';
 
@@ -10,22 +10,37 @@ function MdUserHeader({ userSlug }) {
   const { data } = useSWR(`${API_URL}/getExpertDetail/${userSlug}`, {
     suspense: true,
   });
-  // console.log('user data', data.data);
+  const authenticated = useSelector((state) => state.auth.authenticated);
 
   return (
-    <Stack direction="row" spacing={1} alignItems="center">
-      <BaseAvatar src={data?.data?.imageUrl?.cdnUrl} />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.75rem',
+      }}
+    >
+      <Link href={`/explore/expert/${data?.data?.slug}`}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
+          <XsAvatar src={data?.data?.imageUrl?.cdnUrl} />
 
-      <Link
-        href={`/expert/${data?.data?.expertCategories[0]}/${data?.data?.slug}`}
-      >
-        <TextSM>
-          {data?.data?.profile?.firstName} {data?.data?.profile?.lastName}
-        </TextSM>
+          <TextSM
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            {data?.data?.profile?.firstName} {data?.data?.profile?.lastName}
+          </TextSM>
+        </div>
       </Link>
-
-      <FollowButton following={true} />
-    </Stack>
+      {authenticated && <FollowButton peer={userSlug} />}
+    </div>
   );
 }
 
