@@ -1,48 +1,34 @@
-import React, {
-  useState,
-  useLayoutEffect,
-  useMemo,
-  useEffect,
-  useRef,
-} from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import store from "../../store";
-import { Button, Box, Skeleton, IconButton } from "@mui/material";
+import { CloseRounded, Headphones, PlayCircle } from '@mui/icons-material';
+import { Box, Button, IconButton, Skeleton } from '@mui/material';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import {
-  Headphones,
-  PlayCircle,
-  PauseCircle,
-  CloseRounded,
-} from "@mui/icons-material";
-import LazyImage from "../common/LazyImage";
-import { TopicsList } from "./addTopics";
-import {
-  updateRoomsList as updateRoomsListAction,
   setConnecting as setConnectingAction,
   setRecordingUrl as setRecordingUrlAction,
   showRecordingMiniplayer as showRecordingMiniplayerAction,
-  showRecordingMiniplayer,
-} from "../../actions/audio_chat_room";
-import { joinRoom as _join, recreatePeer } from "../../webRTC/peerEvents";
-import LiveIcon from "../../webRTC/assets/audio_wave.gif";
-import useQuery from "../../utils/useQuery";
-import axios from "axios";
-import { API_URL, AUDIOROOM_API_URL } from "../../constants/api";
-import { toast } from "react-toastify";
-import { AUDIOROOM_CDN_URL } from "../../constants/audio-room";
-import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css";
+  updateRoomsList as updateRoomsListAction,
+} from '../../actions/audio_chat_room';
+import { joinRoom as _join, recreatePeer } from '../../webRTC/peerEvents';
+import LazyImage from '../common/LazyImage';
+import { TopicsList } from './addTopics';
+//import LiveIcon from "../../webRTC/assets/audio_wave.gif";
+import axios from 'axios';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+import { toast } from 'react-toastify';
+import { AUDIOROOM_API_URL } from '../../constants/api';
+import { AUDIOROOM_CDN_URL } from '../../constants/audio-room';
+import useQuery from '../../utils/useQuery';
 
-const default_url = "/img/profile.png";
-const live_img_url = "/img/audio-skimming.png";
+const default_url = '/img/profile.png';
+const live_img_url = '/img/audio-skimming.png';
 
 const colorOptions = [
-  { top: "#b61b78", bottom: "#871158" },
-  { top: "#841bb6", bottom: "#621288" },
-  { top: "#9eb515", bottom: "#637209" },
-  { top: "#1bb6ac", bottom: "#11857e" },
+  { top: '#b61b78', bottom: '#871158' },
+  { top: '#841bb6', bottom: '#621288' },
+  { top: '#9eb515', bottom: '#637209' },
+  { top: '#1bb6ac', bottom: '#11857e' },
 ];
 
 const setCardColor = (index) => {
@@ -89,7 +75,7 @@ const RoomCard = ({ room, index }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const getRandomColor = () => {
     return (
-      "00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)
+      '00000' + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)
     ).slice(-6);
   };
 
@@ -107,7 +93,7 @@ const RoomCard = ({ room, index }) => {
 
   const joinLive = () => {
     dispatch(setConnectingAction(true));
-    console.log("join live room", room);
+    console.log('join live room', room);
     recreatePeer(() => {
       _join(room);
     });
@@ -124,18 +110,18 @@ const RoomCard = ({ room, index }) => {
   // }, [isPlaying]);
 
   const togglePlayRecording = () => {
-    console.log("listen to recorded room");
+    console.log('listen to recorded room');
 
-    if (room.recordingUrl === "") {
-      toast.warn("Recording for this room not available");
+    if (room.recordingUrl === '') {
+      toast.warn('Recording for this room not available');
     } else {
-      console.log("access recorded room here: ", room.recordingUrl);
-      console.log("before toggle", isPlaying);
+      console.log('access recorded room here: ', room.recordingUrl);
+      console.log('before toggle', isPlaying);
       setIsPlaying(!isPlaying);
       dispatch(setRecordingUrlAction(room.recordingUrl));
       dispatch(showRecordingMiniplayerAction(true));
 
-      console.log("after toggle", isPlaying);
+      console.log('after toggle', isPlaying);
     }
   };
 
@@ -149,12 +135,12 @@ const RoomCard = ({ room, index }) => {
         <p className="room-status">
           {room.isLive ? (
             <>
-              <img src={LiveIcon} alt="." />
+              <img src="/audioroom-assets/audio_wave.gif" alt="." />
               <span>LIVE</span>
             </>
           ) : (
             <>
-              <Headphones sx={{ mr: "0.5em" }} />
+              <Headphones sx={{ mr: '0.5em' }} />
               <span>Recorded</span>
             </>
           )}
@@ -176,7 +162,7 @@ const RoomCard = ({ room, index }) => {
             <Button onClick={joinLive}>JOIN LIVE</Button>
           ) : (
             <div>
-              <Button sx={{ color: "#fff" }} onClick={togglePlayRecording}>
+              <Button sx={{ color: '#fff' }} onClick={togglePlayRecording}>
                 {/* {isPlaying ? (
                   <PauseCircle width="2em" />
                 ) : (
@@ -222,7 +208,7 @@ const RoomCard = ({ room, index }) => {
             </span>
           </div>
         ) : (
-          "" //TODO INVESTIGATE HOW HOST INFO MISSING
+          '' //TODO INVESTIGATE HOW HOST INFO MISSING
         )}
         <p className="host-bio">{}</p>
       </div>
@@ -258,11 +244,11 @@ const RoomsPage = () => {
   };
 
   useEffect(() => {
-    console.log("fetching room");
+    console.log('fetching room');
     axios
       .get(`${AUDIOROOM_API_URL}/rooms/${roomId}`)
       .then((response) => {
-        console.log("successfully fetched room", response.data);
+        console.log('successfully fetched room', response.data);
         const room = response.data;
 
         if (room.isLive) {
@@ -271,29 +257,29 @@ const RoomsPage = () => {
             _join(response.data);
           });
         } else {
-          console.log("access recorded room");
-          toast.warn("Recording for this room not available");
+          console.log('access recorded room');
+          toast.warn('Recording for this room not available');
           console.log(
-            "access recorded room here: ",
+            'access recorded room here: ',
             AUDIOROOM_CDN_URL + roomId
           );
         }
       })
       .catch((err) => {
-        console.error("errror fetching room", err);
+        console.error('errror fetching room', err);
       });
   }, [roomId]);
 
-  roomId = query.get("id");
+  roomId = query.get('id');
 
   useEffect(() => {
     //TODO FETCH ROOMS
     setLoading(true);
-    console.log("fetch new page " + page);
+    console.log('fetch new page ' + page);
     axios
       .get(
         `${AUDIOROOM_API_URL}/rooms?isrivate=false&limit=${limit}&cursor=${
-          cursor.current ?? ""
+          cursor.current ?? ''
         }`
       )
       .then((_results) => {
@@ -303,7 +289,7 @@ const RoomsPage = () => {
         cursor.current = _results.data.cursor;
       })
       .catch((err) => {
-        console.error("error fetching rooms", err);
+        console.error('error fetching rooms', err);
       })
       .finally(() => {
         setLoading(false);
@@ -311,22 +297,22 @@ const RoomsPage = () => {
   }, [page]);
 
   useEffect(() => {
-    console.log("initialize observer");
+    console.log('initialize observer');
     let observer = new IntersectionObserver((entries, observer) => {
       if (entries[0].isIntersecting) {
-        console.log("entry o is intersection", entries[0]);
+        console.log('entry o is intersection', entries[0]);
         if (hasNext.current || page === 1) {
-          console.log("setting new page from " + page);
+          console.log('setting new page from ' + page);
           setPage(page + 1);
         } else {
-          console.log("next page not available");
+          console.log('next page not available');
         }
       } else {
-        console.log("entry o is  not intersection", entries[0]);
+        console.log('entry o is  not intersection', entries[0]);
       }
     });
 
-    observer.observe(document.querySelector("#load-more-target"));
+    observer.observe(document.querySelector('#load-more-target'));
   }, []);
 
   console.log(
@@ -337,7 +323,7 @@ const RoomsPage = () => {
 
   return (
     <>
-      <Box className="container" sx={{ position: "relative" }}>
+      <Box className="container" sx={{ position: 'relative' }}>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
             <NavLink to="/">Home</NavLink>
@@ -365,7 +351,7 @@ const RoomsPage = () => {
           )}
 
           {loading ? (
-            <Skeleton variant="rectangular" width={"100%"} height={118} />
+            <Skeleton variant="rectangular" width={'100%'} height={118} />
           ) : (
             <></>
           )}
@@ -374,9 +360,9 @@ const RoomsPage = () => {
             ref={pageBottomRef}
             id="load-more-target"
             sx={{
-              height: "20px",
+              height: '20px',
               // background: "blue",
-              position: "relative",
+              position: 'relative',
               bottom: `-${
                 window.innerHeight - pageBottomRef.current?.offsetTop
               }px`,
@@ -400,26 +386,26 @@ const RoomsPage = () => {
       <Box
         id="recording-miniplayer"
         sx={{
-          position: "fixed",
+          position: 'fixed',
           bottom: 0,
-          width: "100%",
-          display: showRecordingMiniplayer ? "flex" : "none",
-          justifyContent: "center",
-          paddingLeft: { xs: "2em", md: "8em" },
-          paddingRight: { xs: "2em", md: "8em" },
+          width: '100%',
+          display: showRecordingMiniplayer ? 'flex' : 'none',
+          justifyContent: 'center',
+          paddingLeft: { xs: '2em', md: '8em' },
+          paddingRight: { xs: '2em', md: '8em' },
         }}
       >
-        <Box sx={{ width: "100%", position: "relative" }}>
+        <Box sx={{ width: '100%', position: 'relative' }}>
           <IconButton
             id="btnCloseMiniplayer"
             color="warning"
             size="small"
             sx={{
-              position: "absolute",
-              top: "-1em",
-              right: "-1em",
-              background: "black",
-              color: "white",
+              position: 'absolute',
+              top: '-1em',
+              right: '-1em',
+              background: 'black',
+              color: 'white',
             }}
             onClick={closeMiniplayer}
           >
@@ -430,7 +416,7 @@ const RoomsPage = () => {
             ref={audioElementRef}
             autoPlay
             src={recordingUrl}
-            onPlay={(e) => console.log("onPlay")}
+            onPlay={(e) => console.log('onPlay')}
             customAdditionalControls={[]}
             // other props here
           />

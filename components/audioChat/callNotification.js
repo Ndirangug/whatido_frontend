@@ -1,16 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {
-  Button,
-  Snackbar,
-  IconButton,
-  Box,
-  Typography,
-} from "@material-ui/core";
-import { Close as CloseIcon } from "@material-ui/icons";
+import { Box, Button, Typography } from '@material-ui/core';
 
-import { useSelector, useDispatch } from "react-redux";
-import incomingCall from "../../webRTC/assets/incoming_call.mp3";
+//import incomingCall from "../../webRTC/assets/incoming_call.mp3";
 
 export function AudioCallNotification({
   message,
@@ -25,18 +17,18 @@ export function AudioCallNotification({
   return (
     <Box
       sx={{
-        width: "100%",
+        width: '100%',
       }}
     >
       <audio
         crossOrigin="anonymous"
-        src={incomingCall}
+        src="/audioroom-assets/incoming_call.mp3"
         autoPlay
         ref={audioRef}
       />
       <h6>{message}</h6>
       <Box
-        display={"flex"}
+        display={'flex'}
         direction="row"
         justifyContent="space-around"
         alignItems="center"
@@ -71,7 +63,7 @@ export function RetryNotification({ message, retry }) {
   return (
     <Box
       width="100%"
-      display={"flex"}
+      display={'flex'}
       direction="row"
       justifyContent="space-between"
       alignItems="center"

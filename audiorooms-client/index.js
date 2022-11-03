@@ -1,20 +1,18 @@
-import axios from "axios";
-import { localStream, leaveCall, recreatePeer } from "./peerEvents";
-import { insertRoom, sendEmailInvitation } from "./helpers";
-import store from "../store";
-import { socket } from "./socketEvents";
-import uuid from "react-uuid";
-import { Cookies } from "react-cookie";
+import store from '../store';
+import { insertRoom, sendEmailInvitation } from './helpers';
+import { leaveCall, localStream, recreatePeer } from './peerEvents';
+import { socket } from './socketEvents';
+//import uuid from "react-uuid";
+import { Cookies } from 'react-cookie';
 import {
+  addToWaitlist,
   clearRoom,
   toggleMuteAudio as toggleMuteAudioAction,
-  addToWaitlist,
-} from "../actions/audio_chat_room";
-import { sendMessageToUser } from "../actions/messenger";
-import { CLIENT_ROOT_URL, API_URL, host } from "../constants/api";
-import { toast } from "react-toastify";
-import { sendNotification } from "../subscription";
-import { CALL_ACCEPTED, CALL_REJECTED } from "../constants/audio-room";
+} from '../store/actions';
+import { sendMessageToUser } from '../actions/messenger';
+import { CLIENT_ROOT_URL } from '../constants/api';
+import { CALL_REJECTED } from '../constants/audio-room';
+import { sendNotification } from '../subscription';
 
 const cookies = new Cookies().getAll();
 //register callBack for on call
@@ -27,12 +25,12 @@ const cookies = new Cookies().getAll();
     @returns {Promise} - An  promise that resolves to a Room object when successful or an Error if creating the room fails
 */
 export const createRoom = async (roomInfo, callBack = null) => {
-  console.log("creating room inside creating room");
+  console.log('creating room inside creating room');
   console.log(roomInfo);
 
   try {
     const room = await insertRoom(roomInfo);
-    console.log("created room in create room");
+    console.log('created room in create room');
     console.log(room);
 
     return room.data;
@@ -45,23 +43,23 @@ export const createRoom = async (roomInfo, callBack = null) => {
 export const inviteParticipant = async (
   roomInfo,
   user,
-  role = "Audience",
+  role = 'Audience',
   forceRecreatePeer = true,
   callBack = () => {}
 ) => {
-  if ("_id" in user) user["id"] = user._id; //map _id filed to id field
+  if ('_id' in user) user['id'] = user._id; //map _id filed to id field
 
   try {
     const hostName = `${store.getState().user.profile.profile.firstName} ${
       store.getState().user.profile.profile.lastName
     }`;
-    console.log("host name is ", hostName);
+    console.log('host name is ', hostName);
 
     const sendInvitation = async () => {
       socket
         .timeout(90000) // 90 seconds
         .emit(
-          "invite-to-call",
+          'invite-to-call',
           {
             hostId: store.getState().user.profile._id,
             recepientId: user._id,
@@ -70,7 +68,7 @@ export const inviteParticipant = async (
           },
           (err, response) => {
             if (err) {
-              console.error("invite to call timed out", err);
+              console.error('invite to call timed out', err);
 
               // sendAudioRoomNotification(
               //   user,
@@ -80,7 +78,7 @@ export const inviteParticipant = async (
               // );
             }
 
-            console.log("invite to call response", response);
+            console.log('invite to call response', response);
             if (response === CALL_REJECTED) {
               sendAudioRoomNotification(
                 user,
@@ -95,15 +93,15 @@ export const inviteParticipant = async (
 
     if (forceRecreatePeer) {
       recreatePeer(() => {
-        console.log("recreated peer now sending invitation");
+        console.log('recreated peer now sending invitation');
         sendInvitation();
       });
     } else {
-      console.log("send invitation without recreating peer");
+      console.log('send invitation without recreating peer');
       sendInvitation();
     }
 
-    console.log("sending invite notifications");
+    console.log('sending invite notifications');
     sendAudioRoomNotification(
       user,
       roomInfo,
@@ -114,6 +112,7 @@ export const inviteParticipant = async (
     store.dispatch(addToWaitlist(user));
     return { ...user, audioRoomRole: role };
   } catch (error) {
+    console.log('error inviting participant', error);
     throw error;
   }
 };
@@ -124,9 +123,9 @@ export const toggleRaiseHand = async (userId, roomId) => {
   // console.log("toggle raise hand, " + newState);
 
   if (newState) {
-    socket.emit("raise-hand", { _id: userId, roomId });
+    socket.emit('raise-hand', { _id: userId, roomId });
   } else {
-    socket.emit("unraise-hand", { _id: userId, roomId });
+    socket.emit('unraise-hand', { _id: userId, roomId });
   }
 };
 
@@ -136,7 +135,7 @@ export const toggleMuteAudio = (userId, roomId) => {
   });
 
   store.dispatch(toggleMuteAudioAction());
-  socket.emit("user-mute-audio", {
+  socket.emit('user-mute-audio', {
     _id: userId,
     roomId,
     isMuted: store.getState().audioRoom.muted,
@@ -144,7 +143,7 @@ export const toggleMuteAudio = (userId, roomId) => {
 };
 
 export const leaveRoom = (room, user, closeRoom = false) => {
-  socket.emit("user-left-audio-room", {
+  socket.emit('user-left-audio-room', {
     roomId: room._id,
     userId: user._id,
     closeRoom,
@@ -162,15 +161,15 @@ export const playAudio = (src, loop = false) => {
     .play()
     .then((result) => {})
     .catch((err) => {
-      console.error("error playing audio", err);
+      console.error('error playing audio', err);
     });
 };
 
 export const updateUserRole = async (userId, roomId, role) => {
   console.log(
-    "updating user role " + role + " for user " + userId + " in room " + roomId
+    'updating user role ' + role + ' for user ' + userId + ' in room ' + roomId
   );
-  socket.emit("update-user-role", { userId, roomId, role });
+  socket.emit('update-user-role', { userId, roomId, role });
 };
 
 export const reconnectPeer = () => {
@@ -183,12 +182,12 @@ export const sendAudioRoomNotification = (
   messageText,
   notificationTitle
 ) => {
-  console.log("sending call notification via notifications channel", room);
+  console.log('sending call notification via notifications channel', room);
 
-  const roomUrl = CLIENT_ROOT_URL + "/rooms/?id=" + room.id;
+  const roomUrl = CLIENT_ROOT_URL + '/rooms/?id=' + room.id;
   const user = store.getState().user.profile;
 
-  console.log("user sending notification to recepient", recepient);
+  console.log('user sending notification to recepient', recepient);
 
   const emailNotificationData = {
     recieverName: `${recepient.firstName ?? recepient.profile.firstName} ${
@@ -196,61 +195,61 @@ export const sendAudioRoomNotification = (
     }`,
     message: null,
     senderName: `${user?.profile?.firstName} ${user?.profile?.lastName}`,
-    recieverEmail: recepient.email ?? "",
+    recieverEmail: recepient.email ?? '',
     url: roomUrl,
     baseUrl: CLIENT_ROOT_URL,
-    endpoint: "sendAudioRoomNotification",
+    endpoint: 'sendAudioRoomNotification',
     roomTitle: room.title,
   };
 
-  console.log("conversation starter user object", user);
+  console.log('conversation starter user object', user);
   const conversationStarter = {
-    recieverSlug: recepient.slug ?? "",
-    senderSlug: user?.slug ?? "",
+    recieverSlug: recepient.slug ?? '',
+    senderSlug: user?.slug ?? '',
     firstName: user?.profile?.firstName,
     lastName: user?.profile?.lastName,
     //link: CLIENT_ROOT_URL + "/rooms/?id=" + room._id,
     quote: null,
-    messageId: uuid(),
+    // messageId: uuid(),
     //text: `Hi, ${cookies?.user?.firstName} has invited you to their audio room discussion on ${room.title}`,
-    text: messageText + "#AUDIOROOMID" + room.id,
+    text: messageText + '#AUDIOROOMID' + room.id,
     //share: null,
     emailNotificationData: emailNotificationData,
   };
 
   store.dispatch(sendMessageToUser(conversationStarter));
-  console.log("sent audio room text message notification");
+  console.log('sent audio room text message notification');
 
   let pushNotificationData = {
     //title: `${conversationStarter.firstName} started an audio room`,
     title: notificationTitle,
     description: conversationStarter.text,
     userSlug: conversationStarter.recieverSlug,
-    action: "Join Room",
+    action: 'Join Room',
     senderSlug: `${conversationStarter.senderSlug}`,
     endUrl: `/rooms/?id=${room.id}`,
     redirectUrl: null,
   };
 
   sendNotification(pushNotificationData);
-  console.log("sent audio room push notification");
+  console.log('sent audio room push notification');
 
   sendEmailInvitation(
     roomUrl,
     CLIENT_ROOT_URL,
     recepient.firstName ?? recepient.profile.firstName,
-    recepient.email ?? "",
+    recepient.email ?? '',
     `${user?.profile?.firstName} ${user?.profile?.lastName}`,
     messageText,
     room.title
   );
-  console.log("sent audio room email notification");
+  console.log('sent audio room email notification');
   //toast.success("audio room notifictaion sent");
 };
 
 export const startPingRoom = (roomId) => {
   window.intervalId = setInterval(() => {
-    socket.emit("ping-room", { roomId });
+    socket.emit('ping-room', { roomId });
     console.log(`pinging room ${roomId}`);
   }, 240000); //send ping every 4 minutes
 };

@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import { Motion, spring } from "react-motion";
-import InvitePeople from "./invitePeople";
-import LiveRoom from "./liveRoom";
-import CreateRoom from "./createRoom";
-import AddTopics from "./addTopics";
-import "./audioChat.css";
-import { createRoom, updateHostControls } from "../../actions/audio_chat_room";
-import store from "../../store";
-import { Provider } from "react-redux";
-import { startPingRoom } from "../../webRTC";
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { Motion, spring } from 'react-motion';
+import AddTopics from './addTopics';
+import CreateRoom from './createRoom';
+import InvitePeople from './invitePeople';
+import LiveRoom from './liveRoom';
+//import "./audioChat.css";
+import { Provider } from 'react-redux';
+import { createRoom, updateHostControls } from '../../actions/audio_chat_room';
+import store from '../../store';
+import { startPingRoom } from '../../webRTC';
 
 const AudioChat = ({ expert, user }) => {
   const [state, setState] = useState({
     opacity: 0.5,
     translate: 0,
-    display: "visible",
+    display: 'visible',
   });
   const [temporaryRoom, setTemporaryRoom] = useState({
-    title: "",
+    title: '',
     topics: [],
     hosts: [],
     private: false,
@@ -26,7 +26,7 @@ const AudioChat = ({ expert, user }) => {
     otherUsers: [],
   });
 
-  const [segment, setSegment] = useState("");
+  const [segment, setSegment] = useState('');
 
   const animate = () => {
     setState(
@@ -38,12 +38,12 @@ const AudioChat = ({ expert, user }) => {
         if (state.opacity === 0) {
           setTimeout(() => {
             setState({
-              display: "hidden",
+              display: 'hidden',
             });
           }, 200);
         } else {
           setState({
-            display: "visible",
+            display: 'visible',
           });
         }
       }
@@ -52,19 +52,19 @@ const AudioChat = ({ expert, user }) => {
 
   const setChatSegment = () => {
     switch (segment) {
-      case "live":
+      case 'live':
         return (
           <LiveRoom
             animate={animate}
             user={{
               ...user,
-              firstName: user.profile.firstName || "",
-              lastName: user.profile.lastName || "",
+              firstName: user.profile.firstName || '',
+              lastName: user.profile.lastName || '',
             }}
             setSegment={setSegment}
           />
         );
-      case "topics":
+      case 'topics':
         return (
           <AddTopics
             animate={animate}
@@ -73,7 +73,7 @@ const AudioChat = ({ expert, user }) => {
             setSegment={setSegment}
           />
         );
-      case "invite":
+      case 'invite':
         return <InvitePeople setSegment={setSegment} animate={animate} />;
       default:
         return (
@@ -93,13 +93,13 @@ const AudioChat = ({ expert, user }) => {
       hosts: [
         {
           ...user,
-          audioRoomRole: "Host",
-          firstName: user.profile.firstName || "",
-          lastName: user.profile.lastName || "",
+          audioRoomRole: 'Host',
+          firstName: user.profile.firstName || '',
+          lastName: user.profile.lastName || '',
         },
         {
           ...expert,
-          audioRoomRole: "Co-host",
+          audioRoomRole: 'Co-host',
           profileImage: expert.profileImage || expert.photo,
         },
       ],
@@ -109,7 +109,7 @@ const AudioChat = ({ expert, user }) => {
   useEffect(() => {
     // receiving call, go to liveroom
     if (!expert) {
-      setSegment("live");
+      setSegment('live');
     } else {
       // creating new room before call
       setInitialRoomMembers();
@@ -149,13 +149,13 @@ const AudioChat = ({ expert, user }) => {
 };
 
 export const showChatRoom = async (expert) => {
-  const container = document.getElementById("audio-chatroom-container");
-  console.log("place cll to");
+  const container = document.getElementById('audio-chatroom-container');
+  console.log('place cll to');
   console.log(expert);
 
   // fetch authenticated user
   const currentUser = await store.getState().user.profile;
-  console.log("place call from");
+  console.log('place call from');
   console.log(currentUser);
 
   if (currentUser && Object.keys(currentUser).length) {
@@ -172,12 +172,12 @@ export const showChatRoom = async (expert) => {
       container
     );
   } else {
-    alert("Sorry! You have to be logged in to perform this action.");
+    alert('Sorry! You have to be logged in to perform this action.');
   }
 };
 
 export const renderRoomOnCall = (_room, role) => {
-  const hostControls = role === "Host" || role === "Co-host";
+  const hostControls = role === 'Host' || role === 'Co-host';
   store.dispatch(createRoom(_room));
   store.dispatch(updateHostControls(hostControls));
   showChatRoom(null);
