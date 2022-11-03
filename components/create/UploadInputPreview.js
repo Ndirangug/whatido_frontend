@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCaption } from '../../store/reducers/media_reducer';
 import { UploadInputPreviewContainer } from '../../styles/create.styles';
@@ -11,7 +11,7 @@ function UploadInputPreview() {
   const handleChange = (e) => {
     dispatch(setCaption(e.target.value));
   };
-  
+
   return (
     <UploadInputPreviewContainer>
       <div className="preview-conatiner">
