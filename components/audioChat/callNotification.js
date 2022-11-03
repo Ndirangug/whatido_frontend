@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@mui/material';
 
 //import incomingCall from "../../webRTC/assets/incoming_call.mp3";
 

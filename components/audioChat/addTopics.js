@@ -1,16 +1,16 @@
-import React, { useState } from "react";
 import {
+  Add,
   ArrowBackIos,
   ArrowForwardIos,
-  KeyboardArrowDown,
-  Add,
-} from "@material-ui/icons";
-import CategoryIcon from "./categoryIcon";
-import { ElipsDot } from "../messenger/gen.styles";
-import { loadCategories } from "../../actions/categories";
-import SearchBar from "./searchBar";
-import store from "../../store";
-import { useSelector } from "react-redux";
+  KeyboardArrowDown
+} from '@mui/icons-material';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import store from '../../store';
+import { loadCategories } from '../../store/actions/categories';
+//import { ElipsDot } from '../messenger/gen.styles'; TODO: not yet available
+import CategoryIcon from './categoryIcon';
+import SearchBar from './searchBar';
 
 export const TopicsList = ({
   list,
@@ -34,7 +34,7 @@ export const TopicsList = ({
         setRoom({ ...room, topics: [...room.topics, _topic] });
       } else {
         //   TODO:
-        if (!addOption) setError("Sorry! Maximum allowed topics is 3");
+        if (!addOption) setError('Sorry! Maximum allowed topics is 3');
       }
     } else {
       // remove topic from list
@@ -42,7 +42,7 @@ export const TopicsList = ({
       _newTopics.splice(_topicIndex, 1);
       setRoom({ ...room, topics: _newTopics });
 
-      if (!addOption) setError("");
+      if (!addOption) setError('');
       // TODO: rerender subcategories to update ui
     }
   };
@@ -51,8 +51,8 @@ export const TopicsList = ({
   const highlightButton = (_topic) => {
     if (room) {
       return room.topics.find((_value) => _value.slug === _topic)
-        ? "highlighted-sub-category"
-        : "";
+        ? 'highlighted-sub-category'
+        : '';
     }
   };
 
@@ -79,7 +79,7 @@ export const TopicsList = ({
 
 const AddTopics = ({ room, setRoom, setSegment }) => {
   const [showSubCategories, setShowSubCategories] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [searchInvoked, setSearchInvoked] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [fetching, setFetching] = useState(false);
@@ -110,7 +110,7 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
 
   const _saveTopics = () => {
     //  TODO: saved successfully notifications
-    setSegment("create");
+    setSegment('create');
   };
 
   const toggleShowSubCategories = (_category) => {
@@ -158,12 +158,13 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
             <h3>Categories</h3>
             {fetching ? (
               <div className="minimized-room-loader-container">
-                <ElipsDot className="mt-10">
+                <p> Loading...</p>
+                {/* <ElipsDot className="mt-10">
                   <div></div>
                   <div></div>
                   <div></div>
                   <div></div>
-                </ElipsDot>
+                </ElipsDot> */}
               </div>
             ) : (
               categoriesList.map((_category) => (

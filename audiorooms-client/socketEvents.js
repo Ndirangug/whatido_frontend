@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
 import { io } from 'socket.io-client';
+import { AUDIOROOM_API_URL } from '../constants/api';
+import store from '../store';
 import {
   addParticipant,
   clearRoom,
@@ -11,9 +13,7 @@ import {
   updateHostControls,
   updateSocketId,
   updateUserAudioRoomRole,
-} from '../actions/audio_chat_room';
-import { AUDIOROOM_API_URL } from '../constants/api';
-import store from '../store';
+} from '../store/actions/audio_chat_room';
 import { playAudio } from './';
 import {
   joinRoom,

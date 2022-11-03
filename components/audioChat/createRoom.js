@@ -1,14 +1,18 @@
-import { Add, Close } from '@material-ui/icons';
+import { Add, Close } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { socket } from '../../audiorooms-client/socketEvents';
+import {
+  createRoom,
+  inviteParticipant,
+  startPingRoom,
+} from '../../audiorooms-client';
+import store from '../../store';
 import {
   createRoom as createRoomAction,
   setRoomCreated,
   updateHostControls,
-} from '../../actions/audio_chat_room';
-import store from '../../store';
-import { createRoom, inviteParticipant, startPingRoom } from '../../webRTC';
-import { socket } from '../../webRTC/socketEvents';
+} from '../../store/actions/audio_chat_room';
 import { TopicsList } from './addTopics';
 import { RoomMember } from './liveRoom';
 //import { useDispatch } from "react-redux";

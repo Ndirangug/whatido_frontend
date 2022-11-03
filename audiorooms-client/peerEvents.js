@@ -1,25 +1,25 @@
-import Peer from "peerjs";
-import { socket } from "./socketEvents";
-import store from "../store";
-import { renderRoomOnCall } from "../components/audioChat";
-import { toast } from "react-toastify";
-import { visualize } from "../components/audioChat/visualizeAudio";
-import { RetryNotification } from "./../components/audioChat/callNotification";
-import { setConnecting } from "../actions/audio_chat_room";
+import Peer from 'peerjs';
+import { toast } from 'react-toastify';
+import { renderRoomOnCall } from '../components/audioChat';
+import { visualize } from '../components/audioChat/visualizeAudio';
+import store from '../store';
+import { setConnecting } from '../store/actions/audio_chat_room';
+import { RetryNotification } from './../components/audioChat/callNotification';
+import { socket } from './socketEvents';
 
 function createPeer(peerId) {
   return new Peer(peerId, {
     debug: 3,
-    host: "production-api.whatido.app",
-    path: "/peer-server",
+    host: 'production-api.whatido.app',
+    path: '/peer-server',
     pingInterval: 3000,
     config: {
       iceServers: [
-        { urls: "stun:stun.whatido.app" },
+        { urls: 'stun:stun.whatido.app' },
         {
-          urls: "turn:turn.whatido.app",
-          credential: "whatido",
-          username: "whatido",
+          urls: 'turn:turn.whatido.app',
+          credential: 'whatido',
+          username: 'whatido',
         },
       ],
     },
@@ -33,7 +33,7 @@ export let remoteStreams = {};
 let interval;
 
 export const setOnlinePeer = async (user, peerId = null, callback) => {
-  console.log("setting online peer");
+  console.log('setting online peer');
   console.log(user);
 
   peer = createPeer(peerId);
@@ -67,8 +67,8 @@ export const makeCall = async (user, room) => {
     console.log(`making call to user`, user);
 
     if (
-      typeof localStream == "undefined" ||
-      localStream.getTracks()[0].readyState === "ended"
+      typeof localStream == 'undefined' ||
+      localStream.getTracks()[0].readyState === 'ended'
     ) {
       localStream = await navigator.mediaDevices.getUserMedia({
         audio: true,
@@ -79,11 +79,11 @@ export const makeCall = async (user, room) => {
     const call = peer.call(user.peerId, localStream);
     visualize(peer.id, localStream);
 
-    call.on("stream", function (incomingStream) {
+    call.on('stream', function (incomingStream) {
       remoteStreams[call.peer] = incomingStream;
       visualize(call.peer, incomingStream);
       console.log(
-        "New incoming stream added to remoteStream object on caller side",
+        'New incoming stream added to remoteStream object on caller side',
         remoteStreams
       );
 
@@ -93,21 +93,21 @@ export const makeCall = async (user, room) => {
         console.log("audio element didn't exist, wil create a new one");
       }
 
-      const audioElement = document.createElement("audio");
+      const audioElement = document.createElement('audio');
       audioElement.srcObject = incomingStream;
       audioElement.id = `audio-${call.peer}`;
       audioElement.autoPlay = true;
-      audioElement.crossOrigin = "anonymous";
+      audioElement.crossOrigin = 'anonymous';
 
       //audioElement.hidden = true;
       //audioElement.controls = true;
       audioElement.play();
 
       document
-        .getElementById("audio-chatroom-streams")
+        .getElementById('audio-chatroom-streams')
         .appendChild(audioElement);
 
-      console.log("now playing audio");
+      console.log('now playing audio');
     });
 
     mediaConnections[call.peer] = call;
@@ -117,11 +117,11 @@ export const makeCall = async (user, room) => {
 };
 
 function setOnPeerOpenListener(userId, callback) {
-  console.log("setting on peer open listener for user: " + userId);
-  peer.on("open", async (peerId) => {
+  console.log('setting on peer open listener for user: ' + userId);
+  peer.on('open', async (peerId) => {
     console.log(`My peer ID is: ${peerId} and user id = ${userId}`);
 
-    socket.emit("peer_online", { userId, peerId });
+    socket.emit('peer_online', { userId, peerId });
 
     if (callback) {
       callback();
@@ -130,12 +130,12 @@ function setOnPeerOpenListener(userId, callback) {
 }
 
 function setOnCallListener() {
-  peer.on("call", async (call) => {
+  peer.on('call', async (call) => {
     mediaConnections[call.peer] = call;
     try {
       if (
-        typeof localStream == "undefined" ||
-        localStream.getTracks()[0].readyState === "ended"
+        typeof localStream == 'undefined' ||
+        localStream.getTracks()[0].readyState === 'ended'
       ) {
         localStream = await navigator.mediaDevices.getUserMedia({
           audio: true,
@@ -145,11 +145,11 @@ function setOnCallListener() {
 
       call.answer(localStream);
       visualize(peer.id, localStream);
-      call.on("stream", function (incomingStream) {
+      call.on('stream', function (incomingStream) {
         remoteStreams[call.peer] = incomingStream;
         visualize(call.peer, incomingStream);
         console.log(
-          "[AUDIOROOMS] New incoming stream added to remoteStream object on recepient side",
+          '[AUDIOROOMS] New incoming stream added to remoteStream object on recepient side',
           remoteStreams
         );
 
@@ -159,38 +159,38 @@ function setOnCallListener() {
           console.log("audio element didn't exist, wil create a new one");
         }
 
-        const audioElement = document.createElement("audio");
+        const audioElement = document.createElement('audio');
         audioElement.srcObject = incomingStream;
         audioElement.id = `audio-${call.peer}`;
         audioElement.autoPlay = true;
-        audioElement.crossOrigin = "anonymous";
+        audioElement.crossOrigin = 'anonymous';
         ///audioElement.hidden = true;
         audioElement.play();
 
         document
-          .getElementById("audio-chatroom-streams")
+          .getElementById('audio-chatroom-streams')
           .appendChild(audioElement);
       });
     } catch (err) {
-      console.error("Failed to get local stream", err);
+      console.error('Failed to get local stream', err);
     }
   });
 }
 
 export async function joinRoom(room, role) {
   // store.dispatch(setConnecting(true));
-  console.log("currenmtuser in join room", store.getState().user);
+  console.log('currenmtuser in join room', store.getState().user);
   const currentUser = await store.getState().user.profile;
 
   if (!currentUser) {
-    console.log("user not logged in", currentUser);
+    console.log('user not logged in', currentUser);
     toast.error("Can't fetch user profile. Try logging out and loggin again");
     return;
   }
-  console.log("set connecting", store.getState().audioRoom.connecting);
+  console.log('set connecting', store.getState().audioRoom.connecting);
   //check if already in room and also not in process of joining
   const userIds = getUsersInRoom(room);
-  console.log("check if peer already in room", userIds);
+  console.log('check if peer already in room', userIds);
 
   setTimeout(() => {
     if (!userIds.includes(currentUser._id)) {
@@ -198,60 +198,60 @@ export async function joinRoom(room, role) {
       callOtherParticipants(room);
       renderRoomOnCall(room, role);
     } else {
-      console.log("already in room");
+      console.log('already in room');
     }
 
     store.dispatch(setConnecting(false));
-    console.log("set connecting", store.getState().audioRoom.connecting);
+    console.log('set connecting', store.getState().audioRoom.connecting);
   }, 2000); //set this delay to allow peer to be recreated
 }
 
 export function rejectJoinRoom() {
-  console.log("rejecting call");
+  console.log('rejecting call');
 }
 
 function setOnCloseListener(user) {
-  peer.on("close", () => {
-    console.warn("Peer closed. not yet recreating peer");
+  peer.on('close', () => {
+    console.warn('Peer closed. not yet recreating peer');
     //recreatePeer();
   });
 }
 
 function setOnDisconnectedListener(user) {
-  peer.on("disconnected", () => {
-    console.warn("Peer disconnected. reconnecting");
+  peer.on('disconnected', () => {
+    console.warn('Peer disconnected. reconnecting');
     //peer.reconnect();
     //reconnectPeer();
   });
 }
 
 function setOnErrorListener() {
-  peer.on("error", function (err) {
-    console.warn("Peer error:", err);
-    console.warn("Peer error type:", err.type);
+  peer.on('error', function (err) {
+    console.warn('Peer error:', err);
+    console.warn('Peer error type:', err.type);
 
     switch (err.type) {
-      case "browser-incompatible":
-        toast.error("Your browser is not compatible with WebRTC");
+      case 'browser-incompatible':
+        toast.error('Your browser is not compatible with WebRTC');
         break;
-      case "invalid-id":
+      case 'invalid-id':
         //toast.error("Invalid peer ID(Contaiins illegal characters)");
         break;
-      case "invalid-key":
+      case 'invalid-key':
         //toast.error("Invalid API key");
         break;
-      case "disconnected":
+      case 'disconnected':
         // toast.error(
         //   "You've already disconnected this peer from the server and can no longer make any new connections on it."
         // );
         // todo add  a reconnect button
         break;
-      case "network":
+      case 'network':
         // toast.error(
         //   "Network error. Check your network and try reloading the page."
         // );
         break;
-      case "peer-unavailable":
+      case 'peer-unavailable':
         toast.error(
           <RetryNotification
             message={
@@ -267,30 +267,30 @@ function setOnErrorListener() {
         // call specific user couldn't connect to
 
         break;
-      case "ssl-unavailable":
+      case 'ssl-unavailable':
         // toast.error(
         //   "PeerJS is being used securely, but the cloud server does not support SSL. Use a custom PeerServer"
         // );
         break;
-      case "server-error":
+      case 'server-error':
         // toast.error("Server error. Try reloading the page.");
         break;
-      case "socket-error":
+      case 'socket-error':
         //toast.error("Socket error. Try reloading the page.");
         break;
-      case "socket-closed":
+      case 'socket-closed':
         // toast.error("Socket closed. Try reloading the page.");
         break;
-      case "unavailable-id":
+      case 'unavailable-id':
         // toast.error(
         //   "TThe ID passed into the Peer constructor is already taken."
         // );
         break;
-      case "webrtc":
-        toast.error("A Native WebRTC error  occurred");
+      case 'webrtc':
+        toast.error('A Native WebRTC error  occurred');
         break;
       default:
-        toast.error("An unknown error occurred.Report this to the developer");
+        toast.error('An unknown error occurred.Report this to the developer');
     }
   });
 }
@@ -299,7 +299,7 @@ export function leaveCall() {
   if (localStream) {
     localStream.getAudioTracks().forEach((track) => {
       track.stop();
-      console.log("stopped local audio track", localStream);
+      console.log('stopped local audio track', localStream);
     });
   }
 
@@ -315,8 +315,8 @@ const resumeLocalStream = (peerId) => {
 };
 
 const closeConnection = (peerId) => {
-  if (typeof mediaConnections[peerId] !== "undefined") {
-    console.log("closing connection", mediaConnections[peerId]);
+  if (typeof mediaConnections[peerId] !== 'undefined') {
+    console.log('closing connection', mediaConnections[peerId]);
     mediaConnections[peerId].close();
     delete mediaConnections[peerId];
     try {
@@ -329,10 +329,10 @@ const closeConnection = (peerId) => {
 
 export const recreatePeer = (callback) => {
   const user = store.getState().user.profile;
-  console.log("forcing recreate peer", user);
+  console.log('forcing recreate peer', user);
 
   if (!user) {
-    console.log("user not logged in", user);
+    console.log('user not logged in', user);
     toast.error("Can't fetch user profile. Try logging out and loggin again");
     return;
   }
@@ -343,7 +343,7 @@ export const recreatePeer = (callback) => {
   setTimeout(() => {
     setOnlinePeer(user, user._id, callback)
       .then(() => {
-        console.log("successfully recreated peer");
+        console.log('successfully recreated peer');
       })
       .catch((err) => {
         console.error(`error recreating peer: ${err.message}`, err);
@@ -356,13 +356,13 @@ function emitJoinRoom(room, role) {
   const user = store.getState().user.profile;
 
   if (!user) {
-    console.log("user not logged in", user);
+    console.log('user not logged in', user);
     toast.error("Can't fetch user profile. Try logging out and loggin again");
     return;
   }
 
-  console.log("emit join room", user);
-  socket.emit("user-joined-audio-room", {
+  console.log('emit join room', user);
+  socket.emit('user-joined-audio-room', {
     roomId: room._id,
     user: {
       firstName: user.profile.firstName,
@@ -370,7 +370,7 @@ function emitJoinRoom(room, role) {
       id: user._id,
       peerId: user.peerId,
       audioRoomRole: user.audioRoomRole,
-      profileImage: user.imageUrl ? user.imageUrl.cdnUrl : "",
+      profileImage: user.imageUrl ? user.imageUrl.cdnUrl : '',
     },
     role,
   });
@@ -378,7 +378,7 @@ function emitJoinRoom(room, role) {
 
 function callOtherParticipants(room) {
   const participants = [...room.hosts, ...room.speakers, ...room.otherUsers];
-  console.log("calling room participants", participants);
+  console.log('calling room participants', participants);
 
   participants.forEach((participant) => {
     makeCall(participant, room);

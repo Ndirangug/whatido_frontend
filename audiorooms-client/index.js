@@ -4,15 +4,15 @@ import { leaveCall, localStream, recreatePeer } from './peerEvents';
 import { socket } from './socketEvents';
 //import uuid from "react-uuid";
 import { Cookies } from 'react-cookie';
+//import { sendMessageToUser } from '../actions/messenger'; //todo messenger not working yet
+import { CLIENT_ROOT_URL } from '../constants/api';
+import { CALL_REJECTED } from '../constants/audio-room';
 import {
   addToWaitlist,
   clearRoom,
   toggleMuteAudio as toggleMuteAudioAction,
-} from '../store/actions';
-import { sendMessageToUser } from '../actions/messenger';
-import { CLIENT_ROOT_URL } from '../constants/api';
-import { CALL_REJECTED } from '../constants/audio-room';
-import { sendNotification } from '../subscription';
+} from '../store/actions/audio_chat_room';
+//import { sendNotification } from '../subscription'; //todo notification not working yet
 
 const cookies = new Cookies().getAll();
 //register callBack for on call
@@ -217,7 +217,7 @@ export const sendAudioRoomNotification = (
     emailNotificationData: emailNotificationData,
   };
 
-  store.dispatch(sendMessageToUser(conversationStarter));
+  //store.dispatch(sendMessageToUser(conversationStarter));
   console.log('sent audio room text message notification');
 
   let pushNotificationData = {

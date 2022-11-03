@@ -7,9 +7,12 @@ import InvitePeople from './invitePeople';
 import LiveRoom from './liveRoom';
 //import "./audioChat.css";
 import { Provider } from 'react-redux';
-import { createRoom, updateHostControls } from '../../actions/audio_chat_room';
+import { startPingRoom } from '../../audiorooms-client';
 import store from '../../store';
-import { startPingRoom } from '../../webRTC';
+import {
+  createRoom,
+  updateHostControls,
+} from '../../store/actions/audio_chat_room';
 
 const AudioChat = ({ expert, user }) => {
   const [state, setState] = useState({

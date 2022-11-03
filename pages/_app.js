@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { lazy, Suspense, useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
@@ -6,7 +7,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SWRConfig } from 'swr';
-import { useAudioCallSetup } from '../audiorooms-client/utils/useAudioCallSetup';
+//import { useAudioCallSetup } from '../audiorooms-client/utils/useAudioCallSetup';
 import '../components/audioChat/audioChat.css';
 import { EstablishingAudioConnection } from '../components/audioChat/loadingScreen';
 import Header from '../components/header';
@@ -19,6 +20,13 @@ import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
 const SignupModal = lazy(() => import('../components/auth/signup/index'));
 
+const useAudioCallSetup = dynamic(
+  () => import('../audiorooms-client/utils/useAudioCallSetup'),
+  {
+    ssr: false,
+  }
+);
+
 const fetcher = (...args) => {
   return axios(...args).then((res) => res.data);
 };
@@ -28,7 +36,8 @@ function MyApp({ Component, pageProps }) {
     serviceWorker.register();
   }, []);
 
-  useAudioCallSetup();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useAudioCallSetup instanceof Function && useAudioCallSetup();
 
   return (
     <>

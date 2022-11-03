@@ -12,20 +12,20 @@ import {
   PeopleAltOutlined,
   PersonAddOutlined,
   ShareOutlined,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { toggleRecording as toggleRecordingAction } from '../../actions/audio_chat_room';
-import { CLIENT_ROOT_URL } from '../../constants/api';
-import store from '../../store';
 import {
   leaveRoom,
   toggleMuteAudio,
   toggleRaiseHand,
   updateUserRole,
-} from '../../webRTC';
-import * as recorder from '../../webRTC/recorder';
+} from '../../audiorooms-client';
+import * as recorder from '../../audiorooms-client/recorder';
+import { CLIENT_ROOT_URL } from '../../constants/api';
+import store from '../../store';
+import { toggleRecording as toggleRecordingAction } from '../../store/actions/audio_chat_room';
 import LazyImage from '../common/LazyImage';
 import { AudioCallNotification } from './callNotification';
 const default_url = '/img/profile.png';
