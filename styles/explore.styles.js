@@ -84,20 +84,19 @@ export const ContentPageContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .selected-tab {
-    font-size: 14px;
-    font-weight: 600;
+    cursor: pointer;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--main-indigo);
+    border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--main-indigo);
+    cursor: pointer;
+    color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
 `;
@@ -138,7 +137,7 @@ export const CarouselContainer = styled.div`
 export const ExploreCardsContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-gap: 25px;
+  grid-gap: 1rem;
 `;
 
 export const CardContainer = styled.div`
@@ -148,8 +147,6 @@ export const CardContainer = styled.div`
   border: 1px solid var(--main-border);
   border-radius: 12px;
   overflow: hidden;
-  // padding: 0.5rem;
-  margin: 1rem 0;
   cursor: pointer;
 
   @media (min-width: 475px) {
@@ -162,7 +159,7 @@ export const CardContainer = styled.div`
     grid-gap: 0.1rem;
     object-fit: cover;
     margin-bottom: 0.8rem;
-    height: 80px;
+    height: 75px;
 
     @media (min-width: 475px) {
       height: 110px;
@@ -178,6 +175,7 @@ export const CardContainer = styled.div`
   .experts-img-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
     grid-gap: 0.1rem;
     object-fit: cover;
     margin-top: 1rem;
@@ -210,8 +208,6 @@ export const CardContainer = styled.div`
   }
 
   .category-title {
-    font-size: 12px;
-    font-weight: 600;
     color: var(--main-black);
     margin-bottom: 0.2rem;
   }
@@ -225,8 +221,6 @@ export const CardContainer = styled.div`
 
   .num-of-experts {
     padding-right: 0.5rem;
-    font-family: none;
-    font-size: 10px;
     color: rgba(0, 20, 51, 0.5);
   }
 
@@ -259,9 +253,6 @@ export const CardContainer = styled.div`
   }
 
   .num-of-posts {
-    font-family: none;
-    font-size: 10px;
-    letter-spacing: -0.408px;
     color: rgba(0, 20, 51, 0.5);
   }
 
@@ -284,9 +275,6 @@ export const CardContainer = styled.div`
   }
 
   .follow-all {
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: -0.408px;
     color: var(--main-black);
   }
 `;
@@ -325,9 +313,7 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .title {
-    color: var(--main-black)
-    font-size: 14px;
-    font-weight: 600;
+    color: var(--main-black);
   }
 
   .details-container {
@@ -345,13 +331,11 @@ export const CategoryPostsContainer = styled.div`
 
   .details {
     color: var(--main-gray);
-    font-size: 12px;
   }
 
   .follow-btn-wrapper {
     // display: flex;
     align-items: center;
-    justify-contents: center;
     // gap: 4px;
     background: #001433;
     color: #fff;
@@ -379,7 +363,7 @@ export const CategoryPostsContainer = styled.div`
     color: #fff;
   }
 
-  .tags-container{
+  .tags-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -404,17 +388,15 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .selected-tab {
-    font-size: 14px;
-    font-weight: 600;
+    cursor: pointer;
     color: var(--main-indigo);
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--main-indigo);
+    border-bottom: 1.5px solid var(--main-indigo);
   }
 
   .select-tab {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--main-indigo);
+    cursor: pointer;
+    color: var(--sub-indigo);
     padding-bottom: 0.6rem;
   }
 `;
@@ -517,4 +499,9 @@ export const UserCardsContainer = styled.div`
     border-radius: 5px;
     border: none;
   }
+`;
+
+export const ExploreListContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
 `;

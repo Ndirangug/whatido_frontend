@@ -34,3 +34,79 @@ a {
   --gray-text: #808999;
   --gray-variant-i: #d9d9d9;
 }
+
+/* Input type checkbox */
+
+.blockprogress {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.video {
+  height: 100%;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: contain;
+  background-color: black;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type='checkbox']::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--main-indigo);
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type='checkbox']:checked::before {
+  transform: scale(1);
+}
+
+.previewComp {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  height: auto;
+  min-height: 200px;
+  border: 1px dashed gray;
+}
+
+.previewCompChild {
+  width: 12.5%;
+  height: 200px;
+  /* object-fit: cover; */
+}
+
+.previewCompChild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input type checkbox */

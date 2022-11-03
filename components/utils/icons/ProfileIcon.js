@@ -1,13 +1,19 @@
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 
 const StyledIconBtn = styled(IconButton)`
   border-radius: 0px;
   padding: 0 0.5rem;
   border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+
+  @media (min-width: 475px) {
+    border-top: none;
+    border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+  }
 `;
 
 function ProfileIcon() {
@@ -17,14 +23,11 @@ function ProfileIcon() {
 
   const authenticated = useSelector((state) => state.auth.authenticated);
   const user = useSelector((state) => state.auth.currentUser);
+  const dispatch = useDispatch();
 
   const goProfile = () => {
     if (!authenticated) {
-      router.push({
-        query: {
-          login: true,
-        },
-      });
+      dispatch(setAuthComonent('LOGIN'));
     } else {
       router.push(`/profile/${user?.slug}`);
     }

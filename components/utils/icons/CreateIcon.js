@@ -1,5 +1,8 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 
 const StyledIconBtn = styled(IconButton)`
   border-radius: 6px;
@@ -7,8 +10,20 @@ const StyledIconBtn = styled(IconButton)`
 `;
 
 function CreateIcon() {
+  const router = useRouter();
+
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const dispatch = useDispatch();
+
+  const handleCreate = () => {
+    if (!authenticated) {
+      dispatch(setAuthComonent('LOGIN'));
+    } else {
+      router.push('/create');
+    }
+  };
   return (
-    <StyledIconBtn>
+    <StyledIconBtn onClick={handleCreate}>
       <svg
         width="142"
         height="44"

@@ -10,6 +10,7 @@ function FeedCard({ media }) {
         height={100}
         width={100}
         layout="responsive"
+        objectFit="cover"
       />
     </FeedCardContainer>
   );

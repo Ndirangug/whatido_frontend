@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import ExplorePage from '../components/explore';
-import { ErrorBoundary } from '../hooks/ErrorBoundary';
-import { ExplorePageContainer } from '../styles/explore.styles';
+import ExplorePage from '../../components/explore';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
+import { ExplorePageContainer } from '../../styles/explore.styles';
 
 const explore = () => {
   return (

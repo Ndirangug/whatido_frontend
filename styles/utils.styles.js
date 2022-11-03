@@ -16,7 +16,8 @@ export const ButtonContainer = styled.button`
 `;
 
 export const SelectButtonContainer = styled.button`
-  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  padding: 0.5rem 4rem;
   border-radius: 4px;
   background: var(--main-indigo);
   color: white;
@@ -32,6 +33,21 @@ export const BigButtonContainer = styled.button`
   line-height: 1.5rem;
   font-weight: 400;
   border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  width: 100%;
+`;
+
+export const CancelButtonContainer = styled.button`
+  padding: 1rem;
+  color: ${({ textColor }) => textColor};
+  background: ${({ color }) => color};
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  border: 1px solid rgba(0, 20, 51, 0.3);
   outline: none;
   cursor: pointer;
   border-radius: 6px;
@@ -65,12 +81,19 @@ export const InputFieldContainer = styled.div`
 
   .input {
     width: 100%;
-    border: ${({ error }) =>
-      error ? '1px solid red' : '1px solid var(--main-border)'};
+    border: ${({ error }) => (error ? '1px solid red' : 'none')};
     padding: 0.75rem 0.5rem;
     border-radius: 0.25rem;
     outline: none;
     font-size: 1rem;
+    width: 100%;
+    height: 50px;
+    background: #f1f1f1;
+    border-radius: 8px;
+
+    ::placeholder {
+      color: rgba(0, 20, 51, 0.1);
+    }
 
     &focus {
       border: 1px solid var(--main-border);
@@ -113,13 +136,11 @@ export const AuthOptionContainer = styled.div`
 
 export const ReelsCardContainer = styled.div`
   position: relative;
-  width: inherit;
-  height: inherit;
-  max-width: inherit;
-  min-width: 100%;
-  max-height: inherit;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   scroll-snap-align: start;
+  max-width: 475px;
+  margin: 0 auto;
 
   .reels-info-container {
     position: absolute;
