@@ -3,9 +3,7 @@ import styled from 'styled-components';
 export const CreatePageContainer = styled.div`
   width: 100%;
   overflow: scroll;
-  padding: 0.5rem;
-  display: grid;
-  grid-gap: 0.5rem;
+  padding: 1rem;
   height: 100%;
   background: #fff;
 
@@ -18,17 +16,30 @@ export const CreatePageContainer = styled.div`
 `;
 
 export const DragDropContainer = styled.div`
-  width: 100%;
-  border: 2px dashed var(--main-indigo);
+  border: ${(props) =>
+    props.isBorder ? '2px dashed var(--main-border)' : 'none'};
   gap: 10px;
+
+  min-height: 500px;
+  margin: 0 auto;
+  // padding-block: 10vh;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   cursor: pointer;
   position: relative;
+  trasition: all 2s ease-in;
+
+  &:hover {
+    background: ${(props) =>
+      props?.isBorder ? 'var(--main-background)' : 'none'};
+  }
+
+  .margin-bottom {
+    margin-bottom: 20px;
+  }
 
   .drop-input {
     position: absolute;
@@ -40,16 +51,52 @@ export const DragDropContainer = styled.div`
   }
 `;
 
+export const UploadMainContainer = styled.div`
+  display: flex;
+  padding: 1rem;
+  gap: 2rem;
+  .drapAndDropContainer {
+    width: 30%;
+  }
+
+  .inputContainer {
+    width: 70%;
+    height: inherit;
+  }
+`;
+
 export const UploadInputPreviewContainer = styled.div`
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--main-border);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 
   .preview-image {
     height: 100%;
     width: 100%;
     object-fit: cover;
+  }
+
+  .labelAndFieldContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+    .extraHeight {
+      height: 20vh;
+    }
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    gap: 30px;
+    font-size: 16px;
+
+    .labelAndCheckboxContainer {
+      display: flex;
+      gap: 8px;
+    }
   }
 
   .input {
@@ -116,26 +163,21 @@ export const SelectFeatureContainer = styled.div`
 `;
 
 export const CreateButtonContainer = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-  margin-top: auto;
+  display: flex;
+  gap: 16px;
+  margin-top: 1rem;
 `;
 
 export const PostButtonContainer = styled.button`
-  color: #fff;
+  color: ${({ textColor }) => textColor};
   background: ${({ color }) => color};
   font-size: 1rem;
-  line-height: 1.5rem;
   font-weight: 400;
+  padding: 8px 64px;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 6px;
-  white-space: nowrap;
-  width: 100%;
-  height: 2rem;
 `;
 
 export const PreviewContainer = styled.div`
@@ -144,6 +186,43 @@ export const PreviewContainer = styled.div`
   .video {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+  }
+`;
+
+export const InputField = styled.input`
+  border: 1px solid var(--main-border);
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  padding: 8px;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SelectField = styled.select`
+  border: 1px solid var(--main-border);
+  border-radius: 5px;
+  width: 50%;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const AbsoluteDiv = styled.div`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  span {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 12px;
+    cursor: pointer;
   }
 `;

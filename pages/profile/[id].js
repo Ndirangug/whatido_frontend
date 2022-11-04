@@ -13,7 +13,7 @@ function Profile() {
   const router = useRouter();
   const { data } = useSWR(`${API_URL}/getExpertDetail/${router?.query?.id}`);
   const user = data?.data;
-  console.log('user', user);
+
   return (
     <ProfilePageContainer>
       <ProfileLeftContainer>

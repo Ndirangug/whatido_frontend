@@ -16,7 +16,8 @@ export const ButtonContainer = styled.button`
 `;
 
 export const SelectButtonContainer = styled.button`
-  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  padding: 0.5rem 4rem;
   border-radius: 4px;
   background: var(--main-indigo);
   color: white;

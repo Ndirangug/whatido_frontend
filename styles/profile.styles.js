@@ -6,6 +6,7 @@ export const ProfilePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: var(--main-background);
+
   @media (min-width: 475px) {
     margin: 1rem;
   }
@@ -133,7 +134,7 @@ export const FeedContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0.25rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 `;
 
 export const FeedCardContainer = styled.div`

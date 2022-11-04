@@ -15,13 +15,18 @@ export const TextSM = styled(Typography)`
   color: white;
 `;
 
-export const CreateText = styled(Typography)`
+export const CreateHeadingText = styled(Typography)`
+  font-size: 1.25rem;
+  line-height: 1.5rem; /* 24px */
+  font-weight: 600;
+  color: var(--main-indigo);
+`;
+
+export const CreateParaText = styled(Typography)`
   font-size: 1rem; /* 16px */
   line-height: 1.5rem; /* 24px */
-  font-weight: 500;
-  width: 100%;
-  text-align: center;
-  color: var(--main-indigo);
+  font-weight: 400;
+  color: var(--gray-text);
 `;
 
 export const CreateCaptionText = styled(Typography)`
@@ -43,13 +48,27 @@ export const SelectText = styled(Typography)`
   color: var(--main-indigo);
 `;
 
-export const ShareText = styled(Typography)`
-  font-size: 14px;
+export const ShareHeadingText = styled(Typography)`
+  font-size: 16px;
   line-height: 22px;
+  font-weight: 500;
   text-align: center;
-  letter-spacing: -0.408px;
-  color: var(--main-gray);
+  color: var(--main-indigo);
 `;
+
+export const ShareParaText = styled(Typography)`
+  font-size: 14px;
+  font-weight: 500;
+  text-alig: center;
+  letter-spacing: 0.5px;
+  color: var(--gray-text);
+`;
+
+export const LabelText = styled(Typography)`
+  font-size: 16px;
+  font-weight: 500;
+`;
+
 export const ExploreText = styled(Typography)`
   font-size: 1.5rem; /* 24px */
   line-height: 2rem; /* 32px */
@@ -83,4 +102,11 @@ export const TextSm = styled(Typography)`
 export const TextxS = styled(Typography)`
   font-size: 0.75rem; /* 12px */
   line-height: 1.1rem; /* 16px */
+`;
+
+export const LearnMoreText = styled(Typography)`
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  color: var(--gray-text);
 `;
