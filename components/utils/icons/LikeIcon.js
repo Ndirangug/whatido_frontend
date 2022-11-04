@@ -26,7 +26,6 @@ function LikeIcon({ inspired, id }) {
         };
 
         const res = await likeAction(endpoint, body, token);
-        console.log(res);
 
         if (res.status === 200) {
           mutate(getVideoUrl);
