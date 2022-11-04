@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Image from 'next/legacy/image';
 import { useRef, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -18,6 +19,7 @@ import {
 
 function DragDrop({ setScreenShots, setSelectedSS }) {
   const [uploadPercent, setUploadPercent] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [uploadStatus, setUploadStatus] = useState('initial');
   const [videoData, setVideoData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -134,7 +136,7 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
             // overflow: 'hidden',
           }}
         >
-          <img
+          <Image
             src="/mobile-frame.png"
             alt="frame"
             width={'100%'}
