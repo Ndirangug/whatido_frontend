@@ -1,6 +1,11 @@
 import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { ErrorBoundary } from '../../../../hooks/ErrorBoundary';
+import {
+  setFeedModal,
+  setMedia,
+} from '../../../../store/reducers/feed_modal_reducer';
 import { ReelsCardContainer } from '../../../../styles/utils.styles';
 import CommentIcon from '../../icons/CommentIcon';
 import LikeIcon from '../../icons/LikeIcon';
@@ -12,6 +17,7 @@ import MdUserHeader from '../../micro/MdUserHeader';
 import { TextSM, TextXS } from '../../typography/Typography';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
+  const dispatch = useDispatch();
 
   const callBackFunction = useCallback((entries) => {
     const [entry] = entries;
@@ -33,6 +39,11 @@ function ReelsCard({ media }) {
     []
   );
 
+  const openFeed = () => {
+    dispatch(setMedia(media));
+    dispatch(setFeedModal(true));
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       callBackFunction,
@@ -51,7 +62,7 @@ function ReelsCard({ media }) {
   }, [callBackFunction, callBackOptions]);
 
   return (
-    <ReelsCardContainer>
+    <ReelsCardContainer onClick={openFeed}>
       <div className="reels-info-container">
         <div className="info-content">
           <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
