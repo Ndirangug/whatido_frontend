@@ -3,7 +3,6 @@ import { setCaption } from '../../store/reducers/media_reducer';
 import {
   AbsoluteDiv,
   InputField,
-  SelectField,
   UploadInputPreviewContainer,
 } from '../../styles/create.styles';
 import { LabelText, LearnMoreText } from '../utils/typography/Typography';
@@ -19,7 +18,7 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
   return (
     <UploadInputPreviewContainer>
       <div className="labelAndFieldContainer">
-        <LabelText>Caption</LabelText>
+        <LabelText>caption</LabelText>
         <div style={{ position: 'relative' }}>
           <InputField type="text" />
           <AbsoluteDiv>
@@ -29,7 +28,7 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
         </div>
       </div>
       <div className="labelAndFieldContainer">
-        <LabelText>Cover</LabelText>
+        <LabelText>cover</LabelText>
         <div className="previewComp">
           {screenShots?.length !== 0
             ? screenShots?.map((e, i) => (
@@ -56,15 +55,15 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
             : null}
         </div>
       </div>
-      <div className="labelAndFieldContainer">
+      {/* <div className="labelAndFieldContainer">
         <LabelText>Who can view this video</LabelText>
         <SelectField>
           <option value="public">Public</option>
           <option value="private">Private</option>
           <option value="unlistd">Unlisted</option>
         </SelectField>
-      </div>
-      <div className="labelAndFieldContainer">
+      </div> */}
+      {/* <div className="labelAndFieldContainer">
         <LabelText for="comment">Allow users to</LabelText>
         <div className="checkbox-wrapper">
           <div className="labelAndCheckboxContainer">
@@ -80,13 +79,11 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
             <LabelText for="stitch">Stitch</LabelText>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="labelAndFieldContainer">
-        <LabelText>Run a copyright check</LabelText>
-      </div>
-      <div className="labelAndFieldContainer">
+        <LabelText>run a copyright check</LabelText>
         <LearnMoreText>
-          We will check your video for potential copyright infringements on used
+          we will check your video for potential copyright infringements on used
           sounds. If infringements are found, you can edit the video before
           posting.
         </LearnMoreText>

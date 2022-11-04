@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CreatePageContainer = styled.div`
   width: 100%;
   overflow: scroll;
-  padding: 0.5rem;
+  padding: 1rem;
   height: 100%;
   background: #fff;
 
@@ -19,7 +19,7 @@ export const DragDropContainer = styled.div`
   border: ${(props) =>
     props.isBorder ? '2px dashed var(--main-border)' : 'none'};
   gap: 10px;
-  width: 80%;
+
   min-height: 500px;
   margin: 0 auto;
   // padding-block: 10vh;
@@ -53,14 +53,15 @@ export const DragDropContainer = styled.div`
 
 export const UploadMainContainer = styled.div`
   display: flex;
-  align-items: center;
-
+  padding: 1rem;
+  gap: 2rem;
   .drapAndDropContainer {
     width: 30%;
   }
 
   .inputContainer {
     width: 70%;
+    height: inherit;
   }
 `;
 
@@ -68,8 +69,7 @@ export const UploadInputPreviewContainer = styled.div`
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  align-items: center;
+  gap: 1rem;
 
   .preview-image {
     height: 100%;
@@ -163,9 +163,9 @@ export const SelectFeatureContainer = styled.div`
 `;
 
 export const CreateButtonContainer = styled.div`
-  margin-top: auto;
   display: flex;
   gap: 16px;
+  margin-top: 1rem;
 `;
 
 export const PostButtonContainer = styled.button`
@@ -206,8 +206,7 @@ export const SelectField = styled.select`
   border: 1px solid var(--main-border);
   border-radius: 5px;
   width: 50%;
-  font-size:16px;
-  padding 8px;
+  font-size: 16px;
 
   &:focus {
     outline: none;

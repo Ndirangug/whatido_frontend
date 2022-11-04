@@ -18,7 +18,7 @@ export const TextSM = styled(Typography)`
 export const CreateHeadingText = styled(Typography)`
   font-size: 1.25rem;
   line-height: 1.5rem; /* 24px */
-  font-weight: 700;
+  font-weight: 600;
   color: var(--main-indigo);
 `;
 
@@ -51,7 +51,7 @@ export const SelectText = styled(Typography)`
 export const ShareHeadingText = styled(Typography)`
   font-size: 16px;
   line-height: 22px;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   color: var(--main-indigo);
 `;
@@ -66,7 +66,7 @@ export const ShareParaText = styled(Typography)`
 
 export const LabelText = styled(Typography)`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
 `;
 
 export const ExploreText = styled(Typography)`

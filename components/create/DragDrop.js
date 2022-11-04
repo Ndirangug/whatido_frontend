@@ -101,7 +101,7 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
               text={`${uploadPercent}%`}
             />
           </div>
-          <h3>Uploading</h3>
+          <h3>uploading</h3>
           <h3
             onClick={() => {
               console.log(tokenSrc.current);
@@ -164,14 +164,14 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
           <UploadIcon />
           <div className="margin-bottom">
             {/* <h2>{uploadPercent}</h2> */}
-            <ShareHeadingText>Select video to upload</ShareHeadingText>
-            <ShareParaText>Or drag and drop a file</ShareParaText>
+            <ShareHeadingText>select video to upload</ShareHeadingText>
+            <ShareParaText>or drag and drop a file</ShareParaText>
           </div>
           <ShareParaText>MP4 or WebM</ShareParaText>
           <ShareParaText>720x1280 resolution or higher</ShareParaText>
-          <ShareParaText>Up to 5 minutes</ShareParaText>
-          <ShareParaText> Less than 2 GB</ShareParaText>
-          <SelectButtonContainer>Select file</SelectButtonContainer>
+          <ShareParaText>up to 5 minutes</ShareParaText>
+          <ShareParaText> less than 2 GB</ShareParaText>
+          <SelectButtonContainer>select file</SelectButtonContainer>
           <input
             type="file"
             className="drop-input"
