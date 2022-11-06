@@ -5,11 +5,14 @@ function FeedSkeleton() {
   return (
     <FeedSkeletonContainer>
       <Skeleton variant="rectangular" width="100%" height="100%" />
-      <div className="info-skeleton-container"></div>
-      {/* For other variants, adjust the size with `width` and `height`
+      <div className="info-skeleton-container">
+      <div className="info-skeleton-avatar">
       <Skeleton variant="circular" width={40} height={40} />
-      <Skeleton variant="rectangular" width={210} height={60} />
-      <Skeleton variant="rounded" width={210} height={60} /> */}
+      <Skeleton variant="text" width={100} />
+      </div>
+      <Skeleton variant="text" /> 
+      <Skeleton variant="text" />
+      </div>
     </FeedSkeletonContainer>
   );
 }
