@@ -10,4 +10,11 @@ export const ContentPageContainer = styled.div`
   width: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;

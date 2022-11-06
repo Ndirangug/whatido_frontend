@@ -1,7 +1,8 @@
 import Stack from '@mui/material/Stack';
 import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ErrorBoundary } from '../../../../hooks/ErrorBoundary';
+import { setAuthComonent } from '../../../../store/reducers/app_surface_reducer';
 import {
   setFeedModal,
   setMedia,
@@ -18,6 +19,8 @@ import { TextSM, TextXS } from '../../typography/Typography';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
   const dispatch = useDispatch();
+  const feedModal = useSelector((state) => state.feed.feedModal);
+  const authenticated = useSelector((state) => state.auth.authenticated);
 
   const callBackFunction = useCallback((entries) => {
     const [entry] = entries;
@@ -40,8 +43,12 @@ function ReelsCard({ media }) {
   );
 
   const openFeed = () => {
-    dispatch(setMedia(media));
-    dispatch(setFeedModal(true));
+    if (authenticated) {
+      dispatch(setMedia(media));
+      dispatch(setFeedModal(true));
+    } else {
+      dispatch(dispatch(setAuthComonent('LOGIN')));
+    }
   };
 
   useEffect(() => {
@@ -61,8 +68,27 @@ function ReelsCard({ media }) {
     // dependency array
   }, [callBackFunction, callBackOptions]);
 
+  useEffect(() => {
+    if (feedModal) {
+      videoRef?.current?.pause();
+    } else {
+      const observer = new IntersectionObserver(
+        callBackFunction,
+        callBackOptions
+      );
+
+      const current = videoRef.current;
+
+      if (videoRef.current) observer.observe(videoRef.current);
+
+      return () => {
+        if (current) observer.unobserve(current);
+      };
+    }
+  }, [feedModal, callBackFunction, callBackOptions]);
+
   return (
-    <ReelsCardContainer onClick={openFeed}>
+    <ReelsCardContainer>
       <div className="reels-info-container">
         <div className="info-content">
           <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
@@ -90,8 +116,8 @@ function ReelsCard({ media }) {
           </ErrorBoundary>
           <Stack direction="column" spacing={2}>
             <SubscribeIcon />
-            <LikeIcon inspired={media?.inspired} id={media?._id} />
-            <CommentIcon />
+            <LikeIcon defaultColor={'#ffffff'} media={media} />
+            <CommentIcon openFeed={openFeed} />
             <ShareIcon />
             <OptionsIcon />
           </Stack>

@@ -5,23 +5,24 @@ import { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
 import { likeAction } from '../../../store/actions/user_actions';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
+import { setMedia } from '../../../store/reducers/feed_modal_reducer';
 
-function LikeIcon({ inspired, id }) {
+function LikeIcon({ media, defaultColor }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.currentUser);
   const [{ token }] = useCookies(['token']);
   const getVideoUrl = `${API_URL}/feed/for-you?page=0`;
 
-  let color = inspired?.includes(user?.slug) ? 'red' : '#ffffff';
+  let color = media?.inspired?.includes(user?.slug) ? 'red' : defaultColor;
 
   const beInspired = async () => {
     if (user?.slug) {
       try {
-        const endpoint = inspired?.includes(user?.slug)
+        const endpoint = media?.inspired?.includes(user?.slug)
           ? 'media/unlikeVideo'
           : 'media/likeVideo';
         const body = {
-          id,
+          id: media?._id,
           userSlug: user?.slug,
         };
 
@@ -29,6 +30,7 @@ function LikeIcon({ inspired, id }) {
 
         if (res.status === 200) {
           mutate(getVideoUrl);
+          dispatch(setMedia(media));
         }
       } catch (error) {
         console.log(error);

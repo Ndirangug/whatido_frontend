@@ -25,7 +25,6 @@ const Feed = () => {
           className="content-preview-container"
           style={{
             backgroundImage: `url(${media?.thumbnail[0]?.cdnUrl})`,
-            backdropFilter: 'blur(5px)',
           }}
         >
           <video
@@ -45,6 +44,7 @@ const Feed = () => {
           <ContentCaption
             userSlug={media?.userSlug}
             handleClose={handleClose}
+            media={media}
           />
         </div>
       </div>

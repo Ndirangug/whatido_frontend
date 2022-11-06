@@ -24,7 +24,6 @@ export const ViewFeedModal = styled(Modal)`
   .modal-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
     height: 100%;
     width: 100%;
     border-radius: 0.75rem;
@@ -37,18 +36,20 @@ export const ViewFeedModal = styled(Modal)`
   .content {
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
   }
 
   .content-preview-container {
     align-self: flex-start;
     width: 100%;
     height: 100%;
-    // filter: blur(5px);
     overflow: hidden;
     border-radius: 0.75rem 0 0 0.75rem;
   }
 
   .content-caption-container {
+    display: grid;
+    grid-template-rows: 0.5fr 3.5fr 0.5fr;
     height: 100%;
   }
 `;
@@ -113,5 +114,165 @@ export const CaptionHeaderContainer = styled.div`
     &:hover {
       background-color: whitesmoke;
     }
+  }
+`;
+
+export const CaptionBodyContainer = styled.div`
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  .comment-container {
+    display: grid;
+    grid-gap: 1rem;
+    height: max-content;
+  }
+
+  .margined {
+    margin-right: 1rem;
+  }
+
+  .comment {
+    font-weight: 400;
+    margin: 0 !important;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .flex {
+    display: flex;
+    gap: 0.5rem;
+
+    &:hover {
+      .options {
+        display: flex;
+        position: relative;
+      }
+    }
+  }
+
+  .ellipse {
+    width: 4px;
+    height: 4px;
+    background: #d0d0d0;
+    border-radius: 50%;
+    margin: 0 0.3rem;
+  }
+
+  .category {
+    color: var(--main-gray);
+  }
+
+  .options {
+    display: none;
+  }
+
+  .option-container {
+    position: absolute;
+    right: 0.6rem;
+    top: 3.8rem;
+    background-color: #ffffff;
+    width: max-content;
+    padding: 0.5rem 0rem;
+    border-radius: 0.25rem;
+    box-shadow: 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    display: grid;
+    grid-gap: 0.5rem;
+  }
+
+  .option-text {
+    color: red;
+    cursor: pointer;
+    margin: 0 !important;
+  }
+`;
+
+export const CaptionFooterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem;
+
+  .icons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .sidebar-icons {
+    font-size: 2.5rem;
+    border: none;
+    border-radius: 50%;
+  }
+
+  .inspired {
+    color: var(--primary-yellow);
+  }
+
+  .sidebar-count {
+    font-weight: 600;
+    border: none;
+  }
+
+  .comment-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: #f3f3f3;
+    border-radius: 10px;
+    padding: 0.3rem 1rem;
+  }
+
+  .icon {
+    height: 2.6rem;
+    width: 2.6rem;
+    color: #78716c;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    height: max-content;
+    cursor: pointer;
+    padding: 0.75rem;
+    margin-left: 1rem;
+  }
+`;
+
+export const CaptionTextArea = styled.textarea`
+  width: 100%;
+  height: 40px;
+  border: none;
+  padding: 10px;
+  resize: none;
+  outline: none;
+  font-size: 14px;
+  color: #4a4a4a;
+  background: transparent;
+
+  ::placeholder {
+    color: #bdbdbd;
   }
 `;

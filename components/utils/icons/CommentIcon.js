@@ -1,8 +1,8 @@
 import IconButton from '@mui/material/IconButton';
 
-function CommentIcon() {
+function CommentIcon({ openFeed }) {
   return (
-    <IconButton>
+    <IconButton onClick={openFeed}>
       <svg
         width="20"
         height="22"
