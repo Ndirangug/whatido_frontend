@@ -1,24 +1,16 @@
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
-import { ContentPageContainer } from '../../../styles/home.styles';
+import { FeedSkeletonContainer } from '../../../styles/skeleton.styles';
 
 function FeedSkeleton() {
   return (
-    <ContentPageContainer>
-      <Stack>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        {/* For variant="text", adjust the height via font-size */}
-        {/* For other variants, adjust the size with `width` and `height` */}
-        <Skeleton variant="rectangular" width={400} height={400} />
-        <Skeleton variant="circular" sx={{ display: 'flex'}}  >
-          <Avatar/>
-        </Skeleton>
-        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-      </Box>
-      </Stack>
-    </ContentPageContainer>
+    <FeedSkeletonContainer>
+      <Skeleton variant="rectangular" width="100%" height="100%" />
+      <div className="info-skeleton-container"></div>
+      {/* For other variants, adjust the size with `width` and `height`
+      <Skeleton variant="circular" width={40} height={40} />
+      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="rounded" width={210} height={60} /> */}
+    </FeedSkeletonContainer>
   );
 }
 
