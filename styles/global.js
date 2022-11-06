@@ -18,7 +18,7 @@ export const GlobalStyleProvider = styled.div`
 
 export const DesktopNavigation = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   overflow-y: scroll;
 `;
