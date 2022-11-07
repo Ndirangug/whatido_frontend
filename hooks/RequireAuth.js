@@ -11,8 +11,7 @@ const RequireAuth = (ComposedPage) => {
     const authenticated = useSelector((state) => state.auth.authenticated);
     const router = useRouter();
     useEffect(() => {
-      //&& !cookies[0].token
-      // if (!authenticated) router.push('/');
+      if (!authenticated) router.push('/');
     }, [authenticated, cookies, router]);
 
     return (

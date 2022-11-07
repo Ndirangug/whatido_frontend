@@ -24,8 +24,8 @@ function Create() {
   return (
     <CreatePageContainer>
       <div className="create-content">
-        <CreateHeadingText>Upload video</CreateHeadingText>
-        <CreateParaText>Post a video to your account</CreateParaText>
+        <CreateHeadingText>upload video</CreateHeadingText>
+        <CreateParaText>post a video to your account</CreateParaText>
       </div>
       <UploadMainContainer>
         <div className="drapAndDropContainer">

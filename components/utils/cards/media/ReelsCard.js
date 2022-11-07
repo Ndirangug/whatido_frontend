@@ -9,6 +9,7 @@ import PlayIcon from '../../icons/PlayIcon';
 import ShareIcon from '../../icons/ShareIcon';
 import SubscribeIcon from '../../icons/SubscribeIcon';
 import MdUserHeader from '../../micro/MdUserHeader';
+import FeedInfoSkeleton from '../../skeletons/FeedInfoSkeleton';
 import { TextSM, TextXS } from '../../typography/Typography';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
@@ -55,7 +56,7 @@ function ReelsCard({ media }) {
       <div className="reels-info-container">
         <div className="info-content">
           <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
-            <Suspense fallback={<div>loading...</div>}>
+            <Suspense fallback={<FeedInfoSkeleton />}>
               <Stack direction="column" spacing={0.5}>
                 <MdUserHeader userSlug={media.userSlug} />
                 <Stack direction="column" spacing={0.5}>

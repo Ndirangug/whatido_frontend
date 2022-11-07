@@ -32,7 +32,7 @@
     "coordinate_to_country": "^1.1.0",
     "ethers": "^5.7.1",
     "moment": "^2.29.4",
-    "next": "12.2.3",
+    "next": "12.3.2-canary.43",
     "next-transpile-modules": "^9.0.0",
     "nextjs-progressbar": "^0.0.14",
     "peerjs": "^1.4.6",
