@@ -33,3 +33,5 @@ export const FeedInfoSkeletonContainer = styled.div`
     gap: 1rem;
   }
 `;
+
+export const ExploreSkeletonContainer = styled.div``;
