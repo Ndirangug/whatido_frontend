@@ -33,3 +33,8 @@ export const FeedInfoSkeletonContainer = styled.div`
     gap: 1rem;
   }
 `;
+
+export const ExploreCategorySkeletonContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+`;

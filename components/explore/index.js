@@ -4,6 +4,7 @@ import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import CarouselImage from '../utils/cards/explore/CarouselImage';
+import ExploreCategorySkeleton from '../utils/skeletons/ExploreCategorySkeleton';
 import FeedInfoSkeleton from '../utils/skeletons/FeedInfoSkeleton';
 import { Text2XL, TextSm } from '../utils/typography/Typography';
 import CategoryList from './CategoryList';
@@ -55,7 +56,7 @@ const ExplorePage = () => {
 
         {page === 'category' && (
           <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
-            <Suspense fallback={<FeedInfoSkeleton />}>
+            <Suspense fallback={<ExploreCategorySkeleton />}>
               <CategoryList />
             </Suspense>
           </ErrorBoundary>
