@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
