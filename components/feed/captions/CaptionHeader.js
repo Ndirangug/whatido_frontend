@@ -3,11 +3,17 @@ import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
 import { CaptionHeaderContainer } from '../../../styles/feed.styles';
 import XsAvatar from '../../utils/avatars/XsAvatar';
-import CancelIcon from '../../utils/icons/CancelIcon';
 import { TextSm, TextxS } from '../../utils/typography/Typography';
+import ProfileFollowButton from '../../utils/buttons/ProfileFollowButton';
+import { useSelector } from 'react-redux';
 
 function CaptionHeader({ userSlug, handleClose }) {
   const router = useRouter();
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const user = useSelector((state) => state.auth.currentUser);
+
+  const myProfile = user?.slug === userSlug;
+
   const mediaUserUrl = `${API_URL}/getExpertDetail/${userSlug}`;
   const { data: mediaUserRequest } = useSWR(mediaUserUrl);
   const mediaUser = mediaUserRequest?.data;
@@ -35,9 +41,7 @@ function CaptionHeader({ userSlug, handleClose }) {
         </div>
       </div>
 
-      <div onClick={handleClose}>
-        <CancelIcon />
-      </div>
+      {authenticated && !myProfile && <ProfileFollowButton peer={userSlug} />}
     </CaptionHeaderContainer>
   );
 }

@@ -37,25 +37,34 @@ export const ViewFeedModal = styled(Modal)`
     }
   }
 
+  .content-caption-container {
+    display: grid;
+    grid-template-rows: 0.5fr 3.5fr 0.5fr;
+    height: 100%;
+  }
+`;
+
+export const ContentPreviewContainer = styled.div`
+  position: relative;
+  align-self: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // border-radius: 0.75rem 0 0 0.75rem;
+
   .content {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
   }
 
-  .content-preview-container {
-    position: relative;
-    align-self: flex-start;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    // border-radius: 0.75rem 0 0 0.75rem;
-  }
-
-  .content-caption-container {
-    display: grid;
-    grid-template-rows: 0.5fr 3.5fr 0.5fr;
-    height: 100%;
+  .icon-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    margin-left: 10px;
+    z-index: 999;
   }
 `;
 

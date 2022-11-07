@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeedModal } from '../../store/reducers/feed_modal_reducer';
 import { ViewFeedModal } from '../../styles/feed.styles';
-import WhatidoIcon from '../utils/icons/WhatidoIcon';
 import ContentCaption from './captions/ContentCaption';
+import ViewFeed from './ViewFeed';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -22,28 +22,8 @@ const Feed = () => {
       aria-describedby="simple-modal-description"
     >
       <div className="modal-body">
-        <div
-          className="content-preview-container"
-          style={{
-            backgroundImage: `url(${media?.thumbnail[0]?.cdnUrl})`,
-          }}
-        >
-          <div style={{ position: 'absolute', top: 5 }}>
-            <WhatidoIcon size={'45'} />
-          </div>
-          <video
-            poster={media?.thumbnail[0]?.cdnUrl}
-            src={media?.file[0]?.cdnUrl}
-            controlsList="nofullscreen nodownload"
-            preload="auto"
-            loop
-            playsInline
-            autoPlay="autoplay"
-            muted
-            id="video-player"
-            className="content"
-          />
-        </div>
+        <ViewFeed media={media} handleClose={handleClose} />
+
         <div>
           <ContentCaption
             userSlug={media?.userSlug}
