@@ -8,10 +8,10 @@ export const ViewFeedModal = styled(Modal)`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     height: 100%;
-    max-width: 1059px;
-    max-height: 650px;
+    // max-width: 1059px;
+    // max-height: 650px;
     margin: auto;
   }
 
@@ -23,28 +23,33 @@ export const ViewFeedModal = styled(Modal)`
 
   .modal-body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     height: 100%;
     width: 100%;
-    border-radius: 0.75rem;
+    // border-radius: 0.75rem;
     background: #ffffff;
     border: none;
     outline: none;
     // padding: 1rem;
+
+    @media (min-width: 960px) {
+      grid-template-columns: 2fr 1fr;
+    }
   }
 
   .content {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);
   }
 
   .content-preview-container {
+    position: relative;
     align-self: flex-start;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-radius: 0.75rem 0 0 0.75rem;
+    // border-radius: 0.75rem 0 0 0.75rem;
   }
 
   .content-caption-container {
@@ -264,6 +269,7 @@ export const CaptionFooterContainer = styled.div`
 export const CaptionTextArea = styled.textarea`
   width: 100%;
   height: 40px;
+  max-height: 50px;
   border: none;
   padding: 10px;
   resize: none;

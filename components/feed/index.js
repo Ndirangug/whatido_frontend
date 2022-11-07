@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeedModal } from '../../store/reducers/feed_modal_reducer';
 import { ViewFeedModal } from '../../styles/feed.styles';
+import WhatidoIcon from '../utils/icons/WhatidoIcon';
 import ContentCaption from './captions/ContentCaption';
 
 const Feed = () => {
@@ -27,6 +28,9 @@ const Feed = () => {
             backgroundImage: `url(${media?.thumbnail[0]?.cdnUrl})`,
           }}
         >
+          <div style={{ position: 'absolute', top: 5 }}>
+            <WhatidoIcon size={'45'} />
+          </div>
           <video
             poster={media?.thumbnail[0]?.cdnUrl}
             src={media?.file[0]?.cdnUrl}

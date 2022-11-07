@@ -1,16 +1,23 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
+import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
+import { setFeedModal } from '../../../store/reducers/feed_modal_reducer';
 import XxsAvatar from '../../utils/avatars/XxsAvatar';
 import { TextSm, TextxS } from '../../utils/typography/Typography';
 
 function Comment({ comment, mediaId }) {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const cookieUser = useCookies()[0]?.user;
+  const authenticated = useSelector((state) => state.auth.authenticated);
+
   const commentUserUserUrl = `${API_URL}/getExpertDetail/${comment?.userSlug}`;
   const commentUrl = `${API_URL}/media/page/comment/${mediaId}?page=${0}`;
-  const { data: commenttUserRequest } = useSWR(commentUserUserUrl);
-  const commentUser = commenttUserRequest?.data;
+  const { data: commentUserRequest, error } = useSWR(commentUserUserUrl);
+  const commentUser = commentUserRequest?.data;
   const [{ token }] = useCookies(['token']);
 
   const myComment = cookieUser?.slug === comment?.userSlug;
@@ -29,10 +36,17 @@ function Comment({ comment, mediaId }) {
     });
   };
 
+  const goToExpertProfile = () => {
+    dispatch(setFeedModal(false));
+    router.push(`/explore/expert/${commentUser?.slug}`);
+  };
+
   return (
     <div className="flex-container">
       <div className="flex">
-        <XxsAvatar src={commentUser?.imageUrl?.cdnUrl} />
+        <div onClick={goToExpertProfile}>
+          <XxsAvatar src={commentUser?.imageUrl?.cdnUrl} />
+        </div>
         <div>
           <div
             style={{
@@ -40,6 +54,9 @@ function Comment({ comment, mediaId }) {
               alignItems: 'center',
             }}
           >
+            {error && commentUser === undefined && (
+              <TextSm>suspended account</TextSm>
+            )}
             {commentUser && (
               <TextSm>
                 {commentUser?.profile?.firstName +
@@ -47,7 +64,7 @@ function Comment({ comment, mediaId }) {
                   commentUser?.profile?.lastName}{' '}
               </TextSm>
             )}
-            <div className="ellipse" />
+            {commentUser && <div className="ellipse" />}
             <div className="category">
               {commentUser && (
                 <TextSm>{commentUser?.expertCategories[0]}</TextSm>
@@ -65,7 +82,7 @@ function Comment({ comment, mediaId }) {
           </div>
         </div>
       </div>
-      {myComment && (
+      {authenticated && myComment && (
         <div className="option-text" onClick={handleDeleteComment}>
           <TextxS>delete</TextxS>
         </div>

@@ -67,8 +67,10 @@ export const LgContainer = styled.div`
   background: lightgray;
 `;
 export const NotificationLgContainer = styled.div`
-  display: grid;
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  // display: grid;
+  // grid-gap: 2rem;
   width: 100%;
   padding: 1rem;
   padding-left: 0rem !important;
