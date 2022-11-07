@@ -157,7 +157,7 @@ export const showChatRoom = async (expert) => {
   console.log(expert);
 
   // fetch authenticated user
-  const currentUser = await store.getState().user.profile;
+  const currentUser = await store.getState().auth.currentUser;
   console.log('place call from');
   console.log(currentUser);
 

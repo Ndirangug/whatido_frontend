@@ -3,7 +3,7 @@ import { API_URL } from '../../constants/api';
 import { ProfileInfoContainer } from '../../styles/profile.styles';
 import BigAvatar from '../utils/avatars/BigAvatar';
 import { TextSm, TextXL } from '../utils/typography/Typography';
-import ProfileActionButton from './ProfileActionButton';
+import ProfileActionButtons from './ProfileActionButtons';
 
 function ProfileInfo({ user }) {
   const { data: followers } = useSWR(`${API_URL}/follwers/${user?.slug}`);
@@ -29,7 +29,7 @@ function ProfileInfo({ user }) {
               {user?.profile?.firstName + ' ' + user?.profile?.lastName}
             </TextXL>
           </div>
-          <ProfileActionButton />
+          <ProfileActionButtons user={user} />
         </div>
         <div className="info">
           <TextSm>focus on {user?.expertFocusExpertise}</TextSm>

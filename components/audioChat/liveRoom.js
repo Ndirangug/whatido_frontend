@@ -161,7 +161,7 @@ export const RoomMember = ({ user, _index }) => {
 const QuickActions = () => {
   const muted = useSelector((state) => state.audioRoom.muted);
   console.log('audio muted: ', muted);
-  const user = useSelector((state) => state.user.profile);
+  const user = useSelector((state) => state.auth.currentUser);
   const room = useSelector((state) => state.audioRoom.room);
 
   const toggleRaiseHandHandler = () => {

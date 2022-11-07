@@ -4,8 +4,9 @@ import { peer, setOnlinePeer } from '../peerEvents';
 import { socket } from '../socketEvents';
 
 export const useAudioCallSetup = () => {
-  const user = useSelector((state) => state.user.profile);
+  //const user = useSelector((state) => state.user.profile);
   const socketId = useSelector((state) => state.audioRoom.socketId);
+  const user = useSelector((state) => state.auth.currentUser);
 
   console.log(`socketid ${socketId} and user is:`, user);
 

@@ -19,6 +19,8 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@hookform/resolvers": "^2.9.8",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.2.6",

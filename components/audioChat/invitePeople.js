@@ -113,7 +113,8 @@ const InvitePeople = ({ setSegment, user, animate }) => {
                   >
                     INVITE
                   </button>
-                  <ElipsDot
+                  <p>loading...</p>
+                  {/* <ElipsDot
                     className="mt-10 hide-invite"
                     id={'invite-loader' + _user._id}
                   >
@@ -121,7 +122,7 @@ const InvitePeople = ({ setSegment, user, animate }) => {
                     <div></div>
                     <div></div>
                     <div></div>
-                  </ElipsDot>
+                  </ElipsDot> */}
                 </div>
               ))}
             </div>
