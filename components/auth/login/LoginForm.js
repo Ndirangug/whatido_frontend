@@ -72,7 +72,9 @@ function LoginForm({ handleClose }) {
             <div className="checkbox-wrapper">
               <input type="checkbox" />
             </div>
-            <TextSm>remember for 90 days</TextSm>
+            <TextSm style={{ marginLeft: '0.5rem' }}>
+              remember for 90 days
+            </TextSm>
           </div>
           <div className="forget-password">
             <Link href="/">

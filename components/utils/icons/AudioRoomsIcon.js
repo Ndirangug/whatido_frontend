@@ -1,7 +1,12 @@
 import IconButton from '@mui/material/IconButton';
 function AudioRoomsIcon() {
   return (
-    <IconButton>
+    <IconButton
+      style={{
+        padding: '0rem 0.75rem',
+        borderRadius: '50%',
+      }}
+    >
       <svg
         width="24"
         height="24"

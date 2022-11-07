@@ -41,25 +41,19 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
       // setToken(tok);
       axios
         .post('http://localhost:4000/upload', videoFormData, {
-          onUploadProgress: (data) => {
-            setUploadPercent(Math.round((data.loaded / data.total) * 100));
-          },
-          cancelToken: new axios.CancelToken((src) => (tokenSrc.current = src)),
+          'Content-Type': 'multipart/form-data',
         })
         .then((response) => {
           setLoading(false);
-          {
-            response?.data?.data?.imageUrls.map((i) =>
-              console.log(`http://localhost:4000${i}`, 'image data')
-            );
-          }
+          console.log(response);
+
           // console.log(response?.data?.data?.imageUrls, 'upload reponse');
-          setVideoData(response?.data?.data);
-          setScreenShots(response?.data?.data?.imageUrls);
-          setSelectedSS(response?.data?.data?.imageUrls[0]);
-          setUploadStatus('videoUploaded');
-          setLoading(false);
-          setUploadPercent(null);
+          // setVideoData(response?.data?.data);
+          // setScreenShots(response?.data?.data?.imageUrls);
+          // setSelectedSS(response?.data?.data?.imageUrls[0]);
+          // setUploadStatus('videoUploaded');
+          // setLoading(false);
+          // setUploadPercent(null);
           // console.log('video uploaded successfully');
         })
         .catch((err) => {
@@ -101,7 +95,7 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
               text={`${uploadPercent}%`}
             />
           </div>
-          <h3>Uploading</h3>
+          <h3>uploading</h3>
           <h3
             onClick={() => {
               console.log(tokenSrc.current);
@@ -164,14 +158,14 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
           <UploadIcon />
           <div className="margin-bottom">
             {/* <h2>{uploadPercent}</h2> */}
-            <ShareHeadingText>Select video to upload</ShareHeadingText>
-            <ShareParaText>Or drag and drop a file</ShareParaText>
+            <ShareHeadingText>select video to upload</ShareHeadingText>
+            <ShareParaText>or drag and drop a file</ShareParaText>
           </div>
           <ShareParaText>MP4 or WebM</ShareParaText>
           <ShareParaText>720x1280 resolution or higher</ShareParaText>
-          <ShareParaText>Up to 5 minutes</ShareParaText>
-          <ShareParaText> Less than 2 GB</ShareParaText>
-          <SelectButtonContainer>Select file</SelectButtonContainer>
+          <ShareParaText>up to 5 minutes</ShareParaText>
+          <ShareParaText> less than 2 GB</ShareParaText>
+          <SelectButtonContainer>select file</SelectButtonContainer>
           <input
             type="file"
             className="drop-input"

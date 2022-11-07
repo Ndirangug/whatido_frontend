@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { FeedCardContainer } from '../../../../styles/profile.styles';
 
 function FeedCard({ media }) {
@@ -7,8 +7,8 @@ function FeedCard({ media }) {
       <Image
         src={media?.thumbnail?.[0]?.cdnUrl}
         alt="Logo"
-        height={100}
-        width={100}
+        width={300}
+        height={300}
         layout="responsive"
         objectFit="cover"
       />

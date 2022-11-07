@@ -134,7 +134,7 @@ export const FeedContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0.25rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 `;
 
 export const FeedCardContainer = styled.div`
