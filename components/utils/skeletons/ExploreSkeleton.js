@@ -1,10 +1,12 @@
-import { Skeleton } from '@mui/material/Skeleton';
-import ExploreSkeletonContainer from '../../../styles/skeleton.styles';
+import Skeleton from '@mui/material/Skeleton';
+import { ExploreSkeletonContainer } from '../../../styles/skeleton.styles';
 
 function ExploreSkeleton() {
   return (
     <ExploreSkeletonContainer>
-      <Skeleton variant="rectangular" />
+      <div className="carousel-skeleton-container">
+        <Skeleton variant="rectangular" width="100%" height="100%" />
+      </div>
     </ExploreSkeletonContainer>
   );
 }

@@ -34,4 +34,12 @@ export const FeedInfoSkeletonContainer = styled.div`
   }
 `;
 
-export const ExploreSkeletonContainer = styled.div``;
+export const ExploreSkeletonContainer = styled.div`
+  width: 100%;
+
+  .carousel-skeleton-container {
+    height: 14rem;
+    display: flex;
+    align-items: center;
+  }
+`;
