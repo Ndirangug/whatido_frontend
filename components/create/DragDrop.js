@@ -150,7 +150,7 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
               left: '50%',
               transform: 'translate(-50%,  -50%)',
             }}
-            src={`http://localhost:4000${videoData?.videoUrl}`}
+            src={`${videoData?.videoUrl}`}
           ></video>
         </div>
       ) : (

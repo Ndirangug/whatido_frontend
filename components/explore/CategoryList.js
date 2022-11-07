@@ -5,7 +5,9 @@ import ExploreCategoryCard from '../utils/cards/explore/ExploreCategoryCard';
 
 function CategoryList() {
   let pageUrl = `${API_URL}/feed/discover`;
-  const { data: posts } = useSWR(pageUrl);
+  const { data: posts } = useSWR(pageUrl, {
+    suspense: true,
+  });
 
   return (
     <ExploreListContainer>
