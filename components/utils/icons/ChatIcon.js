@@ -13,7 +13,7 @@ function ChatIcon() {
     if (!authenticated) {
       dispatch(setAuthComonent('LOGIN'));
     } else {
-      router.push('/chat/ongoing');
+      router.push('/messenger/chat');
     }
   };
   return (
