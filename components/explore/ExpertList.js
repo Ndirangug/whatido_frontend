@@ -23,6 +23,7 @@ function ExpertList() {
         }) => (
           <ExploreExpertCard
             key={_id}
+            slug={_id}
             thumbnail={thumbnail}
             profile={profile}
             avatar={avater}

@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setCaption } from '../../store/reducers/media_reducer';
+import Image from 'next/legacy/image';
 import {
   AbsoluteDiv,
   InputField,
@@ -7,13 +6,13 @@ import {
 } from '../../styles/create.styles';
 import { LabelText, LearnMoreText } from '../utils/typography/Typography';
 function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
-  const mediaFile = useSelector((state) => state.media.preUploadFile);
-  const caption = useSelector((state) => state.media.caption);
-  const dispatch = useDispatch();
+  // const mediaFile = useSelector((state) => state.media.preUploadFile);
+  // const caption = useSelector((state) => state.media.caption);
+  // const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    dispatch(setCaption(e.target.value));
-  };
+  // const handleChange = (e) => {
+  //   dispatch(setCaption(e.target.value));
+  // };
 
   return (
     <UploadInputPreviewContainer>
@@ -33,8 +32,9 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
           {screenShots?.length !== 0
             ? screenShots?.map((e, i) => (
                 <div className="previewCompChild" key={i}>
-                  <img
+                  <Image
                     src={`http://localhost:4000${e}`}
+                    alt=""
                     style={{
                       position: 'relative',
                       zIndex: imgClicked === e ? '10' : '0',
@@ -49,7 +49,7 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
                     onClick={() => {
                       setimgClicked(e);
                     }}
-                  ></img>
+                  />
                 </div>
               ))
             : null}

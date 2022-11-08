@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 export const ExplorePageContainer = styled.div`
   height: 100%;
-  overflow-y: scroll;
-  background: #fff;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--main-background);
 `;
 
 export const ContentPageContainer = styled.div`
   display: grid;
   grid-gap: 2rem;
-  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
@@ -282,16 +282,19 @@ export const CardContainer = styled.div`
 export const CategoryPostsLgContainer = styled.div`
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: relative;
-  background: #fff;
+  display: flex;
+  flex-direction: column;
+  background: var(--main-background);
+
+  @media (min-width: 475px) {
+    margin: 0 1rem;
+  }
 `;
 
 export const CategoryPostsContainer = styled.div`
   display: grid;
   grid-gap: 2rem;
-  max-width: 1200px;
+  // max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 
