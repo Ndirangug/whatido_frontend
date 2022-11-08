@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import ProfileInfo from '../../components/profile/ProfileInfo';
 import ProfileMedia from '../../components/profile/ProfileMedia';
 import { API_URL } from '../../constants/api';
+import RequireAuth from '../../hooks/RequireAuth';
 import {
   ProfileLeftContainer,
   ProfilePageContainer,
@@ -30,4 +31,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default RequireAuth(Profile);

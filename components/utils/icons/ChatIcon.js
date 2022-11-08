@@ -1,7 +1,29 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
+
 function ChatIcon() {
+  const router = useRouter();
+
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const dispatch = useDispatch();
+
+  const enterChat = () => {
+    if (!authenticated) {
+      dispatch(setAuthComonent('LOGIN'));
+    } else {
+      router.push('/messenger/chat');
+    }
+  };
   return (
-    <IconButton>
+    <IconButton
+      style={{
+        padding: '0rem 0.75rem',
+        borderRadius: '50%',
+      }}
+      onClick={enterChat}
+    >
       <svg
         width="24"
         height="24"

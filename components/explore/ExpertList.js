@@ -5,7 +5,9 @@ import ExploreExpertCard from '../utils/cards/explore/ExploreExpertCard';
 
 function ExpertList() {
   let pageUrl = `${API_URL}/feed/discover-expert`;
-  const { data: experts } = useSWR(pageUrl);
+  const { data: experts } = useSWR(pageUrl, {
+    suspense: true,
+  });
 
   return (
     <ExploreListContainer>

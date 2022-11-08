@@ -30,7 +30,6 @@ export const DragDropContainer = styled.div`
   align-items: center;
   cursor: pointer;
   position: relative;
-  trasition: all 2s ease-in;
 
   &:hover {
     background: ${(props) =>

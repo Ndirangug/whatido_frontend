@@ -7,7 +7,9 @@ import { CarouselContainer } from '../../../../styles/explore.styles';
 
 const CarouselImage = () => {
   const carouselUrl = `${API_URL}/feed/discover-banner`;
-  const { data: carouselImages } = useSWR(carouselUrl);
+  const { data: carouselImages } = useSWR(carouselUrl, {
+    suspense: true,
+  });
 
   return (
     <CarouselContainer>

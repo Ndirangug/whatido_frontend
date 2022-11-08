@@ -43,25 +43,19 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
       // setToken(tok);
       axios
         .post('http://localhost:4000/upload', videoFormData, {
-          onUploadProgress: (data) => {
-            setUploadPercent(Math.round((data.loaded / data.total) * 100));
-          },
-          cancelToken: new axios.CancelToken((src) => (tokenSrc.current = src)),
+          'Content-Type': 'multipart/form-data',
         })
         .then((response) => {
           setLoading(false);
-          {
-            response?.data?.data?.imageUrls.map((i) =>
-              console.log(`http://localhost:4000${i}`, 'image data')
-            );
-          }
+          console.log(response);
+
           // console.log(response?.data?.data?.imageUrls, 'upload reponse');
-          setVideoData(response?.data?.data);
-          setScreenShots(response?.data?.data?.imageUrls);
-          setSelectedSS(response?.data?.data?.imageUrls[0]);
-          setUploadStatus('videoUploaded');
-          setLoading(false);
-          setUploadPercent(null);
+          // setVideoData(response?.data?.data);
+          // setScreenShots(response?.data?.data?.imageUrls);
+          // setSelectedSS(response?.data?.data?.imageUrls[0]);
+          // setUploadStatus('videoUploaded');
+          // setLoading(false);
+          // setUploadPercent(null);
           // console.log('video uploaded successfully');
         })
         .catch((err) => {
@@ -158,7 +152,7 @@ function DragDrop({ setScreenShots, setSelectedSS }) {
               left: '50%',
               transform: 'translate(-50%,  -50%)',
             }}
-            src={`http://localhost:4000${videoData?.videoUrl}`}
+            src={`${videoData?.videoUrl}`}
           ></video>
         </div>
       ) : (
