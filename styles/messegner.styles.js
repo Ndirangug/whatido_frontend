@@ -50,3 +50,9 @@ export const SearchBarContainer = styled.div`
     }
   }
 `;
+
+export const ConversationListContainer = styled.div`
+ display: flex;
+ flex-direction:column;
+ gap 1rem;
+`;

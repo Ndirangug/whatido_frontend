@@ -2,13 +2,13 @@ import {
   SelectContainer,
   SidebarContainer,
 } from '../../styles/messegner.styles';
-import { Text2XL, TextBase } from '../utils/typography/Typography';
+import { TextBase } from '../utils/typography/Typography';
+import ConversationList from './ConversationList';
 import SearchBar from './SearchBar';
 
 function Sidebar() {
   return (
     <SidebarContainer>
-      <Text2XL>messaging</Text2XL>
       <div className="select-contaier">
         <SelectContainer selected>
           <TextBase>chat</TextBase>
@@ -18,6 +18,7 @@ function Sidebar() {
         </SelectContainer>
       </div>
       <SearchBar />
+      <ConversationList />
     </SidebarContainer>
   );
 }
