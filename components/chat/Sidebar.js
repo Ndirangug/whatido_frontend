@@ -3,6 +3,7 @@ import {
   SidebarContainer,
 } from '../../styles/messegner.styles';
 import { Text2XL, TextBase } from '../utils/typography/Typography';
+import SearchBar from './SearchBar';
 
 function Sidebar() {
   return (
@@ -16,6 +17,7 @@ function Sidebar() {
           <TextBase>stories</TextBase>
         </SelectContainer>
       </div>
+      <SearchBar />
     </SidebarContainer>
   );
 }
