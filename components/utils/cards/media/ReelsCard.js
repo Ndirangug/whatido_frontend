@@ -6,6 +6,7 @@ import { setAuthComonent } from '../../../../store/reducers/app_surface_reducer'
 import {
   setFeedModal,
   setMedia,
+  setShareModal,
 } from '../../../../store/reducers/feed_modal_reducer';
 import { ReelsCardContainer } from '../../../../styles/utils.styles';
 import CommentIcon from '../../icons/CommentIcon';
@@ -48,6 +49,14 @@ function ReelsCard({ media }) {
       dispatch(setFeedModal(true));
     } else {
       dispatch(dispatch(setAuthComonent('LOGIN')));
+    }
+  };
+
+  const openShareModal = () => {
+    if (authenticated) {
+      dispatch(setShareModal(true));
+    } else {
+      dispatch(setAuthComonent('LOGIN'));
     }
   };
 
@@ -118,7 +127,7 @@ function ReelsCard({ media }) {
             <SubscribeIcon />
             <LikeIcon defaultColor={'#ffffff'} media={media} />
             <CommentIcon openFeed={openFeed} />
-            <ShareIcon />
+            <ShareIcon openShareModal={openShareModal} />
             <OptionsIcon />
           </Stack>
         </div>

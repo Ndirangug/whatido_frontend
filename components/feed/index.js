@@ -24,13 +24,11 @@ const Feed = () => {
       <div className="modal-body">
         <ViewFeed media={media} handleClose={handleClose} />
 
-        <div>
-          <ContentCaption
-            userSlug={media?.userSlug}
-            handleClose={handleClose}
-            media={media}
-          />
-        </div>
+        <ContentCaption
+          userSlug={media?.userSlug}
+          handleClose={handleClose}
+          media={media}
+        />
       </div>
     </ViewFeedModal>
   );

@@ -1,10 +1,10 @@
 import IconButton from '@mui/material/IconButton';
 
-function ShareIcon({ defaultColor }) {
+function ShareIcon({ defaultColor, openShareModal }) {
   let color = defaultColor ? defaultColor : 'white';
 
   return (
-    <IconButton>
+    <IconButton onClick={openShareModal}>
       <svg
         width="26"
         height="20"

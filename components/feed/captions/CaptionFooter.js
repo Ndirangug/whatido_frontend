@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 import { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
+import { setShareModal } from '../../../store/reducers/feed_modal_reducer';
 import {
   CaptionFooterContainer,
   CaptionTextArea,
@@ -19,6 +21,7 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
   const textAreaRef = useRef(null);
   const [{ user }] = useCookies(['user']);
   const [{ token }] = useCookies(['token']);
+  const dispatch = useDispatch();
   const reduxUser = useSelector((state) => state.auth.currentUser);
   const authenticated = useSelector((state) => state.auth.authenticated);
 
@@ -26,13 +29,13 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
     viewedMedia?._id
   }?page=${0}`;
 
-  // const openShare = () => {
-  //   if (authenticated) {
-  //     router.push({
-  //       state: { share: true, mediaId: viewedMedia?._id },
-  //     });
-  //   }
-  // };
+  const openShareModal = () => {
+    if (authenticated) {
+      dispatch(setShareModal(true));
+    } else {
+      dispatch(setAuthComonent('LOGIN'));
+    }
+  };
 
   const handleInputHeight = () => {
     const maxheight = 80;
@@ -110,7 +113,7 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
         </div>
 
         <div className="icon-wrapper">
-          <ShareIcon defaultColor={'#dddddd'} />
+          <ShareIcon defaultColor={'#dddddd'} openShareModal={openShareModal} />
           <span className="sidebar-count">
             {viewedMedia?.shares?.length || '0'}
           </span>
