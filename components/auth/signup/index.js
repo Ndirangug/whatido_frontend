@@ -149,7 +149,7 @@ function SignUp() {
               <BackIcon />
             </div>
 
-            {signupComponent <= 3 && <WhatidoIcon />}
+            {signupComponent <= 3 && <WhatidoIcon size={'30'} />}
           </div>
           <div className="logo-container">
             {signupComponent >= 5 && (

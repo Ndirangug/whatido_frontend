@@ -1,5 +1,7 @@
+import { MessengerPageContainer } from '../../../styles/messegner.styles';
+
 function Ongoing() {
-  return <div>Ongoing conversations</div>;
+  return <MessengerPageContainer>Ongoing conversations</MessengerPageContainer>;
 }
 
 export default Ongoing;

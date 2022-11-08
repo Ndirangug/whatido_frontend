@@ -57,7 +57,7 @@ function Login() {
               <BackIcon />
             </div>
 
-            <WhatidoIcon />
+            <WhatidoIcon size={'30'} />
           </div>
           <div className="logo-container">
             <div className="header-text">

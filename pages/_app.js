@@ -17,6 +17,8 @@ import { DesktopNavigation, GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
 const SignupModal = lazy(() => import('../components/auth/signup/index'));
+const FeedModal = lazy(() => import('../components/feed/index'));
+const ShareModal = lazy(() => import('../components/utils/modals/share/index'));
 
 const fetcher = (...args) => {
   return axios(...args).then((res) => res.data);
@@ -52,6 +54,12 @@ function MyApp({ Component, pageProps }) {
                 </Suspense>
                 <Suspense>
                   <SignupModal />
+                </Suspense>
+                <Suspense>
+                  <FeedModal />
+                </Suspense>
+                <Suspense>
+                  <ShareModal />
                 </Suspense>
 
                 <NextProgress color="#001433" height={3} />
