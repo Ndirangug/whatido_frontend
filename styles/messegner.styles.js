@@ -136,3 +136,42 @@ export const MessageHeaderContainer = styled.div`
     gap: 0.5rem;
   }
 `;
+
+export const MessageFooterContainer = styled.div`
+  padding: 0.5rem 1rem;
+  border-top: 1px solid var(--main-border);
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+
+  .input-container {
+    background: white;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--main-background);
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+
+    .message-input {
+      border: none;
+      outline: none;
+      width: 100%;
+      background-color: transparent;
+      font-size: 1rem;
+      margin-left: 0.25rem;
+
+      ::placeholder {
+        color: var(--main-gray);
+      }
+    }
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+  }
+`;
