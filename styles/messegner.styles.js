@@ -12,7 +12,7 @@ export const SidebarContainer = styled.div`
   width: 35%;
   height: 100%;
   border-right: 1px solid var(--main-border);
-  padding: 0.5rem;
+  padding: 1rem;
 
   .select-contaier {
     display: flex;
@@ -105,4 +105,12 @@ export const ConversationListCardContainer = styled.div`
     align-items: center;
     justify-content: center;
   }
+`;
+
+export const MessageScreenContainer = styled.div`
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  border: 1px solid red;
 `;
