@@ -2,7 +2,11 @@ import IconButton from '@mui/material/IconButton';
 
 function BackIcon() {
   return (
-    <IconButton>
+    <IconButton
+      style={{
+        padding: ' 0.5rem 0.75rem',
+      }}
+    >
       <svg
         width="12"
         height="18"

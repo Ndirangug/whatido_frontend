@@ -6,6 +6,7 @@ export const MessengerPageContainer = styled.div`
   height: 100%;
   width: 100%;
   margin: 0 auto;
+  display: flex;
 `;
 
 export const SidebarContainer = styled.div`
@@ -108,9 +109,10 @@ export const ConversationListCardContainer = styled.div`
 `;
 
 export const MessageScreenContainer = styled.div`
-  flex: 1;
+  background: white;
   height: 100%;
   width: 100%;
   display: grid;
-  border: 1px solid red;
+  grid-template-rows: auto 1fr auto;
+  flex: 1;
 `;
