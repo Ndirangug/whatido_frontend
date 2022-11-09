@@ -116,3 +116,23 @@ export const MessageScreenContainer = styled.div`
   grid-template-rows: auto 1fr auto;
   flex: 1;
 `;
+
+export const MessageHeaderContainer = styled.div`
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--main-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+  }
+
+  .sm-gap {
+    gap: 1rem;
+  }
+  .xs-gap {
+    gap: 0.5rem;
+  }
+`;

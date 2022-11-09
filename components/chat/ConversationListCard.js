@@ -1,13 +1,13 @@
 import React from 'react';
 import { ConversationListCardContainer } from '../../styles/messegner.styles';
-import BaseAvatar from '../utils/avatars/BaseAvatar';
+import XsAvatar from '../utils/avatars/XsAvatar';
 import { TextBase, TextxS } from '../utils/typography/Typography';
 
 function ConversationListCard() {
   return (
     <ConversationListCardContainer>
       <div className="conv-info-container">
-        <BaseAvatar />
+        <XsAvatar />
         <div className="info-container">
           <div className="info-name">
             <TextBase>Jane Jones</TextBase>
