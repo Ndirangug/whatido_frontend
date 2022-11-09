@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setCaption } from '../../store/reducers/media_reducer';
+import { setCaption, setSelectSS } from '../../store/reducers/media_reducer';
 import {
   AbsoluteDiv,
   InputField,
@@ -10,6 +10,7 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
   const mediaFile = useSelector((state) => state.media.preUploadFile);
   const caption = useSelector((state) => state.media.caption);
   const dispatch = useDispatch();
+  const state = useSelector((state) => state.media);
 
   const handleChange = (e) => {
     dispatch(setCaption(e.target.value));
@@ -30,24 +31,27 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
       <div className="labelAndFieldContainer">
         <LabelText>cover</LabelText>
         <div className="previewComp">
-          {screenShots?.length !== 0
-            ? screenShots?.map((e, i) => (
+          {state.imageUrls?.length !== 0
+            ? state.imageUrls?.map((e, i) => (
                 <div className="previewCompChild" key={i}>
                   <img
                     src={`http://localhost:4000${e}`}
                     style={{
                       position: 'relative',
-                      zIndex: imgClicked === e ? '10' : '0',
-                      border: imgClicked === e ? '7px solid white' : 'none',
-                      borderRadius: imgClicked === e ? '10px' : '0px',
+                      zIndex: state.selectedSS === e ? '10' : '0',
+                      border:
+                        state.selectedSS === e ? '7px solid white' : 'none',
+                      borderRadius: state.selectedSS === e ? '10px' : '0px',
                       boxShadow:
-                        imgClicked === e ? '0px 10px 50px 0px #e3e2e1' : 'none',
-                      opacity: imgClicked === e ? '100%' : '50%',
-                      scale: imgClicked === e ? '1.1' : '1',
+                        state.selectedSS === e
+                          ? '0px 10px 50px 0px #e3e2e1'
+                          : 'none',
+                      opacity: state.selectedSS === e ? '100%' : '50%',
+                      scale: state.selectedSS === e ? '1.1' : '1',
                       transition: 'scale ease 0.3s',
                     }}
                     onClick={() => {
-                      setimgClicked(e);
+                      dispatch(setSelectSS(e));
                     }}
                   ></img>
                 </div>
