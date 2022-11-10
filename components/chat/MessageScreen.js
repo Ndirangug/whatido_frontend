@@ -1,17 +1,19 @@
+import { useRef } from 'react';
 import { MessageScreenContainer } from '../../styles/messegner.styles';
 import MessageBody from './MessageBody';
 import MessageFooter from './MessageFooter';
 import MessageHeader from './MessageHeader';
 
 function MessageScreen() {
+  const scrollRef = useRef();
   return (
     <MessageScreenContainer>
       {/* jheader */}
       <MessageHeader />
       {/* body  */}
-      <MessageBody />
+      <MessageBody scrollRef={scrollRef} />
       {/* footer */}
-      <MessageFooter />
+      <MessageFooter scrollRef={scrollRef} />
     </MessageScreenContainer>
   );
 }

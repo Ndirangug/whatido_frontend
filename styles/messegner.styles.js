@@ -175,3 +175,60 @@ export const MessageFooterContainer = styled.div`
     border-radius: 0.5rem;
   }
 `;
+
+export const MessageBodyContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-x: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+
+  .istyping-container {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+
+  .istyping-text {
+    color: #78716c;
+    font-size: 1.2rem;
+    line-height: 1.25rem;
+    margin: 0 0.5rem !important;
+  }
+
+  .icon {
+    height: 3rem;
+    width: 3rem;
+    color: #111827;
+    cursor: pointer;
+    position: fixed;
+    bottom: 100px;
+    right: 14px;
+    background: whitesmoke;
+    border-radius: 50%;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    display: ${({ isScrollView }) => (isScrollView ? 'inline' : 'none')};
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #d4d4d8;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #d1d5db;
+  }
+`;
