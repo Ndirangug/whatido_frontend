@@ -2,18 +2,12 @@ import Modal from '@mui/material/Modal';
 import styled from 'styled-components';
 
 export const ViewFeedModal = styled(Modal)`
-  display: none;
-
-  @media (min-width: 475px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    // max-width: 1059px;
-    // max-height: 650px;
-    margin: auto;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: auto;
 
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
@@ -22,15 +16,19 @@ export const ViewFeedModal = styled(Modal)`
   }
 
   .modal-body {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     // border-radius: 0.75rem;
     background: #ffffff;
     border: none;
     outline: none;
-    // padding: 1rem;
+
+    @media (min-width: 475px) {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+    }
 
     @media (min-width: 960px) {
       grid-template-columns: 2fr 1fr;
@@ -244,11 +242,6 @@ export const CaptionFooterContainer = styled.div`
     color: var(--primary-yellow);
   }
 
-  .sidebar-count {
-    font-weight: 600;
-    border: none;
-  }
-
   .comment-container {
     display: flex;
     align-items: center;
@@ -283,7 +276,8 @@ export const CaptionTextArea = styled.textarea`
   padding: 10px;
   resize: none;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
+  font-family: sans-serif;
   color: #4a4a4a;
   background: transparent;
 

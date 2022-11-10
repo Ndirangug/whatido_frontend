@@ -15,6 +15,7 @@ import LikeIcon from '../../utils/icons/LikeIcon';
 import SendIcon from '../../utils/icons/SendIcon';
 import ShareIcon from '../../utils/icons/ShareIcon';
 import { sendNotification } from '../../utils/service-worker/subscription';
+import { TextSm } from '../../utils/typography/Typography';
 
 function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
   const [commentValue, setCommentValue] = useState('');
@@ -109,14 +110,12 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
       <div className="icons-container">
         <div className="icon-wrapper">
           <LikeIcon defaultColor={'#dddddd'} media={viewedMedia} />
-          <span className="sidebar-count">{viewedMedia?.inspired?.length}</span>
+          <TextSm>{viewedMedia?.inspired?.length}</TextSm>
         </div>
 
         <div className="icon-wrapper">
           <ShareIcon defaultColor={'#dddddd'} openShareModal={openShareModal} />
-          <span className="sidebar-count">
-            {viewedMedia?.shares?.length || '0'}
-          </span>
+          <TextSm>{viewedMedia?.shares?.length || '0'}</TextSm>
         </div>
       </div>
 
