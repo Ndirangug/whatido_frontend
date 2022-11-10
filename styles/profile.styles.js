@@ -146,7 +146,7 @@ export const FeedCardContainer = styled.div`
 export const ProfileReviewContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
-  padding: 0.5rem 0;
+  padding: 0 0.5rem;
   width: 100%;
 `;
 

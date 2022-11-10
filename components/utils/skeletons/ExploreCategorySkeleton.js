@@ -1,12 +1,5 @@
 import { ExploreCategorySkeletonContainer } from '../../../styles/skeleton.styles';
-
-function ExploreCategorySkeletonCard() {
-  return (
-    <div className="skleton-card-container">
-      <p>skeleton</p>
-    </div>
-  );
-}
+import ExploreCategorySkeletonCard from './ExploreCategorySkeletonCard';
 
 function ExploreCategorySkeleton() {
   return (
