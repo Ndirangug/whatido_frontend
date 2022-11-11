@@ -19,21 +19,26 @@ import {
 import { TextSm } from '../utils/typography/Typography';
 import Message from './Message';
 
-function MessageBody({ scrollRef, conversationId, friend, inputRef }) {
+function MessageBody({ scrollRef, friend, inputRef }) {
   const [cookies] = useCookies(['user']);
   const [previewImageSrc, setPreviewImageSrc] = useState(null);
   const [openImagePreview, setOpenImagePreview] = useState(false);
   const [scrollView, setScrollView] = useState(false);
   const { data, isValidating, size, setSize } = useSWRInfinite(
     (index) =>
-      `${API_URL}/message/page/${conversationId}/${cookies?.user?.slug}?page=${index}`
+      `${API_URL}/message/page/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}?page=${index}`
   );
-  const messageCountUrl = `${API_URL}/message/count/${conversationId}/${cookies?.user?.slug}`;
+  console.log('message', data);
+  const messageCountUrl = `${API_URL}/message/count/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}`;
   const { data: messageCount } = useSWR(messageCountUrl);
   const hasMore = size * 20 <= messageCount;
   const dispatch = useDispatch();
 
   const messagesArray = useSelector((state) => state.messenger.messages);
+
+  const filteredMessages = messagesArray.sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
 
   const groupedMessages = filteredMessages?.reduce((acc, message) => {
     const date = moment(message.createdAt)?.calendar(null, {
@@ -50,10 +55,6 @@ function MessageBody({ scrollRef, conversationId, friend, inputRef }) {
     acc[date].push(message);
     return acc;
   }, {});
-
-  const filteredMessages = messagesArray.sort((a, b) => {
-    return new Date(b.createdAt) - new Date(a.createdAt);
-  });
 
   //arrange filtered messages into array of date groups and messages of each day to be in chronological order
   const dateSortedMessages = Object?.keys(groupedMessages)?.map((date) => {

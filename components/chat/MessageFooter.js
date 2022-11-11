@@ -9,7 +9,7 @@ const StyledIconBtn = styled(IconButton)`
   padding: 0;
 `;
 
-function MessageFooter() {
+function MessageFooter({ inputRef }) {
   const sendMessage = () => {
     console.log('send message');
   };
@@ -21,6 +21,7 @@ function MessageFooter() {
           type="text"
           className="message-input"
           placeholder="type a message"
+          ref={inputRef}
         />
       </div>
       <div className="icon-container">
