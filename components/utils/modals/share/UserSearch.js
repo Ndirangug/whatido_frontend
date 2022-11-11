@@ -30,7 +30,7 @@ const UserCard = ({ searchUser, setSelectedUser, selectedUser }) => {
             {'  '}
             {searchUser.profile.lastName}
           </TextSm>
-          <TextxS> expert in {searchUser?.expertCategories[0]}</TextxS>
+          <TextxS> focus on {searchUser?.expertCategories[0]}</TextxS>
         </div>
         {/* )} */}
       </div>
@@ -61,6 +61,7 @@ const UserTag = ({ userSelect, setSelectedUser }) => {
 function UserSearch({ setSelectedUser, selectedUser }) {
   const [search, setSearch] = useState([]);
   const [cookies] = useCookies(['user']);
+  // const [{ token }] = useCookies(['token']);
   const slug = cookies?.user?.slug;
   const url = `${API_URL}/feed/recent-messaged-users/${slug}`;
   const { data: conversationUsers } = useSWR(url);
