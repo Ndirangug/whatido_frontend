@@ -33,3 +33,80 @@ export const FeedInfoSkeletonContainer = styled.div`
     gap: 1rem;
   }
 `;
+
+export const ExploreSkeletonContainer = styled.div`
+  width: 100%;
+
+  .carousel-skeleton-container {
+    height: 14rem;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const ExploreCategorySkeletonContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  margin: 0 auto;
+`;
+
+export const ExploreCategorySkeletonCardContainer = styled.div`
+  width: 100%;
+  border: 1px solid var(--main-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  .explore-image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0.25rem;
+  }
+
+  .explore-avatar-skeleton {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .skeleton-card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+`;
+
+export const ExploreExpertSkeletonContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  margin: 0 auto;
+`;
+
+export const ExploreExpertSkeletonCardContainer = styled.div`
+  width: 100%;
+  border: 1px solid var(--main-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  .explore-image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0.25rem;
+  }
+
+  .explore-avatar-skeleton {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .skeleton-card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .avatar {
+    display: flex;
+    gap: 1rem;
+  }
+`;

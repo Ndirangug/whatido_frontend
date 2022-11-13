@@ -1,3 +1,4 @@
+import Image from 'next/legacy/image';
 import { useRef } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -127,7 +128,7 @@ function DragDrop() {
             // overflow: 'hidden',
           }}
         >
-          <img
+          <Image
             src="/mobile-frame.png"
             alt="frame"
             width={'100%'}

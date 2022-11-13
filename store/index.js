@@ -15,8 +15,10 @@ import appSurfaceReducer from './reducers/app_surface_reducer';
 import authReducer from './reducers/auth_reducer';
 import categoryReducer from './reducers/category_page_reducer';
 import exploreReducer from './reducers/explore_reducer';
+import feedReducer from './reducers/feed_modal_reducer';
 import categoryListReducer from './reducers/list_reducer';
 import mediaReducer from './reducers/media_reducer';
+import messengerReducer from './reducers/messenger_reducer';
 import signupReducer from './reducers/signup_reducer';
 import walletReducer from './reducers/wallet_reducer';
 
@@ -36,6 +38,8 @@ const reducers = combineReducers({
   appSurface: appSurfaceReducer,
   list: categoryListReducer,
   signup: signupReducer,
+  feed: feedReducer,
+  messenger: messengerReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

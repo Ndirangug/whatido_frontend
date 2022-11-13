@@ -1,5 +1,6 @@
+import Image from 'next/legacy/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCaption, setSelectSS } from '../../store/reducers/media_reducer';
+import { setSelectSS } from '../../store/reducers/media_reducer';
 import {
   AbsoluteDiv,
   InputField,
@@ -12,9 +13,9 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.media);
 
-  const handleChange = (e) => {
-    dispatch(setCaption(e.target.value));
-  };
+  // const handleChange = (e) => {
+  //   dispatch(setCaption(e.target.value));
+  // };
 
   return (
     <UploadInputPreviewContainer>
@@ -34,8 +35,9 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
           {state.imageUrls?.length !== 0
             ? state.imageUrls?.map((e, i) => (
                 <div className="previewCompChild" key={i}>
-                  <img
+                  <Image
                     src={`http://localhost:4000${e}`}
+                    alt=""
                     style={{
                       position: 'relative',
                       zIndex: state.selectedSS === e ? '10' : '0',
@@ -53,7 +55,7 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
                     onClick={() => {
                       dispatch(setSelectSS(e));
                     }}
-                  ></img>
+                  />
                 </div>
               ))
             : null}

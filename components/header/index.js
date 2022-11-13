@@ -1,6 +1,5 @@
 import Stack from '@mui/material/Stack';
-import Image from 'next/image';
-import { BiSearchAlt } from 'react-icons/bi';
+import Image from 'next/legacy/image';
 import Button from '../utils/buttons/Button';
 
 import Link from 'next/link';
@@ -10,6 +9,7 @@ import { HeaderContainer } from '../../styles/header.styles';
 import AudioRoomsIcon from '../utils/icons/AudioRoomsIcon';
 import ChatIcon from '../utils/icons/ChatIcon';
 import CreateIcon from '../utils/icons/CreateIcon';
+import SearchBarIcon from '../utils/icons/SearchBarIcon';
 import WalletIcon from '../utils/icons/WalletIcon';
 
 const Header = () => {
@@ -40,7 +40,7 @@ const Header = () => {
         </div>
         <div className="header-content">
           <div className="search-container">
-            <BiSearchAlt className="search-icon" />
+            <SearchBarIcon />
             <input
               type="text"
               className="search-input"

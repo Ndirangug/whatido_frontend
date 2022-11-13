@@ -1,3 +1,4 @@
+import IconButton from '@mui/material/IconButton';
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
@@ -205,5 +206,16 @@ export const ReelsCardContainer = styled.div`
     color: #fafafa;
     height: 1.5rem;
     width: 1.5rem;
+  }
+`;
+
+export const StyledIconBtn = styled(IconButton)`
+  border-radius: 0px;
+  padding: 0;
+  border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
+
+  @media (min-width: 600px) {
+    border-top: none;
+    border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
   }
 `;

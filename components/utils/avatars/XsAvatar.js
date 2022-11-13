@@ -8,7 +8,7 @@ export const BaseAvatar = styled(Avatar)`
 
 function XsAvatar({ src }) {
   return (
-    <BaseAvatar src={src} sx={{ width: 40, height: 40 }}>
+    <BaseAvatar src={src} sx={{ width: 42, height: 42 }}>
       <NoBigAvatar />
     </BaseAvatar>
   );

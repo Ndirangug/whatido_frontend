@@ -1,20 +1,8 @@
-import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
-
-const StyledIconBtn = styled(IconButton)`
-  border-radius: 0px;
-  padding: 0 0.5rem;
-  border-top: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
-
-  @media (min-width: 475px) {
-    border-top: none;
-    border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
-  }
-`;
+import { StyledIconBtn } from '../../../styles/utils.styles';
 
 function ProfileIcon() {
   const [selectedRoute, setSelectedRoute] = useState(false);
