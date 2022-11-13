@@ -9,7 +9,6 @@ import {
   CreateHeadingText,
   CreateParaText,
 } from '../components/utils/typography/Typography';
-import RequireAuth from '../hooks/RequireAuth';
 import {
   CreatePageContainer,
   UploadMainContainer,
@@ -29,21 +28,12 @@ function Create() {
       </div>
       <UploadMainContainer>
         <div className="drapAndDropContainer">
-          {previewComponent === 'DROPZONE' && (
-            <DragDrop
-              setScreenShots={setscreenShots}
-              setSelectedSS={setSelectedSS}
-            />
-          )}
+          {previewComponent === 'DROPZONE' && <DragDrop />}
           {previewComponent === 'PREVIEW' && <Preview />}
         </div>
 
         <div className="inputContainer">
-          <UploadInputPreview
-            screenShots={screenShots}
-            imgClicked={selectedSS}
-            setimgClicked={setSelectedSS}
-          />
+          <UploadInputPreview />
           {error && <Alert severity="error">{error} </Alert>}
           <ActionButton />
         </div>
@@ -52,4 +42,4 @@ function Create() {
   );
 }
 
-export default RequireAuth(Create);
+export default Create;

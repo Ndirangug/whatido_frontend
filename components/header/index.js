@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { BiSearchAlt } from 'react-icons/bi';
 import Button from '../utils/buttons/Button';
 
