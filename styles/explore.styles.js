@@ -410,6 +410,7 @@ export const CategoryThumbnailContainer = styled.div`
   margin: 0 1rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
+  position: relative;
 
   .thumbnail-card {
     width: 100%;
@@ -454,12 +455,26 @@ export const CategoryThumbnailContainer = styled.div`
     border: 2px solid -webkit-linear-gradient(to right, #061161, #780206); /* Chrome 10-25, Safari 5.1-6 */
     border: 2px solid linear-gradient(to right, #061161, #780206); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+
+  .no-posts-svg {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .no-posts-text {
+    margin-bottom: -3rem;
+  }
 `;
 
 export const UserCardsContainer = styled.div`
   margin: 0 1rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
+  position: relative;
 
   .cards-wrapper {
     display: flex;
@@ -500,6 +515,19 @@ export const UserCardsContainer = styled.div`
     background: #001433;
     border-radius: 5px;
     border: none;
+  }
+
+  .no-posts-svg {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .no-posts-text {
+    margin-bottom: -3rem;
   }
 `;
 

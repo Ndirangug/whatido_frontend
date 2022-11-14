@@ -2,6 +2,8 @@ import React from 'react';
 import useSWR from 'swr';
 import { API_URL } from '../../../../constants/api';
 import { CategoryThumbnailContainer } from '../../../../styles/explore.styles';
+import NoPostsSvg from '../../icons/NoPostsSvg';
+import { TextXL } from '../../typography/Typography';
 import CategoryPostCard from './CategoryPostCard';
 
 const PostsThumbnail = ({ category }) => {
@@ -15,6 +17,15 @@ const PostsThumbnail = ({ category }) => {
           <CategoryPostCard post={post} />
         </div>
       ))}
+
+      {posts?.length === 0 && (
+        <div className="no-posts-svg">
+          <div className="no-posts-text">
+            <TextXL>no posts yet.</TextXL>
+          </div>
+          <NoPostsSvg />
+        </div>
+      )}
     </CategoryThumbnailContainer>
   );
 };

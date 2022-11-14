@@ -10,7 +10,7 @@ const Hashtag = ({ category }) => {
   return (
     <HashtagContainer>
       {categoryList?.map(({ _id, slug }) => (
-        <div key={_id}>
+        <>
           {slug !== category && (
             <div
               className="tags"
@@ -19,7 +19,7 @@ const Hashtag = ({ category }) => {
               <TextxS>{`#${slug}`}</TextxS>
             </div>
           )}
-        </div>
+        </>
       ))}
     </HashtagContainer>
   );
