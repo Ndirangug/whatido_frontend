@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../styles/explore.styles';
+import Hashtag from '../utils/cards/explore/Hashtag';
 import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
 import UserCards from '../utils/cards/explore/UserCards';
 import { TextLG, TextSm, TextxS } from '../utils/typography/Typography';
@@ -51,17 +52,7 @@ const CategoryPosts = ({ category }) => {
         <button className="follow-all-btn">Follow</button>
       </div>
 
-      {/* <div className="tags-container">
-        <div className="tags">
-          <TextxS>#moon</TextxS>
-        </div>
-        <div className="tags">
-          <TextxS>#sky</TextxS>
-        </div>
-        <div className="tags">
-          <TextxS>#nightwalker</TextxS>
-        </div>
-      </div> */}
+      <Hashtag category={category} />
 
       <div className="tab-wrapper">
         <div

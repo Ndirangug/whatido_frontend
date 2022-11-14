@@ -135,7 +135,10 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
 
       {!authenticated && (
         <div className="comment-container">
-          <CaptionTextArea value={'Please log in to comment'} disabled={true} />
+          <CaptionTextArea
+            placeholder="Please log in to comment"
+            disabled={true}
+          />
         </div>
       )}
     </CaptionFooterContainer>

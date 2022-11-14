@@ -251,7 +251,7 @@ export const CaptionFooterContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    background: #f3f3f3;
+    background: #f1f1f1;
     border-radius: 10px;
     padding: 0.3rem 1rem;
   }
@@ -282,10 +282,10 @@ export const CaptionTextArea = styled.textarea`
   outline: none;
   font-size: 16px;
   font-family: sans-serif;
-  color: #4a4a4a;
+  // color: #4a4a4a;
   background: transparent;
 
   ::placeholder {
-    color: #bdbdbd;
+    color: rgba(0, 20, 51, 0.1);
   }
 `;

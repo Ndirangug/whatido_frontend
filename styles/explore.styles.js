@@ -298,13 +298,14 @@ export const CategoryPostsContainer = styled.div`
   width: 100%;
   margin: 0 auto;
 
-  .banner-img {
-    position: relative;
+  @media (min-width: 475px) {
+    padding: 1rem 0;
   }
 
-  .back-icon {
-    position: absolute;
-    top: 0.5rem;
+  .banner-img {
+    @media (min-width: 475px) {
+      border-radius: 0.5rem;
+    }
   }
 
   .title-container {
@@ -366,23 +367,6 @@ export const CategoryPostsContainer = styled.div`
     color: #fff;
   }
 
-  .tags-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 0.5rem;
-    margin: 0 1rem;
-  }
-
-  .tags {
-    border: 1px solid var(--main-border);
-    border-radius: 0.5rem;
-    color: var(--main-black);
-    padding: 0.1rem 0.5rem;
-    font-size: 14px;
-  }
-
   .tab-wrapper {
     display: flex;
     align-items: center;
@@ -401,6 +385,21 @@ export const CategoryPostsContainer = styled.div`
     cursor: pointer;
     color: var(--sub-indigo);
     padding-bottom: 0.6rem;
+  }
+`;
+
+export const HashtagContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+
+  .tags {
+    background: var(--main-tag);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
   }
 `;
 
