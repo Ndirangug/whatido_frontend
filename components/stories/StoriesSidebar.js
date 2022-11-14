@@ -6,6 +6,7 @@ import {
 import SearchBar from '../chat/SearchBar';
 import { TextBase } from '../utils/typography/Typography';
 import AddStory from './AddStory';
+import StoryUpdate from './StoryUpdate';
 
 function StoriesSidebar() {
   return (
@@ -22,7 +23,7 @@ function StoriesSidebar() {
       </div>
       <SearchBar page={'stories'} />
       <AddStory />
-      {/* story update*/}
+      <StoryUpdate />
     </SidebarContainer>
   );
 }

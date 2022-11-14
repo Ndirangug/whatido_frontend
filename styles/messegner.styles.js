@@ -450,3 +450,47 @@ export const AddStoryContainer = styled.div`
     width: 80%;
   }
 `;
+
+export const StoryUpdateContainer = styled.div`
+  .update-text {
+    width: 100%;
+    background: var(--main-background);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: var(--gray-text);
+    margin-bottom: 1rem;
+  }
+`;
+
+export const StoryUserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  &:hover {
+    background: var(--main-background);
+  }
+
+  .info-container {
+    flex: 1;
+  }
+
+  .info-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 70%;
+  }
+  .info {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--gray-text);
+    width: 90%;
+  }
+`;
