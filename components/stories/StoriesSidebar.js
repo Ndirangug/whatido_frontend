@@ -5,6 +5,7 @@ import {
 } from '../../styles/messegner.styles';
 import SearchBar from '../chat/SearchBar';
 import { TextBase } from '../utils/typography/Typography';
+import AddStory from './AddStory';
 
 function StoriesSidebar() {
   return (
@@ -20,7 +21,7 @@ function StoriesSidebar() {
         </SelectContainer>
       </div>
       <SearchBar page={'stories'} />
-      {/* add story */}
+      <AddStory />
       {/* story update*/}
     </SidebarContainer>
   );

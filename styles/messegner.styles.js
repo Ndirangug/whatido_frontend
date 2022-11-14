@@ -407,4 +407,46 @@ export const CheckIcon = styled(RiCheckLine)`
   flex-shrink: 0;
 `;
 
-export const AddStoryContainer = styled.div``;
+export const AddStoryContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  &:hover {
+    background: var(--main-background);
+  }
+
+  .story-avatar-container {
+    position: relative;
+  }
+
+  .add-icon {
+    position: absolute;
+    bottom: -0.25rem;
+    right: -0.25rem;
+  }
+
+  .info-container {
+    flex: 1;
+  }
+
+  .info-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 50%;
+  }
+  .info {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--gray-text);
+    width: 80%;
+  }
+`;
