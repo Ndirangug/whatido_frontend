@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import Notification from '../components/notification';
+import NoNotification from '../components/notification/NoNotification';
 import { API_URL } from '../constants/api';
 import { NotificationLgContainer } from '../styles/notification.styles';
 
@@ -14,6 +15,8 @@ const Notifications = () => {
       {notifications?.length > 0 && (
         <Notification notifications={notifications} />
       )}
+
+      {notifications?.length === 0 && <NoNotification />}
     </NotificationLgContainer>
   );
 };

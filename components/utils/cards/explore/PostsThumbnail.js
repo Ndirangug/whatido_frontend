@@ -2,7 +2,7 @@ import React from 'react';
 import useSWR from 'swr';
 import { API_URL } from '../../../../constants/api';
 import { CategoryThumbnailContainer } from '../../../../styles/explore.styles';
-import NoPostsSvg from '../../icons/NoPostsSvg';
+import NoPostsSvg from '../../svg/NoPostsSvg';
 import { TextXL } from '../../typography/Typography';
 import CategoryPostCard from './CategoryPostCard';
 

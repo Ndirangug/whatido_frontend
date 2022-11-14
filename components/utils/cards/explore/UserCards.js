@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { API_URL } from '../../../../constants/api';
 import { UserCardsContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
-import NoPostsSvg from '../../icons/NoPostsSvg';
+import NoPostsSvg from '../../svg/NoPostsSvg';
 import { TextSm, TextXL, TextxS } from '../../typography/Typography';
 
 const UserCards = ({ category }) => {
