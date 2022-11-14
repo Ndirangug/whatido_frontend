@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   SelectContainer,
   SidebarContainer,
@@ -13,11 +14,13 @@ function Sidebar() {
         <SelectContainer selected>
           <TextBase>chat</TextBase>
         </SelectContainer>
-        <SelectContainer>
-          <TextBase>stories</TextBase>
-        </SelectContainer>
+        <Link href={'/messenger/stories'}>
+          <SelectContainer>
+            <TextBase>stories</TextBase>
+          </SelectContainer>
+        </Link>
       </div>
-      <SearchBar />
+      <SearchBar page={'chat'} />
       <ConversationList />
     </SidebarContainer>
   );

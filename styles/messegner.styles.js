@@ -406,3 +406,5 @@ export const CheckIcon = styled(RiCheckLine)`
   color: #71717a;
   flex-shrink: 0;
 `;
+
+export const AddStoryContainer = styled.div``;
