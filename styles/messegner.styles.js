@@ -411,7 +411,7 @@ export const AddStoryContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   cursor: pointer;
   border-radius: 0.5rem;
   padding: 0.5rem;
@@ -458,7 +458,7 @@ export const StoryUpdateContainer = styled.div`
     border-radius: 0.5rem;
     padding: 0.5rem;
     color: var(--gray-text);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
