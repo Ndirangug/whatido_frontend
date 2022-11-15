@@ -7,7 +7,6 @@ import RequireAuth from '../../hooks/RequireAuth';
 import {
   ProfileLeftContainer,
   ProfilePageContainer,
-  ProfileRightContainer,
 } from '../../styles/profile.styles';
 
 function Profile() {
@@ -21,12 +20,6 @@ function Profile() {
         <ProfileInfo user={user} />
         <ProfileMedia user={user} />
       </ProfileLeftContainer>
-      <ProfileRightContainer>
-        {/* connect container  */}
-        {/* suggest experts */}
-        {/* write review*/}
-        {/* logout */}
-      </ProfileRightContainer>
     </ProfilePageContainer>
   );
 }

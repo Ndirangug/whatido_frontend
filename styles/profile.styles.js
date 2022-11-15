@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 export const ProfilePageContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--main-background);
 
-  @media (min-width: 475px) {
-    margin: 1rem;
+  @media (min-width: 600px) {
+    margin: 0 auto;
+    padding: 1rem;
   }
 `;
 
@@ -27,7 +29,7 @@ export const ProfileRightContainer = styled.div`
 
 export const ProfileInfoContainer = styled.div`
   background: #fff;
-  @media (min-width: 475px) {
+  @media (min-width: 600px) {
     border-radius: 1rem;
     overflow: hidden;
   }
@@ -35,9 +37,10 @@ export const ProfileInfoContainer = styled.div`
     width: 100%;
     height: 9rem;
     background: var(--main-indigo);
-    @media (min-width: 475px) {
+    @media (min-width: 600px) {
       border-radius: 1rem;
       overflow: hidden;
+      height: 12rem;
     }
   }
 
