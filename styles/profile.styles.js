@@ -1,5 +1,36 @@
 import styled from 'styled-components';
 
+export const EditProfilePageContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    margin: 0 auto;
+    padding: 1rem;
+  }
+`;
+export const EditProfileTopContainer = styled.div`
+  margin-bottom: 1rem;
+  .banner-container {
+    width: 100%;
+    height: 10rem;
+    background: var(--main-indigo);
+    @media (min-width: 600px) {
+      border-radius: 1rem;
+      overflow: hidden;
+      height: 12rem;
+    }
+  }
+  .avatar-conatiner {
+    margin-top: -4rem;
+    padding: 1rem;
+
+    @media (min-width: 600px) {
+      padding: 1rem 2rem;
+    }
+  }
+`;
 export const ProfilePageContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
@@ -35,7 +66,7 @@ export const ProfileInfoContainer = styled.div`
   }
   .banner-conatiner {
     width: 100%;
-    height: 9rem;
+    height: 10rem;
     background: var(--main-indigo);
     @media (min-width: 600px) {
       border-radius: 1rem;

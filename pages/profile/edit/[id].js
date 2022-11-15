@@ -1,8 +1,15 @@
 import React from 'react';
-import { ProfilePageContainer } from '../../../styles/profile.styles';
+import EditProfileTop from '../../../components/profile/EditProfileTop';
+import { EditProfilePageContainer } from '../../../styles/profile.styles';
 
 function EditProfile() {
-  return <ProfilePageContainer>EditProfile</ProfilePageContainer>;
+  return (
+    <EditProfilePageContainer>
+      {/* edit profile top */}
+      <EditProfileTop />
+      {/* edit profile form */}
+    </EditProfilePageContainer>
+  );
 }
 
 export default EditProfile;
