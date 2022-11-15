@@ -4,6 +4,8 @@ export const EditProfilePageContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
+  height: 100%;
+  background: white;
 
   @media (min-width: 600px) {
     margin: 0 auto;
@@ -16,6 +18,9 @@ export const EditProfileTopContainer = styled.div`
     width: 100%;
     height: 10rem;
     background: var(--main-indigo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @media (min-width: 600px) {
       border-radius: 1rem;
       overflow: hidden;
@@ -25,12 +30,28 @@ export const EditProfileTopContainer = styled.div`
   .avatar-conatiner {
     margin-top: -4rem;
     padding: 1rem;
+    position: relative;
+    width: max-content;
+    .icon-container {
+      position: absolute;
+      bottom: 0.25rem;
+      right: 0.25rem;
+    }
 
     @media (min-width: 600px) {
       padding: 1rem 2rem;
     }
   }
 `;
+
+export const EditProfileFormContainer = styled.div`
+  padding: 0 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  background: white;
+  padding-bottom: 2rem;
+`;
+
 export const ProfilePageContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;

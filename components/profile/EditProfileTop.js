@@ -5,10 +5,14 @@ import UploadProfilePhotoIcon from '../utils/icons/UploadProfilePhotoIcon';
 function EditProfileTop() {
   return (
     <EditProfileTopContainer>
-      <div className="banner-container"></div>
+      <div className="banner-container">
+        <UploadProfilePhotoIcon />
+      </div>
       <div className="avatar-conatiner">
         <LgAvatar />
-        <UploadProfilePhotoIcon color />
+        <div className="icon-container">
+          <UploadProfilePhotoIcon color />
+        </div>
       </div>
     </EditProfileTopContainer>
   );
