@@ -5,7 +5,7 @@ import { EditProfileFormContainer } from '../../styles/profile.styles';
 import InputField from '../utils/inputs/InputField';
 
 const schema = yup.object().shape({
-  email: yup.string().email('email is not valid').required('email is required'),
+  email: yup.string().required('email is required').email('email is not valid'),
   password: yup.string().required('password is required'),
 });
 

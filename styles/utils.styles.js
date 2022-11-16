@@ -58,17 +58,16 @@ export const CancelButtonContainer = styled.button`
 
 export const InputFieldContainer = styled.div`
   display: grid;
-  grid-gap: 0.25rem;
-
-  .label {
-    font-size: 1rem;
-    font-weight: 400;
-  }
+  grid-gap: 0.5rem;
 
   .input-container {
     position: relative;
     display: flex;
     align-items: center;
+  }
+  .input-element-container {
+    display: grid;
+    grid-gap: 0.25rem;
   }
 
   .eye-icon {
