@@ -1,6 +1,9 @@
 import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { SelectFieldContainer } from '../../../styles/utils.styles';
 import { TextBase } from '../typography/Typography';
+
+const animatedComponents = makeAnimated();
 
 const colourOptions = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
@@ -23,6 +26,8 @@ function SubCategorySelect() {
       <Select
         defaultValue={colourOptions[0]}
         isMulti
+        closeMenuOnSelect={false}
+        components={animatedComponents}
         isClearable={false}
         isSearchable={true}
         name="category"

@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
+import AddLinkButton from '../utils/buttons/AddLinkButton';
 import InputField from '../utils/inputs/InputField';
 import SelectCategory from '../utils/inputs/SelectCategory';
 import SubCategorySelect from '../utils/inputs/SubCategorySelect';
@@ -32,6 +33,13 @@ function EditProfileForm() {
         placeholder={''}
       />
       <InputField
+        label={'headline'}
+        type={'text'}
+        error={errors?.email?.message}
+        register={register('email')}
+        placeholder={''}
+      />
+      <InputField
         label={'nationality'}
         type={'text'}
         error={errors?.email?.message}
@@ -54,6 +62,7 @@ function EditProfileForm() {
         register={register('email')}
         placeholder={''}
       />
+      <AddLinkButton name={'add link'} />
     </EditProfileFormContainer>
   );
 }

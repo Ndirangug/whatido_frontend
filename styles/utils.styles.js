@@ -15,6 +15,26 @@ export const ButtonContainer = styled.button`
   border-radius: 6px;
   white-space: nowrap;
 `;
+export const AddButtonContainer = styled.button`
+  padding: 0.5rem 1rem;
+  color: var(--main-black);
+  background: #fff;
+
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+  font-weight: ${({ inLine }) => (inLine ? '600' : '400')};
+  border: 1px solid var(--main-black);
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  display: flex;
+  gap: 0.5rem;
+  width: max-content;
+  height: max-content;
+  align-items: center;
+  margin-top: auto;
+`;
 
 export const SelectButtonContainer = styled.button`
   margin-top: 20px;
