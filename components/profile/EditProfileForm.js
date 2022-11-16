@@ -27,28 +27,42 @@ function EditProfileForm() {
         type={'text'}
         error={errors?.email?.message}
         register={register('email')}
-        placeholder={'jane jones'}
+        placeholder={''}
       />
       <InputField
-        label={'email'}
+        label={'nationality'}
         type={'text'}
         error={errors?.email?.message}
         register={register('email')}
-        placeholder={'whatido98@gmail.com'}
+        placeholder={''}
       />
       <InputField
-        label={'email'}
+        label={'current location'}
         type={'text'}
         error={errors?.email?.message}
         register={register('email')}
-        placeholder={'whatido98@gmail.com'}
+        placeholder={''}
       />
       <InputField
-        label={'email'}
+        label={'main category'}
         type={'text'}
         error={errors?.email?.message}
         register={register('email')}
-        placeholder={'whatido98@gmail.com'}
+        placeholder={''}
+      />
+      <InputField
+        label={'sub category'}
+        type={'text'}
+        error={errors?.email?.message}
+        register={register('email')}
+        placeholder={''}
+      />
+      <InputField
+        label={'sites or addresses'}
+        type={'text'}
+        error={errors?.email?.message}
+        register={register('email')}
+        placeholder={''}
       />
     </EditProfileFormContainer>
   );
