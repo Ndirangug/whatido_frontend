@@ -15,13 +15,14 @@ const colourOptions = [
   { value: 'silver', label: 'Silver', color: '#666666' },
 ];
 
-function SelectCategory() {
+function SubCategorySelect() {
   return (
     <SelectFieldContainer>
-      <TextBase>main category</TextBase>
+      <TextBase>sub category</TextBase>
 
       <Select
         defaultValue={colourOptions[0]}
+        isMulti
         isClearable={false}
         isSearchable={true}
         name="category"
@@ -40,7 +41,7 @@ function SelectCategory() {
           colors: {
             ...theme.colors,
             primary25: '#f3f3f3',
-            primary: '#001433',
+            primary: '#f3f3f3',
             neutral30: '#001433',
           },
         })}
@@ -49,4 +50,4 @@ function SelectCategory() {
   );
 }
 
-export default SelectCategory;
+export default SubCategorySelect;

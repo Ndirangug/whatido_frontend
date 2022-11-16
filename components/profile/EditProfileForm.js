@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
 import InputField from '../utils/inputs/InputField';
 import SelectCategory from '../utils/inputs/SelectCategory';
+import SubCategorySelect from '../utils/inputs/SubCategorySelect';
 
 const schema = yup.object().shape({
   email: yup.string().required('email is required').email('email is not valid'),
@@ -45,13 +46,7 @@ function EditProfileForm() {
         placeholder={''}
       />
       <SelectCategory />
-      <InputField
-        label={'sub category'}
-        type={'text'}
-        error={errors?.email?.message}
-        register={register('email')}
-        placeholder={''}
-      />
+      <SubCategorySelect />
       <InputField
         label={'sites or addresses'}
         type={'text'}
