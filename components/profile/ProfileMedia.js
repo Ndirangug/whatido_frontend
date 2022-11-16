@@ -4,6 +4,8 @@ import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { ProfileMediaContainer } from '../../styles/profile.styles';
 import FeedIcon from '../utils/icons/FeedIcon';
 import ReviewIcon from '../utils/icons/ReviewIcon';
+import ProfileFeedSkeleton from '../utils/skeletons/ProfileFeedSkeleton';
+import ProfileReviewSkeleton from '../utils/skeletons/ProfileReviewSkeleton';
 import ProfileFeed from './ProfileFeed';
 import ProfileReview from './ProfileReview';
 import SelectTab from './SelectTab';
@@ -46,13 +48,13 @@ function ProfileMedia({ userSlug }) {
       </div>
       {router.query.review ? (
         <ErrorBoundary fallback={<h1>could not fetch</h1>}>
-          <Suspense fallback={<h1>loading...</h1>}>
+          <Suspense fallback={<ProfileReviewSkeleton />}>
             <ProfileReview userSlug={userSlug} />
           </Suspense>
         </ErrorBoundary>
       ) : (
         <ErrorBoundary fallback={<h1>could not fetch</h1>}>
-          <Suspense fallback={<h1>loading...</h1>}>
+          <Suspense fallback={<ProfileFeedSkeleton />}>
             <ProfileFeed userSlug={userSlug} />
           </Suspense>
         </ErrorBoundary>

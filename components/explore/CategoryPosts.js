@@ -8,6 +8,8 @@ import { setCategoryComponent } from '../../store/reducers/category_page_reducer
 import { CategoryPostsContainer } from '../../styles/explore.styles';
 import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
 import UserCards from '../utils/cards/explore/UserCards';
+import ExploreCategoryInfoSkeleton from '../utils/skeletons/ExploreCategoryInfoSkeleton';
+import ExploreExpertInfoSkeleton from '../utils/skeletons/ExploreExpertInfoSkeleton';
 import { TextLG, TextSm, TextxS } from '../utils/typography/Typography';
 
 const CategoryPosts = ({ category }) => {
@@ -83,14 +85,14 @@ const CategoryPosts = ({ category }) => {
 
       {page === 'posts' && (
         <ErrorBoundary fallback={<h1>could not fetch ...</h1>}>
-          <Suspense fallback={<h1>loading ...</h1>}>
+          <Suspense fallback={<ExploreCategoryInfoSkeleton />}>
             <PostsThumbnail category={category} />
           </Suspense>
         </ErrorBoundary>
       )}
       {page === 'experts' && (
         <ErrorBoundary fallback={<h1>could not fetch ...</h1>}>
-          <Suspense fallback={<h1>loading ...</h1>}>
+          <Suspense fallback={<ExploreExpertInfoSkeleton />}>
             <UserCards category={category} />
           </Suspense>
         </ErrorBoundary>
