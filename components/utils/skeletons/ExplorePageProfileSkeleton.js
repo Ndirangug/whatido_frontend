@@ -1,9 +1,9 @@
 import Skeleton from '@mui/material/Skeleton';
-import { ProfilePageSkeletonContainer } from '../../../styles/skeleton.styles';
+import { ExplorePageProfileSkeletonContainer } from '../../../styles/skeleton.styles';
 
-function ProfilePageSkeleton() {
+function ExplorePageProfileSkeleton() {
   return (
-    <ProfilePageSkeletonContainer>
+    <ExplorePageProfileSkeletonContainer>
       <div className="banner-skeleton">
         <Skeleton variant="rounded" width="100%" height={150} />
       </div>
@@ -16,8 +16,8 @@ function ProfilePageSkeleton() {
         </div>
         <Skeleton variant="rounded" width={64} height={32} />
       </div>
-    </ProfilePageSkeletonContainer>
+    </ExplorePageProfileSkeletonContainer>
   );
 }
 
-export default ProfilePageSkeleton;
+export default ExplorePageProfileSkeleton;

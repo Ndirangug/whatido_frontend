@@ -38,9 +38,35 @@ export const ExploreSkeletonContainer = styled.div`
   width: 100%;
 
   .carousel-skeleton-container {
-    height: 14rem;
+    height: 10rem;
     display: flex;
     align-items: center;
+  }
+`;
+
+export const ExplorePageProfileSkeletonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 0.5rem;
+
+  .banner-skeleton {
+    border-radius: 0.5rem;
+  }
+
+  .avatar-skeleton {
+    justify-content: center;
+    padding-left: 1rem;
+    margin-top: -3rem;
+    margin-bottom: 1rem;
+  }
+
+  .avatar-follow-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
   }
 `;
 
@@ -159,11 +185,17 @@ export const ProfilePageSkeletonContainer = styled.div`
   }
 
   .avatar-skeleton {
-    align-items: center;
+    //align-items: center;
     justify-content: center;
-    padding-left: 1rem;
     margin-top: -3rem;
     margin-bottom: 1rem;
+  }
+
+  .avatar-follow-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
   }
 `;
 
