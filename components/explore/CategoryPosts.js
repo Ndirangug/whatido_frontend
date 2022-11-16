@@ -1,7 +1,9 @@
 import Image from 'next/legacy/image';
+import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../styles/explore.styles';
 import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
@@ -79,8 +81,20 @@ const CategoryPosts = ({ category }) => {
         </div>
       </div>
 
-      {page === 'posts' && <PostsThumbnail category={category} />}
-      {page === 'experts' && <UserCards category={category} />}
+      {page === 'posts' && (
+        <ErrorBoundary fallback={<h1>could not fetch ...</h1>}>
+          <Suspense fallback={<h1>loading ...</h1>}>
+            <PostsThumbnail category={category} />
+          </Suspense>
+        </ErrorBoundary>
+      )}
+      {page === 'experts' && (
+        <ErrorBoundary fallback={<h1>could not fetch ...</h1>}>
+          <Suspense fallback={<h1>loading ...</h1>}>
+            <UserCards category={category} />
+          </Suspense>
+        </ErrorBoundary>
+      )}
     </CategoryPostsContainer>
   );
 };

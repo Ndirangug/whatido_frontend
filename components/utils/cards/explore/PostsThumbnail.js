@@ -6,7 +6,7 @@ import CategoryPostCard from './CategoryPostCard';
 
 const PostsThumbnail = ({ category }) => {
   const communityUrl = `${API_URL}/feed/community/${category}?page=0`;
-  const { data: posts } = useSWR(communityUrl);
+  const { data: posts } = useSWR(communityUrl, { suspense: true });
 
   return (
     <CategoryThumbnailContainer>

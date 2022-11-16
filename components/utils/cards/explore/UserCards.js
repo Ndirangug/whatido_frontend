@@ -8,7 +8,7 @@ import { TextSm, TextxS } from '../../typography/Typography';
 const UserCards = ({ category }) => {
   const router = useRouter();
   const expertsUrl = `${API_URL}/feed/discover-expert-community/${category}?page=0`;
-  const { data: experts } = useSWR(expertsUrl);
+  const { data: experts } = useSWR(expertsUrl, { suspense: true });
 
   return (
     <UserCardsContainer>
