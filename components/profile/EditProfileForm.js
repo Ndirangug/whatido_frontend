@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
 import InputField from '../utils/inputs/InputField';
+import SelectCategory from '../utils/inputs/SelectCategory';
 
 const schema = yup.object().shape({
   email: yup.string().required('email is required').email('email is not valid'),
@@ -43,13 +44,7 @@ function EditProfileForm() {
         register={register('email')}
         placeholder={''}
       />
-      <InputField
-        label={'main category'}
-        type={'text'}
-        error={errors?.email?.message}
-        register={register('email')}
-        placeholder={''}
-      />
+      <SelectCategory />
       <InputField
         label={'sub category'}
         type={'text'}

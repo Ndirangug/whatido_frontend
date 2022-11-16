@@ -81,13 +81,42 @@ export const InputFieldContainer = styled.div`
 
   .input {
     width: 100%;
-    border: ${({ error }) => (error ? '1px solid red' : 'none')};
-    padding: 0.75rem 0.5rem;
+    border: ${({ error }) =>
+      error ? '1px solid red' : '1px solid var(--main-background)'};
+    padding: 0.75rem 0.75rem;
     border-radius: 0.25rem;
     outline: none;
     font-size: 1rem;
     width: 100%;
-    height: 50px;
+
+    background: #f1f1f1;
+    border-radius: 0.5rem;
+
+    ::placeholder {
+      color: rgba(0, 20, 51, 0.1);
+    }
+
+    &:focus {
+      border: 1px solid var(--main-border);
+    }
+
+    &:hover {
+      border: 1px solid var(--main-black);
+    }
+  }
+`;
+
+export const SelectFieldContainer = styled.div`
+  display: grid;
+  grid-gap: 0.5rem;
+
+  .select {
+    border: ${({ error }) => (error ? '1px solid red' : 'none')};
+
+    border-radius: 0.25rem;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
     background: #f1f1f1;
     border-radius: 8px;
 

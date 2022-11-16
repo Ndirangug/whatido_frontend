@@ -1,8 +1,7 @@
-import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { InputFieldContainer } from '../../../styles/utils.styles';
-import { TextSm } from '../typography/Typography';
+import { TextBase, TextSm } from '../typography/Typography';
 
 function InputField({
   label,
@@ -34,7 +33,7 @@ function InputField({
 
   return (
     <InputFieldContainer error={error}>
-      <Typography>{label} </Typography>
+      <TextBase>{label} </TextBase>
       <div className="input-element-container">
         <div className="input-container">
           <input
