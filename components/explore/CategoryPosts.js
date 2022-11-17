@@ -41,11 +41,23 @@ const CategoryPosts = ({ category }) => {
         </div>
         <div className="details-container">
           <div className="details">
-            {total && <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>}
+            {total && total[0]?.total_users !== undefined && (
+              <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
+            )}
+
+            {total && total[0]?.total_users === undefined && (
+              <TextxS>{`0 Experts`}</TextxS>
+            )}
           </div>
           <div className="ellipse" />
           <div className="details">
-            {total && <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>}
+            {total && total[1]?.total_post !== undefined && (
+              <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
+            )}
+
+            {total && total[1]?.total_post === undefined && (
+              <TextxS>{`0 Posts`}</TextxS>
+            )}
           </div>
         </div>
 

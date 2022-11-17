@@ -304,6 +304,7 @@ export const CategoryPostsContainer = styled.div`
   }
 
   .banner-img {
+    background: var(--main-indigo);
     @media (min-width: 475px) {
       border-radius: 0.5rem;
     }
