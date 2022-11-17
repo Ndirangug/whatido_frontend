@@ -228,3 +228,22 @@ export const ProfileReviewInfoSkeletonContainer = styled.div`
     flex-direction: column;
   }
 `;
+
+export const NotificationSkeletonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+
+  .header {
+    gap: 0.25rem;
+  }
+`;
+
+export const NotificationAvatarSkeletonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+`;
