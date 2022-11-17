@@ -49,25 +49,26 @@ function LoginForm({ handleClose }) {
 
   return (
     <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>
-      <div className="input-container">
-        <InputField
-          label={'email'}
-          type={'text'}
-          error={errors?.email?.message}
-          register={register('email')}
-          placeholder={'whatido98@gmail.com'}
-        />
+      <div className="">
+        <div className="input-container">
+          <InputField
+            label={'email'}
+            type={'text'}
+            error={errors?.email?.message}
+            register={register('email')}
+            placeholder={'whatido98@gmail.com'}
+          />
 
-        <InputField
-          label={'password'}
-          type={'password'}
-          error={errors?.password?.message}
-          register={register('password')}
-          placeholder={'129***0065***tyh'}
-          password
-        />
-        <div />
-
+          <InputField
+            label={'password'}
+            type={'password'}
+            error={errors?.password?.message}
+            register={register('password')}
+            placeholder={'129***0065***tyh'}
+            password
+          />
+          <div />
+        </div>
         <div className="forget-password-container">
           <div className="checkbox-container">
             <div className="checkbox-wrapper">
