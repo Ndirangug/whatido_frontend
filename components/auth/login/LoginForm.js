@@ -11,7 +11,7 @@ import InputField from '../../utils/inputs/InputField';
 import { TextSm } from '../../utils/typography/Typography';
 
 const schema = yup.object().shape({
-  email: yup.string().email('email is not valid').required('email is required'),
+  email: yup.string().required('email is required').email('email is not valid'),
   password: yup.string().required('password is required'),
 });
 
@@ -57,7 +57,7 @@ function LoginForm({ handleClose }) {
           register={register('email')}
           placeholder={'whatido98@gmail.com'}
         />
-        <div />
+
         <InputField
           label={'password'}
           type={'password'}
@@ -66,6 +66,7 @@ function LoginForm({ handleClose }) {
           placeholder={'129***0065***tyh'}
           password
         />
+        <div />
 
         <div className="forget-password-container">
           <div className="checkbox-container">

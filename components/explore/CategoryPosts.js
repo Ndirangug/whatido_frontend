@@ -6,6 +6,7 @@ import { API_URL } from '../../constants/api';
 import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../styles/explore.styles';
+import Hashtag from '../utils/cards/explore/Hashtag';
 import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
 import UserCards from '../utils/cards/explore/UserCards';
 import ExploreCategoryInfoSkeleton from '../utils/skeletons/ExploreCategoryInfoSkeleton';
@@ -44,28 +45,30 @@ const CategoryPosts = ({ category }) => {
         </div>
         <div className="details-container">
           <div className="details">
-            {total && <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>}
+            {total && total[0]?.total_users !== undefined && (
+              <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
+            )}
+
+            {total && total[0]?.total_users === undefined && (
+              <TextxS>{`0 Experts`}</TextxS>
+            )}
           </div>
           <div className="ellipse" />
           <div className="details">
-            {total && <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>}
+            {total && total[1]?.total_post !== undefined && (
+              <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
+            )}
+
+            {total && total[1]?.total_post === undefined && (
+              <TextxS>{`0 Posts`}</TextxS>
+            )}
           </div>
         </div>
 
         <button className="follow-all-btn">Follow</button>
       </div>
 
-      {/* <div className="tags-container">
-        <div className="tags">
-          <TextxS>#moon</TextxS>
-        </div>
-        <div className="tags">
-          <TextxS>#sky</TextxS>
-        </div>
-        <div className="tags">
-          <TextxS>#nightwalker</TextxS>
-        </div>
-      </div> */}
+      <Hashtag category={category} />
 
       <div className="tab-wrapper">
         <div

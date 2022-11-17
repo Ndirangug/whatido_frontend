@@ -9,7 +9,7 @@ const CategoryPostCard = ({ post }) => {
   const dispatch = useDispatch();
 
   const openFeed = () => {
-    dispatch(setMedia(post));
+    dispatch(setMedia(post?._id));
     dispatch(setFeedModal(true));
   };
 

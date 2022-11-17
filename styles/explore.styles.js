@@ -125,6 +125,7 @@ export const CarouselContainer = styled.div`
 
   .img-container {
     position: relative;
+    cursor: pointer;
     height: 200px;
     width: 100%;
   }
@@ -298,13 +299,15 @@ export const CategoryPostsContainer = styled.div`
   width: 100%;
   margin: 0 auto;
 
-  .banner-img {
-    position: relative;
+  @media (min-width: 475px) {
+    padding: 1rem 0;
   }
 
-  .back-icon {
-    position: absolute;
-    top: 0.5rem;
+  .banner-img {
+    background: var(--main-indigo);
+    @media (min-width: 475px) {
+      border-radius: 0.5rem;
+    }
   }
 
   .title-container {
@@ -366,23 +369,6 @@ export const CategoryPostsContainer = styled.div`
     color: #fff;
   }
 
-  .tags-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 0.5rem;
-    margin: 0 1rem;
-  }
-
-  .tags {
-    border: 1px solid var(--main-border);
-    border-radius: 0.5rem;
-    color: var(--main-black);
-    padding: 0.1rem 0.5rem;
-    font-size: 14px;
-  }
-
   .tab-wrapper {
     display: flex;
     align-items: center;
@@ -404,6 +390,21 @@ export const CategoryPostsContainer = styled.div`
   }
 `;
 
+export const HashtagContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+
+  .tags {
+    background: var(--main-tag);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+`;
+
 export const CategoryThumbnailContainer = styled.div`
   display: grid;
   grid-gap: 0.5rem;
@@ -411,6 +412,7 @@ export const CategoryThumbnailContainer = styled.div`
   margin: 0 1rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
+  position: relative;
 
   .thumbnail-card {
     width: 100%;
@@ -455,12 +457,26 @@ export const CategoryThumbnailContainer = styled.div`
     border: 2px solid -webkit-linear-gradient(to right, #061161, #780206); /* Chrome 10-25, Safari 5.1-6 */
     border: 2px solid linear-gradient(to right, #061161, #780206); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+
+  .no-posts-svg {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .no-posts-text {
+    margin-bottom: -3rem;
+  }
 `;
 
 export const UserCardsContainer = styled.div`
   margin: 0 1rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
+  position: relative;
 
   .cards-wrapper {
     display: flex;
@@ -501,6 +517,19 @@ export const UserCardsContainer = styled.div`
     background: #001433;
     border-radius: 5px;
     border: none;
+  }
+
+  .no-posts-svg {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .no-posts-text {
+    margin-bottom: -3rem;
   }
 `;
 
