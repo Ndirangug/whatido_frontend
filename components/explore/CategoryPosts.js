@@ -87,14 +87,14 @@ const CategoryPosts = ({ category }) => {
       </div>
 
       {page === 'posts' && (
-        <ErrorBoundary fallback={<h1>could not fetch ...</h1>}>
+        <ErrorBoundary fallback={<ExploreCategoryInfoSkeleton />}>
           <Suspense fallback={<ExploreCategoryInfoSkeleton />}>
             <PostsThumbnail category={category} />
           </Suspense>
         </ErrorBoundary>
       )}
       {page === 'experts' && (
-        <ErrorBoundary fallback={<h1>could not fetch ...</h1>}>
+        <ErrorBoundary fallback={<ExploreExpertInfoSkeleton />}>
           <Suspense fallback={<ExploreExpertInfoSkeleton />}>
             <UserCards category={category} />
           </Suspense>

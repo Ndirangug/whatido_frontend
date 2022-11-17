@@ -31,7 +31,7 @@ const ExplorePage = () => {
         <Search />
       </div>
 
-      <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
+      <ErrorBoundary fallback={<ExploreSkeleton />}>
         <Suspense fallback={<ExploreSkeleton />}>
           <CarouselImage />
         </Suspense>
@@ -56,7 +56,7 @@ const ExplorePage = () => {
         </div>
 
         {page === 'category' && (
-          <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
+          <ErrorBoundary fallback={<ExploreCategorySkeleton />}>
             <Suspense fallback={<ExploreCategorySkeleton />}>
               <CategoryList />
             </Suspense>
@@ -64,7 +64,7 @@ const ExplorePage = () => {
         )}
 
         {page === 'expert' && (
-          <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
+          <ErrorBoundary fallback={<ExploreExpertSkeleton />}>
             <Suspense fallback={<ExploreExpertSkeleton />}>
               <ExpertList />
             </Suspense>

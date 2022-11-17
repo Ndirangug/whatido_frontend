@@ -185,7 +185,6 @@ export const ProfilePageSkeletonContainer = styled.div`
   }
 
   .avatar-skeleton {
-    //align-items: center;
     justify-content: center;
     margin-top: -3rem;
     margin-bottom: 1rem;
@@ -228,4 +227,23 @@ export const ProfileReviewInfoSkeletonContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+`;
+
+export const NotificationSkeletonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+
+  .header {
+    gap: 0.25rem;
+  }
+`;
+
+export const NotificationAvatarSkeletonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;
