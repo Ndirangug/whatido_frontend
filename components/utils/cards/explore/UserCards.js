@@ -10,7 +10,6 @@ const UserCards = ({ category }) => {
   const router = useRouter();
   const expertsUrl = `${API_URL}/feed/discover-expert-community/${category}?page=0`;
   const { data: experts } = useSWR(expertsUrl);
-  console.log(experts);
 
   return (
     <UserCardsContainer>

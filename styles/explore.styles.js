@@ -125,6 +125,7 @@ export const CarouselContainer = styled.div`
 
   .img-container {
     position: relative;
+    cursor: pointer;
     height: 200px;
     width: 100%;
   }

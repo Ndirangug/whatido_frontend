@@ -46,7 +46,7 @@ function ReelsCard({ media }) {
 
   const openFeed = () => {
     if (authenticated) {
-      dispatch(setMedia(media));
+      dispatch(setMedia(media?._id));
       dispatch(setFeedModal(true));
     } else {
       dispatch(dispatch(setAuthComonent('LOGIN')));
