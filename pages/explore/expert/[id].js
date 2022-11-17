@@ -15,7 +15,7 @@ function Expert() {
   return (
     <ProfilePageContainer>
       <ProfileLeftContainer>
-        <ErrorBoundary fallback={<h1>could not fetch</h1>}>
+        <ErrorBoundary fallback={<ExplorePageProfileSkeleton />}>
           <Suspense fallback={<ExplorePageProfileSkeleton />}>
             <ProfileInfo userSlug={router?.query?.id} />
           </Suspense>
