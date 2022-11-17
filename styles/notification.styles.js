@@ -87,9 +87,6 @@ export const NotificationLgContainer = styled.div`
     margin: 1rem;
     border-radius: 10px;
   }
-`;
-
-export const NotificationPageContainer = styled.div`
   .header-container {
     display: flex;
     align-items: center;
@@ -101,7 +98,9 @@ export const NotificationPageContainer = styled.div`
       padding-left: 2rem;
     }
   }
+`;
 
+export const NotificationPageContainer = styled.div`
   .details-container {
     display: grid;
     grid-template-rows: 0.5fr auto;
