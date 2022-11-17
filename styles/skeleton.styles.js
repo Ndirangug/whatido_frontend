@@ -38,9 +38,35 @@ export const ExploreSkeletonContainer = styled.div`
   width: 100%;
 
   .carousel-skeleton-container {
-    height: 14rem;
+    height: 10rem;
     display: flex;
     align-items: center;
+  }
+`;
+
+export const ExplorePageProfileSkeletonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 0.5rem;
+
+  .banner-skeleton {
+    border-radius: 0.5rem;
+  }
+
+  .avatar-skeleton {
+    justify-content: center;
+    padding-left: 1rem;
+    margin-top: -3rem;
+    margin-bottom: 1rem;
+  }
+
+  .avatar-follow-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
   }
 `;
 
@@ -108,5 +134,98 @@ export const ExploreExpertSkeletonCardContainer = styled.div`
   .avatar {
     display: flex;
     gap: 1rem;
+  }
+`;
+
+export const ExploreCategoryInfoSkeletonContainer = styled.div`
+  width: 100%;
+
+  .category-post-skeleton {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+  }
+`;
+
+export const ExploreExpertInfoSkeletonContainer = styled.div`
+  width: 100%;
+`;
+
+export const ExploreExpertDetailsSkeletonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  .details-avatar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .profile-skeleton {
+    display: grid;
+    grid-gap: 1rem;
+    margin: 0 auto;
+  }
+`;
+
+export const ProfilePageSkeletonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 0.5rem;
+
+  .banner-skeleton {
+    border-radius: 0.5rem;
+  }
+
+  .avatar-skeleton {
+    //align-items: center;
+    justify-content: center;
+    margin-top: -3rem;
+    margin-bottom: 1rem;
+  }
+
+  .avatar-follow-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+`;
+
+export const ProfileFeedSkeletonContainer = styled.div`
+  display: flex;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  width: 100%;
+  padding: 1rem;
+  overflow: hidden;
+  height: 10rem;
+`;
+
+export const ProfileReviewSkeletonContainer = styled.div`
+  width: 100%;
+`;
+
+export const ProfileReviewInfoSkeletonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  .avatar {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .avatar-info {
+    display: flex;
+    flex-direction: column;
   }
 `;

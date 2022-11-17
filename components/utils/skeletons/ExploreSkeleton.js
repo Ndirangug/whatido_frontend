@@ -5,7 +5,7 @@ function ExploreSkeleton() {
   return (
     <ExploreSkeletonContainer>
       <div className="carousel-skeleton-container">
-        <Skeleton variant="rectangular" width="100%" height="100%" />
+        <Skeleton variant="rounded" width="100%" height="100%" />
       </div>
     </ExploreSkeletonContainer>
   );

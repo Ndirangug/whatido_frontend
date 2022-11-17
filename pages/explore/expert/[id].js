@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { Suspense } from 'react';
 import ProfileInfo from '../../../components/profile/ProfileInfo';
 import ProfileMedia from '../../../components/profile/ProfileMedia';
+import ExplorePageProfileSkeleton from '../../../components/utils/skeletons/ExplorePageProfileSkeleton';
 import { ErrorBoundary } from '../../../hooks/ErrorBoundary';
 import {
   ProfileLeftContainer,
@@ -15,7 +16,7 @@ function Expert() {
     <ProfilePageContainer>
       <ProfileLeftContainer>
         <ErrorBoundary fallback={<h1>could not fetch</h1>}>
-          <Suspense fallback={<h1>loading...</h1>}>
+          <Suspense fallback={<ExplorePageProfileSkeleton />}>
             <ProfileInfo userSlug={router?.query?.id} />
           </Suspense>
         </ErrorBoundary>

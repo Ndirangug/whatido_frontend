@@ -3,7 +3,8 @@ import useSWR from 'swr';
 import { API_URL } from '../../../../constants/api';
 import { UserCardsContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
-import { TextSm, TextxS } from '../../typography/Typography';
+import NoPostsSvg from '../../svg/NoPostsSvg';
+import { TextSm, TextXL, TextxS } from '../../typography/Typography';
 
 const UserCards = ({ category }) => {
   const router = useRouter();
@@ -40,6 +41,15 @@ const UserCards = ({ category }) => {
             <button className="follow-btn">Follow</button>
           </div>
         )
+      )}
+
+      {experts?.length === 0 && (
+        <div className="no-posts-svg">
+          <div className="no-posts-text">
+            <TextXL>no user in this Category.</TextXL>
+          </div>
+          <NoPostsSvg />
+        </div>
       )}
     </UserCardsContainer>
   );

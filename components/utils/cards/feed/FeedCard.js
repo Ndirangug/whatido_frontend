@@ -1,16 +1,16 @@
 import Image from 'next/legacy/image';
-import { FeedCardContainer } from '../../../../styles/profile.styles';
 import { useDispatch } from 'react-redux';
 import {
-  setMedia,
   setFeedModal,
+  setMedia,
 } from '../../../../store/reducers/feed_modal_reducer';
+import { FeedCardContainer } from '../../../../styles/profile.styles';
 
 function FeedCard({ media }) {
   const dispatch = useDispatch();
 
   const openFeed = () => {
-    dispatch(setMedia(media));
+    dispatch(setMedia(media?._id));
     dispatch(setFeedModal(true));
   };
   return (
