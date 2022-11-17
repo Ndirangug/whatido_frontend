@@ -126,7 +126,7 @@ function ReelsCard({ media }) {
           </ErrorBoundary>
           <Stack direction="column" spacing={2}>
             <SubscribeIcon />
-            <LikeIcon defaultColor={'#ffffff'} media={media} />
+            <LikeIcon defaultColor={'#ffffff'} media={media} id={media?._id} />
             <CommentIcon openFeed={openFeed} />
             <ShareIcon openShareModal={openShareModal} />
             <OptionsIcon />

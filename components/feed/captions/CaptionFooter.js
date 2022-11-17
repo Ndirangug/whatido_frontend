@@ -109,7 +109,11 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
     <CaptionFooterContainer>
       <div className="icons-container">
         <div className="icon-wrapper">
-          <LikeIcon defaultColor={'#dddddd'} media={viewedMedia} />
+          <LikeIcon
+            defaultColor={'#dddddd'}
+            media={viewedMedia}
+            id={viewedMedia?._id}
+          />
           <TextSm>{viewedMedia?.inspired?.length}</TextSm>
         </div>
 
