@@ -5,13 +5,13 @@ import { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
 import { likeAction } from '../../../store/actions/user_actions';
 import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
-import { setMedia } from '../../../store/reducers/feed_modal_reducer';
 
-function LikeIcon({ media, defaultColor }) {
+function LikeIcon({ media, defaultColor, id }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.currentUser);
   const [{ token }] = useCookies(['token']);
   const getVideoUrl = `${API_URL}/feed/for-you?page=0`;
+  const videoUrl = `${API_URL}/media/fetch/${id}`;
 
   let color = media?.inspired?.includes(user?.slug) ? 'red' : defaultColor;
 
@@ -30,7 +30,7 @@ function LikeIcon({ media, defaultColor }) {
 
         if (res.status === 200) {
           mutate(getVideoUrl);
-          dispatch(setMedia(media));
+          mutate(videoUrl);
         }
       } catch (error) {
         console.log(error);

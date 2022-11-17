@@ -109,7 +109,11 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
     <CaptionFooterContainer>
       <div className="icons-container">
         <div className="icon-wrapper">
-          <LikeIcon defaultColor={'#dddddd'} media={viewedMedia} />
+          <LikeIcon
+            defaultColor={'#dddddd'}
+            media={viewedMedia}
+            id={viewedMedia?._id}
+          />
           <TextSm>{viewedMedia?.inspired?.length}</TextSm>
         </div>
 
@@ -135,7 +139,10 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
 
       {!authenticated && (
         <div className="comment-container">
-          <CaptionTextArea value={'Please log in to comment'} disabled={true} />
+          <CaptionTextArea
+            placeholder="Please log in to comment"
+            disabled={true}
+          />
         </div>
       )}
     </CaptionFooterContainer>

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { loginAction } from '../../../store/actions/auth_actions';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/buttons/BigButton';
-import CompleteSignup from '../../utils/icons/CompleteSignup';
+import CompleteSignup from '../../utils/svg/CompleteSignup';
 
 const FinishPage = ({ handleClose, getAllValues }) => {
   const dispatch = useDispatch();

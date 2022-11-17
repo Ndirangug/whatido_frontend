@@ -69,8 +69,6 @@ export const LgContainer = styled.div`
 export const NotificationLgContainer = styled.div`
   display: flex;
   flex-direction: column;
-  // display: grid;
-  // grid-gap: 2rem;
   width: 100%;
   padding: 1rem;
   padding-left: 0rem !important;
@@ -84,8 +82,8 @@ export const NotificationLgContainer = styled.div`
   scrollbar-width: none;
 
   @media (min-width: 475px) {
-    margin: 1rem;
-    border-radius: 10px;
+    margin: 0 1rem;
+    // border-radius: 10px;
   }
 `;
 
@@ -143,5 +141,20 @@ export const NotificationCardContainer = styled.div`
 
   .bold-text {
     color: var(--main-indigo);
+  }
+`;
+
+export const NoNotificationContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 3rem 0 !important;
+  gap: 2rem;
+
+  .info-container {
+    text-align: center;
   }
 `;
