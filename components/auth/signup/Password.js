@@ -6,7 +6,6 @@ import { SignupFormContainer } from '../../../styles/signup.styles';
 import BigButton from '../../utils/buttons/BigButton';
 import CancelButton from '../../utils/buttons/CancelButton';
 import InputField from '../../utils/inputs/InputField';
-import { TextBase } from '../../utils/typography/Typography';
 
 const schema = yup.object().shape({
   password: yup
@@ -54,9 +53,6 @@ const Password = ({ setValue, handleSignupPage, handleClose }) => {
           register={register('password')}
           error={errors?.password?.message}
         />
-        <div className="error">
-          <TextBase>{errors?.password?.message}</TextBase>
-        </div>
 
         <InputField
           label={'confirm password'}
@@ -64,9 +60,6 @@ const Password = ({ setValue, handleSignupPage, handleClose }) => {
           register={register('confirm_password')}
           error={errors?.confirm_password?.message}
         />
-        <div className="error">
-          <TextBase>{errors?.confirm_password?.message}</TextBase>
-        </div>
       </div>
 
       <div className="btn-container">

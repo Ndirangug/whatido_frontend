@@ -46,7 +46,7 @@ function ReelsCard({ media }) {
 
   const openFeed = () => {
     if (authenticated) {
-      dispatch(setMedia(media));
+      dispatch(setMedia(media?._id));
       dispatch(setFeedModal(true));
     } else {
       dispatch(dispatch(setAuthComonent('LOGIN')));
@@ -126,7 +126,7 @@ function ReelsCard({ media }) {
           </ErrorBoundary>
           <Stack direction="column" spacing={2}>
             <SubscribeIcon />
-            <LikeIcon defaultColor={'#ffffff'} media={media} />
+            <LikeIcon defaultColor={'#ffffff'} media={media} id={media?._id} />
             <CommentIcon openFeed={openFeed} />
             <ShareIcon openShareModal={openShareModal} />
             <OptionsIcon />

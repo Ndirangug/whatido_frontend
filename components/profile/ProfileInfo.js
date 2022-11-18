@@ -5,7 +5,11 @@ import BigAvatar from '../utils/avatars/BigAvatar';
 import { TextSm, TextXL } from '../utils/typography/Typography';
 import ProfileActionButton from './ProfileActionButton';
 
-function ProfileInfo({ user }) {
+function ProfileInfo({ userSlug }) {
+  const { data } = useSWR(`${API_URL}/getExpertDetail/${userSlug}`, {
+    suspense: true,
+  });
+  const user = data?.data;
   const { data: followers } = useSWR(`${API_URL}/follwers/${user?.slug}`);
   const { data: followings } = useSWR(`${API_URL}/following/${user?.slug}`);
 

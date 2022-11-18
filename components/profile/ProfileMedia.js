@@ -1,12 +1,16 @@
 import { useRouter } from 'next/router';
+import { Suspense } from 'react';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { ProfileMediaContainer } from '../../styles/profile.styles';
 import FeedIcon from '../utils/icons/FeedIcon';
 import ReviewIcon from '../utils/icons/ReviewIcon';
+import ProfileFeedSkeleton from '../utils/skeletons/ProfileFeedSkeleton';
+import ProfileReviewSkeleton from '../utils/skeletons/ProfileReviewSkeleton';
 import ProfileFeed from './ProfileFeed';
 import ProfileReview from './ProfileReview';
 import SelectTab from './SelectTab';
 
-function ProfileMedia({ user }) {
+function ProfileMedia({ userSlug }) {
   const router = useRouter();
 
   const handleReview = () => {
@@ -43,9 +47,17 @@ function ProfileMedia({ user }) {
         />
       </div>
       {router.query.review ? (
-        <ProfileReview user={user} />
+        <ErrorBoundary fallback={<ProfileReviewSkeleton />}>
+          <Suspense fallback={<ProfileReviewSkeleton />}>
+            <ProfileReview userSlug={userSlug} />
+          </Suspense>
+        </ErrorBoundary>
       ) : (
-        <ProfileFeed user={user} />
+        <ErrorBoundary fallback={<ProfileFeedSkeleton />}>
+          <Suspense fallback={<ProfileFeedSkeleton />}>
+            <ProfileFeed userSlug={userSlug} />
+          </Suspense>
+        </ErrorBoundary>
       )}
     </ProfileMediaContainer>
   );

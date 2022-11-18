@@ -8,7 +8,6 @@ import { API_URL } from '../../../constants/api';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/buttons/BigButton';
 import InputField from '../../utils/inputs/InputField';
-import { TextBase } from '../../utils/typography/Typography';
 
 const schema = yup.object().shape({
   email: yup.string().email('email is not valid').required('email is required'),
@@ -53,18 +52,14 @@ const Email = ({ handleSignupPage, setValue }) => {
 
   return (
     <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>
-      <div className="input-container">
-        <InputField
-          label={'email'}
-          type={'text'}
-          placeholder={'whatido98@gmail.com'}
-          error={errors?.email?.message}
-          register={register('email')}
-        />
-        <div className="error-container">
-          <TextBase>{errors?.email?.message}</TextBase>
-        </div>
-      </div>
+      <InputField
+        label={'email'}
+        type={'text'}
+        placeholder={'whatido98@gmail.com'}
+        error={errors?.email?.message}
+        register={register('email')}
+      />
+
       <div className="btn-container">
         <BigButton type="submit">
           {processing === '' ? 'Next' : `${processing}`}

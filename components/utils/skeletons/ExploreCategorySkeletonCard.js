@@ -22,7 +22,7 @@ function ExploreCategorySkeletonCard() {
           </div>
         </div>
         <div className="follow-button-skeleton">
-          <Skeleton variant="rectangular" width={60} height={30} />
+          <Skeleton variant="rounded" width={68} height={32} />
         </div>
       </div>
     </ExploreCategorySkeletonCardContainer>

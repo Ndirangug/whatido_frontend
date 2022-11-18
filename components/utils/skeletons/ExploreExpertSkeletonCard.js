@@ -16,7 +16,7 @@ function ExploreExpertSkeletonCard() {
             </div>
           </div>
         </div>
-        <Skeleton variant="rectangular" width={60} height={30} />
+        <Skeleton variant="rounded" width={68} height={32} />
       </div>
       <div className="explore-image-container">
         <Skeleton variant="rectangular" width="100%" height={100} />

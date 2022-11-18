@@ -1,4 +1,5 @@
 import IconButton from '@mui/material/IconButton';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const StyledIconBtn = styled(IconButton)`
@@ -7,8 +8,10 @@ const StyledIconBtn = styled(IconButton)`
 `;
 
 function EditProfileButton() {
+  const router = useRouter();
+  const slug = router?.query?.id;
   return (
-    <StyledIconBtn>
+    <StyledIconBtn onClick={() => router.push(`/profile/edit/${slug}`)}>
       <svg
         width="72"
         height="30"
