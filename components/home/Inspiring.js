@@ -13,8 +13,10 @@ function Inspiring() {
 
   const { data: list } = useSWR(`${API_URL}/getExpertsCategoryList`);
 
-  let url = `${API_URL}/feed/for-you?page=0`;
+  let url = `${API_URL}/feed/inspiring?page=0`;
   const { data } = useSWR(url, { suspense: true });
+
+  console.log('inspiring data', data);
 
   useEffect(() => {
     subscribeUser(user?.slug);

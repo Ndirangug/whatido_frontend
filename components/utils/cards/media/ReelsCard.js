@@ -1,7 +1,6 @@
 import Stack from '@mui/material/Stack';
-import { Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ErrorBoundary } from '../../../../hooks/ErrorBoundary';
 import { setAuthComonent } from '../../../../store/reducers/app_surface_reducer';
 import {
   setFeedModal,
@@ -16,7 +15,6 @@ import PlayIcon from '../../icons/PlayIcon';
 import ShareIcon from '../../icons/ShareIcon';
 import SubscribeIcon from '../../icons/SubscribeIcon';
 import MdUserHeader from '../../micro/MdUserHeader';
-import FeedInfoSkeleton from '../../skeletons/FeedInfoSkeleton';
 import { TextSM, TextXS } from '../../typography/Typography';
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
@@ -101,29 +99,26 @@ function ReelsCard({ media }) {
     <ReelsCardContainer>
       <div className="reels-info-container">
         <div className="info-content">
-          <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
-            <Suspense fallback={<FeedInfoSkeleton />}>
-              <Stack direction="column" spacing={0.5}>
-                <MdUserHeader userSlug={media.userSlug} />
-                <Stack direction="column" spacing={0.5}>
-                  <TextXS className="info-description">
-                    {media.text.toLowerCase()}
-                  </TextXS>
-                  <div
-                    className="info-description"
-                    style={{ marginLeft: '0.5rem' }}
-                  >
-                    <Stack direction="row" spacing={1}>
-                      <TextXS>#{media.community}</TextXS>
-                    </Stack>
-                  </div>
-                  <Stack direction="row" spacing={1}>
-                    <PlayIcon /> <TextSM>{media.inspired_count}</TextSM>
-                  </Stack>
+          <Stack direction="column" spacing={0.5}>
+            <MdUserHeader user={media.user[0]} />
+            <Stack direction="column" spacing={0.5}>
+              <TextXS className="info-description">
+                {media.text.toLowerCase()}
+              </TextXS>
+              <div
+                className="info-description"
+                style={{ marginLeft: '0.5rem' }}
+              >
+                <Stack direction="row" spacing={1}>
+                  <TextXS>#{media.community}</TextXS>
                 </Stack>
+              </div>
+              <Stack direction="row" spacing={1}>
+                <PlayIcon /> <TextSM>{media.inspired_count}</TextSM>
               </Stack>
-            </Suspense>
-          </ErrorBoundary>
+            </Stack>
+          </Stack>
+
           <Stack direction="column" spacing={2}>
             <SubscribeIcon />
             <LikeIcon defaultColor={'#ffffff'} media={media} id={media?._id} />
