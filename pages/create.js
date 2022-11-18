@@ -9,6 +9,7 @@ import {
   CreateHeadingText,
   CreateParaText,
 } from '../components/utils/typography/Typography';
+import RequireAuth from '../hooks/RequireAuth';
 import {
   CreatePageContainer,
   UploadMainContainer,
@@ -42,4 +43,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default RequireAuth(Create);

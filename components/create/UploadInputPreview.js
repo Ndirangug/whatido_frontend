@@ -1,5 +1,5 @@
-import Image from 'next/legacy/image';
 import { useDispatch, useSelector } from 'react-redux';
+import { API_URL } from '../../constants/api';
 import { setSelectSS } from '../../store/reducers/media_reducer';
 import {
   AbsoluteDiv,
@@ -35,8 +35,10 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
           {state.imageUrls?.length !== 0
             ? state.imageUrls?.map((e, i) => (
                 <div className="previewCompChild" key={i}>
-                  <Image
-                    src={`http://localhost:4000${e}`}
+                  <img
+                    src={`${API_URL}${e}`}
+                    // width={900}
+                    // height={1600}
                     alt=""
                     style={{
                       position: 'relative',
