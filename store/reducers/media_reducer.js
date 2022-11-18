@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const mediaSlice = createSlice({
   name: 'media',
   initialState: {
-    videoUrl: '',
+    videoUrl: {},
     selectedSS: '',
     imageUrls: [],
     isFetchingMediaInfo: false,

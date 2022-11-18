@@ -1,4 +1,3 @@
-import Image from 'next/legacy/image';
 import { useRef } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -85,7 +84,9 @@ function DragDrop() {
 
   return (
     <DragDropContainer
-      isBorder={state.videoUrl === '' || state.isFetchingMediaInfo}
+      isBorder={
+        state.videoUrl?.location === undefined || state.isFetchingMediaInfo
+      }
     >
       {state.uploadingPercent !== 0 && state.uploadingPercent !== 100 ? (
         <div className="loadingContainer">
@@ -117,7 +118,9 @@ function DragDrop() {
           aria-label="Loading Spinner"
           data-testid="loader"
         />
-      ) : state.videoUrl !== '' && !state.isFetchingMediaInfo ? (
+      ) : state.videoUrl?.location !== '' &&
+        state.videoUrl?.location !== undefined &&
+        !state.isFetchingMediaInfo ? (
         <div
           style={{
             maxWidth: '100%',
@@ -128,17 +131,6 @@ function DragDrop() {
             // overflow: 'hidden',
           }}
         >
-          <Image
-            src="/mobile-frame.png"
-            alt="frame"
-            width={'100%'}
-            style={{
-              zIndex: '12',
-              position: 'relative',
-              maxHeight: '600px',
-              pointerEvents: 'none',
-            }}
-          />
           <video
             className="video"
             controls
@@ -150,8 +142,20 @@ function DragDrop() {
               left: '50%',
               transform: 'translate(-50%,  -50%)',
             }}
-            src={`${state.videoUrl}`}
+            src={`${state.videoUrl.location}`}
           ></video>
+          <img
+            src="/mobile-frame.png"
+            alt="frame"
+            // width={'450px'}
+            // height={'800px'}
+            style={{
+              zIndex: '20',
+              position: 'relative',
+              maxHeight: '600px',
+              pointerEvents: 'none',
+            }}
+          />
         </div>
       ) : (
         <>

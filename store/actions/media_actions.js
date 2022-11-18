@@ -22,7 +22,7 @@ export const getMediaProcessed = (data, urlPoint) => {
 };
 
 export const postNewMedia = (data, token) => {
-  return axios.post(`${API_URL}/media/create`, data, {
+  return axios.post(`${API_URL}/media/create/web`, data, {
     'Content-Type': 'multipart/form-data',
     headers: { Authorization: token },
   });
@@ -41,7 +41,7 @@ export const onFileChange = async (e, dispatch, cancelToken) => {
     videoFormData.append('video', file);
     videoFormData.append('start_offset', 1);
     axios
-      .post('http://localhost:4000/upload', videoFormData, {
+      .post(`${API_URL}/media/upload`, videoFormData, {
         'Content-Type': 'multipart/form-data',
         onUploadProgress: (eventPr) => {
           console.log('percent', eventPr);
