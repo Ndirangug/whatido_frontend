@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
+import BigButton from '../utils/buttons/BigButton';
 
 import InputField from '../utils/inputs/InputField';
 import SelectCategory from '../utils/inputs/SelectCategory';
@@ -59,6 +60,9 @@ function EditProfileForm() {
         <SubCategorySelect />
       </div>
       <AdditionalLink />
+      <div className="submit-btn">
+        <BigButton type="submit">save changes</BigButton>
+      </div>
     </EditProfileFormContainer>
   );
 }

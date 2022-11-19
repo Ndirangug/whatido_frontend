@@ -33,8 +33,13 @@ export const EditProfileTopContainer = styled.div`
     width: max-content;
     .icon-container {
       position: absolute;
-      bottom: 0.25rem;
-      right: 0.25rem;
+      bottom: -0.25rem;
+      right: -0.25rem;
+
+      @media (min-width: 600px) {
+        bottom: 0rem;
+        right: 0rem;
+      }
     }
 
     @media (min-width: 600px) {
@@ -49,12 +54,18 @@ export const EditProfileFormContainer = styled.div`
   grid-gap: 1rem;
   padding-bottom: 2rem;
 
+  padding: 1rem;
+
   .form-input-container {
     display: grid;
     grid-gap: 1rem;
     @media (min-width: 768px) {
       grid-template-columns: 1fr 1fr;
     }
+  }
+
+  .submit-btn {
+    margin-top: 3rem;
   }
 `;
 
