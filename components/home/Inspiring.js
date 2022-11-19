@@ -21,9 +21,6 @@ function Inspiring() {
   const user = useSelector((state) => state.auth.currentUser);
   const authenticated = useSelector((state) => state.auth.authenticated);
 
-  console.log('authenticated', authenticated);
-  console.log('current user', user);
-
   const { data: list } = useSWR(`${API_URL}/getExpertsCategoryList`);
 
   const feedsUrl = authenticated

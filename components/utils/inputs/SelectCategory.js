@@ -18,7 +18,7 @@ const colourOptions = [
 function SelectCategory() {
   return (
     <SelectFieldContainer>
-      <TextBase>main category</TextBase>
+      <TextBase>expertise</TextBase>
 
       <Select
         defaultValue={colourOptions[0]}

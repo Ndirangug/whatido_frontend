@@ -21,7 +21,7 @@ const colourOptions = [
 function SubCategorySelect() {
   return (
     <SelectFieldContainer>
-      <TextBase>sub category</TextBase>
+      <TextBase>communities</TextBase>
 
       <Select
         defaultValue={colourOptions[0]}
