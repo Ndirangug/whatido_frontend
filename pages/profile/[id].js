@@ -16,7 +16,7 @@ function Profile() {
   return (
     <ProfilePageContainer>
       <ProfileLeftContainer>
-        <ErrorBoundary fallback={<h1>could not fetch</h1>}>
+        <ErrorBoundary fallback={<ProfilePageSkeleton />}>
           <Suspense fallback={<ProfilePageSkeleton />}>
             <ProfileInfo userSlug={router?.query?.id} />
           </Suspense>

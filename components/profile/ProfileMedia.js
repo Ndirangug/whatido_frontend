@@ -47,13 +47,13 @@ function ProfileMedia({ userSlug }) {
         />
       </div>
       {router.query.review ? (
-        <ErrorBoundary fallback={<h1>could not fetch</h1>}>
+        <ErrorBoundary fallback={<ProfileReviewSkeleton />}>
           <Suspense fallback={<ProfileReviewSkeleton />}>
             <ProfileReview userSlug={userSlug} />
           </Suspense>
         </ErrorBoundary>
       ) : (
-        <ErrorBoundary fallback={<h1>could not fetch</h1>}>
+        <ErrorBoundary fallback={<ProfileFeedSkeleton />}>
           <Suspense fallback={<ProfileFeedSkeleton />}>
             <ProfileFeed userSlug={userSlug} />
           </Suspense>

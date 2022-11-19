@@ -4,11 +4,10 @@ export const EditProfilePageContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
-  height: 100%;
   background: white;
+  height: max-content;
 
   @media (min-width: 600px) {
-    margin: 0 auto;
     padding: 1rem;
   }
 `;
@@ -48,8 +47,11 @@ export const EditProfileFormContainer = styled.div`
   padding: 0 1rem;
   display: grid;
   grid-gap: 1rem;
-  background: white;
   padding-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const ProfilePageContainer = styled.div`
