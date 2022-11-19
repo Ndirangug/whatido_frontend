@@ -1,10 +1,10 @@
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
+import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import { TextSm, TextxS } from '../../typography/Typography';
-import ExploreExpertFollowButton from '../../buttons/ExploreExpertFollowButton';
-import { useSelector } from 'react-redux';
 
 function ExploreExpertCard({
   slug,
@@ -62,7 +62,7 @@ function ExploreExpertCard({
           </div>
         </div>
         {authenticated && !myProfile && (
-          <ExploreExpertFollowButton peer={slug} />
+          <ExploreFollowButton peer={slug} type={'expert'} />
         )}
       </div>
 

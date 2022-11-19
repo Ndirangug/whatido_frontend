@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -25,7 +24,7 @@ const BtnWrapper = styled.div`
   gap: 4px;
 `;
 
-const ExploreExpertFollowButton = ({ peer }) => {
+const ExploreExpertFollowButton = ({ peer, type }) => {
   const [{ token }] = useCookies(['token']);
   const user = useSelector((state) => state.auth.currentUser);
   const checkFollowUrl = `${API_URL}/checkfollowing/${user?.slug}/${peer}`;
@@ -35,7 +34,7 @@ const ExploreExpertFollowButton = ({ peer }) => {
   const followUpEvent = async () => {
     const endpoint = following ? `unfollow/${peer}` : `follow/${peer}`;
     const body = {
-      type: 'expert',
+      type: type,
       userSlug: user?.slug,
     };
     const res = await followAction(endpoint, body, token);

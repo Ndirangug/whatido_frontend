@@ -1,9 +1,10 @@
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
-import PlusIcon from '../../icons/PlusIcon';
+import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import { TextSm, TextxS } from '../../typography/Typography';
 
 function ExploreCategoryCard({
@@ -14,6 +15,8 @@ function ExploreCategoryCard({
   numOfExperts,
 }) {
   const router = useRouter();
+  const authenticated = useSelector((state) => state.auth.authenticated);
+
   return (
     <CardContainer onClick={() => router.push(`/explore/category/${category}`)}>
       <div className="img-wrapper">
@@ -56,14 +59,9 @@ function ExploreCategoryCard({
             </div>
           </div>
         </div>
-        <div className="follow-btn-container">
-          <div className="follow-btn-wrapper">
-            <PlusIcon />
-            <div className="follow-all">
-              <TextSm>Follow</TextSm>
-            </div>
-          </div>
-        </div>
+        {authenticated && (
+          <ExploreFollowButton peer={category} type={'community'} />
+        )}
       </div>
     </CardContainer>
   );
