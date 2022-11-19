@@ -20,8 +20,10 @@ const SignupModal = lazy(() => import('../components/auth/signup/index'));
 const FeedModal = lazy(() => import('../components/feed/index'));
 const ShareModal = lazy(() => import('../components/utils/modals/share/index'));
 
-const fetcher = (...args) => {
-  return axios(...args).then((res) => res.data);
+const fetcher = (url, token) => {
+  return axios
+    .get(url, { headers: { Authorization: token } })
+    .then((res) => res.data);
 };
 
 function MyApp({ Component, pageProps }) {
@@ -32,8 +34,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>what I do</title>
-        <meta name="what I do" content="share your passion for what you" />
+        <title>what i do</title>
+        <meta name="what i do" content="share your passion for what you" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -55,9 +57,9 @@ function MyApp({ Component, pageProps }) {
                 <Suspense>
                   <SignupModal />
                 </Suspense>
-                <Suspense>
+                {/* <Suspense>
                   <FeedModal />
-                </Suspense>
+                </Suspense> */}
                 <Suspense>
                   <ShareModal />
                 </Suspense>
