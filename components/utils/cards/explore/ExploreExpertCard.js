@@ -21,9 +21,12 @@ function ExploreExpertCard({
   const myProfile = user?.slug === slug;
 
   return (
-    <CardContainer onClick={() => router.push(`/explore/expert/${slug}`)}>
+    <CardContainer>
       <div className="details-container">
-        <div className="avatar-details">
+        <div
+          className="avatar-details"
+          onClick={() => router.push(`/explore/expert/${slug}`)}
+        >
           <div className="user-avatar-wrapper">
             <BaseAvatar
               alt="what i do"
