@@ -75,7 +75,7 @@ function ActionButton() {
     uploadNewMedia(mediaData);
     discardMedia();
     // } else {
-    dispatch(setMediaError('select video file'));
+    // dispatch(setMediaError('select video file'));
     // }
   };
 
