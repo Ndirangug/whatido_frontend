@@ -44,13 +44,31 @@ export const EditProfileTopContainer = styled.div`
 `;
 
 export const EditProfileFormContainer = styled.div`
-  padding: 0 1rem;
+  padding-top: 1rem;
   display: grid;
   grid-gap: 1rem;
   padding-bottom: 2rem;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+  .form-input-container {
+    display: grid;
+    grid-gap: 1rem;
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+`;
+
+export const AdditionalLinkContainer = styled.div`
+  display: grid;
+  grid-gap: 0.5rem;
+
+  .link-input-container {
+    display: grid;
+    grid-gap: 1rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 `;
 
