@@ -10,6 +10,7 @@ export const MessengerPageContainer = styled.div`
   max-width: 1280px;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   margin: 0 auto;
   display: flex;
 `;
@@ -60,13 +61,24 @@ export const SearchBarContainer = styled.div`
 export const ConversationListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 1rem;
+  overflow: scroll;
+  height: 100%;
+  padding-bottom: 2rem;
 `;
 
 export const ConversationListCardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  &:hover {
+    background: var(--main-background);
+  }
 
   .conv-info-container {
     display: flex;
