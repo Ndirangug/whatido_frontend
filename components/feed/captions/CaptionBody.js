@@ -5,7 +5,7 @@ import Comment from './Comment';
 
 function CaptionBody({ sendingMediaComment, viewedMedia }) {
   const commentUrl = `${API_URL}/media/page/comment/${
-    viewedMedia?._id
+    viewedMedia[0]?._id
   }?page=${0}`;
   const { data: mediaComments } = useSWR(commentUrl);
 
@@ -14,9 +14,9 @@ function CaptionBody({ sendingMediaComment, viewedMedia }) {
       <div className="comment-container">
         {sendingMediaComment?.map((comment) => (
           <Comment
-            key={viewedMedia?._id}
+            key={viewedMedia[0]?._id}
             comment={comment}
-            mediaId={viewedMedia?._id}
+            mediaId={viewedMedia[0]?._id}
           />
         ))}
 
@@ -24,7 +24,7 @@ function CaptionBody({ sendingMediaComment, viewedMedia }) {
           <Comment
             key={comment?.userSlug}
             comment={comment}
-            mediaId={viewedMedia?._id}
+            mediaId={viewedMedia[0]?._id}
           />
         ))}
       </div>

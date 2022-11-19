@@ -27,7 +27,7 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
   const authenticated = useSelector((state) => state.auth.authenticated);
 
   const commentUrl = `${API_URL}/media/page/comment/${
-    viewedMedia?._id
+    viewedMedia[0]?._id
   }?page=${0}`;
 
   const openShareModal = () => {
@@ -55,7 +55,7 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
     if (authenticated) {
       if (commentValue.trim() !== '') {
         const commentData = {
-          mediaId: viewedMedia._id,
+          mediaId: viewedMedia[0]?._id,
           text: commentValue,
           userSlug: user?.slug,
           mediaCommentId: uuid(),
@@ -88,15 +88,15 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
           console.log(error);
         }
 
-        if (reduxUser?.slug !== viewedMedia?.userSlug) {
+        if (reduxUser?.slug !== viewedMedia[0]?.userSlug) {
           let pushNotificationData = {
             title: `${user?.firstName} commented on your media post`,
             description: commentData?.text,
-            userSlug: viewedMedia?.userSlug,
+            userSlug: viewedMedia[0]?.userSlug,
             action: 'view comment',
             senderSlug: user?.slug,
             endUrl: '/profile',
-            mediaId: viewedMedia?._id,
+            mediaId: viewedMedia[0]?._id,
           };
 
           sendNotification(pushNotificationData);
@@ -111,15 +111,15 @@ function CaptionFooter({ viewedMedia, setSendingMediaComment }) {
         <div className="icon-wrapper">
           <LikeIcon
             defaultColor={'#dddddd'}
-            media={viewedMedia}
-            id={viewedMedia?._id}
+            media={viewedMedia[0]}
+            id={viewedMedia[0]?._id}
           />
-          <TextSm>{viewedMedia?.inspired?.length}</TextSm>
+          <TextSm>{viewedMedia[0]?.inspired?.length}</TextSm>
         </div>
 
         <div className="icon-wrapper">
           <ShareIcon defaultColor={'#dddddd'} openShareModal={openShareModal} />
-          <TextSm>{viewedMedia?.shares?.length || '0'}</TextSm>
+          <TextSm>{viewedMedia[0]?.shares?.length || '0'}</TextSm>
         </div>
       </div>
 

@@ -7,7 +7,7 @@ const ViewFeed = ({ media, handleClose }) => {
   return (
     <ContentPreviewContainer
       style={{
-        backgroundImage: `url(${media?.thumbnail[0]?.cdnUrl})`,
+        backgroundImage: `url(${media[0]?.thumbnail[0]?.cdnUrl})`,
       }}
     >
       <div className="icon-container">
@@ -17,8 +17,8 @@ const ViewFeed = ({ media, handleClose }) => {
         <WhatidoIcon size={'45'} />
       </div>
       <video
-        poster={media?.thumbnail[0]?.cdnUrl}
-        src={media?.file[0]?.cdnUrl}
+        poster={media[0]?.thumbnail[0]?.cdnUrl}
+        src={media[0]?.file[0]?.cdnUrl}
         controlsList="nofullscreen nodownload"
         preload="auto"
         loop

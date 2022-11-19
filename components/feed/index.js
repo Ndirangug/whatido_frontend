@@ -26,13 +26,17 @@ const Feed = () => {
       aria-describedby="simple-modal-description"
     >
       <div className="modal-body">
-        <ViewFeed media={media} handleClose={handleClose} />
+        {media !== undefined && (
+          <>
+            <ViewFeed media={media} handleClose={handleClose} />
 
-        <ContentCaption
-          userSlug={media?.userSlug}
-          handleClose={handleClose}
-          media={media}
-        />
+            <ContentCaption
+              userSlug={media[0]?.userSlug}
+              handleClose={handleClose}
+              media={media}
+            />
+          </>
+        )}
       </div>
     </ViewFeedModal>
   );
