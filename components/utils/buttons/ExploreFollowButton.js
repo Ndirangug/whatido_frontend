@@ -13,7 +13,8 @@ const BtnContainer = styled.div`
   padding: 10px;
   width: 100px;
   height: 40px;
-  background: rgba(0, 20, 51, 0.1);
+  color: ${({ color }) => (color ? color : ' #001433')};
+  background: ${({ bg }) => (bg ? bg : ' rgba(0, 20, 51, 0.1)')};
   border-radius: 8px;
   cursor: pointer;
 `;
@@ -24,7 +25,7 @@ const BtnWrapper = styled.div`
   gap: 4px;
 `;
 
-const ExploreExpertFollowButton = ({ peer, type }) => {
+const ExploreFollowButton = ({ peer, type, bg, color }) => {
   const [{ token }] = useCookies(['token']);
   const user = useSelector((state) => state.auth.currentUser);
   const checkFollowUrl = `${API_URL}/checkfollowing/${user?.slug}/${peer}`;
@@ -47,13 +48,13 @@ const ExploreExpertFollowButton = ({ peer, type }) => {
   if (user?.slug === peer) return;
 
   return (
-    <BtnContainer onClick={followUpEvent}>
+    <BtnContainer bg={bg} color={color} onClick={followUpEvent}>
       <BtnWrapper>
-        {!following && <PlusIcon />}
+        {!following && !bg && <PlusIcon />}
         <TextSm>{text}</TextSm>
       </BtnWrapper>
     </BtnContainer>
   );
 };
 
-export default ExploreExpertFollowButton;
+export default ExploreFollowButton;

@@ -353,20 +353,8 @@ export const CategoryPostsContainer = styled.div`
     margin-top: 0.5rem;
   }
 
-  .follow-all-btn {
-    padding: 10px;
-    color: #fff;
-    background: #001433;
-    border-radius: 5px;
-    border: none;
-    width: 100px;
+  .follow-all-btn-container {
     margin-top: 0.5rem;
-  }
-
-  .follow-all {
-    font-size: 13px;
-    letter-spacing: -0.408px;
-    color: #fff;
   }
 
   .tab-wrapper {

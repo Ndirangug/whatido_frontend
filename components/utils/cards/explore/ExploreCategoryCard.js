@@ -18,8 +18,11 @@ function ExploreCategoryCard({
   const authenticated = useSelector((state) => state.auth.authenticated);
 
   return (
-    <CardContainer onClick={() => router.push(`/explore/category/${category}`)}>
-      <div className="img-wrapper">
+    <CardContainer>
+      <div
+        className="img-wrapper"
+        onClick={() => router.push(`/explore/category/${category}`)}
+      >
         {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
           <Image
             key={thumbnail[0]?.key}
