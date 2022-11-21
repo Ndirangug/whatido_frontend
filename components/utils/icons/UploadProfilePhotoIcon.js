@@ -1,9 +1,9 @@
 import IconButton from '@mui/material/IconButton';
 
-function UploadProfilePhotoIcon({ color }) {
+function UploadProfilePhotoIcon({ color, clickEvent }) {
   const fillColor = color ? '#001433' : 'white';
   return (
-    <IconButton>
+    <IconButton onClick={clickEvent}>
       <svg
         width="32"
         height="32"

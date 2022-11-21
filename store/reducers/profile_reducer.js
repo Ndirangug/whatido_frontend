@@ -4,7 +4,7 @@ export const profileSlice = createSlice({
   name: 'profile',
   initialState: {
     editableProfile: {
-      banner: { url: '', file: null },
+      cover: { url: '', file: null },
       avatar: { url: '', file: null },
       fullName: '',
       headline: '',
