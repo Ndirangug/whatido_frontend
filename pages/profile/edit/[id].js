@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import EditProfileForm from '../../../components/profile/EditProfileForm';
 import EditProfileTop from '../../../components/profile/EditProfileTop';
 import RequireAuth from '../../../hooks/RequireAuth';
@@ -19,12 +20,16 @@ function EditProfile() {
         headline: '',
         nationality: '',
         currentLocation: '',
-        mainCategory: {},
-        subCategory: [{}],
+        community: { value: 'select-community', label: 'select community' },
+        expertise: [],
         additionalLink: [{ linkName: '', url: '' }],
       })
     );
   }, [dispatch, user?.firstName, user?.imageUrl.cdnUrl, user?.lastName]);
+
+  // useEffect(() => {
+
+  // }, [])
 
   return (
     <EditProfilePageContainer>
