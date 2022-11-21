@@ -1,8 +1,9 @@
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
-import PlusIcon from '../../icons/PlusIcon';
+import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import { TextSm, TextxS } from '../../typography/Typography';
 
 function ExploreExpertCard({
@@ -15,11 +16,17 @@ function ExploreExpertCard({
   total_post,
 }) {
   const router = useRouter();
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const user = useSelector((state) => state.auth.currentUser);
+  const myProfile = user?.slug === slug;
 
   return (
-    <CardContainer onClick={() => router.push(`/explore/expert/${slug}`)}>
+    <CardContainer>
       <div className="details-container">
-        <div className="avatar-details">
+        <div
+          className="avatar-details"
+          onClick={() => router.push(`/explore/expert/${slug}`)}
+        >
           <div className="user-avatar-wrapper">
             <BaseAvatar
               alt="what i do"
@@ -54,14 +61,9 @@ function ExploreExpertCard({
             </div>
           </div>
         </div>
-        <div className="follow-btn-container">
-          <div className="follow-btn-wrapper">
-            <PlusIcon />
-            <div className="follow-all">
-              <TextSm>Follow</TextSm>
-            </div>
-          </div>
-        </div>
+        {authenticated && !myProfile && (
+          <ExploreFollowButton peer={slug} type={'expert'} />
+        )}
       </div>
 
       <div className="experts-img-wrapper">

@@ -86,9 +86,13 @@ export const TextArea = styled.textarea`
   resize: none;
   outline: none;
   font-size: 14px;
-  color: #4a4a4a;
   border: none;
   outline: none;
+  font-family: sans-serif;
+
+  ::placeholder {
+    color: rgba(0, 20, 51, 0.1);
+  }
 
   &:focus {
     border: none;

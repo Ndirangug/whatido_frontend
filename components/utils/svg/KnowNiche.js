@@ -3,6 +3,10 @@ import styled from 'styled-components';
 function KnowNiche() {
   const StyledIconBtn = styled.div`
     margin: auto -0.5rem;
+
+    @media (min-width: 475px) {
+      margin: auto;
+    }
   `;
 
   return (

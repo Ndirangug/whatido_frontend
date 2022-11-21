@@ -44,6 +44,12 @@ export const mediaSlice = createSlice({
     setSelectSS: (state, action) => {
       state.selectedSS = action.payload;
     },
+    setEmpty: (state) => {
+      state.videoUrl = '';
+      state.selectedSS = '';
+      state.imageUrls = [];
+      state.uploadingPercent = 0;
+    },
     setMediaUploaded: (state, action) => {
       state.videoUrl = action.payload.videoUrl;
       state.imageUrls = action.payload.imageUrls;
@@ -64,6 +70,7 @@ export const {
   setMediaUploaded,
   setUploadingPercent,
   setSelectSS,
+  setEmpty,
 } = mediaSlice.actions;
 
 export default mediaSlice.reducer;
