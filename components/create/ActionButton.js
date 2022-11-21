@@ -24,6 +24,7 @@ function ActionButton() {
   const thumbnail = useSelector((state) => state.media.selectedSS);
   const imageUrls = useSelector((state) => state.media.imageUrls);
   const caption = useSelector((state) => state.media.caption);
+  const videoUrl = useSelector((state) => state.media.videoUrl);
   const previewComponent = useSelector((state) => state.media.previewComponent);
   const id = useId();
   const user = useSelector((state) => state.auth.currentUser);
@@ -38,9 +39,9 @@ function ActionButton() {
       )
     );
 
-  const uploadNewMedia = async (data) => {
+  const uploadNewMedia = async (postData) => {
     try {
-      const res = await toast.promise(postNewMedia(data, token), {
+      const res = await toast.promise(postNewMedia(postData, token), {
         pending: 'uploading media in background',
         success: 'uploaded media successfully',
         error: 'error in media upload try again!',
