@@ -28,7 +28,7 @@ export const postNewMedia = (data, token) => {
   });
 };
 
-export const onFileChange = async (e, dispatch, cancelToken) => {
+export const onFileChange = async (e, dispatch, cancelToken, token) => {
   const file = e.target.files[0];
   if (file.size > 2500000000) {
     dispatch(setMediaError('upload maximum file size 250mb'));
@@ -43,6 +43,7 @@ export const onFileChange = async (e, dispatch, cancelToken) => {
     axios
       .post(`${API_URL}/media/upload`, videoFormData, {
         'Content-Type': 'multipart/form-data',
+        headers: { Authorization: token },
         onUploadProgress: (eventPr) => {
           console.log('percent', eventPr);
           dispatch(setUploadingPercent((eventPr.loaded * 100) / eventPr.total));

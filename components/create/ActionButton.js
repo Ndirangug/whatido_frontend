@@ -64,19 +64,6 @@ function ActionButton() {
   };
 
   const uploadMedia = () => {
-    // if (previewComponent === 'PREVIEW') {
-    // const mediaData = new FormData();
-    // mediaData.append('mediaId', id);
-    // mediaData.append('mediaType', 'video');
-    // mediaData.append('media', mediaFile);
-    // console.log(thumbnail);
-    // mediaData.append('thumbnail', thumbnail);
-    // mediaData.append('text', caption);
-    // mediaData.append('userSlug', user?.slug);
-    // mediaData.append('community', getExpertCommunity()?.slug);
-    // mediaData.append('tags', [user?.expertCategories[0]]);
-    // mediaData.append('youtubeLink', null);
-
     const mediaData = {
       mediaId: id,
       mediaType: 'video',
@@ -93,9 +80,6 @@ function ActionButton() {
     dispatch(setMediaUploading(true));
     uploadNewMedia(mediaData);
     discardMedia();
-    // } else {
-    //   dispatch(setMediaError('select video file'));
-    // }
   };
 
   return (

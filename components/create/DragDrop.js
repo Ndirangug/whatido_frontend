@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { onFileChange } from '../../store/actions/media_actions';
@@ -13,74 +14,10 @@ import {
 } from '../utils/typography/Typography';
 
 function DragDrop() {
-  // const [uploadPercent, setUploadPercent] = useState(null);
-  // const [uploadStatus, setUploadStatus] = useState('initial');
-  // const [videoData, setVideoData] = useState(null);
-  // const [loading, setLoading] = useState(false);
-  // const [tokenSrc, setToken] = useState(null);
   const tokenSrc = useRef(null);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.media);
-
-  // const onFileChange = async (e) => {
-  //   setLoading(true);
-  //   const file = e.target.files[0];
-  //   if (file.size > 2500000000) {
-  //     dispatch(setMediaError('upload maximum file size 250mb'));
-  //     return;
-  //   } else {
-  //     dispatch(setIsFetchingMediaInfo(true));
-  //     console.log(file, 'video file');
-  //     const videoFormData = new FormData();
-  //     videoFormData.append('video', file);
-  //     videoFormData.append('start_offset', 1);
-  //     // const tok = axios.CancelToken.source();
-  //     // setToken(tok);
-  //     axios
-  //       .post('http://localhost:4000/upload', videoFormData, {
-  //         'Content-Type': 'multipart/form-data',
-  //       })
-  //       .then((response) => {
-  //         setLoading(false);
-  //         console.log(response);
-
-  //         // console.log(response?.data?.data?.imageUrls, 'upload reponse');
-  //         // setVideoData(response?.data?.data);
-  //         // setScreenShots(response?.data?.data?.imageUrls);
-  //         // setSelectedSS(response?.data?.data?.imageUrls[0]);
-  //         // setUploadStatus('videoUploaded');
-  //         // setLoading(false);
-  //         // setUploadPercent(null);
-  //         // console.log('video uploaded successfully');
-  //       })
-  //       .catch((err) => {
-  //         if (axios.isCancel(err)) {
-  //           alert(err.message);
-  //         }
-  //         setLoading(false);
-  //         setUploadPercent(null);
-  //         console.log(err);
-  //       });
-
-  //     // console.log(videoData, 'video data');
-
-  //     // const res = await getMediaProcessed(videoData, 'thumbnail');
-  //     // if (!res.ok) {
-  //     //   dispatch(setIsFetchingMediaInfo(false));
-  //     //   dispatch(setMediaError('failed to get media metadata'));
-  //     //   return;
-  //     // }
-
-  //     // const thumbnailBlob = await res.blob();
-  //     // let thumbnailFile = new File([thumbnailBlob], 'video_thumbnail', {
-  //     //   type: 'image/png',
-  //     // });
-  //     // dispatch(setIsFetchingMediaInfo(false));
-  //     // dispatch(setPreUploadFile({ file: file, thumbnail: thumbnailFile }));
-  //     // dispatch(setMediaError(null));
-  //     // dispatch(setMediaPreview('PREVIEW'));
-  //   }
-  // };
+  const [{ token }] = useCookies(['token']);
 
   return (
     <DragDropContainer
@@ -169,7 +106,7 @@ function DragDrop() {
             type="file"
             className="drop-input"
             accept="video/*"
-            onChange={(e) => onFileChange(e, dispatch, tokenSrc)}
+            onChange={(e) => onFileChange(e, dispatch, tokenSrc, token)}
           />
         </>
       )}
