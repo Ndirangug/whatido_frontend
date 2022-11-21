@@ -1,4 +1,3 @@
-import Image from 'next/legacy/image';
 import { useRef } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -128,7 +127,7 @@ function DragDrop() {
             // overflow: 'hidden',
           }}
         >
-          <Image
+          <img
             src="/mobile-frame.png"
             alt="frame"
             width={'100%'}
@@ -150,7 +149,7 @@ function DragDrop() {
               left: '50%',
               transform: 'translate(-50%,  -50%)',
             }}
-            src={`${state.videoUrl}`}
+            src={`${state.videoUrl?.location}`}
           ></video>
         </div>
       ) : (
