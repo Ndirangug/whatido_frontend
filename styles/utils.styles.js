@@ -127,10 +127,16 @@ export const InputFieldContainer = styled.div`
 `;
 
 export const AddLinkInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: grid;
+  grid-gap: 0.25rem;
   width: 100%;
+
+  .link-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
 
   .link-name-container {
     display: grid;

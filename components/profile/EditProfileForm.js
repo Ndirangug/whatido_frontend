@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
 import BigButton from '../utils/buttons/BigButton';
@@ -9,11 +10,12 @@ import SelectCategory from '../utils/inputs/SelectCategory';
 import SubCategorySelect from '../utils/inputs/SubCategorySelect';
 import AdditionalLink from './AdditionalLink';
 
-const schema = yup.object().shape({});
-
 function EditProfileForm() {
   const profile = useSelector((state) => state.profile.editableProfile);
-  const dispatch = useDispatch();
+
+  const [cookies] = useCookies(['user']);
+
+  const schema = yup.object().shape({});
   const {
     register,
     handleSubmit,
@@ -24,7 +26,7 @@ function EditProfileForm() {
     reValidateMode: 'onChange',
     mode: 'onChange',
     defaultValues: {
-      fullName: profile.fullName,
+      fullName: `${cookies.user.firstName} ${cookies.user.lastName}`,
       headLine: profile.headLine,
       nationality: profile.nationality,
       currentLocation: profile.currentLocation,

@@ -16,7 +16,10 @@ function EditProfileTop() {
 
     dispatch(
       setEditableProfile({
-        cover: { url: window.URL.createObjectURL(file), file: file },
+        cover: {
+          url: window.URL.createObjectURL(file),
+          file: JSON.stringify(file),
+        },
       })
     );
   };
@@ -25,7 +28,10 @@ function EditProfileTop() {
     const file = e.target.files[0];
     dispatch(
       setEditableProfile({
-        avatar: { url: window.URL.createObjectURL(file), file: file },
+        avatar: {
+          url: window.URL.createObjectURL(file),
+          file: JSON.stringify(file),
+        },
       })
     );
   };

@@ -22,7 +22,7 @@ function EditProfile() {
         currentLocation: '',
         community: { value: 'select-community', label: 'select community' },
         expertise: [],
-        additionalLink: [{ linkName: '', url: '' }],
+        additionalLinks: [{ linkName: '', linkUrl: '' }],
       })
     );
   }, [dispatch, user?.firstName, user?.imageUrl.cdnUrl, user?.lastName]);

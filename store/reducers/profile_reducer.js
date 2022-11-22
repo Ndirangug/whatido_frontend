@@ -12,7 +12,7 @@ export const profileSlice = createSlice({
       currentLocation: '',
       community: {},
       expertise: [],
-      additionalLink: [{ linkName: '', url: '' }],
+      additionalLinks: [{ linkName: '', linkUrl: '' }],
     },
   },
 
