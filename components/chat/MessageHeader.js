@@ -6,14 +6,14 @@ import OptionFlatIcon from '../utils/icons/OptionFlatIcon';
 import VideoCallIcon from '../utils/icons/VideoCallIcon';
 import { TextLG } from '../utils/typography/Typography';
 
-function MessageHeader() {
+function MessageHeader({ friend }) {
   return (
     <MessageHeaderContainer>
       <div className="flex-center sm-gap ">
         <BackIcon />
         <div className="flex-center xs-gap">
-          <BaseAvatar />
-          <TextLG>Desitny AG</TextLG>
+          <BaseAvatar src={friend.photo} />
+          <TextLG>{friend.firstName + '  ' + friend.lastName}</TextLG>
           {/* <div className="info"></div> */}
         </div>
       </div>
