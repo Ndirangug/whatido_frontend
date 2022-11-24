@@ -1,7 +1,7 @@
-import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { InputFieldContainer } from '../../../styles/utils.styles';
+import { TextBase, TextSm } from '../typography/Typography';
 
 function InputField({
   label,
@@ -33,16 +33,19 @@ function InputField({
 
   return (
     <InputFieldContainer error={error}>
-      <Typography>{label} </Typography>
-      <div className="input-container">
-        <input
-          type={passwordType}
-          placeholder={placeholder}
-          className="input"
-          {...register}
-          disabled={disabled}
-        />
-        {password && passwordToggle()}
+      <TextBase>{label} </TextBase>
+      <div className="input-element-container">
+        <div className="input-container">
+          <input
+            type={passwordType}
+            placeholder={placeholder}
+            className="input"
+            {...register}
+            disabled={disabled}
+          />
+          {password && passwordToggle()}
+        </div>
+        <TextSm style={{ color: 'red' }}>{error}</TextSm>
       </div>
     </InputFieldContainer>
   );

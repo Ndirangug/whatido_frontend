@@ -1,32 +1,29 @@
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import { Suspense } from 'react';
 import ProfileInfo from '../../components/profile/ProfileInfo';
 import ProfileMedia from '../../components/profile/ProfileMedia';
-import { API_URL } from '../../constants/api';
+import ProfilePageSkeleton from '../../components/utils/skeletons/ProfilePageSkeleton';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import RequireAuth from '../../hooks/RequireAuth';
 import {
   ProfileLeftContainer,
   ProfilePageContainer,
-  ProfileRightContainer,
 } from '../../styles/profile.styles';
 
 function Profile() {
   const router = useRouter();
-  const { data } = useSWR(`${API_URL}/getExpertDetail/${router?.query?.id}`);
-  const user = data?.data;
 
   return (
     <ProfilePageContainer>
       <ProfileLeftContainer>
-        <ProfileInfo user={user} />
-        <ProfileMedia user={user} />
+        <ErrorBoundary fallback={<ProfilePageSkeleton />}>
+          <Suspense fallback={<ProfilePageSkeleton />}>
+            <ProfileInfo userSlug={router?.query?.id} />
+          </Suspense>
+        </ErrorBoundary>
+
+        <ProfileMedia userSlug={router?.query?.id} />
       </ProfileLeftContainer>
-      <ProfileRightContainer>
-        {/* connect container  */}
-        {/* suggest experts */}
-        {/* write review*/}
-        {/* logout */}
-      </ProfileRightContainer>
     </ProfilePageContainer>
   );
 }

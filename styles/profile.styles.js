@@ -1,14 +1,70 @@
 import styled from 'styled-components';
 
+export const EditProfilePageContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  background: white;
+  height: max-content;
+
+  @media (min-width: 600px) {
+    padding: 1rem;
+  }
+`;
+export const EditProfileTopContainer = styled.div`
+  margin-bottom: 1rem;
+  .banner-container {
+    width: 100%;
+    height: 10rem;
+    background: var(--main-indigo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (min-width: 600px) {
+      border-radius: 1rem;
+      overflow: hidden;
+      height: 12rem;
+    }
+  }
+  .avatar-conatiner {
+    margin-top: -4rem;
+    padding: 1rem;
+    position: relative;
+    width: max-content;
+    .icon-container {
+      position: absolute;
+      bottom: 0.25rem;
+      right: 0.25rem;
+    }
+
+    @media (min-width: 600px) {
+      padding: 1rem 2rem;
+    }
+  }
+`;
+
+export const EditProfileFormContainer = styled.div`
+  padding: 0 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  padding-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
 export const ProfilePageContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--main-background);
 
-  @media (min-width: 475px) {
-    margin: 1rem;
+  @media (min-width: 600px) {
+    margin: 0 auto;
+    padding: 1rem;
   }
 `;
 
@@ -27,17 +83,18 @@ export const ProfileRightContainer = styled.div`
 
 export const ProfileInfoContainer = styled.div`
   background: #fff;
-  @media (min-width: 475px) {
+  @media (min-width: 600px) {
     border-radius: 1rem;
     overflow: hidden;
   }
   .banner-conatiner {
     width: 100%;
-    height: 9rem;
+    height: 10rem;
     background: var(--main-indigo);
-    @media (min-width: 475px) {
+    @media (min-width: 600px) {
       border-radius: 1rem;
       overflow: hidden;
+      height: 12rem;
     }
   }
 
@@ -146,7 +203,7 @@ export const FeedCardContainer = styled.div`
 export const ProfileReviewContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
-  padding: 0.5rem 0;
+  padding: 0 0.5rem;
   width: 100%;
 `;
 

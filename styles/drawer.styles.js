@@ -218,7 +218,7 @@ export const WalletSidebarContainer = styled.div`
     font-size: 16px;
   }
 
-  .wallet-sidebar-list = {
+  .wallet-sidebar-list {
     border: 1px solid #e6e6e6;
     border-radius: 1rem;
     display: flex;

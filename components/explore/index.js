@@ -1,7 +1,12 @@
+import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { setSelectedComponent } from '../../store/reducers/explore_reducer';
 import { ContentPageContainer } from '../../styles/explore.styles';
 import CarouselImage from '../utils/cards/explore/CarouselImage';
+import ExploreCategorySkeleton from '../utils/skeletons/ExploreCategorySkeleton';
+import ExploreExpertSkeleton from '../utils/skeletons/ExploreExpertSkeleton';
+import ExploreSkeleton from '../utils/skeletons/ExploreSkeleton';
 import { Text2XL, TextSm } from '../utils/typography/Typography';
 import CategoryList from './CategoryList';
 import ExpertList from './ExpertList';
@@ -26,7 +31,11 @@ const ExplorePage = () => {
         <Search />
       </div>
 
-      <CarouselImage />
+      <ErrorBoundary fallback={<ExploreSkeleton />}>
+        <Suspense fallback={<ExploreSkeleton />}>
+          <CarouselImage />
+        </Suspense>
+      </ErrorBoundary>
 
       <div>
         <div className="tab-wrapper">
@@ -46,9 +55,21 @@ const ExplorePage = () => {
           </div>
         </div>
 
-        {page === 'category' && <CategoryList />}
+        {page === 'category' && (
+          <ErrorBoundary fallback={<ExploreCategorySkeleton />}>
+            <Suspense fallback={<ExploreCategorySkeleton />}>
+              <CategoryList />
+            </Suspense>
+          </ErrorBoundary>
+        )}
 
-        {page === 'expert' && <ExpertList />}
+        {page === 'expert' && (
+          <ErrorBoundary fallback={<ExploreExpertSkeleton />}>
+            <Suspense fallback={<ExploreExpertSkeleton />}>
+              <ExpertList />
+            </Suspense>
+          </ErrorBoundary>
+        )}
       </div>
     </ContentPageContainer>
   );

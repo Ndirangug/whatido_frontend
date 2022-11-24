@@ -17,7 +17,7 @@ export const FooterContainer = styled.div`
     width: 4rem;
   }
 
-  @media (min-width: 475px) {
+  @media (min-width: 600px) {
     display: none;
   }
 `;
@@ -25,7 +25,7 @@ export const FooterContainer = styled.div`
 export const SidebarContainer = styled.div`
   display: none;
 
-  @media (min-width: 475px) {
+  @media (min-width: 600px) {
     background: var(--main-indigo);
     padding: 1rem;
     display: flex;

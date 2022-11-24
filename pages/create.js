@@ -29,21 +29,12 @@ function Create() {
       </div>
       <UploadMainContainer>
         <div className="drapAndDropContainer">
-          {previewComponent === 'DROPZONE' && (
-            <DragDrop
-              setScreenShots={setscreenShots}
-              setSelectedSS={setSelectedSS}
-            />
-          )}
+          {previewComponent === 'DROPZONE' && <DragDrop />}
           {previewComponent === 'PREVIEW' && <Preview />}
         </div>
 
         <div className="inputContainer">
-          <UploadInputPreview
-            screenShots={screenShots}
-            imgClicked={selectedSS}
-            setimgClicked={setSelectedSS}
-          />
+          <UploadInputPreview />
           {error && <Alert severity="error">{error} </Alert>}
           <ActionButton />
         </div>

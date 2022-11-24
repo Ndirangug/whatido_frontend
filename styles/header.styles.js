@@ -74,6 +74,7 @@ export const HeaderContainer = styled.div`
     width: 100%;
     background-color: transparent;
     font-size: 1rem;
+    margin-left: 0.5rem;
 
     ::placeholder {
       color: var(--main-gray);

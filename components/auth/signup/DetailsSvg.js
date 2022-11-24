@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { SignupFormContainer } from '../../../styles/signup.styles';
 import BigButton from '../../utils/buttons/BigButton';
-import KnowNiche from '../../utils/icons/KnowNiche';
+import KnowNiche from '../../utils/svg/KnowNiche';
 import { Text3XL } from '../../utils/typography/Typography';
 
 const DetailsSvg = ({ handleSignupPage }) => {

@@ -7,7 +7,7 @@ import { HomePageContainer } from '../styles/home.styles';
 export default function Home() {
   return (
     <HomePageContainer>
-      <ErrorBoundary fallback={<h2>Could not fetch posts.</h2>}>
+      <ErrorBoundary fallback={<FeedSkeleton />}>
         <Suspense fallback={<FeedSkeleton />}>
           <Inspiring />
         </Suspense>
