@@ -1,8 +1,7 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import * as yup from 'yup';
+import { updateUserProfile } from '../../store/actions/user_actions';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
 import BigButton from '../utils/buttons/BigButton';
 import InputField from '../utils/inputs/InputField';
@@ -12,16 +11,14 @@ import AdditionalLink from './AdditionalLink';
 
 function EditProfileForm() {
   const profile = useSelector((state) => state.profile.editableProfile);
-
   const [cookies] = useCookies(['user']);
-
-  const schema = yup.object().shape({});
+  const [{ token }] = useCookies(['token']);
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
     criteriaMode: 'all',
     reValidateMode: 'onChange',
     mode: 'onChange',
@@ -32,6 +29,22 @@ function EditProfileForm() {
       currentLocation: profile.currentLocation,
     },
   });
+
+  const formatProfileData = (data) => {
+    const profileData = new FormData();
+    profile?.cover?.file && profileData.append('cover', profile?.cover?.file);
+    profile?.avatar?.file &&
+      profileData.append('avatar', profile?.avatar?.file);
+    profileData.append('headLine', data?.headLine);
+    profileData.append('community', profile?.community);
+    profileData.append('expertise', profile?.expertise);
+    profileData.append('currentLocation', data?.currentLocation);
+    profileData.append('nationality', data?.nationality);
+    profileData.append('additionalLinks', data?.additionalLinks);
+
+    updateUserProfile(profileData, token);
+  };
+
   return (
     <EditProfileFormContainer>
       <div className="form-input-container">
@@ -64,12 +77,19 @@ function EditProfileForm() {
           register={register('currentLocation')}
           placeholder={''}
         />
-        <SelectCategory />
+        <SelectCategory register={register} />
         <SubCategorySelect />
       </div>
-      <AdditionalLink />
+      <AdditionalLink control={control} />
       <div className="submit-btn">
-        <BigButton type="submit">save changes</BigButton>
+        <BigButton
+          type="submit"
+          eventHandler={handleSubmit((data) => {
+            console.log(data, profile?.community, profile?.expertise);
+          })}
+        >
+          save changes
+        </BigButton>
       </div>
     </EditProfileFormContainer>
   );

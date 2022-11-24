@@ -20,7 +20,7 @@ function EditProfile() {
         headline: '',
         nationality: '',
         currentLocation: '',
-        community: { value: 'select-community', label: 'select community' },
+        community: {},
         expertise: [],
         additionalLinks: [{ linkName: '', linkUrl: '' }],
       })

@@ -5,7 +5,7 @@ import { MessengerPageContainer } from '../../../styles/messegner.styles';
 function ChatScreenPage() {
   return (
     <MessengerPageContainer>
-      <Sidebar />
+      <Sidebar chatScreen />
       <MessageScreen />
     </MessengerPageContainer>
   );

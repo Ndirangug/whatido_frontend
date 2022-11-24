@@ -7,9 +7,9 @@ import { TextBase } from '../utils/typography/Typography';
 import ConversationList from './ConversationList';
 import SearchBar from './SearchBar';
 
-function Sidebar() {
+function Sidebar({ chatScreen }) {
   return (
-    <SidebarContainer>
+    <SidebarContainer chatScreen={chatScreen}>
       <div className="select-contaier">
         <SelectContainer selected>
           <TextBase>chat</TextBase>

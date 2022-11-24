@@ -1,8 +1,5 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import * as yup from 'yup';
+import { useForm, useWatch } from 'react-hook-form';
 import { AddLinkInputContainer } from '../../../styles/utils.styles';
 import { TextSm, TextxS } from '../typography/Typography';
 
@@ -10,36 +7,28 @@ const websiteRegex =
   // eslint-disable-next-line no-useless-escape
   /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
 
-function AddLinkInput({ linkName, url, i }) {
-  const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile.editableProfile);
-
-  const schema = yup.object().shape({
-    linkUrl: yup
-      .string()
-      .default(null)
-      .nullable()
-      .matches(websiteRegex, 'invalid website url'),
-    linkName: yup
-      .string()
-      .required('link name is required')
-      .default(null)
-      .nullable(),
+function AddLinkInput({
+  update,
+  index,
+  value,
+  control,
+  fieldArrayName,
+  remove,
+  disabled,
+}) {
+  const data = useWatch({
+    control,
+    name: `${fieldArrayName}.${index}`,
   });
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
     criteriaMode: 'all',
     reValidateMode: 'onChange',
     mode: 'onChange',
-    defaultValues: {
-      linkUrl: url,
-      linkName: linkName,
-    },
+    defaultValues: value,
   });
 
   return (
@@ -51,10 +40,11 @@ function AddLinkInput({ linkName, url, i }) {
             type="text"
             className="input"
             name="linkName"
-            {...register('linkName')}
-            // onChange={(e) =>
-            //   console.log(e.target.value, errors.linkName?.message)
-            // }
+            disabled={disabled || (data?.linkName ? true : false)}
+            {...register('linkName', {
+              required: true,
+              message: 'link name is required',
+            })}
           />
         </div>
         <div className="link-url-container">
@@ -64,19 +54,39 @@ function AddLinkInput({ linkName, url, i }) {
             type="text"
             className="input"
             name="linkUrl"
-            {...register('linkUrl')}
+            {...register('linkUrl', {
+              pattern: {
+                value: websiteRegex,
+                message: 'invalid website url',
+              },
+              required: true,
+            })}
+            disabled={disabled || (data?.linkUrl ? true : false)}
           />
         </div>
-        <TextxS
-          style={{
-            color: 'red',
-            fontWeight: 200,
-            cursor: 'pointer',
-            margin: 'auto 0',
-          }}
-        >
-          remove
-        </TextxS>
+        {data?.linkUrl ? (
+          <TextxS
+            style={{
+              color: 'red',
+              fontWeight: 200,
+            }}
+            onClick={() => remove(index)}
+          >
+            remove
+          </TextxS>
+        ) : (
+          <TextxS
+            style={{
+              color: 'blue',
+              fontWeight: 200,
+            }}
+            onClick={handleSubmit((data) => {
+              update(index, data);
+            })}
+          >
+            add
+          </TextxS>
+        )}
       </div>
       <TextxS
         style={{

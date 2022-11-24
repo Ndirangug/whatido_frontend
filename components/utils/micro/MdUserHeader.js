@@ -23,14 +23,14 @@ function MdUserHeader({ user }) {
             gap: '0.5rem',
           }}
         >
-          <XsAvatar src={user.imageUrl?.cdnUrl} />
+          <XsAvatar src={user?.imageUrl?.cdnUrl} />
 
           <TextSM
             style={{
               cursor: 'pointer',
             }}
           >
-            {user.profile?.firstName} {user?.profile?.lastName}
+            {user?.profile?.firstName} {user?.profile?.lastName}
           </TextSM>
         </div>
       </Link>
