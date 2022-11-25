@@ -43,9 +43,19 @@ function EditProfileForm() {
     profileData.append('nationality', data?.nationality);
     profileData.append('additionalLinks', data?.additionalLinks);
 
+    let profileFormData = {
+      headline: data?.headLine,
+      community: profile?.community,
+      experties: profile?.expertise,
+      currentLocation: data?.currentLocation,
+      nationality: data?.nationality,
+      additionalLinks: data?.additionalLinks,
+    };
+    console.log(profileFormData);
+
     const updatedProfile = await updateUserProfile(
       cookies?.user?.slug,
-      profileData,
+      profileFormData,
       token
     );
     console.log('updated profile', updatedProfile);

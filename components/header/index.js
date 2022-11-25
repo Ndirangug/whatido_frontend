@@ -1,11 +1,11 @@
 import Stack from '@mui/material/Stack';
 import Image from 'next/legacy/image';
-import Button from '../utils/buttons/Button';
-
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthComonent } from '../../store/reducers/app_surface_reducer';
 import { HeaderContainer } from '../../styles/header.styles';
+import Button from '../utils/buttons/Button';
 import AudioRoomsIcon from '../utils/icons/AudioRoomsIcon';
 import ChatIcon from '../utils/icons/ChatIcon';
 import CreateIcon from '../utils/icons/CreateIcon';
@@ -15,6 +15,8 @@ import WalletIcon from '../utils/icons/WalletIcon';
 const Header = () => {
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.auth.authenticated);
+  const router = useRouter();
+  const onMessageScreen = router.pathname === '/messenger/chat/[id]';
 
   const handleLogin = () => {
     dispatch(setAuthComonent('LOGIN'));
@@ -25,7 +27,7 @@ const Header = () => {
   };
 
   return (
-    <HeaderContainer>
+    <HeaderContainer onMessageScreen={onMessageScreen}>
       <div className="inner-head-container">
         <div className="header-left">
           <Link href="/">

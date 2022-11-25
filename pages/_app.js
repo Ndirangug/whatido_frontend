@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { lazy, Suspense, useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
@@ -27,6 +28,8 @@ const fetcher = (url, token) => {
 };
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const onMessageScreen = router.pathname === '/messenger/chat/[id]';
   useEffect(() => {
     serviceWorker.register();
   }, []);
@@ -45,7 +48,7 @@ function MyApp({ Component, pageProps }) {
           href="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
         />
       </Head>
-      <GlobalStyleProvider>
+      <GlobalStyleProvider onMessageScreen={onMessageScreen}>
         <CookiesProvider>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>

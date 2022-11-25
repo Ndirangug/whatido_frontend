@@ -12,8 +12,8 @@ function MessageHeader({ friend }) {
       <div className="flex-center sm-gap ">
         <BackIcon />
         <div className="flex-center xs-gap">
-          <BaseAvatar src={friend.photo} />
-          <TextLG>{friend.firstName + '  ' + friend.lastName}</TextLG>
+          <BaseAvatar src={friend?.photo} />
+          <TextLG>{friend?.firstName + '  ' + friend?.lastName}</TextLG>
           {/* <div className="info"></div> */}
         </div>
       </div>
