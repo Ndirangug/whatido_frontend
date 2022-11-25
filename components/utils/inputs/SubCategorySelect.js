@@ -27,7 +27,7 @@ function SubCategorySelect() {
 
   return (
     <SelectFieldContainer>
-      <TextBase>expertise</TextBase>
+      <TextBase>experties</TextBase>
 
       <Select
         defaultValue={profile.subCategory}

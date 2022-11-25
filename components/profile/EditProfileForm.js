@@ -30,19 +30,25 @@ function EditProfileForm() {
     },
   });
 
-  const formatProfileData = (data) => {
+  const formatProfileData = async (data) => {
     const profileData = new FormData();
-    profile?.cover?.file && profileData.append('cover', profile?.cover?.file);
+    profile?.cover?.file &&
+      profileData.append('coverImage', profile?.cover?.file);
     profile?.avatar?.file &&
       profileData.append('avatar', profile?.avatar?.file);
     profileData.append('headLine', data?.headLine);
     profileData.append('community', profile?.community);
-    profileData.append('expertise', profile?.expertise);
+    profileData.append('experties', profile?.expertise);
     profileData.append('currentLocation', data?.currentLocation);
     profileData.append('nationality', data?.nationality);
     profileData.append('additionalLinks', data?.additionalLinks);
 
-    updateUserProfile(profileData, token);
+    const updatedProfile = await updateUserProfile(
+      cookies?.user?.slug,
+      profileData,
+      token
+    );
+    console.log('updated profile', updatedProfile);
   };
 
   return (
@@ -85,7 +91,7 @@ function EditProfileForm() {
         <BigButton
           type="submit"
           eventHandler={handleSubmit((data) => {
-            console.log(data, profile?.community, profile?.expertise);
+            formatProfileData(data);
           })}
         >
           save changes

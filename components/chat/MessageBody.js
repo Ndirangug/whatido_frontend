@@ -24,11 +24,14 @@ function MessageBody({ scrollRef, friend, inputRef }) {
   const [previewImageSrc, setPreviewImageSrc] = useState(null);
   const [openImagePreview, setOpenImagePreview] = useState(false);
   const [scrollView, setScrollView] = useState(false);
+  const conversationUrl = `${API_URL}/message/count/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}`;
+  const { data: conversation } = useSWR(conversationUrl);
+
   const { data, isValidating, size, setSize } = useSWRInfinite(
     (index) =>
       `${API_URL}/message/page/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}?page=${index}`
   );
-  console.log('message', data);
+
   const messageCountUrl = `${API_URL}/message/count/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}`;
   const { data: messageCount } = useSWR(messageCountUrl);
   const hasMore = size * 20 <= messageCount;

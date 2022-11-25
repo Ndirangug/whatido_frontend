@@ -18,7 +18,7 @@ function EditProfileTop() {
       setEditableProfile({
         cover: {
           url: window.URL.createObjectURL(file),
-          file: JSON.stringify(file),
+          file: file,
         },
       })
     );
@@ -30,7 +30,7 @@ function EditProfileTop() {
       setEditableProfile({
         avatar: {
           url: window.URL.createObjectURL(file),
-          file: JSON.stringify(file),
+          file: file,
         },
       })
     );
