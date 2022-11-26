@@ -1,11 +1,12 @@
 import IconButton from '@mui/material/IconButton';
 
-function EmojiIcon() {
+function EmojiIcon({ eventHandler }) {
   return (
     <IconButton
       style={{
         padding: ' 0.65rem',
       }}
+      onClick={eventHandler}
     >
       <svg
         width="21"

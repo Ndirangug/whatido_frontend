@@ -55,7 +55,11 @@ function MessageScreen({ recieverSlug }) {
         recieverSlug={recieverSlug}
       />
       {/* footer */}
-      <MessageFooter scrollRef={scrollRef} inputRef={inputRef} />
+      <MessageFooter
+        scrollRef={scrollRef}
+        inputRef={inputRef}
+        friend={friend}
+      />
     </MessageScreenContainer>
   );
 }
