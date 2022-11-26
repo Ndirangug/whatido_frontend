@@ -97,8 +97,8 @@ const AudioChat = ({ expert, user }) => {
         {
           ...user,
           audioRoomRole: 'Host',
-          firstName: user.profile.firstName || '',
-          lastName: user.profile.lastName || '',
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
         },
         {
           ...expert,
