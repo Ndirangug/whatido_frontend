@@ -19,31 +19,36 @@ import {
 import { TextSm } from '../utils/typography/Typography';
 import Message from './Message';
 
-function MessageBody({ scrollRef, friend, inputRef }) {
+function MessageBody({
+  scrollRef,
+  friend,
+  inputRef,
+  userSlug,
+  recieverSlug,
+  token,
+}) {
   const [cookies] = useCookies(['user']);
   const [previewImageSrc, setPreviewImageSrc] = useState(null);
   const [openImagePreview, setOpenImagePreview] = useState(false);
   const [scrollView, setScrollView] = useState(false);
-  const conversationUrl = `${API_URL}/message/count/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}`;
-  const { data: conversation } = useSWR(conversationUrl);
 
-  const { data, isValidating, size, setSize } = useSWRInfinite(
-    (index) =>
-      `${API_URL}/message/page/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}?page=${index}`
-  );
+  const conversationUrl = `${API_URL}/conversations/find/${recieverSlug}/${userSlug}`;
+  const { data: conversation } = useSWR([conversationUrl, token]);
 
-  const messageCountUrl = `${API_URL}/message/count/614e05b9b2736ed0cae416c2/${cookies?.user?.slug}`;
-  const { data: messageCount } = useSWR(messageCountUrl);
+  const { data, isValidating, size, setSize } = useSWRInfinite((index) => [
+    `${API_URL}/message/page/${conversation?._id}/${cookies?.user?.slug}?page=${index}`,
+    token,
+  ]);
+  console.log('message', data);
+
+  const messageCountUrl = `${API_URL}/message/count/${conversation?._id}/${cookies?.user?.slug}`;
+  const { data: messageCount } = useSWR([messageCountUrl, token]);
   const hasMore = size * 20 <= messageCount;
   const dispatch = useDispatch();
 
   const messagesArray = useSelector((state) => state.messenger.messages);
 
-  const filteredMessages = messagesArray.sort((a, b) => {
-    return new Date(b.createdAt) - new Date(a.createdAt);
-  });
-
-  const groupedMessages = filteredMessages?.reduce((acc, message) => {
+  const groupedMessages = messagesArray?.reduce((acc, message) => {
     const date = moment(message.createdAt)?.calendar(null, {
       lastDay: '[Yesterday]',
       sameDay: '[Today]',
@@ -116,42 +121,17 @@ function MessageBody({ scrollRef, friend, inputRef }) {
             .sort((a, b) => {
               return new Date(b.createdAt) - new Date(a.createdAt);
             })
-            .map(
-              ({
-                sender,
-                text,
-                createdAt,
-                read,
-                senderName,
-                withAvatar,
-                quote,
-                _id,
-                imgFileArray,
-                audioFile,
-                zoomLink,
-                share,
-              }) => (
-                <Message
-                  friend={friend}
-                  myMessage={cookies?.user?.slug === sender}
-                  message={text}
-                  time={createdAt}
-                  read={read}
-                  _id={_id}
-                  key={_id}
-                  quote={quote}
-                  share={share}
-                  zoomLink={zoomLink}
-                  setPreviewImageSrc={setPreviewImageSrc}
-                  setOpenImagePreview={setOpenImagePreview}
-                  imgFileArray={imgFileArray}
-                  audioFile={audioFile}
-                  inputRef={inputRef}
-                  senderName={senderName}
-                  withAvatar={withAvatar}
-                />
-              )
-            )}
+            .map((msg) => (
+              <Message
+                friend={friend}
+                myMessage={cookies?.user?.slug === msg.sender}
+                msg={msg}
+                key={msg._id}
+                setPreviewImageSrc={setPreviewImageSrc}
+                setOpenImagePreview={setOpenImagePreview}
+                inputRef={inputRef}
+              />
+            ))}
           <ConversationDate key={date}>
             <TextSm>{date}</TextSm>
           </ConversationDate>

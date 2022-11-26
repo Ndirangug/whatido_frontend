@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { MessageScreenContainer } from '../../styles/messegner.styles';
@@ -10,7 +11,11 @@ function MessageScreen({ recieverSlug }) {
   const [friend, setFriend] = useState(null);
   const scrollRef = useRef();
   const inputRef = useRef(null);
+  const [cookies] = useCookies(['user']);
+  const [{ token }] = useCookies(['token']);
+  const userSlug = cookies?.user?.slug;
   const endUserserUrl = `${API_URL}/getExpertDetail/${recieverSlug}`;
+
   const { data: endUser } = useSWR(endUserserUrl);
   const expert = endUser?.data;
 
@@ -41,7 +46,14 @@ function MessageScreen({ recieverSlug }) {
       {/* jheader */}
       <MessageHeader friend={friend} />
       {/* body  */}
-      <MessageBody scrollRef={scrollRef} inputRef={inputRef} friend={friend} />
+      <MessageBody
+        scrollRef={scrollRef}
+        inputRef={inputRef}
+        friend={friend}
+        userSlug={userSlug}
+        token={token}
+        recieverSlug={recieverSlug}
+      />
       {/* footer */}
       <MessageFooter scrollRef={scrollRef} inputRef={inputRef} />
     </MessageScreenContainer>

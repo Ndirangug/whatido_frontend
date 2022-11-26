@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { MessageHeaderContainer } from '../../styles/messegner.styles';
 import BaseAvatar from '../utils/avatars/BaseAvatar';
 import AudioCallIcon from '../utils/icons/AudioCallIcon';
@@ -10,7 +11,9 @@ function MessageHeader({ friend }) {
   return (
     <MessageHeaderContainer>
       <div className="flex-center sm-gap ">
-        <BackIcon />
+        <Link href={'/messenger/chat'}>
+          <BackIcon />
+        </Link>
         <div className="flex-center xs-gap">
           <BaseAvatar src={friend?.photo} />
           <TextLG>{friend?.firstName + '  ' + friend?.lastName}</TextLG>

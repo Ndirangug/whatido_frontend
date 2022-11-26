@@ -20,28 +20,17 @@ import XxsAvatar from '../utils/avatars/XxsAvatar';
 import { TextBase } from '../utils/typography/Typography';
 
 function Message({
-  message,
+  msg,
   myMessage,
-  time,
-  read,
-  senderName,
-  withAvatar,
-  quote,
-  _id,
   friend,
-  inputRef,
-  sending,
-  imgFileArray,
   setPreviewImageSrc,
   setOpenImagePreview,
-  audioFile,
-  zoomLink,
-  share,
+  inputRef,
 }) {
   const [options, setOptions] = useState(false);
   const dispatch = useDispatch();
-  const reduxUser = useSelector(({ user }) => user.profile);
-  // console.log("shared", share);
+  const user = useSelector((state) => state.auth.currentUser);
+  console.log('msg', msg);
 
   //   const handleClick = () => {
   //     setOptions((prev) => !prev);
@@ -91,8 +80,8 @@ function Message({
         api.start({ x: down ? x : 0 });
       },
       onDragEnd: () =>
-        !audioFile &&
-        (imgFileArray?.length === 0 || !imgFileArray) &&
+        !msg.audioFile &&
+        (msg.imgFileArray?.length === 0 || !msg.imgFileArray) &&
         handleQuote(),
     },
     {
@@ -129,13 +118,13 @@ function Message({
   return (
     <MessageWrapper myMessage={myMessage}>
       <MessageContainer {...bind()} style={{ x }}>
-        {!myMessage && withAvatar && <XxsAvatar src={friend?.photo} />}
+        {!myMessage && msg.withAvatar && <XxsAvatar src={friend?.photo} />}
         {/* {myMessage && <OptionComponent />} */}
         <InnerContainer>
-          <InnerDiv myMessage={myMessage} withAvatar={withAvatar}>
-            {withAvatar && (
+          <InnerDiv myMessage={myMessage} withAvatar={msg.withAvatar}>
+            {msg.withAvatar && (
               <TimeText myMessage={myMessage}>
-                {moment(time).format('LT')}
+                {moment(msg.createdAt).format('LT')}
               </TimeText>
             )}
             <MessageText myMessage={myMessage}>
@@ -165,13 +154,14 @@ function Message({
                 ))} */}
               </div>
 
-              {quote && (
+              {msg.quote && (
                 <QuoteTextContainer>
                   <QuoteBackIcon />
                   <div>
                     <TimeText myMessage={myMessage}>
-                      {quote.senderName.firstName} {quote.senderName.lastName}{' '}
-                      {moment(quote.time).format('LT, ddd MMM Do, YY')}
+                      {msg.quote.senderName.firstName}{' '}
+                      {msg.quote.senderName.lastName}{' '}
+                      {moment(msg.quote.time).format('LT, ddd MMM Do, YY')}
                     </TimeText>
                     <div className="quote-media-container">
                       {/* {quote?.imageUrl && (
@@ -181,33 +171,33 @@ function Message({
                           className="quote-img"
                         />
                       )} */}
-                      <QuoteText>{quote.text}</QuoteText>
+                      <QuoteText>{msg.quote.text}</QuoteText>
                     </div>
                   </div>
                 </QuoteTextContainer>
               )}
               {/* {share && <MediaComponent mediaID={share} />} */}
-              {message &&
-                !audioFile &&
-                (imgFileArray?.length === 0 || !imgFileArray) && (
-                  <TextBase>{message}</TextBase>
+              {msg.message &&
+                !msg.audioFile &&
+                (msg.imgFileArray?.length === 0 || !msg.imgFileArray) && (
+                  <TextBase>{msg.text}</TextBase>
                 )}
 
-              {zoomLink && (
+              {msg.zoomLink && (
                 <a
-                  href={zoomLink}
+                  href={msg.zoomLink}
                   className="zoomLink"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  {zoomLink}
+                  {msg.zoomLink}
                 </a>
               )}
-              {myMessage && read && <DoubleCheckIcon />}
+              {myMessage && msg.read && <DoubleCheckIcon />}
             </MessageText>
           </InnerDiv>
-          {myMessage && withAvatar && (
-            <XxsAvatar src={reduxUser?.imageUrl?.cdnUrl} />
+          {myMessage && msg.withAvatar && (
+            <XxsAvatar src={user?.imageUrl.cdnUrl} />
           )}
           {/* {!myMessage && <OptionComponent />} */}
         </InnerContainer>

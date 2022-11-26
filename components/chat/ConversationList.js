@@ -13,8 +13,8 @@ function ConversationList() {
     revalidateOnMount: true,
   });
 
-  console.log('conversations', conversations);
-  console.log('errors', error);
+  // console.log('conversations', conversations);
+  // console.log('errors', error);
 
   return (
     <ConversationListContainer>
