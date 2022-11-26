@@ -4,20 +4,8 @@ import moment from 'moment';
 import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  DoubleCheckIcon,
-  InnerContainer,
-  InnerDiv,
-  MessageContainer,
-  MessageText,
-  MessageWrapper,
-  QuoteBackIcon,
-  QuoteText,
-  QuoteTextContainer,
-  TimeText,
-} from '../../styles/messegner.styles';
-import XxsAvatar from '../utils/avatars/XxsAvatar';
-import { TextBase } from '../utils/typography/Typography';
+import { DotIcon, MessageBox } from '../../styles/messegner.styles';
+import { TextBase, TextxS } from '../utils/typography/Typography';
 
 function Message({
   msg,
@@ -30,7 +18,6 @@ function Message({
   const [options, setOptions] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.currentUser);
-  console.log('msg', msg);
 
   //   const handleClick = () => {
   //     setOptions((prev) => !prev);
@@ -115,94 +102,20 @@ function Message({
   //     </ClickAwayListener>
   //   );
 
+  if (msg?.audioFile) return;
+  if (msg?.imgFileArray.length !== 0) return;
+
   return (
-    <MessageWrapper myMessage={myMessage}>
-      <MessageContainer {...bind()} style={{ x }}>
-        {!myMessage && msg.withAvatar && <XxsAvatar src={friend?.photo} />}
-        {/* {myMessage && <OptionComponent />} */}
-        <InnerContainer>
-          <InnerDiv myMessage={myMessage} withAvatar={msg.withAvatar}>
-            {msg.withAvatar && (
-              <TimeText myMessage={myMessage}>
-                {moment(msg.createdAt).format('LT')}
-              </TimeText>
-            )}
-            <MessageText myMessage={myMessage}>
-              {/* {audioFile && (
-                <AudioPlayer audioFile={audioFile} sending={sending} />
-              )} */}
-              <div>
-                {/* {imgFileArray?.map((img, i) => (
-                  <div
-                    key={i}
-                    onClick={() => {
-                      setPreviewImageSrc(img?.cdnUrl);
-                      setOpenImagePreview(true);
-                    }}
-                  >
-                    <img
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                        objectFit: "contain",
-                        cursor: "pointer",
-                      }}
-                      src={img?.cdnUrl}
-                      alt="pic"
-                    />
-                  </div>
-                ))} */}
-              </div>
-
-              {msg.quote && (
-                <QuoteTextContainer>
-                  <QuoteBackIcon />
-                  <div>
-                    <TimeText myMessage={myMessage}>
-                      {msg.quote.senderName.firstName}{' '}
-                      {msg.quote.senderName.lastName}{' '}
-                      {moment(msg.quote.time).format('LT, ddd MMM Do, YY')}
-                    </TimeText>
-                    <div className="quote-media-container">
-                      {/* {quote?.imageUrl && (
-                        <img
-                          src={quote?.imageUrl}
-                          alt=""
-                          className="quote-img"
-                        />
-                      )} */}
-                      <QuoteText>{msg.quote.text}</QuoteText>
-                    </div>
-                  </div>
-                </QuoteTextContainer>
-              )}
-              {/* {share && <MediaComponent mediaID={share} />} */}
-              {msg.message &&
-                !msg.audioFile &&
-                (msg.imgFileArray?.length === 0 || !msg.imgFileArray) && (
-                  <TextBase>{msg.text}</TextBase>
-                )}
-
-              {msg.zoomLink && (
-                <a
-                  href={msg.zoomLink}
-                  className="zoomLink"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {msg.zoomLink}
-                </a>
-              )}
-              {myMessage && msg.read && <DoubleCheckIcon />}
-            </MessageText>
-          </InnerDiv>
-          {myMessage && msg.withAvatar && (
-            <XxsAvatar src={user?.imageUrl.cdnUrl} />
-          )}
-          {/* {!myMessage && <OptionComponent />} */}
-        </InnerContainer>
-      </MessageContainer>
-    </MessageWrapper>
+    <MessageBox myMessage={myMessage}>
+      {myMessage && <DotIcon className="message-options" />}
+      <div className="message-container">
+        <TextxS> {moment(msg.createdAt).format('LT')}</TextxS>
+        <div className="message-content">
+          <TextBase>{msg.text}</TextBase>
+        </div>
+      </div>
+      {!myMessage && <DotIcon className="message-options" />}
+    </MessageBox>
   );
 }
 

@@ -1,7 +1,5 @@
 import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
-import { animated } from '@react-spring/web';
-import { BsBlockquoteLeft } from 'react-icons/bs';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { RiCheckDoubleLine, RiCheckLine } from 'react-icons/ri';
 import styled from 'styled-components';
 
@@ -226,12 +224,12 @@ export const MessageBodyContainer = styled.div`
   }
 
   .icon {
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
     color: #111827;
     cursor: pointer;
     position: fixed;
-    bottom: 100px;
+    bottom: 130px;
     right: 14px;
     background: whitesmoke;
     border-radius: 50%;
@@ -307,11 +305,55 @@ export const ConversationDate = styled.div`
   border-radius: 0.25rem;
   margin: 0.5rem auto;
 `;
+export const DotIcon = styled(BsThreeDotsVertical)`
+  height: 1rem;
+  width: 1rem;
+  margin-left: 0.25rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  visibility: hidden;
+  flex-shrink: 0;
+`;
 
-export const MessageWrapper = styled.div`
+export const MessageBox = styled.div`
   margin: ${({ myMessage }) =>
-    myMessage ? '0.25rem 0 0.25rem auto' : '0.25rem auto 0.25rem  0'};
+    myMessage ? '0.5rem 0 0.5rem auto' : '0.5rem auto 0.5rem  0'};
   max-width: 85%;
+  display: flex;
+  gap: 0.5rem;
+
+  .message-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: ${({ myMessage }) => (myMessage ? 'flex-end' : 'flex-start')};
+  }
+
+  .message-content {
+    background: ${({ myMessage }) => (myMessage ? '#3361FF' : '#17294C')};
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .zoomLink {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  &:hover {
+    .message-options {
+      visibility: visible;
+    }
+  }
 
   @media screen and (min-width: 475px) {
     max-width: 75%;
@@ -324,92 +366,6 @@ export const MessageWrapper = styled.div`
   }
 `;
 
-export const MessageContainer = styled(animated.div)`
-  position: relative;
-  display: flex;
-  cursor: grab;
-
-  &:hover {
-    .message-options {
-      visibility: visible;
-    }
-  }
-`;
-
-export const InnerContainer = styled.div`
-  display: flex;
-`;
-
-export const InnerDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${({ myMessage, withAvatar }) =>
-    myMessage && withAvatar && { 'margin-right': '0.5rem' }};
-  ${({ myMessage, withAvatar }) =>
-    myMessage && !withAvatar && { 'margin-right': '3rem' }};
-  ${({ myMessage, withAvatar }) =>
-    !myMessage && withAvatar && { 'margin-left': '0.5rem' }};
-  ${({ myMessage, withAvatar }) =>
-    !myMessage && !withAvatar && { 'margin-left': '3rem' }};
-  align-items: ${({ myMessage }) => (myMessage ? 'flex-end' : 'flex-start')};
-`;
-
-export const TimeText = styled(Typography)`
-  color: #525252;
-  margin: ${({ myMessage }) => (myMessage ? '0 0.25rem 0 auto' : '0')};
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  margin-bottom: 0.25rem;
-`;
-
-export const MessageText = styled.div`
-  border-radius: 0.5rem;
-  padding: 1rem;
-  background-color: ${({ myMessage }) => (myMessage ? '#E0F2FE' : '#F1F5F9')};
-  position: relative;
-  line-height: 2.25rem;
-  flex-wrap: wrap;
-
-  .zoomLink {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
-  }
-`;
-
-export const QuoteTextContainer = styled.div`
-  display: flex;
-  border-bottom: 1px solid #334155;
-  margin-bottom: 0.5rem;
-
-  .quote-media-container {
-    display: flex;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-
-  .quote-img {
-    height: 35px;
-    width: 35px;
-    object-fit: cover;
-    margin-right: 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-  }
-`;
-
-export const QuoteBackIcon = styled(BsBlockquoteLeft)`
-  height: 1.5rem;
-  width: 1.5rem;
-  color: #334155;
-  flex-shrink: 0;
-  margin-right: 0.5rem;
-`;
-export const QuoteText = styled(Typography)`
-  font-style: italic;
-  margin: 0;
-`;
 export const DoubleCheckIcon = styled(RiCheckDoubleLine)`
   height: 1.25rem;
   bottom: 0;

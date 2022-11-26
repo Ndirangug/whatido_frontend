@@ -39,7 +39,6 @@ function MessageBody({
     `${API_URL}/message/page/${conversation?._id}/${cookies?.user?.slug}?page=${index}`,
     token,
   ]);
-  console.log('message', data);
 
   const messageCountUrl = `${API_URL}/message/count/${conversation?._id}/${cookies?.user?.slug}`;
   const { data: messageCount } = useSWR([messageCountUrl, token]);
