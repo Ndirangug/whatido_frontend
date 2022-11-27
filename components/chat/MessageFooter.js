@@ -1,6 +1,10 @@
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
+import uuid from 'react-uuid';
 import styled from 'styled-components';
+import { postNewMessage } from '../../store/actions/messenger_actions';
 import { MessageFooterContainer } from '../../styles/messegner.styles';
 import AttachmentIcon from '../utils/icons/AttachmentIcon';
 import EmojiIcon from '../utils/icons/EmojiIcon';
@@ -12,12 +16,38 @@ const StyledIconBtn = styled(IconButton)`
   padding: 0;
 `;
 
-function MessageFooter({ inputRef }) {
+function MessageFooter({
+  inputRef,
+  scrollRef,
+  friend,
+  userSlug,
+  token,
+  conversationId,
+}) {
   const [inputValue, setInputValue] = useState('');
-  const sendMessage = () => {
-    console.log(inputValue);
+  const [cookies] = useCookies(['user']);
+  const dispatch = useDispatch();
+
+  const sendMessage = async () => {
+    const message = {
+      conversationId: conversationId,
+      messageId: uuid(),
+      sender: userSlug,
+      reciever: friend?.slug,
+      text: inputValue,
+      withAvatar: false,
+      read: false,
+      quote: null,
+      senderName: {
+        firstName: cookies.user.firstName,
+        lastName: cookies.user.lastName,
+      },
+      blocked: [],
+    };
+    await postNewMessage(message, token);
     setInputValue('');
   };
+
   return (
     <MessageFooterContainer>
       <div className="input-container">

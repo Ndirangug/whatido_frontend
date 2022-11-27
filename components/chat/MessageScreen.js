@@ -15,7 +15,8 @@ function MessageScreen({ recieverSlug }) {
   const [{ token }] = useCookies(['token']);
   const userSlug = cookies?.user?.slug;
   const endUserserUrl = `${API_URL}/getExpertDetail/${recieverSlug}`;
-
+  const conversationUrl = `${API_URL}/conversations/find/${recieverSlug}/${userSlug}`;
+  const { data: conversation } = useSWR([conversationUrl, token]);
   const { data: endUser } = useSWR(endUserserUrl);
   const expert = endUser?.data;
 
@@ -53,12 +54,16 @@ function MessageScreen({ recieverSlug }) {
         userSlug={userSlug}
         token={token}
         recieverSlug={recieverSlug}
+        conversationId={conversation?._id}
       />
       {/* footer */}
       <MessageFooter
         scrollRef={scrollRef}
         inputRef={inputRef}
         friend={friend}
+        userSlug={userSlug}
+        token={token}
+        conversationId={conversation?._id}
       />
     </MessageScreenContainer>
   );

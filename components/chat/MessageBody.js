@@ -25,6 +25,7 @@ function MessageBody({
   inputRef,
   userSlug,
   recieverSlug,
+  conversationId,
   token,
 }) {
   const [cookies] = useCookies(['user']);
@@ -32,15 +33,12 @@ function MessageBody({
   const [openImagePreview, setOpenImagePreview] = useState(false);
   const [scrollView, setScrollView] = useState(false);
 
-  const conversationUrl = `${API_URL}/conversations/find/${recieverSlug}/${userSlug}`;
-  const { data: conversation } = useSWR([conversationUrl, token]);
-
   const { data, isValidating, size, setSize } = useSWRInfinite((index) => [
-    `${API_URL}/message/page/${conversation?._id}/${cookies?.user?.slug}?page=${index}`,
+    `${API_URL}/message/page/${conversationId}/${cookies?.user?.slug}?page=${index}`,
     token,
   ]);
 
-  const messageCountUrl = `${API_URL}/message/count/${conversation?._id}/${cookies?.user?.slug}`;
+  const messageCountUrl = `${API_URL}/message/count/${conversationId}/${cookies?.user?.slug}`;
   const { data: messageCount } = useSWR([messageCountUrl, token]);
   const hasMore = size * 20 <= messageCount;
   const dispatch = useDispatch();
