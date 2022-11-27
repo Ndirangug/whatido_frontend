@@ -25,6 +25,7 @@ const BtnContainer = styled.div`
 function ProfileFollowButton({ peer }) {
   const [{ token }] = useCookies(['token']);
   const user = useSelector((state) => state.auth.currentUser);
+  const followersUrl = `${API_URL}/follwers/${peer}`;
   const checkFollowUrl = `${API_URL}/checkfollowing/${user?.slug}/${peer}`;
   const { data: following } = useSWR(checkFollowUrl);
   let text = following ? 'following' : 'follow';
@@ -39,6 +40,7 @@ function ProfileFollowButton({ peer }) {
 
     if (res.status === 200) {
       mutate(checkFollowUrl, !following);
+      mutate(followersUrl);
     }
   };
 

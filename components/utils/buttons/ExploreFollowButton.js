@@ -28,6 +28,7 @@ const BtnWrapper = styled.div`
 const ExploreFollowButton = ({ peer, type, bg, color }) => {
   const [{ token }] = useCookies(['token']);
   const user = useSelector((state) => state.auth.currentUser);
+  const followersUrl = `${API_URL}/follwers/${peer}`;
   const checkFollowUrl = `${API_URL}/checkfollowing/${user?.slug}/${peer}`;
   const { data: following } = useSWR(checkFollowUrl);
   let text = following ? 'Following' : 'Follow';
@@ -42,6 +43,7 @@ const ExploreFollowButton = ({ peer, type, bg, color }) => {
 
     if (res.status === 200) {
       mutate(checkFollowUrl, !following);
+      mutate(followersUrl);
     }
   };
 
