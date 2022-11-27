@@ -17,6 +17,16 @@ function ExploreCategoryCard({
   const router = useRouter();
   const authenticated = useSelector((state) => state.auth.authenticated);
 
+  function numFormatter(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
+    } else if (num < 900) {
+      return num; // if value < 1000, nothing to do
+    }
+  }
+
   return (
     <CardContainer>
       <div
@@ -43,7 +53,7 @@ function ExploreCategoryCard({
           </div>
           <div className="experts-wrapper">
             <div className="num-of-experts">
-              <TextxS>{`${numOfExperts} experts`}</TextxS>
+              <TextxS>{`${numFormatter(numOfExperts)} experts`}</TextxS>
             </div>
             <div className="experts-avatars">
               {avatar?.slice(0, 4)?.map(({ imageUrl }) => (
@@ -58,7 +68,7 @@ function ExploreCategoryCard({
             </div>
             <div className="ellipse" />
             <div className="num-of-posts">
-              <TextxS>{`${count} posts`}</TextxS>
+              <TextxS>{`${numFormatter(count)} posts`}</TextxS>
             </div>
           </div>
         </div>

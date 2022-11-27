@@ -5,6 +5,8 @@ import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
 import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import { TextSm, TextxS } from '../../typography/Typography';
+import useSWR from 'swr';
+import { API_URL } from '../../../../constants/api';
 
 function ExploreExpertCard({
   slug,
@@ -12,13 +14,24 @@ function ExploreExpertCard({
   thumbnail,
   avatar,
   total_followers,
-  total_inspired,
   total_post,
 }) {
   const router = useRouter();
   const authenticated = useSelector((state) => state.auth.authenticated);
   const user = useSelector((state) => state.auth.currentUser);
   const myProfile = user?.slug === slug;
+
+  const { data: followers } = useSWR(`${API_URL}/follwers/${slug}`);
+
+  function numFormatter(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
+    } else if (num < 900) {
+      return num; // if value < 1000, nothing to do
+    }
+  }
 
   return (
     <CardContainer>
@@ -41,7 +54,9 @@ function ExploreExpertCard({
             </div>
             <div className="experts-wrapper">
               <div className="num-of-experts">
-                <TextxS>{`${total_inspired} followers`}</TextxS>
+                <TextxS>{`${numFormatter(
+                  followers?.length
+                )} followers`}</TextxS>
               </div>
               <div className="experts-avatars">
                 {total_followers?.slice(0, 4)?.map(({ avater }) => (
@@ -56,7 +71,7 @@ function ExploreExpertCard({
               </div>
               <div className="ellipse" />
               <div className="num-of-posts">
-                <TextxS>{`${total_post} posts`}</TextxS>
+                <TextxS>{`${numFormatter(total_post)} posts`}</TextxS>
               </div>
             </div>
           </div>

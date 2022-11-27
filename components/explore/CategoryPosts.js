@@ -33,6 +33,16 @@ const CategoryPosts = ({ category }) => {
     dispatch(setCategoryComponent('experts'));
   };
 
+  function numFormatter(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
+    } else if (num < 900) {
+      return num; // if value < 1000, nothing to do
+    }
+  }
+
   return (
     <CategoryPostsContainer>
       <Image
@@ -54,7 +64,9 @@ const CategoryPosts = ({ category }) => {
         <div className="details-container">
           <div className="details">
             {total && total[0]?.total_users !== undefined && (
-              <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
+              <TextxS>{`${numFormatter(
+                total[0]?.total_users
+              )} Experts`}</TextxS>
             )}
 
             {total && total[0]?.total_users === undefined && (
@@ -64,7 +76,7 @@ const CategoryPosts = ({ category }) => {
           <div className="ellipse" />
           <div className="details">
             {total && total[1]?.total_post !== undefined && (
-              <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
+              <TextxS>{`${numFormatter(total[1]?.total_post)} Posts`}</TextxS>
             )}
 
             {total && total[1]?.total_post === undefined && (
