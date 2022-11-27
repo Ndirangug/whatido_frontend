@@ -1,7 +1,7 @@
 import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { updateUserProfile } from '../../store/actions/user_actions';
+import { setEditableProfile } from '../../store/reducers/profile_reducer';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
 import BigButton from '../utils/buttons/BigButton';
 import InputField from '../utils/inputs/InputField';
@@ -51,14 +51,15 @@ function EditProfileForm() {
       nationality: data?.nationality,
       additionalLinks: data?.additionalLinks,
     };
+
     console.log(profileFormData);
 
-    const updatedProfile = await updateUserProfile(
-      cookies?.user?.slug,
-      profileFormData,
-      token
-    );
-    console.log('updated profile', updatedProfile);
+    // const updatedProfile = await updateUserProfile(
+    //   cookies?.user?.slug,
+    //   profileFormData,
+    //   token
+    // );
+    // console.log('updated profile', updatedProfile);
   };
 
   return (
@@ -93,8 +94,8 @@ function EditProfileForm() {
           register={register('currentLocation')}
           placeholder={''}
         />
-        <SelectCategory register={register} />
-        <SubCategorySelect />
+        <SelectCategory setCategory={setEditableProfile} />
+        <SubCategorySelect setCategory={setEditableProfile} />
       </div>
       <AdditionalLink control={control} />
       <div className="submit-btn">

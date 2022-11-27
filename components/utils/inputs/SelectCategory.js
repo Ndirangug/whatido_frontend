@@ -1,17 +1,18 @@
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
-import { setEditableProfile } from '../../../store/reducers/profile_reducer';
 import { SelectFieldContainer } from '../../../styles/utils.styles';
 import { TextBase } from '../typography/Typography';
 
-function SelectCategory() {
+function SelectCategory({ setCategory }) {
   const profile = useSelector((state) => state.profile.editableProfile);
   const dispatch = useDispatch();
   const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
+  const [categoryList, setCategoryList] = useState([]);
 
-  const flattenedCommunityList = data?.reduce((list, curr) => {
+  const flattenedCommunityList = categoryList?.reduce((list, curr) => {
     list.push({
       value: curr.slug,
       label: curr.name,
@@ -19,6 +20,10 @@ function SelectCategory() {
 
     return list;
   }, []);
+
+  useEffect(() => {
+    if (data) setCategoryList(data);
+  }, [data]);
 
   return (
     <SelectFieldContainer>
@@ -33,7 +38,7 @@ function SelectCategory() {
         placeholder="select community"
         onChange={(value) =>
           dispatch(
-            setEditableProfile({
+            setCategory({
               community: value,
             })
           )
