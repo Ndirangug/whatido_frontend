@@ -38,22 +38,11 @@ function EditProfileForm() {
     profile?.avatar?.file &&
       profileData.append('avatar', profile?.avatar?.file);
     profileData.append('headLine', data?.headLine);
-    profileData.append('community', profile?.community);
-    profileData.append('experties', profile?.expertise);
+    profileData.append('community', JSON.stringify(profile?.community));
+    profileData.append('experties', JSON.stringify(profile?.expertise));
     profileData.append('currentLocation', data?.currentLocation);
     profileData.append('nationality', data?.nationality);
     profileData.append('additionalLinks', data?.additionalLinks);
-
-    // let profileFormData = {
-    //   headline: data?.headLine,
-    //   community: profile?.community,
-    //   experties: profile?.expertise,
-    //   currentLocation: data?.currentLocation,
-    //   nationality: data?.nationality,
-    //   additionalLinks: data?.additionalLinks,
-    // };
-
-    // console.log(profileFormData)
 
     const updatedProfile = await updateUserProfile(
       cookies?.user?.slug,

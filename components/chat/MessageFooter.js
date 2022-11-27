@@ -4,7 +4,8 @@ import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
-import { postNewMessage } from '../../store/actions/messenger_actions';
+import { postNewMessage, socket } from '../../store/actions/messenger_actions';
+import { addMessageData } from '../../store/reducers/messenger_reducer';
 import { MessageFooterContainer } from '../../styles/messegner.styles';
 import AttachmentIcon from '../utils/icons/AttachmentIcon';
 import EmojiIcon from '../utils/icons/EmojiIcon';
@@ -23,6 +24,7 @@ function MessageFooter({
   userSlug,
   token,
   conversationId,
+  setSendingMessage,
 }) {
   const [inputValue, setInputValue] = useState('');
   const [cookies] = useCookies(['user']);
@@ -44,8 +46,20 @@ function MessageFooter({
       },
       blocked: [],
     };
-    await postNewMessage(message, token);
+    setSendingMessage((prev) => [...prev, { ...message, time: new Date() }]);
+    const res = await postNewMessage(message, token);
+    setSendingMessage((prev) =>
+      prev.filter((m) => m.messageId !== res.data.messageId)
+    );
+    dispatch(addMessageData(res.data));
     setInputValue('');
+    scrollRef.current.scrollIntoView({
+      behavior: 'smooth',
+    });
+    socket.emit('sendMessage', {
+      data: res.data,
+      recieverSlug: friend?.slug,
+    });
   };
 
   return (

@@ -14,6 +14,7 @@ import SideBar from '../components/navigation/SideBar';
 import NextProgress from '../components/utils/micro/Nprogress';
 import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
 import store, { persistor } from '../store';
+import { socket } from '../store/actions/messenger_actions';
 import { DesktopNavigation, GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
@@ -32,6 +33,12 @@ function MyApp({ Component, pageProps }) {
   const onMessageScreen = router.pathname === '/messenger/chat/[id]';
   useEffect(() => {
     serviceWorker.register();
+  }, []);
+
+  useEffect(() => {
+    socket.on('connect', function (_socket) {
+      console.log('Transport being used: ' + socket.io.engine.transport.name);
+    });
   }, []);
 
   return (

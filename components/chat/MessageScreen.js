@@ -9,6 +9,7 @@ import MessageHeader from './MessageHeader';
 
 function MessageScreen({ recieverSlug }) {
   const [friend, setFriend] = useState(null);
+  const [sendingMessage, setSendingMessage] = useState([]);
   const scrollRef = useRef();
   const inputRef = useRef(null);
   const [cookies] = useCookies(['user']);
@@ -55,6 +56,7 @@ function MessageScreen({ recieverSlug }) {
         token={token}
         recieverSlug={recieverSlug}
         conversationId={conversation?._id}
+        sendingMessage={sendingMessage}
       />
       {/* footer */}
       <MessageFooter
@@ -64,6 +66,7 @@ function MessageScreen({ recieverSlug }) {
         userSlug={userSlug}
         token={token}
         conversationId={conversation?._id}
+        setSendingMessage={setSendingMessage}
       />
     </MessageScreenContainer>
   );
