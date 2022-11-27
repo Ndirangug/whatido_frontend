@@ -4,44 +4,20 @@ import moment from 'moment';
 import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  DoubleCheckIcon,
-  InnerContainer,
-  InnerDiv,
-  MessageContainer,
-  MessageText,
-  MessageWrapper,
-  QuoteBackIcon,
-  QuoteText,
-  QuoteTextContainer,
-  TimeText,
-} from '../../styles/messegner.styles';
-import XxsAvatar from '../utils/avatars/XxsAvatar';
-import { TextBase } from '../utils/typography/Typography';
+import { DotIcon, MessageBox } from '../../styles/messegner.styles';
+import { TextBase, TextxS } from '../utils/typography/Typography';
 
 function Message({
-  message,
+  msg,
   myMessage,
-  time,
-  read,
-  senderName,
-  withAvatar,
-  quote,
-  _id,
   friend,
-  inputRef,
-  sending,
-  imgFileArray,
   setPreviewImageSrc,
   setOpenImagePreview,
-  audioFile,
-  zoomLink,
-  share,
+  inputRef,
 }) {
   const [options, setOptions] = useState(false);
   const dispatch = useDispatch();
-  const reduxUser = useSelector(({ user }) => user.profile);
-  // console.log("shared", share);
+  const user = useSelector((state) => state.auth.currentUser);
 
   //   const handleClick = () => {
   //     setOptions((prev) => !prev);
@@ -91,8 +67,8 @@ function Message({
         api.start({ x: down ? x : 0 });
       },
       onDragEnd: () =>
-        !audioFile &&
-        (imgFileArray?.length === 0 || !imgFileArray) &&
+        !msg.audioFile &&
+        (msg.imgFileArray?.length === 0 || !msg.imgFileArray) &&
         handleQuote(),
     },
     {
@@ -126,93 +102,20 @@ function Message({
   //     </ClickAwayListener>
   //   );
 
+  if (msg?.audioFile) return;
+  if (msg?.imgFileArray.length !== 0) return;
+
   return (
-    <MessageWrapper myMessage={myMessage}>
-      <MessageContainer {...bind()} style={{ x }}>
-        {!myMessage && withAvatar && <XxsAvatar src={friend?.photo} />}
-        {/* {myMessage && <OptionComponent />} */}
-        <InnerContainer>
-          <InnerDiv myMessage={myMessage} withAvatar={withAvatar}>
-            {withAvatar && (
-              <TimeText myMessage={myMessage}>
-                {moment(time).format('LT')}
-              </TimeText>
-            )}
-            <MessageText myMessage={myMessage}>
-              {/* {audioFile && (
-                <AudioPlayer audioFile={audioFile} sending={sending} />
-              )} */}
-              <div>
-                {/* {imgFileArray?.map((img, i) => (
-                  <div
-                    key={i}
-                    onClick={() => {
-                      setPreviewImageSrc(img?.cdnUrl);
-                      setOpenImagePreview(true);
-                    }}
-                  >
-                    <img
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                        objectFit: "contain",
-                        cursor: "pointer",
-                      }}
-                      src={img?.cdnUrl}
-                      alt="pic"
-                    />
-                  </div>
-                ))} */}
-              </div>
-
-              {quote && (
-                <QuoteTextContainer>
-                  <QuoteBackIcon />
-                  <div>
-                    <TimeText myMessage={myMessage}>
-                      {quote.senderName.firstName} {quote.senderName.lastName}{' '}
-                      {moment(quote.time).format('LT, ddd MMM Do, YY')}
-                    </TimeText>
-                    <div className="quote-media-container">
-                      {/* {quote?.imageUrl && (
-                        <img
-                          src={quote?.imageUrl}
-                          alt=""
-                          className="quote-img"
-                        />
-                      )} */}
-                      <QuoteText>{quote.text}</QuoteText>
-                    </div>
-                  </div>
-                </QuoteTextContainer>
-              )}
-              {/* {share && <MediaComponent mediaID={share} />} */}
-              {message &&
-                !audioFile &&
-                (imgFileArray?.length === 0 || !imgFileArray) && (
-                  <TextBase>{message}</TextBase>
-                )}
-
-              {zoomLink && (
-                <a
-                  href={zoomLink}
-                  className="zoomLink"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {zoomLink}
-                </a>
-              )}
-              {myMessage && read && <DoubleCheckIcon />}
-            </MessageText>
-          </InnerDiv>
-          {myMessage && withAvatar && (
-            <XxsAvatar src={reduxUser?.imageUrl?.cdnUrl} />
-          )}
-          {/* {!myMessage && <OptionComponent />} */}
-        </InnerContainer>
-      </MessageContainer>
-    </MessageWrapper>
+    <MessageBox myMessage={myMessage}>
+      {myMessage && <DotIcon className="message-options" />}
+      <div className="message-container">
+        <TextxS> {moment(msg.createdAt).format('LT')}</TextxS>
+        <div className="message-content">
+          <TextBase>{msg.text}</TextBase>
+        </div>
+      </div>
+      {!myMessage && <DotIcon className="message-options" />}
+    </MessageBox>
   );
 }
 

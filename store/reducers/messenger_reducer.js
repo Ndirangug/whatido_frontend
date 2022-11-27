@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { flattenArray } from '../actions/messenger_actions';
 
 export const messengerSlice = createSlice({
   name: 'messenger',
@@ -8,7 +9,9 @@ export const messengerSlice = createSlice({
 
   reducers: {
     setMessageData: (state, action) => {
-      state.messages = action.payload;
+      const flatArray = flattenArray(action.payload);
+
+      state.messages = flatArray;
     },
   },
 });

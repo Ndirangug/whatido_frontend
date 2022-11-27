@@ -238,6 +238,7 @@ export const ReelsCardContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   scroll-snap-align: start;
   max-width: 475px;
   margin: 0 auto;

@@ -1,20 +1,22 @@
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
-import { setEditableProfile } from '../../../store/reducers/profile_reducer';
 import { SelectFieldContainer } from '../../../styles/utils.styles';
 import { TextBase } from '../typography/Typography';
 
 const animatedComponents = makeAnimated();
 
-function SubCategorySelect() {
+function SubCategorySelect({ setCategory }) {
   const profile = useSelector((state) => state.profile.editableProfile);
   const dispatch = useDispatch();
   const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
 
-  const flattenedExpertiseList = data?.reduce((list, curr) => {
+  const [categoryList, setCategoryList] = useState([]);
+
+  const flattenedExpertiseList = categoryList?.reduce((list, curr) => {
     curr.subcategories.forEach((cat) => {
       list.push({
         value: cat.slug,
@@ -25,9 +27,13 @@ function SubCategorySelect() {
     return list;
   }, []);
 
+  useEffect(() => {
+    if (data) setCategoryList(data);
+  }, [data]);
+
   return (
     <SelectFieldContainer>
-      <TextBase>expertise</TextBase>
+      <TextBase>experties</TextBase>
 
       <Select
         defaultValue={profile.subCategory}
@@ -42,7 +48,7 @@ function SubCategorySelect() {
         onChange={(value) => {
           if (value.length > 5) return;
           dispatch(
-            setEditableProfile({
+            setCategory({
               expertise: value,
             })
           );

@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   background-color: #fff;
   z-index: 999;
   padding: 0.5rem;
+  display: ${({ onMessageScreen }) => (onMessageScreen ? 'none' : 'inline')};
 
   .inner-head-container {
     box-sizing: border-box;

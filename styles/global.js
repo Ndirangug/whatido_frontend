@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const GlobalStyleProvider = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: ${({ onMessageScreen }) =>
+    onMessageScreen ? '1fr auto' : 'auto 1fr auto'};
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -11,8 +12,15 @@ export const GlobalStyleProvider = styled.div`
     height: -webkit-fill-available !important;
   }
 
-  @media (min-width: 768px) {
-    grid-template-rows: auto 1fr;
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      min-height: -webkit-fill-available !important;
+    }
+  }
+
+  @media (min-width: 600px) {
+    grid-template-rows: ${({ onMessageScreen }) =>
+      onMessageScreen ? '1fr' : 'auto 1fr'};
   }
 `;
 

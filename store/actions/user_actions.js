@@ -13,9 +13,8 @@ export const likeAction = (endpoint, data, token) => {
   });
 };
 
-export const updateUserProfile = (data, token) => {
-  return axios.post(`${API_URL}/media/create/web`, data, {
-    'Content-Type': 'multipart/form-data',
+export const updateUserProfile = (userSlug, data, token) => {
+  return axios.post(`${API_URL}/userExpertUpdate/${userSlug}`, data, {
     headers: { Authorization: token },
   });
 };
