@@ -1,6 +1,7 @@
 import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { updateUserProfile } from '../../store/actions/user_actions';
 import { setEditableProfile } from '../../store/reducers/profile_reducer';
 import { EditProfileFormContainer } from '../../styles/profile.styles';
 import BigButton from '../utils/buttons/BigButton';
@@ -43,23 +44,23 @@ function EditProfileForm() {
     profileData.append('nationality', data?.nationality);
     profileData.append('additionalLinks', data?.additionalLinks);
 
-    let profileFormData = {
-      headline: data?.headLine,
-      community: profile?.community,
-      experties: profile?.expertise,
-      currentLocation: data?.currentLocation,
-      nationality: data?.nationality,
-      additionalLinks: data?.additionalLinks,
-    };
+    // let profileFormData = {
+    //   headline: data?.headLine,
+    //   community: profile?.community,
+    //   experties: profile?.expertise,
+    //   currentLocation: data?.currentLocation,
+    //   nationality: data?.nationality,
+    //   additionalLinks: data?.additionalLinks,
+    // };
 
-    console.log(profileFormData);
+    // console.log(profileFormData)
 
-    // const updatedProfile = await updateUserProfile(
-    //   cookies?.user?.slug,
-    //   profileFormData,
-    //   token
-    // );
-    // console.log('updated profile', updatedProfile);
+    const updatedProfile = await updateUserProfile(
+      cookies?.user?.slug,
+      profileData,
+      token
+    );
+    console.log('updated profile', updatedProfile);
   };
 
   return (
