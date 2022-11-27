@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
+import { socket } from '../../store/actions/messenger_actions';
+import { addMessageData } from '../../store/reducers/messenger_reducer';
 import { MessageScreenContainer } from '../../styles/messegner.styles';
 import MessageBody from './MessageBody';
 import MessageFooter from './MessageFooter';
@@ -12,6 +15,7 @@ function MessageScreen({ recieverSlug }) {
   const [sendingMessage, setSendingMessage] = useState([]);
   const scrollRef = useRef();
   const inputRef = useRef(null);
+  const dispatch = useDispatch();
   const [cookies] = useCookies(['user']);
   const [{ token }] = useCookies(['token']);
   const userSlug = cookies?.user?.slug;
@@ -42,6 +46,15 @@ function MessageScreen({ recieverSlug }) {
     expert?.profile?.lastName,
     expert?.slug,
   ]);
+
+  useEffect(() => {
+    socket.on('getMessage', ({ data }) => {
+      if (data.conversationId === conversation?._id) {
+        console.log('message', data);
+        dispatch(addMessageData(data));
+      }
+    });
+  }, [conversation?._id, dispatch]);
 
   return (
     <MessageScreenContainer>
