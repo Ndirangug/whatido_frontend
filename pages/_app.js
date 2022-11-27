@@ -60,9 +60,9 @@ function MyApp({ Component, pageProps }) {
                 <Suspense>
                   <SignupModal />
                 </Suspense>
-                {/* <Suspense>
+                <Suspense>
                   <FeedModal />
-                </Suspense> */}
+                </Suspense>
                 <Suspense>
                   <ShareModal />
                 </Suspense>
