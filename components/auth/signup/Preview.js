@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
 import { API_URL } from '../../../constants/api';
 import { LoginFormContainer } from '../../../styles/login.styles';
@@ -7,6 +8,7 @@ import BigButton from '../../utils/buttons/BigButton';
 import InputField from '../../utils/inputs/InputField';
 
 const Preview = ({ handleSignupPage, register, getAllValues }) => {
+  const [{ token }] = useCookies(['token']);
   const { handleSubmit } = useForm();
 
   const onSubmit = async () => {
@@ -15,7 +17,11 @@ const Preview = ({ handleSignupPage, register, getAllValues }) => {
     try {
       const response = await axios.post(
         `${API_URL}/auth/register2`,
-        formValues
+        formValues,
+        {
+          'Content-Type': 'application/json',
+          headers: { Authorization: token },
+        }
       );
 
       if (response.data.success) {
