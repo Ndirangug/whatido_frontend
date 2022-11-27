@@ -10,15 +10,22 @@ export const MessengerPageContainer = styled.div`
   max-width: 1280px;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   margin: 0 auto;
   display: flex;
 `;
 
 export const SidebarContainer = styled.div`
-  width: 35%;
+  overflow: scroll;
+  display: ${({ chatScreen }) => (chatScreen ? 'none' : 'inline')};
+  width: 100%;
   height: 100%;
   border-right: 1px solid var(--main-border);
   padding: 1rem;
+  @media (min-width: 960px) {
+    width: 40%;
+    display: inline;
+  }
 
   .select-contaier {
     display: flex;
@@ -43,6 +50,9 @@ export const SearchBarContainer = styled.div`
   background: var(--main-background);
   padding: 0.5rem;
   border-radius: 0.5rem;
+  position: sticky;
+  top: 0;
+
   .search-input {
     border: none;
     outline: none;
@@ -60,13 +70,24 @@ export const SearchBarContainer = styled.div`
 export const ConversationListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 1rem;
+
+  height: 100%;
+  padding-bottom: 2rem;
 `;
 
 export const ConversationListCardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  &:hover {
+    background: var(--main-background);
+  }
 
   .conv-info-container {
     display: flex;

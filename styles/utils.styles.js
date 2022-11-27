@@ -126,6 +126,57 @@ export const InputFieldContainer = styled.div`
   }
 `;
 
+export const AddLinkInputContainer = styled.div`
+  display: grid;
+  grid-gap: 0.25rem;
+  width: 100%;
+
+  .link-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .link-name-container {
+    display: grid;
+    grid-gap: 0.5rem;
+    flex: 0.4;
+  }
+
+  .link-url-container {
+    display: grid;
+    grid-gap: 0.5rem;
+    flex: 1;
+  }
+
+  .input {
+    width: 100%;
+    border: ${({ error }) =>
+      error ? '1px solid red' : '1px solid var(--main-background)'};
+    padding: 0.75rem 0.75rem;
+    border-radius: 0.25rem;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+
+    background: #f1f1f1;
+    border-radius: 0.5rem;
+
+    ::placeholder {
+      color: rgba(0, 20, 51, 0.1);
+    }
+
+    &:focus {
+      border: 1px solid var(--main-border);
+    }
+
+    &:hover {
+      border: 1px solid var(--main-black);
+    }
+  }
+`;
+
 export const SelectFieldContainer = styled.div`
   display: grid;
   grid-gap: 0.5rem;

@@ -1,14 +1,14 @@
+import MessageScreen from '../../../components/chat/MessageScreen';
 import Sidebar from '../../../components/chat/Sidebar';
-import RequireAuth from '../../../hooks/RequireAuth';
 import { MessengerPageContainer } from '../../../styles/messegner.styles';
 
-function Ongoing() {
+function ChatScreenPage() {
   return (
     <MessengerPageContainer>
-      <Sidebar />
-      {/* <MessageScreen /> */}
+      <Sidebar chatScreen />
+      <MessageScreen />
     </MessengerPageContainer>
   );
 }
 
-export default RequireAuth(Ongoing);
+export default ChatScreenPage;

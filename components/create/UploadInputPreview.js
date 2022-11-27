@@ -1,6 +1,6 @@
-import Image from 'next/legacy/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectSS } from '../../store/reducers/media_reducer';
+import { API_URL } from '../../constants/api';
+import { setCaption, setSelectSS } from '../../store/reducers/media_reducer';
 import {
   AbsoluteDiv,
   InputField,
@@ -22,7 +22,13 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
       <div className="labelAndFieldContainer">
         <LabelText>caption</LabelText>
         <div style={{ position: 'relative' }}>
-          <InputField type="text" />
+          <InputField
+            type="text"
+            value={caption}
+            onChange={(e) => {
+              dispatch(setCaption(e.target.value));
+            }}
+          />
           <AbsoluteDiv>
             <span>@</span>
             <span>#</span>
@@ -35,8 +41,8 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
           {state.imageUrls?.length !== 0
             ? state.imageUrls?.map((e, i) => (
                 <div className="previewCompChild" key={i}>
-                  <Image
-                    src={`http://localhost:4000${e}`}
+                  <img
+                    src={`${API_URL}${e}`}
                     alt=""
                     style={{
                       position: 'relative',

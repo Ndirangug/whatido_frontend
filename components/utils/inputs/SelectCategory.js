@@ -1,31 +1,43 @@
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import useSWR from 'swr';
+import { API_URL } from '../../../constants/api';
+import { setEditableProfile } from '../../../store/reducers/profile_reducer';
 import { SelectFieldContainer } from '../../../styles/utils.styles';
 import { TextBase } from '../typography/Typography';
 
-const colourOptions = [
-  { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
-  { value: 'blue', label: 'Blue', color: '#0052CC' },
-  { value: 'purple', label: 'Purple', color: '#5243AA' },
-  { value: 'red', label: 'Red', color: '#FF5630' },
-  { value: 'orange', label: 'Orange', color: '#FF8B00' },
-  { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-  { value: 'green', label: 'Green', color: '#36B37E' },
-  { value: 'forest', label: 'Forest', color: '#00875A' },
-  { value: 'slate', label: 'Slate', color: '#253858' },
-  { value: 'silver', label: 'Silver', color: '#666666' },
-];
-
 function SelectCategory() {
+  const profile = useSelector((state) => state.profile.editableProfile);
+  const dispatch = useDispatch();
+  const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
+
+  const flattenedCommunityList = data?.reduce((list, curr) => {
+    list.push({
+      value: curr.slug,
+      label: curr.name,
+    });
+
+    return list;
+  }, []);
+
   return (
     <SelectFieldContainer>
-      <TextBase>main category</TextBase>
+      <TextBase>community</TextBase>
 
       <Select
-        defaultValue={colourOptions[0]}
+        defaultValue={profile.community}
         isClearable={false}
         isSearchable={true}
-        name="category"
-        options={colourOptions}
+        name="community"
+        options={flattenedCommunityList}
+        placeholder="select community"
+        onChange={(value) =>
+          dispatch(
+            setEditableProfile({
+              community: value,
+            })
+          )
+        }
         styles={{
           control: (baseStyles, state) => ({
             ...baseStyles,

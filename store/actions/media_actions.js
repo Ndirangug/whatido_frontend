@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, MEDIA_PROCESSING_URL } from '../../constants/api';
+import { API_URL } from '../../constants/api';
 import {
   setIsFetchingMediaInfo,
   setMediaError,
@@ -13,22 +13,14 @@ export const getInspiringVideos = async () => {
   return data.data;
 };
 
-export const getMediaProcessed = (data, urlPoint) => {
-  const mediaUrl = `${MEDIA_PROCESSING_URL}/${urlPoint}`;
-  return fetch(mediaUrl, {
-    method: 'POST',
-    body: data,
-  });
-};
-
 export const postNewMedia = (data, token) => {
-  return axios.post(`${API_URL}/media/create`, data, {
+  return axios.post(`${API_URL}/media/create/web`, data, {
     'Content-Type': 'multipart/form-data',
     headers: { Authorization: token },
   });
 };
 
-export const onFileChange = async (e, dispatch, cancelToken) => {
+export const onFileChange = async (e, dispatch, cancelToken, token) => {
   const file = e.target.files[0];
   if (file.size > 2500000000) {
     dispatch(setMediaError('upload maximum file size 250mb'));
@@ -41,8 +33,9 @@ export const onFileChange = async (e, dispatch, cancelToken) => {
     videoFormData.append('video', file);
     videoFormData.append('start_offset', 1);
     axios
-      .post('http://localhost:4000/upload', videoFormData, {
+      .post(`${API_URL}/media/upload`, videoFormData, {
         'Content-Type': 'multipart/form-data',
+        headers: { Authorization: token },
         onUploadProgress: (eventPr) => {
           console.log('percent', eventPr);
           dispatch(setUploadingPercent((eventPr.loaded * 100) / eventPr.total));
