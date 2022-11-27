@@ -137,13 +137,27 @@ export const ProfileInfoContainer = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+
+  .info-name-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
   .info {
-    padding: 0 0.5rem 0 0;
+    padding: 0;
     max-width: 18rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .ellipse {
+    width: 4px;
+    height: 4px;
+    background: var(--main-indigo);
+    border-radius: 50%;
   }
   .category-container {
     display: flex;

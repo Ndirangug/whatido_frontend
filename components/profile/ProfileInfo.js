@@ -1,3 +1,5 @@
+import * as coordinateToCountry from 'coordinate_to_country';
+import ReactCountryFlag from 'react-country-flag';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
 import { ProfileInfoContainer } from '../../styles/profile.styles';
@@ -22,16 +24,37 @@ function ProfileInfo({ userSlug }) {
       return num; // if value < 1000, nothing to do
     }
   }
+
+  const expertCountry = coordinateToCountry(
+    user?.locationLat,
+    user?.locationLng,
+    true
+  );
+
   return (
     <ProfileInfoContainer>
       <div className="banner-conatiner"></div>
       <div className="info-conatiner">
         <BigAvatar src={user?.imageUrl?.cdnUrl} />
         <div className="info-name-container">
-          <div className="info">
-            <TextXL>
-              {user?.profile?.firstName + ' ' + user?.profile?.lastName}
-            </TextXL>
+          <div className="info-name-wrapper">
+            <div className="info">
+              <TextXL>
+                {user?.profile?.firstName + ' ' + user?.profile?.lastName}
+              </TextXL>
+            </div>
+            {expertCountry?.length > 0 && <div className="ellipse" />}
+            <ReactCountryFlag
+              countryCode={expertCountry[0]}
+              style={{
+                fontSize: '2em',
+                lineHeight: '2em',
+                borderRadius: '0.5rem',
+              }}
+              aria-label={expertCountry[0]}
+              svg
+              cdnSuffix="svg"
+            />
           </div>
           <ProfileActionButton />
         </div>
