@@ -151,7 +151,7 @@ export const NoNotificationContainer = styled.div`
   justify-content: center;
   padding: 1rem;
   margin: 3rem 0 !important;
-  gap: 2rem;
+  gap: 1rem;
 
   .info-container {
     text-align: center;

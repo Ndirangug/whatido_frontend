@@ -1,15 +1,9 @@
 import moment from 'moment';
-import { useSelector } from 'react-redux';
-import useSWR from 'swr';
-import { API_URL } from '../../constants/api';
 import { NotificationPageContainer } from '../../styles/notification.styles';
 import { TextLG } from '../utils/typography/Typography';
 import NotificationCard from './NotificationCard';
 
-const Notification = () => {
-  const user = useSelector((state) => state.auth.currentUser);
-  const notificationsUrl = `${API_URL}/notifications/${user?.slug}?page=${0}`;
-  const { data: notifications } = useSWR(notificationsUrl, { suspense: true });
+const Notification = ({ notifications }) => {
   // filter notifications to return and sort from oldest to latest
   const filteredNotifications = notifications?.sort((a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt);

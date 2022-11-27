@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const NoNotificationSvg = () => {
   const StyledIconBtn = styled.div`
-    margin: 0;
+    margin: 2rem 0;
   `;
 
   return (
