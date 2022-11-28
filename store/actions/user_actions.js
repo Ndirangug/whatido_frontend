@@ -15,6 +15,7 @@ export const likeAction = (endpoint, data, token) => {
 
 export const updateUserProfile = (userSlug, data, token) => {
   return axios.post(`${API_URL}/userExpertUpdate/${userSlug}`, data, {
+    'Content-Type': 'multipart/form-data',
     headers: { Authorization: token },
   });
 };

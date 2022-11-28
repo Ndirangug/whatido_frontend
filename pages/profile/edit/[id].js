@@ -14,18 +14,30 @@ function EditProfile() {
   useEffect(() => {
     dispatch(
       setEditableProfile({
-        cover: { url: '', file: null },
+        cover: { url: user?.coverImage.cdnUrl, file: null },
         avatar: { url: user?.imageUrl.cdnUrl, file: null },
         fullName: `${user?.firstName} ${user?.lastName}`,
-        headline: '',
-        nationality: '',
-        currentLocation: '',
-        community: {},
-        expertise: [],
-        additionalLinks: [{ linkName: '', linkUrl: '' }],
+        headline: user?.userBio,
+        nationality: user?.nationality,
+        currentLocation: user?.currentLocation,
+        community: user?.community,
+        expertise: user?.experties,
+        additionalLinks: user?.additionalLinks,
       })
     );
-  }, [dispatch, user?.firstName, user?.imageUrl.cdnUrl, user?.lastName]);
+  }, [
+    dispatch,
+    user?.additionalLinks,
+    user?.community,
+    user?.coverImage.cdnUrl,
+    user?.currentLocation,
+    user?.experties,
+    user?.firstName,
+    user?.imageUrl.cdnUrl,
+    user?.lastName,
+    user?.nationality,
+    user?.userBio,
+  ]);
 
   // useEffect(() => {
 

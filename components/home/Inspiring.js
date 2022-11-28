@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
@@ -8,17 +7,12 @@ import { ContentPageContainer } from '../../styles/home.styles';
 import ReelsCard from '../utils/cards/media/ReelsCard';
 import { subscribeUser } from '../utils/service-worker/subscription';
 
-// const fetcher = (url, token) => {
-//   return axios
-//     .get(url, { headers: { Authorization: token } })
-//     .then((res) => res.data);
-// };
-
 function Inspiring() {
   const dispatch = useDispatch();
-  const [{ token }] = useCookies(['token']);
 
   const user = useSelector((state) => state.auth.currentUser);
+  const token = useSelector((state) => state.auth.token);
+
   const authenticated = useSelector((state) => state.auth.authenticated);
 
   const { data: list } = useSWR(`${API_URL}/getExpertsCategoryList`);
