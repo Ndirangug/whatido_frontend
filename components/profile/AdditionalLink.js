@@ -4,13 +4,13 @@ import AddLinkButton from '../utils/buttons/AddLinkButton';
 import AddLinkInput from '../utils/inputs/AddLinkInput';
 import { TextBase } from '../utils/typography/Typography';
 
-function AdditionalLink({ control }) {
+function AdditionalLink({ control, defaultValues }) {
   const fieldArrayName = 'additionalLinks';
   const { fields, append, update, remove } = useFieldArray({
     control,
     name: fieldArrayName,
     defaultValues: {
-      [fieldArrayName]: [],
+      [fieldArrayName]: defaultValues,
     },
   });
 

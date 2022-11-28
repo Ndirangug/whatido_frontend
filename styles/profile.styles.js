@@ -137,6 +137,11 @@ export const ProfileInfoContainer = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+  .info-bio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
   .info {
     padding: 0 0.5rem 0 0;
     max-width: 18rem;

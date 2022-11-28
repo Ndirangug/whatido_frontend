@@ -9,7 +9,7 @@ import { TextBase } from '../typography/Typography';
 
 const animatedComponents = makeAnimated();
 
-function SubCategorySelect({ setCategory }) {
+function SubCategorySelect({ setCategory, defaultValue, value }) {
   const profile = useSelector((state) => state.profile.editableProfile);
   const dispatch = useDispatch();
   const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
@@ -36,8 +36,8 @@ function SubCategorySelect({ setCategory }) {
       <TextBase>experties</TextBase>
 
       <Select
-        defaultValue={profile.subCategory}
-        value={profile.expertise}
+        defaultValue={defaultValue}
+        value={value}
         isMulti
         closeMenuOnSelect={false}
         components={animatedComponents}

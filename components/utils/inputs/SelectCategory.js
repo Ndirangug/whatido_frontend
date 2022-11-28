@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import useSWR from 'swr';
 import { API_URL } from '../../../constants/api';
 import { SelectFieldContainer } from '../../../styles/utils.styles';
 import { TextBase } from '../typography/Typography';
 
-function SelectCategory({ setCategory }) {
-  const profile = useSelector((state) => state.profile.editableProfile);
+function SelectCategory({ setCategory, defaultValue, value }) {
   const dispatch = useDispatch();
   const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
   const [categoryList, setCategoryList] = useState([]);
@@ -30,7 +29,8 @@ function SelectCategory({ setCategory }) {
       <TextBase>community</TextBase>
 
       <Select
-        defaultValue={profile.community}
+        defaultValue={defaultValue}
+        value={value}
         isClearable={false}
         isSearchable={true}
         name="community"
