@@ -5,6 +5,7 @@ import {
   setAuthState,
   setLoginError,
   setLoginLoading,
+  setToken,
   setUser,
   setVisibility,
 } from '../reducers/auth_reducer';
@@ -45,6 +46,8 @@ export const loginAction = ({ email, password }) => {
         } else {
           //add user data to redux state
           dispatch(setUser(response.data.user));
+          dispatch(setToken(response.data.token));
+
           //set  cookies token with expiration
           cookies.set('token', response.data.token, {
             path: '/',
