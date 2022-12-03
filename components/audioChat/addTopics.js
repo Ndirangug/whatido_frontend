@@ -2,13 +2,14 @@ import {
   Add,
   ArrowBackIos,
   ArrowForwardIos,
-  KeyboardArrowDown
+  KeyboardArrowDown,
 } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import store from '../../store';
 import { loadCategories } from '../../store/actions/categories';
 //import { ElipsDot } from '../messenger/gen.styles'; TODO: not yet available
+import styles from './audioChat.module.css';
 import CategoryIcon from './categoryIcon';
 import SearchBar from './searchBar';
 
@@ -57,15 +58,18 @@ export const TopicsList = ({
   };
 
   return (
-    <div className="sub-categories-list">
+    <div className={styles['sub-categories-list']}>
       {addOption ? (
-        <button className="add-topic sub-category-btn" onClick={addTopics}>
+        <button
+          className={`${styles['add-topic']} ${styles[' sub-category-btn']}`}
+          onClick={addTopics}
+        >
           <Add></Add>
         </button>
       ) : null}
       {list.map((_sub) => (
         <button
-          className={`sub-category-btn ${highlightButton(_sub.slug)}`}
+          className={styles[`sub-category-btn ${highlightButton(_sub.slug)}`]}
           data-item={JSON.stringify(_sub)}
           key={_sub.slug || _sub.name}
           onClick={noClick ? () => {} : toggleAddTopic}
@@ -83,7 +87,7 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
   const [searchInvoked, setSearchInvoked] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [fetching, setFetching] = useState(false);
-  const categoriesList = useSelector((state) => state.categories);
+  const categoriesList = useSelector((state) => state.list.List);
 
   //if catgories list and empty and fetching hasn't started yet
   if (categoriesList.length < 1 && fetching === false) {
@@ -136,13 +140,19 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
   // }, []);
 
   return (
-    <section className="audio-chat-segment add-topics-segment">
-      <div className="audio-chat-header2 add-topics-header">
+    <section
+      className={`${styles['audio-chat-segment']} ${styles['add-topics-segment']}`}
+    >
+      <div
+        className={(styles['audio-chat-header2'], styles['add-topics-header'])}
+      >
         <ArrowBackIos onClick={_saveTopics}></ArrowBackIos>
         <h2 className="">add topics</h2>
       </div>
-      <div className="audio-chat-body">
-        <p className="audio-chat-instructions text-center">
+      <div className={styles['audio-chat-body']}>
+        <p
+          className={`${styles['audio-chat-instructions']} ${styles['text-center']}`}
+        >
           Help people dicover your room by adding relevant topics. Select upto 3
         </p>
         <SearchBar>
@@ -154,10 +164,10 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
           />
         </SearchBar>
         {!searchInvoked ? (
-          <div className="audio-chat-inner-body">
+          <div className={styles['audio-chat-inner-body']}>
             <h3>Categories</h3>
             {fetching ? (
-              <div className="minimized-room-loader-container">
+              <div className={styles['minimized-room-loader-container']}>
                 <p> Loading...</p>
                 {/* <ElipsDot className="mt-10">
                   <div></div>
@@ -168,9 +178,9 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
               </div>
             ) : (
               categoriesList.map((_category) => (
-                <div className="category-item" key={_category.slug}>
+                <div className={styles['category-item']} key={_category.slug}>
                   <button
-                    className="category-dropdown-btn btn"
+                    className={`${styles['category-dropdown-btn']} ${styles['btn']}`}
                     onClick={() => toggleShowSubCategories(_category.slug)}
                   >
                     <CategoryIcon
@@ -181,13 +191,15 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
                       <span>{_category.name}</span>
                       {showSubCategories === _category.slug &&
                       room.topics.length > 0 ? (
-                        <span className="topics-selected-count">
+                        <span className={styles['topics-selected-count']}>
                           {room.topics.length}
                         </span>
                       ) : null}
                     </p>
                     {showSubCategories === _category.slug ? (
-                      <KeyboardArrowDown className="down-arrow-svg"></KeyboardArrowDown>
+                      <KeyboardArrowDown
+                        className={styles['down-arrow-svg']}
+                      ></KeyboardArrowDown>
                     ) : (
                       <ArrowForwardIos></ArrowForwardIos>
                     )}
@@ -205,9 +217,9 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
             )}
           </div>
         ) : (
-          <div className="audio-chat-inner-body">
+          <div className={styles['audio-chat-inner-body']}>
             <button
-              className="btn chatroom-close-search"
+              className={`${styles['chatroom-close-search']} ${styles['btn']}`}
               onClick={() => {
                 setSearchInvoked(false);
               }}
@@ -226,15 +238,18 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
           </div>
         )}
       </div>
-      <div className="audio-chat-body-foot">
-        <p className="audio-chat-instructions">
+      <div className={styles['audio-chat-body-foot']}>
+        <p className={styles['audio-chat-instructions']}>
           {error ? (
-            <span className="chatroom-error-message">{error}</span>
+            <span className={styles['chatroom-error-message']}>{error}</span>
           ) : (
             <span>{`${room.topics.length} Selected (max 3)`}</span>
           )}
         </p>
-        <button className="btn save-topics-btn" onClick={_saveTopics}>
+        <button
+          className={`${styles['btn']} ${styles['save-topics-btn']}`}
+          onClick={_saveTopics}
+        >
           Save
         </button>
       </div>

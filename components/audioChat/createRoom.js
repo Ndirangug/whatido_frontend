@@ -1,12 +1,12 @@
 import { Add, Close } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { socket } from '../../audiorooms-client/socketEvents';
 import {
   createRoom,
   inviteParticipant,
   startPingRoom,
 } from '../../audiorooms-client';
+import { socket } from '../../audiorooms-client/socketEvents';
 import store from '../../store';
 import {
   createRoom as createRoomAction,
@@ -16,6 +16,7 @@ import {
 import { TopicsList } from './addTopics';
 import { RoomMember } from './liveRoom';
 //import { useDispatch } from "react-redux";
+import styles from './audioChat.module.css';
 
 const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
   const [creatingRoom, setCreatingRoom] = useState(false);
@@ -102,23 +103,25 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
 
   return (
     <section className="">
-      <div className="audio-chat-header">
-        <h2 className="">{creatingRoom ? room.title : 'create your room'}</h2>
+      <div className={styles['audio-chat-header']}>
+        <h2 className="">
+          {creatingRoom ? styles[room.title] : styles['create your room']}
+        </h2>
         <Close onClick={closeRoom}></Close>
       </div>
-      <div className="audio-chat-body">
+      <div className={styles['audio-chat-body']}>
         {creatingRoom ? (
           <>
-            <div className="creating-room-segment">
-              <div className="chat-room-topics-list">
+            <div className={styles['creating-room-segment']}>
+              <div className={styles['chat-room-topics-list']}>
                 {room.topics.map((_topic) => (
-                  <p key={_topic.slug} className="detail-btn">
+                  <p key={_topic.slug} className={styles['detail-btn']}>
                     {_topic.name}
                   </p>
                 ))}
               </div>
-              <div className="audio-chat-inner-body">
-                <div className="chat-participants-list">
+              <div className={styles['audio-chat-inner-body']}>
+                <div className={styles['chat-participants-list']}>
                   {room.hosts.map((_user) => (
                     <RoomMember key={_user.id || _user._id} user={_user} />
                   ))}
@@ -132,16 +135,16 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
               onChange={handleTitleInputChange}
               type="text"
               value={room.title}
-              className="create-room-title"
+              className={styles['create-room-title']}
               placeholder="Name your room"
             />
-            <div className="audio-chat-inner-body">
-              <p className="audio-chat-instructions">
+            <div className={styles['audio-chat-inner-body']}>
+              <p className={styles['audio-chat-instructions']}>
                 What do you want to talk about?
               </p>
               {room.topics.length ? (
                 <div>
-                  <p className="inner-title">Topics</p>
+                  <p className={styles['inner-title']}>Topics</p>
                   <TopicsList
                     list={room.topics}
                     addOption={true}
@@ -151,23 +154,26 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
                   />
                 </div>
               ) : (
-                <button className="btn add-topics-btn" onClick={_addTopics}>
+                <button
+                  className={`${styles['btn']} ${styles['add-topics-btn']}`}
+                  onClick={_addTopics}
+                >
                   <Add></Add>
                   <span>Add Topics</span>
                 </button>
               )}
             </div>
 
-            <div className="select-private">
+            <div className={styles['select-private']}>
               <input
                 onChange={handlePrivateChange}
                 type="checkbox"
                 value={room.private}
-                className="room-private-checkbox"
+                className={styles['room-private-checkbox']}
                 id="room-private"
               />
               <label htmlFor="room-private"> Private </label>
-              <p className="private-tip">
+              <p className={styles['private-tip']}>
                 Private rooms are only accessible via a private link shared to
                 indiviual memebers. The room will not be listed in the public
                 rooms page.
@@ -175,9 +181,9 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
             </div>
           </>
         )}
-        <div className="audio-chat-body-foot">
+        <div className={styles['audio-chat-body-foot']}>
           <button
-            className="create-room-btn btn"
+            className={`${styles['btn']} ${styles['create-room-btn']}`}
             id="create-room-btn"
             onClick={_createRoom}
           >

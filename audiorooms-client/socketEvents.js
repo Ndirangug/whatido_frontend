@@ -70,13 +70,13 @@ socket.on('room-closed', () => {
 
 socket.on('raise-hand', ({ _id }) => {
   console.log('raise-hand, client side user id: ' + _id);
-  const self = _id === store.getState().user.profile._id;
+  const self = _id === store.getState().auth.currentUser._id;
   store.dispatch(raiseHand(_id, true, self));
 });
 
 socket.on('unraise-hand', ({ _id }) => {
   console.log('uraise-hand, client side user id: ' + _id);
-  const self = _id === store.getState().user.profile._id;
+  const self = _id === store.getState().auth.currentUser._id;
   store.dispatch(raiseHand(_id, false, self));
 });
 
@@ -89,7 +89,7 @@ socket.on('user-mute-audio', ({ _id, isMuted }) => {
 
 socket.on('update-user-role', ({ userId, role }) => {
   console.log('update user role ' + userId + ' role: ' + role);
-  const isCurrentUser = userId === store.getState().user.profile._id;
+  const isCurrentUser = userId === store.getState().auth.currentUser._id;
   const muted = store.getState().audioRoom.muted;
 
   store.dispatch(updateUserAudioRoomRole(userId, role));

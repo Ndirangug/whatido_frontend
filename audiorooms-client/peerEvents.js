@@ -180,7 +180,7 @@ function setOnCallListener() {
 export async function joinRoom(room, role) {
   // store.dispatch(setConnecting(true));
   console.log('currenmtuser in join room', store.getState().user);
-  const currentUser = await store.getState().user.profile;
+  const currentUser = await store.getState().auth.currentUser;
 
   if (!currentUser) {
     console.log('user not logged in', currentUser);
@@ -328,7 +328,7 @@ const closeConnection = (peerId) => {
 };
 
 export const recreatePeer = (callback) => {
-  const user = store.getState().user.profile;
+  const user = store.getState().auth.currentUser;
   console.log('forcing recreate peer', user);
 
   if (!user) {
@@ -353,7 +353,7 @@ export const recreatePeer = (callback) => {
 };
 
 function emitJoinRoom(room, role) {
-  const user = store.getState().user.profile;
+  const user = store.getState().auth.currentUser;
 
   if (!user) {
     console.log('user not logged in', user);

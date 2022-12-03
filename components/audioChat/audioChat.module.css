@@ -106,8 +106,8 @@
   height: 5rem;
 }
 .audio-chat-inner-body svg {
-  width: 1.4em;
-  height: 1.4em;
+  width: 1em;
+  height: 1em;
 }
 .audio-chat-inner-body .inner-title {
   font-weight: 500;
@@ -176,10 +176,14 @@
 }
 .category-dropdown-btn {
   width: 100%;
-  display: grid;
+  display: inline-grid;
   text-align: left;
   grid-template-columns: 2em auto 2em;
   background-color: #fff;
+  border: none;
+  grid-gap: 1em;
+  /* // justify-items: center; */
+  align-items: center;
 }
 .sub-categories-list .sub-category-btn {
   padding: 0.2em 0.5em;
@@ -878,7 +882,7 @@ svg.recording-icon {
 
 .dot-flashing::before,
 .dot-flashing::after {
-  content: "";
+  content: '';
   display: inline-block;
   position: absolute;
   top: 0;

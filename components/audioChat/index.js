@@ -13,6 +13,8 @@ import {
   createRoom,
   updateHostControls,
 } from '../../store/actions/audio_chat_room';
+import { AudioChatContainer } from '../../styles/audioChat.styles';
+import styles from './audioChat.module.css';
 
 const AudioChat = ({ expert, user }) => {
   const [state, setState] = useState({
@@ -128,23 +130,20 @@ const AudioChat = ({ expert, user }) => {
         }}
       >
         {({ translate }) => (
-          <div
+          <AudioChatContainer
             id="audio-chat-container"
-            className="audio-chat-container"
-            style={{
-              visibility: state.display,
-            }}
+            visibility={state.display}
           >
             <div
               id="audio-chat-content"
-              className="audio-chat-content"
+              className={styles['audio-chat-content']}
               style={{
                 transform: `translateY(${translate}%)`,
               }}
             >
               {setChatSegment()}
             </div>
-          </div>
+          </AudioChatContainer>
         )}
       </Motion>
     </div>

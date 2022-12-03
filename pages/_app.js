@@ -8,9 +8,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SWRConfig } from 'swr';
-//import { useAudioCallSetup } from '../audiorooms-client/utils/useAudioCallSetup';
-import '../components/audioChat/audioChat.css';
-import { EstablishingAudioConnection } from '../components/audioChat/loadingScreen';
 import Header from '../components/header';
 import Footer from '../components/navigation/Footer';
 import SideBar from '../components/navigation/SideBar';
@@ -24,6 +21,7 @@ const SignupModal = lazy(() => import('../components/auth/signup/index'));
 const FeedModal = lazy(() => import('../components/feed/index'));
 const ShareModal = lazy(() => import('../components/utils/modals/share/index'));
 
+import { EstablishingAudioConnection } from '../components/audioChat/loadingScreen';
 const useAudioCallSetup = dynamic(
   () => import('../audiorooms-client/utils/useAudioCallSetup'),
   {

@@ -1,30 +1,28 @@
-import axios from "axios";
-import { socket } from "./socketEvents";
-import { Cookies } from "react-cookie";
-import { AUDIOROOM_API_URL } from "../constants/api";
-import { peer } from "./peerEvents";
-import store from "../store";
+import axios from 'axios';
+import { Cookies } from 'react-cookie';
+import { AUDIOROOM_API_URL } from '../constants/api';
+import store from '../store';
 
 export const cookies = new Cookies();
 
 export const insertRoom = async (roomInfo) => {
-  console.log("before inserting room");
-  const currentUser = await store.getState().user.profile;
-  console.log("currentuser", currentUser);
+  console.log('before inserting room');
+  const currentUser = await store.getState().auth.currentUser;
+  console.log('currentuser', currentUser);
   console.log(roomInfo);
   try {
     const room = await axios.post(`${AUDIOROOM_API_URL}/rooms`, {
       title: roomInfo.title,
       topics: roomInfo.topics.map((topic) => topic.name),
-      participants: [{ id: currentUser._id, role: "Host" }],
+      participants: [{ id: currentUser._id, role: 'Host' }],
       isPrivate: roomInfo.private,
     });
 
-    console.log("room created in insert room");
+    console.log('room created in insert room');
     console.log(room);
     return room;
   } catch (error) {
-    console.log("error in insert room in helper", error);
+    console.log('error in insert room in helper', error);
     throw new Error(error.response.data.message);
   }
 };
@@ -88,11 +86,11 @@ export const sendEmailInvitation = async (
       }
     );
 
-    console.log("sent email invitation");
+    console.log('sent email invitation');
     console.log(room);
     return room;
   } catch (error) {
-    console.log("error in insert room in helper", error);
+    console.log('error in insert room in helper', error);
     throw new Error(error.response.data.message);
   }
 };

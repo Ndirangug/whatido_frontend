@@ -50,8 +50,8 @@ export const inviteParticipant = async (
   if ('_id' in user) user['id'] = user._id; //map _id filed to id field
 
   try {
-    const hostName = `${store.getState().user.profile.profile.firstName} ${
-      store.getState().user.profile.profile.lastName
+    const hostName = `${store.getState().auth.currentUser.profile.firstName} ${
+      store.getState().auth.currentUser.profile.lastName
     }`;
     console.log('host name is ', hostName);
 
@@ -61,7 +61,7 @@ export const inviteParticipant = async (
         .emit(
           'invite-to-call',
           {
-            hostId: store.getState().user.profile._id,
+            hostId: store.getState().auth.currentUser._id,
             recepientId: user._id,
             room: roomInfo,
             role,
@@ -185,7 +185,7 @@ export const sendAudioRoomNotification = (
   console.log('sending call notification via notifications channel', room);
 
   const roomUrl = CLIENT_ROOT_URL + '/rooms/?id=' + room.id;
-  const user = store.getState().user.profile;
+  const user = store.getState().auth.currentUser;
 
   console.log('user sending notification to recepient', recepient);
 
