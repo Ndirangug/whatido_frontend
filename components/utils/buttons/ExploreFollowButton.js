@@ -4,36 +4,39 @@ import styled from 'styled-components';
 import useSWR, { mutate } from 'swr';
 import { API_URL } from '../../../constants/api';
 import { followAction } from '../../../store/actions/user_actions';
-import { TextXS } from '../typography/Typography';
+import PlusIcon from '../icons/PlusIcon';
+import { TextSm } from '../typography/Typography';
 
 const BtnContainer = styled.div`
-  background: var(--main-indigo);
-  text-align: center;
-  text-align: center;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  padding: 8px, 12px, 8px, 12px;
-  gap: 8px;
-  width: 64px;
+  padding: 10px;
+  width: 100px;
   height: 40px;
-  border-radius: 5px;
+  color: ${({ color }) => (color ? color : ' #001433')};
+  background: ${({ bg }) => (bg ? bg : ' rgba(0, 20, 51, 0.1)')};
+  border-radius: 8px;
   cursor: pointer;
 `;
 
-function ProfileFollowButton({ peer }) {
+const BtnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+const ExploreFollowButton = ({ peer, type, bg, color }) => {
   const [{ token }] = useCookies(['token']);
   const user = useSelector((state) => state.auth.currentUser);
   const followersUrl = `${API_URL}/follwers/${peer}`;
   const checkFollowUrl = `${API_URL}/checkfollowing/${user?.slug}/${peer}`;
   const { data: following } = useSWR(checkFollowUrl);
-  let text = following ? 'following' : 'follow';
+  let text = following ? 'Following' : 'Follow';
 
   const followUpEvent = async () => {
     const endpoint = following ? `unfollow/${peer}` : `follow/${peer}`;
     const body = {
-      type: 'expert',
+      type: type,
       userSlug: user?.slug,
     };
     const res = await followAction(endpoint, body, token);
@@ -44,13 +47,16 @@ function ProfileFollowButton({ peer }) {
     }
   };
 
-  if (user.slug === peer) return;
+  if (user?.slug === peer) return;
 
   return (
-    <BtnContainer following={following} onClick={followUpEvent}>
-      <TextXS>{text}</TextXS>
+    <BtnContainer bg={bg} color={color} onClick={followUpEvent}>
+      <BtnWrapper>
+        {!following && !bg && <PlusIcon />}
+        <TextSm>{text}</TextSm>
+      </BtnWrapper>
     </BtnContainer>
   );
-}
+};
 
-export default ProfileFollowButton;
+export default ExploreFollowButton;

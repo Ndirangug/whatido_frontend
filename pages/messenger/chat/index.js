@@ -1,15 +1,14 @@
-import React from 'react';
-import MessageScreen from '../../../components/chat/MessageScreen';
 import Sidebar from '../../../components/chat/Sidebar';
+import RequireAuth from '../../../hooks/RequireAuth';
 import { MessengerPageContainer } from '../../../styles/messegner.styles';
 
 function Ongoing() {
   return (
     <MessengerPageContainer>
       <Sidebar />
-      <MessageScreen />
+      {/* <MessageScreen /> */}
     </MessengerPageContainer>
   );
 }
 
-export default Ongoing;
+export default RequireAuth(Ongoing);

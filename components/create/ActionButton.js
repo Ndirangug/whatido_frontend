@@ -7,6 +7,7 @@ import { API_URL } from '../../constants/api';
 import { postNewMedia } from '../../store/actions/media_actions';
 import {
   setCaption,
+  setEmpty,
   setIsFetchingMediaInfo,
   setMediaError,
   setMediaPreview,
@@ -18,8 +19,10 @@ import PostButton from '../utils/buttons/PostButton';
 
 function ActionButton() {
   const dispatch = useDispatch();
-  const mediaFile = useSelector((state) => state.media.preUploadFile);
-  const selectedSS = useSelector((state) => state.media.selectedSS);
+  // const mediaFile = useSelector((state) => state.media.preUploadFile);
+  const mediaFile = useSelector((state) => state.media.videoUrl);
+  const thumbnail = useSelector((state) => state.media.selectedSS);
+  const imageUrls = useSelector((state) => state.media.imageUrls);
   const caption = useSelector((state) => state.media.caption);
   const videoUrl = useSelector((state) => state.media.videoUrl);
   const previewComponent = useSelector((state) => state.media.previewComponent);
@@ -52,31 +55,32 @@ function ActionButton() {
 
   const discardMedia = () => {
     dispatch(setMediaUploading(false));
+    dispatch(setPreUploadFile(false));
     dispatch(setIsFetchingMediaInfo(false));
     dispatch(setMediaPreview('DROPZONE'));
     dispatch(setCaption(''));
     dispatch(setMediaError(null));
     dispatch(setPreUploadFile({}));
+    dispatch(setEmpty());
   };
 
   const uploadMedia = () => {
-    // if (previewComponent === 'PREVIEW') {
-    const mediaData = new FormData();
-    mediaData.append('mediaId', id);
-    mediaData.append('mediaType', 'video');
-    mediaData.append('media', videoUrl);
-    mediaData.append('thumbnail', selectedSS);
-    mediaData.append('text', caption);
-    mediaData.append('userSlug', user?.slug);
-    mediaData.append('community', getExpertCommunity()?.slug);
-    mediaData.append('tags', [user?.expertCategories[0]]);
-    mediaData.append('youtubeLink', null);
+    const mediaData = {
+      mediaId: id,
+      mediaType: 'video',
+      media: mediaFile,
+      screenshots: imageUrls,
+      thumbnail,
+      text: caption,
+      userSlug: user?.slug,
+      community: getExpertCommunity()?.slug,
+      tags: [user?.expertCategories[0]],
+      youtubeLink: null,
+    };
+
     dispatch(setMediaUploading(true));
     uploadNewMedia(mediaData);
     discardMedia();
-    // } else {
-    dispatch(setMediaError('select video file'));
-    // }
   };
 
   return (

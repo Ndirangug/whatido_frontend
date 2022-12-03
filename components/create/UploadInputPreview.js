@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../constants/api';
-import { setSelectSS } from '../../store/reducers/media_reducer';
+import { setCaption, setSelectSS } from '../../store/reducers/media_reducer';
 import {
   AbsoluteDiv,
   InputField,
@@ -22,7 +22,13 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
       <div className="labelAndFieldContainer">
         <LabelText>caption</LabelText>
         <div style={{ position: 'relative' }}>
-          <InputField type="text" />
+          <InputField
+            type="text"
+            value={caption}
+            onChange={(e) => {
+              dispatch(setCaption(e.target.value));
+            }}
+          />
           <AbsoluteDiv>
             <span>@</span>
             <span>#</span>
@@ -37,8 +43,6 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
                 <div className="previewCompChild" key={i}>
                   <img
                     src={`${API_URL}${e}`}
-                    // width={900}
-                    // height={1600}
                     alt=""
                     style={{
                       position: 'relative',

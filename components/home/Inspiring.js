@@ -9,12 +9,21 @@ import { subscribeUser } from '../utils/service-worker/subscription';
 
 function Inspiring() {
   const dispatch = useDispatch();
+
   const user = useSelector((state) => state.auth.currentUser);
+  const token = useSelector((state) => state.auth.token);
+
+  const authenticated = useSelector((state) => state.auth.authenticated);
 
   const { data: list } = useSWR(`${API_URL}/getExpertsCategoryList`);
 
-  let url = `${API_URL}/feed/for-you?page=0`;
-  const { data } = useSWR(url, { suspense: true });
+  const feedsUrl = authenticated
+    ? `${API_URL}/feed/for-you/${user?.slug}?page=0`
+    : `${API_URL}/feed/inspiring?page=0`;
+
+  const { data } = useSWR([feedsUrl, token], {
+    suspense: true,
+  });
 
   useEffect(() => {
     subscribeUser(user?.slug);

@@ -1,9 +1,10 @@
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
-import PlusIcon from '../../icons/PlusIcon';
+import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import { TextSm, TextxS } from '../../typography/Typography';
 
 function ExploreCategoryCard({
@@ -14,9 +15,24 @@ function ExploreCategoryCard({
   numOfExperts,
 }) {
   const router = useRouter();
+  const authenticated = useSelector((state) => state.auth.authenticated);
+
+  function numFormatter(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
+    } else if (num < 900) {
+      return num; // if value < 1000, nothing to do
+    }
+  }
+
   return (
-    <CardContainer onClick={() => router.push(`/explore/category/${category}`)}>
-      <div className="img-wrapper">
+    <CardContainer>
+      <div
+        className="img-wrapper"
+        onClick={() => router.push(`/explore/category/${category}`)}
+      >
         {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
           <Image
             key={thumbnail[0]?.key}
@@ -37,7 +53,7 @@ function ExploreCategoryCard({
           </div>
           <div className="experts-wrapper">
             <div className="num-of-experts">
-              <TextxS>{`${numOfExperts} experts`}</TextxS>
+              <TextxS>{`${numFormatter(numOfExperts)} experts`}</TextxS>
             </div>
             <div className="experts-avatars">
               {avatar?.slice(0, 4)?.map(({ imageUrl }) => (
@@ -52,18 +68,13 @@ function ExploreCategoryCard({
             </div>
             <div className="ellipse" />
             <div className="num-of-posts">
-              <TextxS>{`${count} posts`}</TextxS>
+              <TextxS>{`${numFormatter(count)} posts`}</TextxS>
             </div>
           </div>
         </div>
-        <div className="follow-btn-container">
-          <div className="follow-btn-wrapper">
-            <PlusIcon />
-            <div className="follow-all">
-              <TextSm>Follow</TextSm>
-            </div>
-          </div>
-        </div>
+        {authenticated && (
+          <ExploreFollowButton peer={category} type={'community'} />
+        )}
       </div>
     </CardContainer>
   );

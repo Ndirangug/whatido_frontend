@@ -1,8 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Cookies } from 'react-cookie';
+
+const cookies = new Cookies();
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+    token: cookies.get('token'),
     isFetching: false,
     authenticated: false,
     currentUser: null,
@@ -27,6 +31,9 @@ export const userSlice = createSlice({
     setVisibility: (state, action) => {
       state.visibility = action.payload;
     },
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
   },
 });
 
@@ -36,6 +43,7 @@ export const {
   setUser,
   setVisibility,
   setLoginError,
+  setToken,
 } = userSlice.actions;
 
 export default userSlice.reducer;

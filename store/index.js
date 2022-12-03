@@ -19,6 +19,7 @@ import feedReducer from './reducers/feed_modal_reducer';
 import categoryListReducer from './reducers/list_reducer';
 import mediaReducer from './reducers/media_reducer';
 import messengerReducer from './reducers/messenger_reducer';
+import editableProfileReducer from './reducers/profile_reducer';
 import signupReducer from './reducers/signup_reducer';
 import walletReducer from './reducers/wallet_reducer';
 import audioChatRoomReducer from './reducers/audio_chat_room_reducer';
@@ -43,6 +44,7 @@ const reducers = combineReducers({
   audioRoom: audioChatRoomReducer,
   feed: feedReducer,
   messenger: messengerReducer,
+  profile: editableProfileReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

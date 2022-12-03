@@ -85,6 +85,9 @@ export const NotificationLgContainer = styled.div`
     margin: 0 1rem;
     // border-radius: 10px;
   }
+`;
+
+export const NotificationPageContainer = styled.div`
   .header-container {
     display: flex;
     align-items: center;
@@ -96,9 +99,6 @@ export const NotificationLgContainer = styled.div`
       padding-left: 2rem;
     }
   }
-`;
-
-export const NotificationPageContainer = styled.div`
   .details-container {
     display: grid;
     grid-template-rows: 0.5fr auto;
@@ -151,7 +151,7 @@ export const NoNotificationContainer = styled.div`
   justify-content: center;
   padding: 1rem;
   margin: 3rem 0 !important;
-  gap: 2rem;
+  gap: 1rem;
 
   .info-container {
     text-align: center;

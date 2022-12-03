@@ -33,8 +33,13 @@ export const EditProfileTopContainer = styled.div`
     width: max-content;
     .icon-container {
       position: absolute;
-      bottom: 0.25rem;
-      right: 0.25rem;
+      bottom: -0.25rem;
+      right: -0.25rem;
+
+      @media (min-width: 600px) {
+        bottom: 0rem;
+        right: 0rem;
+      }
     }
 
     @media (min-width: 600px) {
@@ -44,13 +49,37 @@ export const EditProfileTopContainer = styled.div`
 `;
 
 export const EditProfileFormContainer = styled.div`
-  padding: 0 1rem;
+  padding-top: 1rem;
   display: grid;
   grid-gap: 1rem;
   padding-bottom: 2rem;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+
+  .form-input-container {
+    display: grid;
+    grid-gap: 1rem;
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .submit-btn {
+    margin-top: 3rem;
+  }
+`;
+
+export const AdditionalLinkContainer = styled.div`
+  display: grid;
+  grid-gap: 0.5rem;
+
+  .link-input-container {
+    display: grid;
+    grid-gap: 1rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 `;
 
@@ -108,13 +137,32 @@ export const ProfileInfoContainer = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+
+  .info-name-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .info-bio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
   .info {
-    padding: 0 0.5rem 0 0;
+    padding: 0;
     max-width: 18rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .ellipse {
+    width: 4px;
+    height: 4px;
+    background: var(--main-indigo);
+    border-radius: 50%;
   }
   .category-container {
     display: flex;

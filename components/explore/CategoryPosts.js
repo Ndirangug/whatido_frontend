@@ -6,6 +6,7 @@ import { API_URL } from '../../constants/api';
 import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { setCategoryComponent } from '../../store/reducers/category_page_reducer';
 import { CategoryPostsContainer } from '../../styles/explore.styles';
+import ExploreFollowButton from '../utils/buttons/ExploreFollowButton';
 import Hashtag from '../utils/cards/explore/Hashtag';
 import PostsThumbnail from '../utils/cards/explore/PostsThumbnail';
 import UserCards from '../utils/cards/explore/UserCards';
@@ -15,7 +16,11 @@ import { TextLG, TextSm, TextxS } from '../utils/typography/Typography';
 
 const CategoryPosts = ({ category }) => {
   const dispatch = useDispatch();
+  const authenticated = useSelector((state) => state.auth.authenticated);
   const page = useSelector((state) => state.category.selectedComponent);
+
+  const communityUrl = `${API_URL}/feed/community/${category}?page=0`;
+  const { data: categoryPosts } = useSWR(communityUrl, { suspense: true });
 
   const totalUrl = `${API_URL}/feed/total/${category}`;
   const { data: total } = useSWR(totalUrl);
@@ -28,13 +33,26 @@ const CategoryPosts = ({ category }) => {
     dispatch(setCategoryComponent('experts'));
   };
 
+  function numFormatter(num) {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
+    } else if (num < 900) {
+      return num; // if value < 1000, nothing to do
+    }
+  }
+
   return (
     <CategoryPostsContainer>
       <Image
-        src="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg"
+        src={
+          categoryPosts[0]?.thumbnail[0]?.cdnUrl ||
+          'https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg'
+        }
         alt="whatido"
         width="100%"
-        height="150px"
+        height="160px"
         objectFit="cover"
         className="banner-img"
       />
@@ -46,7 +64,9 @@ const CategoryPosts = ({ category }) => {
         <div className="details-container">
           <div className="details">
             {total && total[0]?.total_users !== undefined && (
-              <TextxS>{`${total[0]?.total_users} Experts`}</TextxS>
+              <TextxS>{`${numFormatter(
+                total[0]?.total_users
+              )} Experts`}</TextxS>
             )}
 
             {total && total[0]?.total_users === undefined && (
@@ -56,7 +76,7 @@ const CategoryPosts = ({ category }) => {
           <div className="ellipse" />
           <div className="details">
             {total && total[1]?.total_post !== undefined && (
-              <TextxS>{`${total[1]?.total_post} Posts`}</TextxS>
+              <TextxS>{`${numFormatter(total[1]?.total_post)} Posts`}</TextxS>
             )}
 
             {total && total[1]?.total_post === undefined && (
@@ -65,7 +85,16 @@ const CategoryPosts = ({ category }) => {
           </div>
         </div>
 
-        <button className="follow-all-btn">Follow</button>
+        <div className="follow-all-btn-container">
+          {authenticated && (
+            <ExploreFollowButton
+              peer={category}
+              type={'community'}
+              bg={'#001433'}
+              color={'#fff'}
+            />
+          )}
+        </div>
       </div>
 
       <Hashtag category={category} />
@@ -89,7 +118,7 @@ const CategoryPosts = ({ category }) => {
       {page === 'posts' && (
         <ErrorBoundary fallback={<ExploreCategoryInfoSkeleton />}>
           <Suspense fallback={<ExploreCategoryInfoSkeleton />}>
-            <PostsThumbnail category={category} />
+            <PostsThumbnail posts={categoryPosts} />
           </Suspense>
         </ErrorBoundary>
       )}

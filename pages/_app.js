@@ -1,8 +1,9 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { lazy, Suspense, useEffect } from 'react';
-import { CookiesProvider } from 'react-cookie';
+import { useRouter } from 'next/router';
+import { lazy, Suspense, useEffect, useMemo } from 'react';
+import { Cookies, CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +15,7 @@ import SideBar from '../components/navigation/SideBar';
 import NextProgress from '../components/utils/micro/Nprogress';
 import * as serviceWorker from '../components/utils/service-worker/serviceWorker';
 import store, { persistor } from '../store';
+import { socket } from '../store/actions/messenger_actions';
 import { DesktopNavigation, GlobalStyleProvider } from '../styles/global';
 import '../styles/globals.css';
 const LoginModal = lazy(() => import('../components/auth/login/index'));
@@ -29,14 +31,27 @@ const useAudioCallSetup = dynamic(
   }
 );
 
-const fetcher = (...args) => {
-  return axios(...args).then((res) => res.data);
+const fetcher = (url, token) => {
+  return axios
+    .get(url, { headers: { Authorization: token } })
+    .then((res) => res.data);
 };
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const cookies = useMemo(() => new Cookies(), []);
+  const onMessageScreen = router.pathname === '/messenger/chat/[id]';
   useEffect(() => {
     serviceWorker.register();
   }, []);
+
+  useEffect(() => {
+    const userSlug = cookies.get('user')?.slug;
+    socket.on('connect', function (_socket) {
+      console.log('Transport being used: ' + socket.io.engine.transport.name);
+      socket.emit('addUser', userSlug);
+    });
+  }, [cookies]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useAudioCallSetup instanceof Function && useAudioCallSetup();
@@ -44,8 +59,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>what I do</title>
-        <meta name="what I do" content="share your passion for what you" />
+        <title>what i do</title>
+        <meta name="what i do" content="share your passion for what you" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -55,7 +70,7 @@ function MyApp({ Component, pageProps }) {
           href="https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/assets/whatido_logo.jpeg"
         />
       </Head>
-      <GlobalStyleProvider>
+      <GlobalStyleProvider onMessageScreen={onMessageScreen}>
         <CookiesProvider>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>

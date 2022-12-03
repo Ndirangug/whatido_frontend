@@ -1,4 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  filterDuplicatesById,
+  flattenArray,
+} from '../actions/messenger_actions';
 
 export const messengerSlice = createSlice({
   name: 'messenger',
@@ -8,11 +12,22 @@ export const messengerSlice = createSlice({
 
   reducers: {
     setMessageData: (state, action) => {
-      state.messages = action.payload;
+      const flatArray = flattenArray(action.payload);
+
+      state.messages = flatArray;
+    },
+    addMessageData: (state, action) => {
+      const messageId = action.payload._id;
+      const messageArray = [
+        ...filterDuplicatesById(state.messages, messageId),
+        action.payload,
+      ];
+
+      state.messages = messageArray;
     },
   },
 });
 
-export const { setMessageData } = messengerSlice.actions;
+export const { setMessageData, addMessageData } = messengerSlice.actions;
 
 export default messengerSlice.reducer;

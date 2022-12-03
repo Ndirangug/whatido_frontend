@@ -5,8 +5,8 @@ import {
   setAuthState,
   setLoginError,
   setLoginLoading,
+  setToken,
   setUser,
-  setVisibility,
 } from '../reducers/auth_reducer';
 
 const cookies = new Cookies();
@@ -44,7 +44,10 @@ export const loginAction = ({ email, password }) => {
           return response.data;
         } else {
           //add user data to redux state
+          console.log(response.data.user);
           dispatch(setUser(response.data.user));
+          dispatch(setToken(response.data.token));
+
           //set  cookies token with expiration
           cookies.set('token', response.data.token, {
             path: '/',
@@ -61,7 +64,6 @@ export const loginAction = ({ email, password }) => {
             expires: expiringDate,
           });
           //set user visibility
-          dispatch(setVisibility(response.data.user.locationVisbility));
           dispatch(setAuthState(true));
           dispatch(setLoginLoading(false));
           dispatch(setLoginError(false));

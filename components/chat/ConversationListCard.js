@@ -1,11 +1,17 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import { ConversationListCardContainer } from '../../styles/messegner.styles';
 import XsAvatar from '../utils/avatars/XsAvatar';
 import { TextBase, TextxS } from '../utils/typography/Typography';
 
-function ConversationListCard() {
+function ConversationListCard({ currentUser, conversation }) {
+  const router = useRouter();
+  const friendSlug = conversation?.members?.find((m) => m !== currentUser);
+  const goChat = () => {
+    router.push(`/messenger/chat/${friendSlug}`);
+  };
   return (
-    <ConversationListCardContainer>
+    <ConversationListCardContainer onClick={goChat}>
       <div className="conv-info-container">
         <XsAvatar />
         <div className="info-container">
