@@ -50,7 +50,11 @@ export const inviteParticipant = async (
   if ('_id' in user) user['id'] = user._id; //map _id filed to id field
 
   try {
-    const hostName = `${store.getState().auth.currentUser.profile.firstName} ${
+    const hostName = `${
+      store.getState().auth.currentUser.firstName ||
+      store.getState().auth.currentUser.profile.firstName
+    } ${
+      store.getState().auth.currentUser.lastName ||
       store.getState().auth.currentUser.profile.lastName
     }`;
     console.log('host name is ', hostName);
@@ -218,7 +222,7 @@ export const sendAudioRoomNotification = (
   };
 
   //store.dispatch(sendMessageToUser(conversationStarter));
-  console.log('sent audio room text message notification');
+  console.log('sent audio room text message notification not enabled.skipping');
 
   let pushNotificationData = {
     //title: `${conversationStarter.firstName} started an audio room`,
@@ -231,8 +235,8 @@ export const sendAudioRoomNotification = (
     redirectUrl: null,
   };
 
-  sendNotification(pushNotificationData);
-  console.log('sent audio room push notification');
+  //sendNotification(pushNotificationData);
+  console.log('sent audio room push notification not enabled.skipping');
 
   sendEmailInvitation(
     roomUrl,

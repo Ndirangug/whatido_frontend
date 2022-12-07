@@ -16,6 +16,8 @@ import {
 import { TopicsList } from './addTopics';
 import { RoomMember } from './liveRoom';
 //import { useDispatch } from "react-redux";
+import { ButtonContainer } from '../../styles/utils.styles';
+import StyledButton from '../utils/buttons/Button';
 import styles from './audioChat.module.css';
 
 const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
@@ -154,25 +156,27 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
                   />
                 </div>
               ) : (
-                <button
-                  className={`${styles['btn']} ${styles['add-topics-btn']}`}
+                <ButtonContainer
+                  className={`${styles['add-topics-btn']}`}
                   onClick={_addTopics}
                 >
                   <Add></Add>
                   <span>Add Topics</span>
-                </button>
+                </ButtonContainer>
               )}
             </div>
 
-            <div className={styles['select-private']}>
-              <input
-                onChange={handlePrivateChange}
-                type="checkbox"
-                value={room.private}
-                className={styles['room-private-checkbox']}
-                id="room-private"
-              />
-              <label htmlFor="room-private"> Private </label>
+            <div>
+              <div className={styles['select-private']}>
+                <input
+                  onChange={handlePrivateChange}
+                  type="checkbox"
+                  value={room.private}
+                  className={styles['room-private-checkbox']}
+                  id="room-private"
+                />
+                <label htmlFor="room-private"> Private </label>
+              </div>
               <p className={styles['private-tip']}>
                 Private rooms are only accessible via a private link shared to
                 indiviual memebers. The room will not be listed in the public
@@ -182,13 +186,17 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
           </>
         )}
         <div className={styles['audio-chat-body-foot']}>
-          <button
+          {/* <button
             className={`${styles['btn']} ${styles['create-room-btn']}`}
             id="create-room-btn"
             onClick={_createRoom}
           >
             {creatingRoom ? 'Creating Room ...' : ' Create Room'}
-          </button>
+          </button> */}
+          <StyledButton
+            onClick={_createRoom}
+            name={creatingRoom ? 'Creating Room ...' : ' Create Room'}
+          />
         </div>
       </div>
     </section>

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import store from '../../store';
 import { loadCategories } from '../../store/actions/categories';
 //import { ElipsDot } from '../messenger/gen.styles'; TODO: not yet available
+import StyledButton from '../utils/buttons/Button';
 import styles from './audioChat.module.css';
 import CategoryIcon from './categoryIcon';
 import SearchBar from './searchBar';
@@ -60,16 +61,15 @@ export const TopicsList = ({
   return (
     <div className={styles['sub-categories-list']}>
       {addOption ? (
-        <button
-          className={`${styles['add-topic']} ${styles[' sub-category-btn']}`}
-          onClick={addTopics}
-        >
+        <button className={`${styles['add-topic-btn']}`} onClick={addTopics}>
           <Add></Add>
         </button>
       ) : null}
       {list.map((_sub) => (
         <button
-          className={styles[`sub-category-btn ${highlightButton(_sub.slug)}`]}
+          className={`${styles['sub-category-btn']} ${
+            styles[highlightButton(_sub.slug)]
+          }`}
           data-item={JSON.stringify(_sub)}
           key={_sub.slug || _sub.name}
           onClick={noClick ? () => {} : toggleAddTopic}
@@ -144,7 +144,8 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
       className={`${styles['audio-chat-segment']} ${styles['add-topics-segment']}`}
     >
       <div
-        className={(styles['audio-chat-header2'], styles['add-topics-header'])}
+        //styles['audio-chat-header2'], styles['add-topics-header']
+        className={`${styles['audio-chat-header2']} ${styles['add-topics-header']}`}
       >
         <ArrowBackIos onClick={_saveTopics}></ArrowBackIos>
         <h2 className="">add topics</h2>
@@ -219,7 +220,7 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
         ) : (
           <div className={styles['audio-chat-inner-body']}>
             <button
-              className={`${styles['chatroom-close-search']} ${styles['btn']}`}
+              className={`${styles['chatroom-close-search']}`}
               onClick={() => {
                 setSearchInvoked(false);
               }}
@@ -246,12 +247,13 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
             <span>{`${room.topics.length} Selected (max 3)`}</span>
           )}
         </p>
-        <button
+        {/* <button
           className={`${styles['btn']} ${styles['save-topics-btn']}`}
           onClick={_saveTopics}
         >
           Save
-        </button>
+        </button> */}
+        <StyledButton name="Save" />
       </div>
     </section>
   );

@@ -31,6 +31,9 @@ const AudioChat = ({ expert, user }) => {
     otherUsers: [],
   });
 
+  console.log('after create room user', user);
+  console.log('after create room expert', expert);
+
   const [segment, setSegment] = useState('');
 
   const animate = () => {
@@ -63,8 +66,8 @@ const AudioChat = ({ expert, user }) => {
             animate={animate}
             user={{
               ...user,
-              firstName: user.profile.firstName || '',
-              lastName: user.profile.lastName || '',
+              ...(user.profile && { firstName: user.profile.firstName }),
+              ...(user.profile && { lastName: user.profile.lastName }),
             }}
             setSegment={setSegment}
           />

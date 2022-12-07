@@ -127,21 +127,30 @@
 .audio-chat-instructions {
   color: var(--text-muted);
 }
+
+.audio-chat-body .audio-chat-instructions {
+  text-align: center;
+}
 .chatroom-error-message {
   color: var(--warning-red);
 }
 .chatroom-close-search {
-  color: var(--warning-red);
+  color: var(--gray-text);
   background-color: transparent;
   float: right;
+  border: none;
+}
+
+.chatroom-close-search:hover {
+  color: var(--main-indigo);
 }
 
 .add-topics-btn {
   background-color: #fff;
   display: flex;
   gap: 0.5em;
-  fill: var(--primary-color);
-  color: var(--primary-color);
+  fill: var(--main-indigo);
+  color: var(--main-indigo);
 }
 
 .audio-chat-body-foot {
@@ -157,7 +166,7 @@
   opacity: 0.5;
 }
 .create-room-btn {
-  background-color: var(--primary-color);
+  background-color: var(--main-indigo);
   color: #fff;
   padding-left: 0.5em !important;
   padding-right: 0.5em !important;
@@ -185,6 +194,12 @@
   /* // justify-items: center; */
   align-items: center;
 }
+
+.sub-categories-list .add-topic-btn {
+  border: none;
+  background: none;
+  padding: 0;
+}
 .sub-categories-list .sub-category-btn {
   padding: 0.2em 0.5em;
   margin: 0.2em 0.5em;
@@ -199,15 +214,12 @@
   height: 1.2em;
   margin-bottom: -0.2em;
 }
-.sub-categories-list .sub-category-btn.add-topic {
-  padding: 0;
-}
 
 .highlighted-sub-category,
 .topics-selected-count,
 .chat-room-topics-list .detail-btn {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
+  background-color: var(--main-indigo) !important;
+  border-color: var(--main-indigo) !important;
   color: #fff !important;
 }
 
@@ -222,11 +234,13 @@
 .audio-chat-content button:focus {
   outline: none !important;
 }
+
 .save-topics-btn {
   /* background-color: #0e1a25 !important; */
   background-color: #000000 !important;
   color: #fff !important;
 }
+
 .chat-quick-actions {
   display: flex;
   gap: 0.5em;
@@ -238,7 +252,7 @@ svg.raise-hand-icon {
 }
 
 svg.mic-on {
-  fill: var(--primary-color);
+  fill: var(--main-indigo);
 }
 
 svg.mic-off {
@@ -495,7 +509,7 @@ svg.recording-icon {
   text-align: left;
 }
 .room-member-role-list span:hover {
-  background-color: var(--primary-color);
+  background-color: var(--main-indigo);
   color: #fff;
 }
 
@@ -578,7 +592,7 @@ svg.recording-icon {
   background-color: #eeecec;
 }
 .invite-participants-list > div .participant-invite-btn {
-  background-color: var(--primary-color);
+  background-color: var(--main-indigo);
   color: #fff;
   padding: 0.1em 0.8em !important;
   max-height: fit-content;
@@ -612,7 +626,7 @@ svg.recording-icon {
 .audio-room-join-button {
   border-radius: 0.5rem;
   padding: 1rem;
-  background-color: var(--primary-color);
+  background-color: var(--main-indigo);
   position: relative;
   color: white;
   border: none;
@@ -648,7 +662,7 @@ svg.recording-icon {
 
 .liveroom-ghost .chat-room-topics-list,
 .liveroom-ghost .audio-chat-header h2 {
-  background: var(--skeleton-bg);
+  background: var(--main-backgrou);
   width: 20rem;
   border-radius: 10px;
   height: 2rem;
@@ -855,6 +869,10 @@ svg.recording-icon {
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
 }
+
+.select-private {
+  display: flex;
+}
 /* audio room page end */
 .select-private label {
   margin-left: 0.5em;
@@ -874,8 +892,8 @@ svg.recording-icon {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: var(--primary-color);
-  color: var(--primary-color);
+  background-color: var(--main-indigo);
+  color: var(--main-indigo);
   animation: dotFlashing 1s infinite linear alternate;
   animation-delay: 0.5s;
 }
@@ -893,8 +911,8 @@ svg.recording-icon {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: var(--primary-color);
-  color: var(--primary-color);
+  background-color: var(--main-indigo);
+  color: var(--main-indigo);
   animation: dotFlashing 1s infinite alternate;
   animation-delay: 0s;
 }
@@ -904,15 +922,15 @@ svg.recording-icon {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: var(--primary-color);
-  color: var(--primary-color);
+  background-color: var(--main-indigo);
+  color: var(--main-indigo);
   animation: dotFlashing 1s infinite alternate;
   animation-delay: 1s;
 }
 
 @keyframes dotFlashing {
   0% {
-    background-color: var(--primary-color);
+    background-color: var(--main-indigo);
   }
   50%,
   100% {
