@@ -170,7 +170,7 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
             {fetching ? (
               <div className={styles['minimized-room-loader-container']}>
                 <p> Loading...</p>
-                {/* <ElipsDot className="mt-10">
+                {/* <ElipsDot className={${styles['mt-10']}}>
                   <div></div>
                   <div></div>
                   <div></div>

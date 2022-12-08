@@ -1,5 +1,6 @@
 import { Box, Text } from "@mui/material";
 import { useSelector } from "react-redux";
+import styles from './audioChat.module.css';
 
 export function EstablishingAudioConnection() {
   const isConnecting = useSelector((state) => state.audioRoom.connecting);
@@ -38,7 +39,7 @@ export function EstablishingAudioConnection() {
         >
           Initializing Connection
         </Box>
-        <div className="dot-flashing" />
+        <div className={styles['dot-flashing']} />
       </Box>
     </Box>
   );

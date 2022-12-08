@@ -8,6 +8,7 @@ import store from '../../store';
 //import { ElipsDot } from '../messenger/gen.styles'; todo not yet imported
 import { BriefUserDetails, LiveRoomFooter } from './liveRoom';
 import SearchBar from './searchBar';
+import styles from './audioChat.module.css';
 
 export const toggleInviteLoader = (loading, id) => {
   // show loader while waiting for user to accept call
@@ -56,17 +57,17 @@ const InvitePeople = ({ setSegment, user, animate }) => {
   }, []);
 
   return (
-    <section className="audio-chat-segment invite-segment">
-      <div className="audio-chat-header2 invite-participants-header">
+    <section className={`${styles['audio-chat-segment']} ${styles['invite-segment']}`}>
+      <div className={`${styles['audio-chat-header2']} ${styles['invite-participants-header']}`}>
         <ArrowBackIos onClick={_goBack}></ArrowBackIos>
         <div>
           <h2 className="">Invite People</h2>
-          <p className="audio-chat-instructions">
+          <p className={styles['audio-chat-instructions']}>
             People will join as listeners first
           </p>
         </div>
       </div>
-      <div className="audio-chat-body invite-participants-body">
+      <div className={`${styles['audio-chat-body']} ${styles['invite-participants-body']}`}>
         <SearchBar>
           <input
             placeholder="Search for people"
@@ -77,11 +78,11 @@ const InvitePeople = ({ setSegment, user, animate }) => {
         </SearchBar>
 
         {!searchInvoked ? (
-          <div className="audio-chat-inner-body invite-participants-list">
+          <div className={`${styles['audio-chat-inner-body']} ${styles['invite-participants-list']}`}>
             {searching ? (
               <p>Loading...</p>
             ) : (
-              /* <ElipsDot className="mt-10">
+              /* <ElipsDot className={styles['mt-10']}>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -95,27 +96,27 @@ const InvitePeople = ({ setSegment, user, animate }) => {
         ) : (
           <>
             <button
-              className="btn chatroom-close-search"
+              className={`${styles['btn']} ${styles['chatroom-close-search']}`}
               onClick={() => {
                 setSearchInvoked(false);
               }}
             >
               Back to List
             </button>
-            <div className="audio-chat-inner-body invite-participants-list">
+            <div className={`${styles['audio-chat-inner-body']} ${styles['invite-participants-list']}`}>
               {searchResults.map((_user) => (
                 <div key={_user._id}>
                   <BriefUserDetails user={_user} />
                   <button
                     id={'invite-btn' + _user._id}
-                    className="btn participant-invite-btn"
+                    className={`${styles['btn']} ${styles['participant-invite-btn']}`}
                     onClick={() => _invite(_user)}
                   >
                     INVITE
                   </button>
                   <p>loading...</p>
                   {/* <ElipsDot
-                    className="mt-10 hide-invite"
+                    className={`${styles['mt-10']} ${styles['hide-invite']}`}
                     id={'invite-loader' + _user._id}
                   >
                     <div></div>

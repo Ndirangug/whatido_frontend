@@ -20,6 +20,7 @@ import { toast } from 'react-toastify';
 import { AUDIOROOM_API_URL } from '../../constants/api';
 import { AUDIOROOM_CDN_URL } from '../../constants/audio-room';
 import useQuery from '../../utils/useQuery';
+import styles from './audioChat.module.css';
 
 const default_url = '/img/profile.png';
 
@@ -47,11 +48,11 @@ const ListenersList = ({ list }) => {
   }
 
   return (
-    <div className="room-card-listeners">
-      <div className="listeners-images">
+    <div className={styles['room-card-listeners']}>
+      <div className={styles['listeners-images']}>
         {dList.map((_user) => (
           <LazyImage
-            className="room-listeners-image"
+            className={styles['room-listeners-image']}
             height="30"
             width="30"
             key={_user.peerId}
@@ -120,13 +121,13 @@ const RoomCard = ({ room, index }) => {
   };
 
   return (
-    <div className="audio-room-card" onClick={onClickRoom}>
+    <div className={styles['audio-room-card']} onClick={onClickRoom}>
       <div
-        className="top-room-card"
+        className={styles['top-room-card']}
         // style={{ backgroundColor: "#" + cardColor + "d4" }}
         style={{ backgroundColor: cardColor.top }}
       >
-        <p className="room-status">
+        <p className={styles['room-status']}>
           {room.isLive ? (
             <>
               <img src="/audioroom-assets/audio_wave.gif" alt="." />
@@ -139,7 +140,7 @@ const RoomCard = ({ room, index }) => {
             </>
           )}
         </p>
-        <p className="room-title">{room.title}</p>
+        <p className={styles['room-title']}>{room.title}</p>
         <TopicsList
           list={room.topics.reduce(
             (_initial, _val) => [..._initial, { name: _val }],
@@ -151,7 +152,7 @@ const RoomCard = ({ room, index }) => {
           list={room.hosts.concat(room.speakers).concat(room.otherUsers)}
         />
 
-        <div className="room-card-action">
+        <div className={styles['room-card-action']}>
           {room.isLive ? (
             <Button onClick={joinLive}>JOIN LIVE</Button>
           ) : (
@@ -176,12 +177,12 @@ const RoomCard = ({ room, index }) => {
         </div>
       </div>
       <div
-        className="bottom-room-card"
+        className={styles['bottom-room-card']}
         // style={{ backgroundColor: "#" + cardColor }}
         style={{ backgroundColor: cardColor.bottom }}
       >
         {room.hosts[0] ? (
-          <div className="host-details">
+          <div className={styles['host-details']}>
             <LazyImage
               className=""
               height="30"
@@ -194,7 +195,7 @@ const RoomCard = ({ room, index }) => {
               {room.hosts[0].firstName} {room.hosts[0].lastName}
             </span>
             <span
-              className="host-banner"
+              className={styles['host-banner']}
               // style={{ backgroundColor: "#" + cardColor + "d4" }}
               style={{ backgroundColor: cardColor.top }}
             >
@@ -204,7 +205,7 @@ const RoomCard = ({ room, index }) => {
         ) : (
           '' //TODO INVESTIGATE HOW HOST INFO MISSING
         )}
-        <p className="host-bio">{}</p>
+        <p className={styles['host-bio']}>{}</p>
       </div>
     </div>
   );
@@ -314,20 +315,20 @@ const RoomsPage = () => {
 
   return (
     <>
-      <Box className="container" sx={{ position: 'relative' }}>
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
+      <Box className={styles['container']} sx={{ position: 'relative' }}>
+        <ol className={styles['breadcrumb']}>
+          <li className={styles['breadcrumb-item']}>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li className="breadcrumb-item active">Rooms</li>
+          <li className={`${styles['breadcrumb-item']} ${styles['active']}`}>Rooms</li>
         </ol>
         <div id="pageTitle">
-          <div className="title">Rooms</div>
-          <div className="small">Join an ongoing conversation!</div>
+          <div className={styles['title']}>Rooms</div>
+          <div className={styles['small']}>Join an ongoing conversation!</div>
         </div>
         <br></br>
 
-        <div id="rooms-list" className="rooms-list">
+        <div id="rooms-list" className={styles['rooms-list']}>
           {roomsList.length > 0 ? (
             roomsList.map((_room, _index) => (
               <RoomCard key={_room._id} room={_room} index={_index} />
@@ -362,7 +363,7 @@ const RoomsPage = () => {
         </div>
 
         {/* <Box
-          className="pagination-action"
+          className={styles['pagination-action']}
           sx={{ display: "flex", justifyContent: "center" }}
         >
           <Button

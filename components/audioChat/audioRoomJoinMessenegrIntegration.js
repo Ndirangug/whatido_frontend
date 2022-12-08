@@ -9,7 +9,7 @@ export function AudioRoomJoinButton({ roomId, onJoined }) {
   const [loading, setLoading] = useState(false);
   return (
     <button
-      className="audio-room-join-button"
+      className={{styles['audio-room-join-button']}}
       onClick={() => {
         setLoading(true);
 

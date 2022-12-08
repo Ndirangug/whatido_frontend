@@ -125,14 +125,14 @@
   outline: none;
 }
 .audio-chat-instructions {
-  color: var(--text-muted);
+  color: var(--gray-text);
 }
 
 .text-center {
   text-align: center;
 }
 .chatroom-error-message {
-  color: var(--warning-red);
+  color: var(--main-red);
 }
 .chatroom-close-search {
   color: var(--gray-text);
@@ -256,7 +256,7 @@ svg.mic-on {
 }
 
 svg.mic-off {
-  fill: var(--warning-red);
+  fill: var(--main-red);
 }
 .chat-quick-actions .quick-actions-btn {
   display: flex;
@@ -397,7 +397,7 @@ svg.dot-seperator {
   display: flex;
   gap: 0.3em;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--gray-text);
 }
 
 .room-member-avatar-container {
@@ -437,7 +437,7 @@ svg.dot-seperator {
 
 svg.recording-icon {
   stroke: #000000;
-  fill: var(--warning-red);
+  fill: var(--main-red);
   stroke-width: 2;
   width: 1em;
 }
@@ -457,7 +457,7 @@ svg.recording-icon {
 }
 
 .chat-participants-list-title {
-  color: var(--text-muted);
+  color: var(--gray-text);
   font-size: 1.1em;
   font-weight: 500;
   margin-bottom: 0.2em;
@@ -483,7 +483,7 @@ svg.recording-icon {
 }
 
 .user-toggle-room-role svg {
-  fill: var(--text-muted);
+  fill: var(--gray-text);
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
@@ -528,7 +528,7 @@ svg.recording-icon {
   width: 70px;
 }
 .room-member .room-user-role {
-  color: var(--text-muted);
+  color: var(--gray-text);
   font-size: 0.8em;
 }
 .audio-chat-footer {
@@ -539,7 +539,7 @@ svg.recording-icon {
   margin-right: -1.7em;
   margin-bottom: -0.8em;
   padding: 0.5em 0.7em 0.2em;
-  border-top: var(--text-muted) solid 1.5px;
+  border-top: var(--gray-text) solid 1.5px;
   background-color: #c4c4c42b;
 }
 
@@ -561,7 +561,7 @@ svg.recording-icon {
   background-color: transparent;
 }
 .liveroom-quick-actions .leave-room-btn {
-  background-color: var(--warning-red);
+  background-color: var(--main-red);
   padding: 0.2em 0.7em;
   color: #fff;
   font-size: 0.9em;
@@ -576,8 +576,8 @@ svg.recording-icon {
 
 .invite-participants-list > div {
   padding: 0.5em 1em;
-  /* border-bottom: solid 1px var(--text-muted); */
-  border-top: solid 1px var(--text-muted);
+  /* border-bottom: solid 1px var(--gray-text); */
+  border-top: solid 1px var(--gray-text);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -601,7 +601,7 @@ svg.recording-icon {
 }
 
 .audio-chat-body.invite-participants-body {
-  /* border-top: solid 1px var(--text-muted); */
+  /* border-top: solid 1px var(--gray-text); */
   margin-left: -1.7em;
   margin-right: -1.7em;
   margin-top: -0.3em;
@@ -649,7 +649,7 @@ svg.recording-icon {
 
 /* liveroom ghost loader */
 .liveroom-ghost {
-  --skeleton-bg: linear-gradient(#e9e4e4 100%, transparent 0);
+  --main-gray: linear-gradient(#e9e4e4 100%, transparent 0);
   animation: loading 1.2s ease forwards infinite;
   background-position: -315px 0, 0 0, 0px 190px, 50px 195px;
   background: linear-gradient(0.25turn, transparent, #fff, transparent),
@@ -662,7 +662,7 @@ svg.recording-icon {
 
 .liveroom-ghost .chat-room-topics-list,
 .liveroom-ghost .audio-chat-header h2 {
-  background: var(--main-backgrou);
+  background: var(--main-background);
   width: 20rem;
   border-radius: 10px;
   height: 2rem;
@@ -670,14 +670,14 @@ svg.recording-icon {
 
 .liveroom-ghost .room-user-name,
 .liveroom-ghost .room-user-role {
-  background: var(--skeleton-bg);
+  background: var(--main-gray);
   width: 10rem;
   border-radius: 10px;
   height: 1.5rem;
 }
 
 .liveroom-ghost .room-member-avatar-container {
-  background: var(--skeleton-bg);
+  background: var(--main-gray);
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
@@ -879,7 +879,7 @@ svg.recording-icon {
 }
 
 .select-private p {
-  color: var(--text-muted);
+  color: var(--gray-text);
 }
 
 /**
