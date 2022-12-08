@@ -253,7 +253,7 @@ const AddTopics = ({ room, setRoom, setSegment }) => {
         >
           Save
         </button> */}
-        <StyledButton name="Save" />
+        <StyledButton evenHandler={_saveTopics} name="Save" />
       </div>
     </section>
   );

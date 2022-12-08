@@ -1,8 +1,8 @@
 import { ButtonContainer } from '../../../styles/utils.styles';
 
-function Button({ name, inLine, evenHandler }) {
+function Button({ name, inLine, evenHandler, id }) {
   return (
-    <ButtonContainer inLine={inLine} onClick={evenHandler} className="">
+    <ButtonContainer id={id} inLine={inLine} onClick={evenHandler} className="">
       {name}
     </ButtonContainer>
   );

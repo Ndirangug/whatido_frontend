@@ -41,6 +41,7 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
   };
 
   const _createRoom = () => {
+    console.log('begin creating room');
     if (verifyRoomValidity()) {
       setCreatingRoom(true);
       document.getElementById('create-room-btn').setAttribute('disabled', true);
@@ -194,7 +195,8 @@ const CreateRoom = ({ animate, room, setRoom, setSegment }) => {
             {creatingRoom ? 'Creating Room ...' : ' Create Room'}
           </button> */}
           <StyledButton
-            onClick={_createRoom}
+            id="create-room-btn"
+            evenHandler={_createRoom}
             name={creatingRoom ? 'Creating Room ...' : ' Create Room'}
           />
         </div>

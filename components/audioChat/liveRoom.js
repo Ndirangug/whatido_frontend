@@ -29,10 +29,11 @@ import { toggleRecording as toggleRecordingAction } from '../../store/actions/au
 import LazyImage from '../common/LazyImage';
 import { AudioCallNotification } from './callNotification';
 const default_url = '/img/profile.png';
+import styles from './audioChat.module.css';
 
 export const BriefUserDetails = ({ user }) => {
   return (
-    <div className="brief-user-details">
+    <div className={styles['']}>
       <div>
         <LazyImage
           className="endorsement-image"
