@@ -198,7 +198,9 @@ export const sendAudioRoomNotification = (
       recepient.lastName ?? recepient.profile.lastName
     }`,
     message: null,
-    senderName: `${user?.profile?.firstName} ${user?.profile?.lastName}`,
+    senderName: `${user.firstName ?? user?.profile?.firstName} ${
+      user.lastName ?? user?.profile?.lastName
+    }`,
     recieverEmail: recepient.email ?? '',
     url: roomUrl,
     baseUrl: CLIENT_ROOT_URL,
@@ -210,8 +212,8 @@ export const sendAudioRoomNotification = (
   const conversationStarter = {
     recieverSlug: recepient.slug ?? '',
     senderSlug: user?.slug ?? '',
-    firstName: user?.profile?.firstName,
-    lastName: user?.profile?.lastName,
+    firstName: user.firstName ?? user?.profile?.firstName,
+    lastName: user.lastName ?? user?.profile?.lastName,
     //link: CLIENT_ROOT_URL + "/rooms/?id=" + room._id,
     quote: null,
     // messageId: uuid(),
@@ -243,7 +245,9 @@ export const sendAudioRoomNotification = (
     CLIENT_ROOT_URL,
     recepient.firstName ?? recepient.profile.firstName,
     recepient.email ?? '',
-    `${user?.profile?.firstName} ${user?.profile?.lastName}`,
+    `${user.firstName ?? user?.profile?.firstName} ${
+      user.lastName ?? user?.profile?.lastName
+    }`,
     messageText,
     room.title
   );

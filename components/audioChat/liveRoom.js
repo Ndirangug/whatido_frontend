@@ -27,6 +27,7 @@ import { CLIENT_ROOT_URL } from '../../constants/api';
 import store from '../../store';
 import { toggleRecording as toggleRecordingAction } from '../../store/actions/audio_chat_room';
 import LazyImage from '../common/LazyImage';
+import { TextBase } from '../utils/typography/Typography';
 import styles from './audioChat.module.css';
 import { AudioCallNotification } from './callNotification';
 const default_url = '/img/profile.png';
@@ -109,7 +110,9 @@ export const RoomMember = ({ user, _index }) => {
             </span>
           ) : null}
           {user.handRaised ? ( //todo effect raise hand here
-            <span className={`${styles['avatar-overlay-item']} ${styles['reaction-item-icon']}`}>
+            <span
+              className={`${styles['avatar-overlay-item']} ${styles['reaction-item-icon']}`}
+            >
               <PanTool className={styles['raised-hand-reaction']}></PanTool>
             </span>
           ) : null}
@@ -219,7 +222,10 @@ const MinimizedRoom = ({
       onClick={toggleMinimize}
     >
       <div>
-        <Close className={styles['audio-chat-close-icon']} onClick={_leaveRoom}></Close>
+        <Close
+          className={styles['audio-chat-close-icon']}
+          onClick={_leaveRoom}
+        ></Close>
         {/* <BriefUserDetails user={user} /> */}
         <p className={styles['room-title']}>{room.title}</p>
       </div>
@@ -292,7 +298,10 @@ const RoomLoader = ({ _leaveRoom }) => {
         <div className={styles['audio-chat-inner-body']}>
           <div className={styles['chat-participants-list']}>
             {[...Array(Math.ceil(2))].map((_user) => (
-              <div key={_user.id || _user._id} className={styles['room-member']}>
+              <div
+                key={_user.id || _user._id}
+                className={styles['room-member']}
+              >
                 <div className={styles['room-member-avatar-container']}></div>
                 <p className={styles['room-user-name']}></p>
                 <p className={styles['room-user-role']}></p>
@@ -329,11 +338,14 @@ export const LiveRoomFooter = ({ _leaveRoom, setSegment }) => {
         >
           <PersonAddOutlined></PersonAddOutlined>
         </button>
-        <button className={`${styles['btn']} ${styles['liveroom-quick-actions-btn']}`} onClick={shareRoom}>
+        <button
+          className={`${styles['btn']} ${styles['liveroom-quick-actions-btn']}`}
+          onClick={shareRoom}
+        >
           <ShareOutlined></ShareOutlined>
         </button>
         <button
-          className="btn leave-room-btn liveroom-quick-actions-btn"
+          className={`${styles['btn']} ${styles['leave-room-btn']} ${styles['liveroom-quick-actions-btn']}`}
           onClick={_leaveRoom}
         >
           <span>LEAVE</span>
@@ -426,7 +438,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
   };
 
   return (
-    <section className={`${styles['audio-chat-segment']} ${styles['liveroom-segment']}`}>
+    <section
+      className={`${styles['audio-chat-segment']} ${styles['liveroom-segment']}`}
+    >
       {room.hosts.length ? (
         <>
           {minimized ? (
@@ -439,7 +453,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
             />
           ) : (
             <>
-              <div className={`${styles['audio-chat-header']} ${styles['live-room-header']}`}>
+              <div
+                className={`${styles['audio-chat-header']} ${styles['live-room-header']}`}
+              >
                 <KeyboardArrowDown
                   className={styles['down-arrow-svg']}
                   onClick={toggleMinimize}
@@ -447,11 +463,13 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                 <h2 className="">{room.title}</h2>
                 <p
                   onClick={toggleRecording}
-                  className={`detail-btn recording-btn ${
-                    recording ? 'blink' : ''
-                  }`}
+                  className={`${styles['detail-btn']} ${
+                    styles['recording-btn']
+                  } ${recording ? styles['blink'] : ''}`}
                 >
-                  <FiberManualRecord className={styles['recording-icon']}></FiberManualRecord>
+                  <FiberManualRecord
+                    className={styles['recording-icon']}
+                  ></FiberManualRecord>
                   <span>REC</span>
                 </p>
               </div>
@@ -478,8 +496,8 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                     ))}
                   </div>
                   {waitlist.length ? (
-                    <div className=" waitlist-container">
-                      <h2>Wait List</h2>
+                    <div className={styles['waitlist-container']}>
+                      <TextBase>Wait List</TextBase>
                       <div className={styles['chat-participants-list']}>
                         {waitlist.map((_user, _index) => (
                           <RoomMember
@@ -493,7 +511,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                   ) : null}
                   {room.speakers.length ? (
                     <div className={styles['chat-participants-list-container']}>
-                      <p className={styles['chat-participants-list-title']}>Speakers</p>
+                      <p className={styles['chat-participants-list-title']}>
+                        Speakers
+                      </p>
                       <div className={styles['chat-participants-list']}>
                         {room.speakers.map((_user, _index) => (
                           <RoomMember
@@ -507,7 +527,9 @@ const LiveRoom = ({ user, animate, setSegment }) => {
                   ) : null}
                   {room.otherUsers.length ? (
                     <div className={styles['chat-participants-list-container']}>
-                      <p className={styles['chat-participants-list-title']}>Listeners</p>
+                      <p className={styles['chat-participants-list-title']}>
+                        Listeners
+                      </p>
                       <div className={styles['chat-participants-list']}>
                         {room.otherUsers.map((_user, _index) => (
                           <RoomMember

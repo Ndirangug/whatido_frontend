@@ -268,13 +268,14 @@ svg.mic-off {
   padding: 0;
   font-size: 0.8em;
   background-color: transparent !important;
+  border: none;
 }
 .chat-quick-actions .quick-actions-btn:focus {
   outline: none;
 }
 .chat-quick-actions .quick-actions-btn svg {
-  width: 1.2em;
-  height: 1.2em;
+  width: 1em;
+  height: 1em;
 }
 
 .minimized-room-container {
@@ -408,14 +409,14 @@ svg.dot-seperator {
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  width: 1.4em;
-  height: 1.4em;
+  width: 1.5em;
+  height: 1.5em;
   bottom: 2px;
   right: 4px;
 }
 .avatar-overlay-item svg {
-  width: 1.3em;
-  height: 1.3em;
+  width: 1em;
+  height: 1em;
   margin-bottom: -4px;
   padding: 2px;
 }
@@ -450,6 +451,7 @@ svg.recording-icon {
   padding: 0.2em 0.5em;
   font-size: 0.9em;
   width: fit-content;
+  align-items: center;
   /* height: fit-content; */
 }
 .chat-participants-list-container {
@@ -484,8 +486,8 @@ svg.recording-icon {
 
 .user-toggle-room-role svg {
   fill: var(--gray-text);
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   cursor: pointer;
 }
 .room-member-role-list {
@@ -559,6 +561,7 @@ svg.recording-icon {
   height: fit-content;
   padding: 0.2em;
   background-color: transparent;
+  border: none;
 }
 .liveroom-quick-actions .leave-room-btn {
   background-color: var(--main-red);
@@ -567,6 +570,7 @@ svg.recording-icon {
   font-size: 0.9em;
   line-height: 1.4em;
   border-radius: 10px;
+  border: none;
 }
 
 /* invite people segment */
@@ -695,8 +699,8 @@ svg.recording-icon {
   color: #b0afaf;
   opacity: 0.5;
 }
-.waitlist-container h2 {
-  margin: 0.5rem 0 0.2rem;
+.waitlist-container p:first-of-type {
+  margin: 1em 0 0.2rem;
   text-align: center;
   font-size: 1em;
 }
