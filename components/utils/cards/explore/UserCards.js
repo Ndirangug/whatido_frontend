@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../../../constants/api';
 import { UserCardsContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
+import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import NoPostsSvg from '../../svg/NoPostsSvg';
 import { TextSm, TextXL, TextxS } from '../../typography/Typography';
 
 const UserCards = ({ category }) => {
   const router = useRouter();
+  const authenticated = useSelector((state) => state.auth.authenticated);
+  const user = useSelector((state) => state.auth.currentUser);
+
   const expertsUrl = `${API_URL}/feed/discover-expert-community/${category}?page=0`;
   const { data: experts } = useSWR(expertsUrl, { suspense: true });
 
@@ -38,7 +43,13 @@ const UserCards = ({ category }) => {
               </div>
             </div>
 
-            <button className="follow-btn">Follow</button>
+            {authenticated && user?.slug !== slug && (
+              <ExploreFollowButton
+                peer={slug}
+                type={'expert'}
+                bg={'rgba(0, 20, 51, 0.1)'}
+              />
+            )}
           </div>
         )
       )}

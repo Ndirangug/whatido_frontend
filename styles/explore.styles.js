@@ -204,6 +204,7 @@ export const CardContainer = styled.div`
   }
 
   .details-wrapper {
+    flex: 1;
     display: grid;
     grid-template-rows: auto 0.5fr;
   }
@@ -216,7 +217,7 @@ export const CardContainer = styled.div`
   .experts-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
   }
 
@@ -233,6 +234,7 @@ export const CardContainer = styled.div`
 
   .avatar-details {
     display: flex;
+    flex: 1;
   }
 
   .user-avatar-wrapper {
@@ -303,10 +305,15 @@ export const CategoryPostsContainer = styled.div`
     padding: 1rem 0;
   }
 
-  .banner-img {
+  .banner-container {
+    width: 100%;
+    height: 10rem;
     background: var(--main-indigo);
-    @media (min-width: 475px) {
+
+    @media (min-width: 600px) {
       border-radius: 0.5rem;
+      overflow: hidden;
+      height: 12rem;
     }
   }
 

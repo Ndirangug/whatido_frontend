@@ -47,7 +47,10 @@ function ExploreCategoryCard({
       </div>
 
       <div className="details-container">
-        <div className="details-wrapper">
+        <div
+          className="details-wrapper"
+          onClick={() => router.push(`/explore/category/${category}`)}
+        >
           <div className="category-title">
             <TextSm>{category}</TextSm>
           </div>

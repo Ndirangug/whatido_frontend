@@ -319,3 +319,132 @@ export const StyledIconBtn = styled(IconButton)`
     border-left: ${({ selected }) => (selected ? '2px solid #ffffff' : 'none')};
   }
 `;
+
+export const GeneralContainer = styled.div`
+  margin: 0;
+`;
+
+export const NoPostContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .no-posts-text {
+    text-align: center;
+    margin: 3rem 1rem 5rem 1rem;
+
+    .no-posts-link {
+      color: var(--blue-shade);
+    }
+  }
+
+  .svg-container {
+    margin-top: -10rem;
+  }
+`;
+
+export const NoMessageScreenFallbackContainer = styled.div`
+  width: 60%;
+  height: 100%;
+  margin: 1rem 1rem;
+  display: none;
+  @media (min-width: 960px) {
+    display: inline;
+  }
+
+  .svg-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .avatar-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .svg-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .svg {
+    margin-top: -2rem;
+  }
+
+  .no-message-link {
+    color: var(--blue-shade);
+    text-underline-offset: 0.1rem;
+    text-decoration: underline;
+  }
+`;
+
+export const NoChatContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  overflow: none;
+
+  .no-chat-text {
+    margin: 6rem 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .top-text {
+    margin: 0;
+  }
+
+  .mid-text {
+    margin: 2rem 0;
+  }
+
+  .bottom-text {
+    display: flex;
+    align-items: center;
+    margin: 0 5rem;
+    color: #0085ff;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+`;
+
+export const NoStoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 1rem;
+  overflow: none;
+
+  .no-chat-text {
+    margin: 6rem 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .top-text {
+    margin: 0 3rem;
+  }
+  .mid-text {
+    margin: 2rem 0;
+  }
+
+  .bottom-text {
+    margin: 0 5rem;
+    padding-left: 3rem;
+    color: #0085ff;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+`;

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { toast } from 'react-toastify';
 import { API_URL } from '../../../constants/api';
 import { LoginFormContainer } from '../../../styles/login.styles';
 import BigButton from '../../utils/buttons/BigButton';
@@ -42,7 +43,10 @@ const Email = ({ handleSignupPage, setValue }) => {
         handleSignupPage(2);
       } else {
         setProcessing('');
-        alert(res?.data?.error);
+        toast.error(res?.data?.error, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 4000,
+        });
       }
     } catch (error) {
       setProcessing('');
@@ -60,7 +64,7 @@ const Email = ({ handleSignupPage, setValue }) => {
         register={register('email')}
       />
 
-      <div className="btn-container">
+      <div className="email-btn-container">
         <BigButton type="submit">
           {processing === '' ? 'Next' : `${processing}`}
         </BigButton>

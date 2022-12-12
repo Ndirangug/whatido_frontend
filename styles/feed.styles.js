@@ -38,10 +38,11 @@ export const ViewFeedModal = styled(Modal)`
   .content-caption-container {
     display: grid;
     grid-template-rows: 0.5fr 2fr 0.5fr;
-    height: 100%;
+    height: 50%;
 
     @media (min-width: 475px) {
       grid-template-rows: 0.5fr 3.5fr 0.5fr;
+      height: 100%;
     }
   }
 `;

@@ -14,8 +14,8 @@ function EditProfile() {
   useEffect(() => {
     dispatch(
       setEditableProfile({
-        cover: { url: user?.coverImage.cdnUrl, file: null },
-        avatar: { url: user?.imageUrl.cdnUrl, file: null },
+        cover: { url: user?.coverImage?.cdnUrl, file: null },
+        avatar: { url: user?.imageUrl?.cdnUrl, file: null },
         fullName: `${user?.firstName} ${user?.lastName}`,
         headline: user?.userBio,
         nationality: user?.nationality,
@@ -29,7 +29,7 @@ function EditProfile() {
     dispatch,
     user?.additionalLinks,
     user?.community,
-    user?.coverImage.cdnUrl,
+    user?.coverImage?.cdnUrl,
     user?.currentLocation,
     user?.experties,
     user?.firstName,

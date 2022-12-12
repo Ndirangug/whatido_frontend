@@ -1,6 +1,15 @@
 import Stack from '@mui/material/Stack';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import {
+  createElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { mutate } from 'swr';
+import { API_URL } from '../../../../constants/api';
 import { setAuthComonent } from '../../../../store/reducers/app_surface_reducer';
 import {
   setFeedModal,
@@ -16,11 +25,15 @@ import ShareIcon from '../../icons/ShareIcon';
 import SubscribeIcon from '../../icons/SubscribeIcon';
 import MdUserHeader from '../../micro/MdUserHeader';
 import { TextSM, TextXS } from '../../typography/Typography';
+
 function ReelsCard({ media }) {
   const videoRef = useRef(null);
   const dispatch = useDispatch();
+  const [feedComponent, setFeedComponent] = useState(null);
   const feedModal = useSelector((state) => state.feed.feedModal);
   const authenticated = useSelector((state) => state.auth.authenticated);
+
+  const url = `${API_URL}/media/fetch/${media?._id}`;
 
   const callBackFunction = useCallback((entries) => {
     const [entry] = entries;
@@ -44,8 +57,15 @@ function ReelsCard({ media }) {
 
   const openFeed = () => {
     if (authenticated) {
+      mutate(url, media);
       dispatch(setMedia(media?._id));
       dispatch(setFeedModal(true));
+
+      import('../../../feed/index')
+        .then((module) => module.default)
+        .then((modal) => {
+          setFeedComponent(createElement(modal));
+        });
     } else {
       dispatch(dispatch(setAuthComonent('LOGIN')));
     }
@@ -126,6 +146,7 @@ function ReelsCard({ media }) {
             <ShareIcon openShareModal={openShareModal} />
             <OptionsIcon />
           </Stack>
+          {feedComponent}
         </div>
       </div>
       <video

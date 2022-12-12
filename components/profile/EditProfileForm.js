@@ -10,7 +10,6 @@ import BigButton from '../utils/buttons/BigButton';
 import InputField from '../utils/inputs/InputField';
 import SelectCategory from '../utils/inputs/SelectCategory';
 import SubCategorySelect from '../utils/inputs/SubCategorySelect';
-import AdditionalLink from './AdditionalLink';
 
 function EditProfileForm() {
   const dispatch = useDispatch();
@@ -139,10 +138,10 @@ function EditProfileForm() {
           value={profile?.expertise}
         />
       </div>
-      <AdditionalLink
+      {/* <AdditionalLink
         control={control}
         defaultValues={cookies?.user?.additionalLinks}
-      />
+      /> */}
       <div className="submit-btn">
         <BigButton
           type="submit"

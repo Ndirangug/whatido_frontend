@@ -87,6 +87,13 @@ export const LoginModal = styled(Modal)`
     .login-body {
       padding: 1rem;
       overflow: scroll;
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     .login-footer {
@@ -128,7 +135,15 @@ export const LoginFormContainer = styled.form`
   }
 
   .btn-container {
+    margin-top: auto;
+  }
+
+  .email-btn-container {
     margin: auto 0 1rem 0;
+  }
+
+  .next-btn-container {
+    margin: 2rem 0 1rem 0;
   }
 
   .button-container {

@@ -27,6 +27,7 @@ function MessageBody({
   recieverSlug,
   conversationId,
   token,
+  sendingMessage,
 }) {
   const [cookies] = useCookies(['user']);
   const [previewImageSrc, setPreviewImageSrc] = useState(null);
@@ -110,9 +111,27 @@ function MessageBody({
       onScroll={handleInfiniteScroll}
       isScrollView={scrollView}
     >
-      <div ref={scrollRef}></div>
+      <div className="scrollRef" ref={scrollRef}></div>
       <IoIosArrowDown className="icon" onClick={handleScrollToView} />
-      {dateSortedMessages?.map(({ date, messages }) => (
+      {/* sending message que */}
+      {sendingMessage
+        .sort((a, b) => {
+          return new Date(b.time) - new Date(a.time);
+        })
+        .map((msg) => (
+          <Message
+            friend={friend}
+            myMessage={cookies?.user?.slug === msg.sender}
+            msg={msg}
+            key={msg._id}
+            setPreviewImageSrc={setPreviewImageSrc}
+            setOpenImagePreview={setOpenImagePreview}
+            inputRef={inputRef}
+          />
+        ))}
+
+      {/* messages */}
+      {dateSortedMessages?.map(({ date, messages }, i) => (
         <>
           {messages
             .sort((a, b) => {
@@ -129,7 +148,7 @@ function MessageBody({
                 inputRef={inputRef}
               />
             ))}
-          <ConversationDate key={date}>
+          <ConversationDate key={'date' + i}>
             <TextSm>{date}</TextSm>
           </ConversationDate>
         </>

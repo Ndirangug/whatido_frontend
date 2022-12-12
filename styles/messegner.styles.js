@@ -209,6 +209,10 @@ export const MessageBodyContainer = styled.div`
   width: 100%;
   padding: 1rem;
 
+  .scrollRef {
+    margin-bottom: 1rem;
+  }
+
   .istyping-container {
     display: flex;
     align-items: center;
@@ -331,8 +335,8 @@ export const MessageBox = styled.div`
   }
 
   .message-content {
-    background: ${({ myMessage }) => (myMessage ? '#3361FF' : '#17294C')};
-    color: white;
+    background: ${({ myMessage }) => (myMessage ? '#E0F2FE' : '#F1F5F9')};
+    color: var(--main-indigo);
     padding: 0.5rem;
     border-radius: 0.5rem;
     flex-wrap: wrap;

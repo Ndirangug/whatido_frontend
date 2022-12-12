@@ -5,6 +5,7 @@ import OtpInput from 'react-otp-input';
 import { SignupFormContainer } from '../../../styles/signup.styles';
 
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { API_URL } from '../../../constants/api';
 import BigButton from '../../utils/buttons/BigButton';
 import CancelButton from '../../utils/buttons/CancelButton';
@@ -58,9 +59,14 @@ const InputOtp = ({
     });
 
     if (res?.data?.success) {
-      alert('otp sent');
+      toast.success('otp sent', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } else {
-      alert(res?.data?.error);
+      toast.error(res?.data?.error, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 4000,
+      });
     }
   };
 

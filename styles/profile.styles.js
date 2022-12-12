@@ -118,12 +118,32 @@ export const ProfileInfoContainer = styled.div`
   }
   .banner-conatiner {
     width: 100%;
-    height: 10rem;
+    height: 12rem;
     background: var(--main-indigo);
     @media (min-width: 600px) {
       border-radius: 1rem;
       overflow: hidden;
-      height: 12rem;
+      height: 14rem;
+    }
+  }
+
+  .option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .option-content {
+    padding: 0.5rem 0;
+    background-color: white;
+  }
+
+  .option {
+    cursor: pointer;
+    padding: 0.25rem 2rem;
+    &:hover {
+      background: var(--main-background);
     }
   }
 
@@ -167,9 +187,9 @@ export const ProfileInfoContainer = styled.div`
   .category-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
-    margin: 0.25rem 0;
+    margin: 0.5rem 0;
   }
   .category {
     background: var(--main-tag);
@@ -285,5 +305,74 @@ export const ReviewCardContainer = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+`;
+
+export const SettingsPageContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  background: white;
+  height: max-content;
+  width: 100%;
+`;
+
+export const ProfileSettingsContainer = styled.div`
+  padding: 1rem;
+  width: 100%;
+  gap: 3rem;
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+`;
+
+export const TopContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  .about {
+    margin-top: 1rem;
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+  }
+`;
+
+export const MidContainer = styled.div`
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  cursor: pointer;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .right {
+  }
+`;
+
+export const BottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  cursor: pointer;
+
+  .object {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .send-invite {
+    display: flex;
+    gap: 1rem;
   }
 `;

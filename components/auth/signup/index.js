@@ -13,12 +13,10 @@ import { LoginModal } from '../../../styles/login.styles';
 import BackIcon from '../../utils/icons/BackIcon';
 import WhatidoIcon from '../../utils/icons/WhatidoIcon';
 import { Text3XL, TextBase, TextSm } from '../../utils/typography/Typography';
-import DetailsSvg from './DetailsSvg';
 import Email from './Email';
 import FinishPage from './FinishPage';
 import InputOtp from './InputOtp';
 import Password from './Password';
-import Preview from './Preview';
 import SignupOptions from './SignupOptions';
 import UserDetails from './UserDetails';
 
@@ -100,9 +98,7 @@ function SignUp() {
     Email,
     InputOtp,
     Password,
-    DetailsSvg,
     UserDetails,
-    Preview,
     FinishPage,
   ];
   const Page = pageComponents[signupComponent];
@@ -110,7 +106,7 @@ function SignUp() {
   const { email } = getValues();
   const headerComponents = [
     'sign up',
-    'email sign up',
+    'sign up',
     'verification',
     'verification',
   ];

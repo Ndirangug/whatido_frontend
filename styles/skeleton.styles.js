@@ -12,14 +12,14 @@ export const FeedSkeletonContainer = styled.div`
     position: absolute;
     width: 70%;
     z-index: 2;
-    bottom: 2rem;
-    left: 2rem;
+    bottom: 1rem;
+    left: 0.75rem;
   }
 
   .info-skeleton-avatar {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 `;
 
@@ -45,21 +45,20 @@ export const ExploreSkeletonContainer = styled.div`
 `;
 
 export const ExplorePageProfileSkeletonContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
-  background: white;
-  border-radius: 0.5rem;
+  max-width: 1280px;
+  width: 100%;
 
   .banner-skeleton {
-    border-radius: 0.5rem;
+    width: 100%;
+    height: 26rem;
+    border-radius: 1rem;
+    background-color: white;
   }
 
   .avatar-skeleton {
     justify-content: center;
-    padding-left: 1rem;
-    margin-top: -3rem;
-    margin-bottom: 1rem;
   }
 
   .avatar-follow-button {
@@ -67,6 +66,14 @@ export const ExplorePageProfileSkeletonContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    margin-top: -5rem;
+  }
+
+  .text-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
   }
 `;
 
@@ -90,7 +97,13 @@ export const ExploreCategorySkeletonCardContainer = styled.div`
 
   .explore-avatar-skeleton {
     display: flex;
-    gap: 0.2rem;
+    gap: 0.25rem;
+  }
+
+  .avatar-pic {
+    gap: -0.25rem;
+    display: flex;
+    flex-direction: row;
   }
 
   .skeleton-card-container {
@@ -133,7 +146,7 @@ export const ExploreExpertSkeletonCardContainer = styled.div`
 
   .avatar {
     display: flex;
-    gap: 1rem;
+    gap: 0.25rem;
   }
 `;
 
@@ -174,20 +187,20 @@ export const ExploreExpertDetailsSkeletonContainer = styled.div`
 `;
 
 export const ProfilePageSkeletonContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
-  background: white;
-  border-radius: 0.5rem;
+  max-width: 1280px;
+  width: 100%;
 
   .banner-skeleton {
-    border-radius: 0.5rem;
+    width: 100%;
+    height: 26rem;
+    border-radius: 1rem;
+    background-color: white;
   }
 
   .avatar-skeleton {
     justify-content: center;
-    margin-top: -3rem;
-    margin-bottom: 1rem;
   }
 
   .avatar-follow-button {
@@ -195,17 +208,29 @@ export const ProfilePageSkeletonContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    margin-top: -5rem;
+  }
+
+  .text-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
   }
 `;
 
 export const ProfileFeedSkeletonContainer = styled.div`
-  display: flex;
-  grid-gap: 0.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.25rem;
+  padding: 0.5rem;
+  overflow-x: hidden;
+`;
+
+export const ProfileFeedCardSkeletonContainer = styled.div`
+  border-radius: 4px;
   width: 100%;
-  padding: 1rem;
   overflow: hidden;
-  height: 10rem;
 `;
 
 export const ProfileReviewSkeletonContainer = styled.div`
@@ -246,4 +271,26 @@ export const NotificationAvatarSkeletonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+`;
+
+export const ChatListSkeletonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+`;
+
+export const ChatListCardSkeletonContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    display: flex;
+    margin-right: 0.5rem;
+  }
+
+  .avatar-info {
+    display: flex;
+    flex-direction: column;
+  }
 `;

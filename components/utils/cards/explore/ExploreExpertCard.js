@@ -1,12 +1,12 @@
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import useSWR from 'swr';
+import { API_URL } from '../../../../constants/api';
 import { CardContainer } from '../../../../styles/explore.styles';
 import { BaseAvatar } from '../../avatars/Avatar';
 import ExploreFollowButton from '../../buttons/ExploreFollowButton';
 import { TextSm, TextxS } from '../../typography/Typography';
-import useSWR from 'swr';
-import { API_URL } from '../../../../constants/api';
 
 function ExploreExpertCard({
   slug,
@@ -81,7 +81,10 @@ function ExploreExpertCard({
         )}
       </div>
 
-      <div className="experts-img-wrapper">
+      <div
+        className="experts-img-wrapper"
+        onClick={() => router.push(`/explore/expert/${slug}`)}
+      >
         {thumbnail?.slice(0, 4)?.map(({ thumbnail }) => (
           <Image
             key={thumbnail[0]}

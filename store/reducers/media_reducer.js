@@ -6,6 +6,7 @@ export const mediaSlice = createSlice({
     videoUrl: {},
     selectedSS: '',
     imageUrls: [],
+    tags: [],
     isFetchingMediaInfo: false,
     uploadingPercent: 0,
     isUploading: false,
@@ -34,6 +35,9 @@ export const mediaSlice = createSlice({
     },
     setCaption: (state, action) => {
       state.caption = action.payload;
+    },
+    setTags: (state, action) => {
+      state.tags = action.payload;
     },
     setMediaPreview: (state, action) => {
       state.previewComponent = action.payload;
@@ -71,6 +75,7 @@ export const {
   setUploadingPercent,
   setSelectSS,
   setEmpty,
+  setTags,
 } = mediaSlice.actions;
 
 export default mediaSlice.reducer;

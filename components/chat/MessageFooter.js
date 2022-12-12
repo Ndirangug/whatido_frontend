@@ -48,18 +48,19 @@ function MessageFooter({
     };
     setSendingMessage((prev) => [...prev, { ...message, time: new Date() }]);
     const res = await postNewMessage(message, token);
+    dispatch(addMessageData(res.data));
     setSendingMessage((prev) =>
       prev.filter((m) => m.messageId !== res.data.messageId)
     );
-    dispatch(addMessageData(res.data));
+
     setInputValue('');
-    scrollRef.current.scrollIntoView({
-      behavior: 'smooth',
-    });
+
     socket.emit('sendMessage', {
       data: res.data,
       recieverSlug: friend?.slug,
     });
+
+    scrollRef.current.scrollIntoView();
   };
 
   return (

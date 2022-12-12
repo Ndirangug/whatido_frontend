@@ -4,7 +4,7 @@ function SendMessageIcon({ eventHandler }) {
   return (
     <IconButton
       style={{
-        padding: ' 0.65rem',
+        padding: ' 0.5rem',
       }}
       onClick={eventHandler}
     >

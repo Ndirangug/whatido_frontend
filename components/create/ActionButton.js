@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import useSWR, { mutate } from 'swr';
+import { mutate } from 'swr';
 import { API_URL } from '../../constants/api';
 import { postNewMedia } from '../../store/actions/media_actions';
 import {
@@ -28,16 +28,8 @@ function ActionButton() {
   const previewComponent = useSelector((state) => state.media.previewComponent);
   const id = useId();
   const user = useSelector((state) => state.auth.currentUser);
-  const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
   const [{ token }] = useCookies(['token']);
   const mediaUrl = `${API_URL}/media/all/${user?.slug}`;
-
-  const getExpertCommunity = () =>
-    data?.find((item) =>
-      item.subcategories.find(
-        (subitem) => subitem.slug === user?.expertCategories[0]
-      )
-    );
 
   const uploadNewMedia = async (postData) => {
     try {
@@ -65,22 +57,42 @@ function ActionButton() {
   };
 
   const uploadMedia = () => {
-    const mediaData = {
-      mediaId: id,
-      mediaType: 'video',
-      media: mediaFile,
-      screenshots: imageUrls,
-      thumbnail,
-      text: caption,
-      userSlug: user?.slug,
-      community: getExpertCommunity()?.slug,
-      tags: [user?.expertCategories[0]],
-      youtubeLink: null,
-    };
+    fetch(API_URL + thumbnail).then(async (res) => {
+      const contentType = res.headers.get('content-type');
+      const blob = await res.blob();
+      const fileMedia = new File(
+        [blob],
+        thumbnail.split('/')[thumbnail.split('/').length - 1],
+        { contentType }
+      );
+      console.log(fileMedia);
+      const formData = new FormData();
+      formData.append('mediaId', id);
+      formData.append('mediaType', 'video');
+      formData.append('media', JSON.stringify(mediaFile));
+      formData.append('screenshots', imageUrls);
+      formData.append('thumbnail', fileMedia);
+      formData.append('userSlug', user?.slug);
+      formData.append('community', JSON.stringify(user?.community));
+      formData.append('tags', JSON.stringify(user?.experties));
+      formData.append('youtubeLink', null);
+      dispatch(setMediaUploading(true));
+      uploadNewMedia(formData);
+      discardMedia();
+    });
 
-    dispatch(setMediaUploading(true));
-    uploadNewMedia(mediaData);
-    discardMedia();
+    // const mediaData = {
+    //   mediaId: id,
+    //   mediaType: 'video',
+    //   media: mediaFile,
+    //   screenshots: imageUrls,
+    //   thumbnail,
+    //   text: caption,
+    //   userSlug: user?.slug,
+    //   community: getExpertCommunity()?.slug,
+    //   tags: [user?.expertCategories[0]],
+    //   youtubeLink: null,
+    // };
   };
 
   return (

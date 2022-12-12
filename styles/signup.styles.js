@@ -17,6 +17,10 @@ export const SignupFormContainer = styled.form`
     margin: auto 0 0 0;
   }
 
+  .next-btn-container {
+    margin: 2rem 0 1rem 0;
+  }
+
   .otp-input input {
     outline: none;
     border: 1px solid rgba(0, 20, 51, 0.3);
@@ -53,5 +57,20 @@ export const SignupFormContainer = styled.form`
 
   .err-border input {
     border: 1px solid red;
+  }
+`;
+
+export const DetailsFormContainer = styled.div`
+  height: 100%;
+  display: grid;
+  align-items: start;
+
+  .input-container {
+    display: grid;
+    grid-gap: 1rem;
+  }
+
+  .next-btn-container {
+    margin: 2rem 0 1rem 0;
   }
 `;

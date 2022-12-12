@@ -14,11 +14,19 @@ function MessageHeader({ friend }) {
         <Link href={'/messenger/chat'}>
           <BackIcon />
         </Link>
-        <div className="flex-center xs-gap">
-          <BaseAvatar src={friend?.photo} />
-          <TextLG>{friend?.firstName + '  ' + friend?.lastName}</TextLG>
-          {/* <div className="info"></div> */}
-        </div>
+        <Link href={`/explore/expert/${friend?.slug}`}>
+          <div className="flex-center xs-gap">
+            <BaseAvatar src={friend?.photo} />
+            <TextLG
+              style={{
+                cursor: 'pointer',
+              }}
+            >
+              {friend?.firstName + '  ' + friend?.lastName}
+            </TextLG>
+            {/* <div className="info"></div> */}
+          </div>
+        </Link>
       </div>
       <div className="flex-center sm-gap ">
         <AudioCallIcon />

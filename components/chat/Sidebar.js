@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import {
   SelectContainer,
   SidebarContainer,
 } from '../../styles/messegner.styles';
+import ChatListSkeleton from '../utils/skeletons/ChatListSkeleton';
 import { TextBase } from '../utils/typography/Typography';
 import ConversationList from './ConversationList';
 import SearchBar from './SearchBar';
@@ -23,7 +26,11 @@ function Sidebar({ chatScreen }) {
         </Link>
       </div>
       <SearchBar page={'chat'} />
-      <ConversationList />
+      <ErrorBoundary fallback={<ChatListSkeleton />}>
+        <Suspense fallback={<ChatListSkeleton />}>
+          <ConversationList />
+        </Suspense>
+      </ErrorBoundary>
     </SidebarContainer>
   );
 }

@@ -1,8 +1,10 @@
+import axios from 'axios';
 import Image from 'next/legacy/image';
+import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 import { API_URL } from '../../../../constants/api';
 import {
   setFeedModal,
@@ -13,17 +15,24 @@ import { CarouselContainer } from '../../../../styles/explore.styles';
 const CarouselImage = () => {
   const dispatch = useDispatch();
   const carouselUrl = `${API_URL}/feed/discover-banner`;
+  const [feedComponent, setFeedComponent] = useState(null);
   const { data: carouselImages } = useSWR(carouselUrl, {
     suspense: true,
   });
 
-  const goToPost = (data) => {
-    // let feedArray = carouselImages?.totalExperts;
-    // const foundIdx = feedArray?.findIndex((el) => el?._id === data);
-    // const targetElement = feedArray?.splice(foundIdx, 1);
-    // feedArray?.unshift(targetElement[0]);
+  const goToPost = async (data) => {
+    const url = `${API_URL}/media/fetch/${data[0]?.id}`;
+    const media = await axios.get(url);
+    mutate(url, media);
+
     dispatch(setMedia(data[0]?.id));
-    dispatch(setFeedModal(true));
+
+    import('../../../feed/index')
+      .then((module) => module.default)
+      .then((modal) => {
+        dispatch(setFeedModal(true));
+        setFeedComponent(createElement(modal));
+      });
   };
 
   return (
@@ -52,6 +61,7 @@ const CarouselImage = () => {
           </div>
         ))}
       </Carousel>
+      {feedComponent}
     </CarouselContainer>
   );
 };

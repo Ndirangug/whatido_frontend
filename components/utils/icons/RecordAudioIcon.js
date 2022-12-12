@@ -4,7 +4,7 @@ function RecordAudioIcon({ eventHandler }) {
   return (
     <IconButton
       style={{
-        padding: ' 0.65rem',
+        padding: ' 0.5rem 0.75rem',
       }}
       onClick={eventHandler}
     >

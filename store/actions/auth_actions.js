@@ -44,7 +44,7 @@ export const loginAction = ({ email, password }) => {
           return response.data;
         } else {
           //add user data to redux state
-          console.log(response.data.user);
+
           dispatch(setUser(response.data.user));
           dispatch(setToken(response.data.token));
 

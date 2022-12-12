@@ -103,7 +103,7 @@ function Message({
   //   );
 
   if (msg?.audioFile) return;
-  if (msg?.imgFileArray.length !== 0) return;
+  if (msg?.imgFileArray?.length !== 0) return;
 
   return (
     <MessageBox myMessage={myMessage}>

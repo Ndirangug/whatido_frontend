@@ -35,6 +35,7 @@ function UploadInputPreview({ screenShots, imgClicked, setimgClicked }) {
           </AbsoluteDiv>
         </div>
       </div>
+
       <div className="labelAndFieldContainer">
         <LabelText>cover</LabelText>
         <div className="previewComp">

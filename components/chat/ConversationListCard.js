@@ -1,27 +1,35 @@
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import React from 'react';
+import useSWR from 'swr';
+import { API_URL } from '../../constants/api';
 import { ConversationListCardContainer } from '../../styles/messegner.styles';
 import XsAvatar from '../utils/avatars/XsAvatar';
 import { TextBase, TextxS } from '../utils/typography/Typography';
 
-function ConversationListCard({ currentUser, conversation }) {
+function ConversationListCard({ conversation, currentUser, token }) {
+  const unreadUrl = `${API_URL}/message/unread/${conversation._id}/${currentUser}`;
+  const { data: unreadMessages } = useSWR([unreadUrl, token]);
   const router = useRouter();
-  const friendSlug = conversation?.members?.find((m) => m !== currentUser);
+
   const goChat = () => {
-    router.push(`/messenger/chat/${friendSlug}`);
+    router.push(`/messenger/chat/${conversation.slug}`);
   };
+
   return (
     <ConversationListCardContainer onClick={goChat}>
       <div className="conv-info-container">
-        <XsAvatar />
+        <XsAvatar src={conversation?.imageUrl} />
         <div className="info-container">
           <div className="info-name">
-            <TextBase>Jane Jones</TextBase>
+            <TextBase>
+              {conversation?.profile?.firstName +
+                '  ' +
+                conversation?.profile?.lastName}
+            </TextBase>
           </div>
           <div className="info">
-            <TextxS>
-              lorem ipsum idumuvium lsinve inisvi eve veibn larient
-            </TextxS>
+            <TextxS>{conversation.message.text}</TextxS>
           </div>
         </div>
       </div>
@@ -29,18 +37,21 @@ function ConversationListCard({ currentUser, conversation }) {
         <TextxS
           style={{
             color: 'var(--gray-text)',
+            whiteSpace: `nowrap`,
           }}
         >
-          6:16am
+          {moment(conversation.message.createdAt).format('LT')}
         </TextxS>
         <div className="unread-count">
-          <TextxS
-            style={{
-              fontWeight: '600',
-            }}
-          >
-            1
-          </TextxS>
+          {unreadMessages?.length > 0 && (
+            <TextxS
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {unreadMessages?.length}
+            </TextxS>
+          )}
         </div>
       </div>
     </ConversationListCardContainer>

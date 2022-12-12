@@ -1,4 +1,3 @@
-import Image from 'next/legacy/image';
 import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
@@ -45,16 +44,14 @@ const CategoryPosts = ({ category }) => {
 
   return (
     <CategoryPostsContainer>
-      <Image
-        src={
-          categoryPosts[0]?.thumbnail[0]?.cdnUrl ||
-          'https://donnysliststory.sfo3.cdn.digitaloceanspaces.com/media/1659966936416__ce3cc7ae-5968-4ba2-b326-e895ebad192b__whatido.jpeg'
-        }
-        alt="whatido"
-        width="100%"
-        height="160px"
-        objectFit="cover"
-        className="banner-img"
+      <div
+        className="banner-container"
+        style={{
+          backgroundImage: `url(${categoryPosts[0]?.thumbnail[0]?.cdnUrl})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: `center`,
+          backgroundSize: `cover`,
+        }}
       />
 
       <div className="title-container">

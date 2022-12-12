@@ -1,15 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
-
 import { API_URL } from '../../../constants/api';
-import { setCategoryList } from '../../../store/reducers/list_reducer';
-import { LoginFormContainer } from '../../../styles/login.styles';
+
+import { setValues } from '../../../store/reducers/signup_reducer';
+import { DetailsFormContainer } from '../../../styles/signup.styles';
 import BigButton from '../../utils/buttons/BigButton';
 import InputField from '../../utils/inputs/InputField';
+import SelectCategory from '../../utils/inputs/SelectCategory';
+import SubCategorySelect from '../../utils/inputs/SubCategorySelect';
 
 const schema = yup.object().shape({
   firstName: yup
@@ -28,58 +31,66 @@ const schema = yup.object().shape({
   subCategory: yup.string().required('select sub-category'),
 });
 
-const UserDetails = ({ handleSignupPage, setValue }) => {
-  const categoryList = useSelector((state) => state.list.List);
-  const dispatch = useDispatch();
-  const [categoryExpertiseList, setCategoryExpertiseList] = useState([]);
-
-  let categoryData = axios
-    .get(`${API_URL}/getExpertsCategoryList`)
-    .then((res) => {
-      return res.data;
-    });
+const UserDetails = ({ setValue, getAllValues, handleSignupPage }) => {
+  const signupValues = useSelector((state) => state.signup.values);
+  const [{ token }] = useCookies(['token']);
 
   const {
     getValues,
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     criteriaMode: 'all',
     reValidateMode: 'onSubmit',
     mode: 'onChange',
+    defaultValues: {
+      email: `${getAllValues()?.email}`,
+    },
   });
 
-  const onChangeAreaOfExpertise = (e) => {
-    const updateCategoryList = categoryList.find(
-      ({ slug }) => slug === e.target.value
-    );
-
-    setCategoryExpertiseList(updateCategoryList?.subcategories);
-  };
-
   const onSubmit = async () => {
-    const { firstName, lastName, category, subCategory } = getValues();
+    const { firstName, lastName } = getValues();
     setValue('firstName', firstName);
     setValue('lastName', lastName);
-    setValue('category', category);
-    setValue('subCategory', subCategory);
+    const formValues = getAllValues();
 
-    handleSignupPage(6);
+    const registerValues = {
+      email: formValues?.email,
+      code: formValues?.code,
+      firstName: formValues?.firstName,
+      lastName: formValues?.lastName,
+      password: formValues?.password,
+      experties: signupValues?.expertise,
+      community: signupValues?.community,
+    };
+
+    try {
+      const response = await axios.post(
+        `${API_URL}/auth/register2`,
+        registerValues,
+        {
+          'Content-Type': 'application/json',
+          headers: { Authorization: token },
+        }
+      );
+
+      if (response.data.success) {
+        toast.success('account successfully created', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 4000,
+        });
+        handleSignupPage(5);
+      } else {
+        return toast.error('error creating account');
+      }
+    } catch (error) {
+      return error;
+    }
   };
 
-  useEffect(() => {
-    (async () => {
-      const res = await categoryData;
-      if (categoryList?.length === 0 && res) {
-        dispatch(setCategoryList(res));
-      }
-    })();
-  }, [categoryList?.length, categoryData, dispatch]);
-
   return (
-    <LoginFormContainer onSubmit={handleSubmit(onSubmit)}>
+    <DetailsFormContainer>
       <div className="input-container">
         <InputField
           label={'first name'}
@@ -93,38 +104,28 @@ const UserDetails = ({ handleSignupPage, setValue }) => {
           error={errors?.lastName?.message}
           register={register('lastName')}
         />
-        <select
-          name="categories"
-          id="categories"
-          className="select-input"
-          {...register('category')}
-          onChange={onChangeAreaOfExpertise}
-        >
-          <option value="">area of expertise</option>
-          {categoryList?.map(({ name, slug }) => (
-            <option value={slug} key={slug}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <select
-          className="select-input"
-          name="categories"
-          {...register('subCategory')}
-        >
-          <option value="">focus of expertise</option>
-          {categoryExpertiseList?.map(({ name, slug }) => (
-            <option value={slug} key={slug}>
-              {name}
-            </option>
-          ))}
-        </select>
+        <InputField
+          label={'email'}
+          type={'text'}
+          register={register('email')}
+          disabled={true}
+        />
+        <SelectCategory
+          setCategory={setValues}
+          defaultValue={signupValues?.community}
+          value={signupValues?.community}
+        />
+        <SubCategorySelect
+          setCategory={setValues}
+          defaultValue={signupValues?.expertise}
+          value={signupValues?.expertise}
+        />
       </div>
 
-      <div className="btn-container">
-        <BigButton type="submit">Next</BigButton>
+      <div className="next-btn-container">
+        <BigButton eventHandler={onSubmit}>Sign Up</BigButton>
       </div>
-    </LoginFormContainer>
+    </DetailsFormContainer>
   );
 };
 

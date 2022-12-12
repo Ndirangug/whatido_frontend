@@ -1,12 +1,24 @@
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { setAuthComonent } from '../../../store/reducers/app_surface_reducer';
 
 function WhatidoIcon({ size }) {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const StyledIconBtn = styled.div`
     margin: auto 1rem;
+    cursor: pointer;
   `;
 
+  const goToHome = () => {
+    dispatch(setAuthComonent(null));
+    router?.push('/');
+  };
+
   return (
-    <StyledIconBtn>
+    <StyledIconBtn onClick={goToHome}>
       <svg
         width={size}
         height={size}

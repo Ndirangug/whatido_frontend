@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR from 'swr';
 import { API_URL } from '../../constants/api';
+import { ErrorBoundary } from '../../hooks/ErrorBoundary';
 import { setFeedModal } from '../../store/reducers/feed_modal_reducer';
 import { ViewFeedModal } from '../../styles/feed.styles';
 import ContentCaption from './captions/ContentCaption';
@@ -28,13 +30,21 @@ const Feed = () => {
       <div className="modal-body">
         {media !== undefined && (
           <>
-            <ViewFeed media={media} handleClose={handleClose} />
+            <ErrorBoundary fallback={<h2>could not fetch :(</h2>}>
+              <Suspense fallback={<h2>loading ...:)</h2>}>
+                <ViewFeed media={media} handleClose={handleClose} />
+              </Suspense>
+            </ErrorBoundary>
 
-            <ContentCaption
-              userSlug={media[0]?.userSlug}
-              handleClose={handleClose}
-              media={media}
-            />
+            <ErrorBoundary fallback={<h2>could not fetch :(</h2>}>
+              <Suspense fallback={<h2>loading ...:)</h2>}>
+                <ContentCaption
+                  userSlug={media[0]?.userSlug}
+                  handleClose={handleClose}
+                  media={media}
+                />
+              </Suspense>
+            </ErrorBoundary>
           </>
         )}
       </div>

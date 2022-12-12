@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import useSWR from 'swr';
@@ -10,7 +10,6 @@ import { TextBase } from '../typography/Typography';
 const animatedComponents = makeAnimated();
 
 function SubCategorySelect({ setCategory, defaultValue, value }) {
-  const profile = useSelector((state) => state.profile.editableProfile);
   const dispatch = useDispatch();
   const { data } = useSWR(`${API_URL}/getExpertsCategoryList`);
 

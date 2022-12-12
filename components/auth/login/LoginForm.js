@@ -85,7 +85,7 @@ function LoginForm({ handleClose }) {
           </div>
         </div>
       </div>
-      <div className="btn-container">
+      <div className="email-btn-container">
         <BigButton type="submit">log in</BigButton>
       </div>
     </LoginFormContainer>
