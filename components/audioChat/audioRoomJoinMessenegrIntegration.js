@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { joinRoom, recreatePeer } from '../../audiorooms-client/peerEvents';
 import { AUDIOROOM_API_URL } from '../../constants/api';
-import { joinRoom, recreatePeer } from '../../webRTC/peerEvents';
 import styles from './audioChat.module.css';
 
 export function AudioRoomJoinButton({ roomId, onJoined }) {
@@ -16,7 +16,7 @@ export function AudioRoomJoinButton({ roomId, onJoined }) {
         axios
           .get(`${AUDIOROOM_API_URL}/rooms/${roomId}`)
           .then((response) => {
-            console.log('successfully fetched room', response.data);
+            //console.log('successfully fetched room', response.data);
             const room = response.data;
             //fetch user role in room
             if (room.isLive) {

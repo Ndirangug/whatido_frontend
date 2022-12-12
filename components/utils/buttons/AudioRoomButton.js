@@ -1,8 +1,9 @@
 import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { showChatRoom } from '../../audioChat';
+import AudioCallIcon from '../icons/AudioCallIcon';
 import { TextXS } from '../typography/Typography';
-import { showChatRoom} from "../../audioChat"
 
 const BtnContainer = styled.div`
   background: var(--main-indigo);
@@ -20,21 +21,22 @@ const BtnContainer = styled.div`
   cursor: pointer;
 `;
 
-function AudioRoomButton({ otherUser }) {
+function AudioRoomButton({ otherUser, icon = false }) {
   const [{ token }] = useCookies(['token']);
   const currentuser = useSelector((state) => state.auth.currentUser);
 
   const inititateCall = async () => {
-      console.log('initiate call to ', otherUser);
-       showChatRoom({
-         ...otherUser,
-         firstName: otherUser.profile.firstName,
-         lastName: otherUser.profile.lastName,
-       });
-      
+    console.log('initiate call to ', otherUser);
+    showChatRoom({
+      ...otherUser,
+      ...(otherUser.profile && { firstName: otherUser.profile.firstName }),
+      ...(otherUser.profile && { lastName: otherUser.profile.lastName }),
+    });
   };
 
-  return (
+  return icon ? (
+    <AudioCallIcon onClick={inititateCall} />
+  ) : (
     <BtnContainer onClick={inititateCall}>
       <TextXS>Call</TextXS>
     </BtnContainer>

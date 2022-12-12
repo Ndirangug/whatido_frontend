@@ -3,9 +3,13 @@ import { useGesture } from '@use-gesture/react';
 import moment from 'moment';
 import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { DotIcon, MessageBox } from '../../styles/messegner.styles';
 import { TextBase, TextxS } from '../utils/typography/Typography';
+
+import {
+  AudioRoomJoinButton,
+  useAudioRoomLinkParser,
+} from '../audioChat/audioRoomJoinMessenegrIntegration';
 
 function Message({
   msg,
@@ -18,7 +22,7 @@ function Message({
   const [options, setOptions] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.currentUser);
-
+  const audioRoomInviteMessage = useAudioRoomLinkParser(msg.text);
   //   const handleClick = () => {
   //     setOptions((prev) => !prev);
   //   };
@@ -111,7 +115,21 @@ function Message({
       <div className="message-container">
         <TextxS> {moment(msg.createdAt).format('LT')}</TextxS>
         <div className="message-content">
-          <TextBase>{msg.text}</TextBase>
+          {msg.text && !audioRoomInviteMessage && (
+            <TextBase>{msg.text}</TextBase>
+          )}
+
+          {audioRoomInviteMessage && (
+            <div>
+              <p>{audioRoomInviteMessage.messageText}</p>
+              <AudioRoomJoinButton
+                roomId={audioRoomInviteMessage.roomId}
+                onJoined={() => {
+                  // Router.back();
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
       {!myMessage && <DotIcon className="message-options" />}

@@ -1,8 +1,9 @@
 import IconButton from '@mui/material/IconButton';
 
-function AudioCallIcon() {
+function AudioCallIcon({onClick}) {
   return (
     <IconButton
+      onClick={onClick}
       style={{
         padding: ' 0.65rem',
       }}

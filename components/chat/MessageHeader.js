@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { MessageHeaderContainer } from '../../styles/messegner.styles';
 import BaseAvatar from '../utils/avatars/BaseAvatar';
-import AudioCallIcon from '../utils/icons/AudioCallIcon';
+import AudioRoomButton from '../utils/buttons/AudioRoomButton';
 import BackIcon from '../utils/icons/BackIcon';
 import OptionFlatIcon from '../utils/icons/OptionFlatIcon';
 import VideoCallIcon from '../utils/icons/VideoCallIcon';
@@ -29,7 +29,7 @@ function MessageHeader({ friend }) {
         </Link>
       </div>
       <div className="flex-center sm-gap ">
-        <AudioCallIcon />
+        <AudioRoomButton icon otherUser={friend} />
         <VideoCallIcon />
         <OptionFlatIcon />
       </div>

@@ -1,5 +1,5 @@
 import store from '../store';
-import { insertRoom, sendEmailInvitation } from './helpers';
+import { insertRoom, sendEmailInvitation, sendMessage } from './helpers';
 import { leaveCall, localStream, recreatePeer } from './peerEvents';
 import { socket } from './socketEvents';
 //import uuid from "react-uuid";
@@ -189,53 +189,53 @@ export const sendAudioRoomNotification = (
   console.log('sending call notification via notifications channel', room);
 
   const roomUrl = CLIENT_ROOT_URL + '/rooms/?id=' + room.id;
-  const user = store.getState().auth.currentUser;
+  const currentUser = store.getState().auth.currentUser;
 
   console.log('user sending notification to recepient', recepient);
 
-  const emailNotificationData = {
-    recieverName: `${recepient.firstName ?? recepient.profile.firstName} ${
-      recepient.lastName ?? recepient.profile.lastName
-    }`,
-    message: null,
-    senderName: `${user.firstName ?? user?.profile?.firstName} ${
-      user.lastName ?? user?.profile?.lastName
-    }`,
-    recieverEmail: recepient.email ?? '',
-    url: roomUrl,
-    baseUrl: CLIENT_ROOT_URL,
-    endpoint: 'sendAudioRoomNotification',
-    roomTitle: room.title,
-  };
+  // const emailNotificationData = {
+  //   recieverName: `${recepient.firstName ?? recepient.profile.firstName} ${
+  //     recepient.lastName ?? recepient.profile.lastName
+  //   }`,
+  //   message: null,
+  //   senderName: `${currentUser.firstName ?? currentUser?.profile?.firstName} ${
+  //     currentUser.lastName ?? currentUser?.profile?.lastName
+  //   }`,
+  //   recieverEmail: recepient.email ?? '',
+  //   url: roomUrl,
+  //   baseUrl: CLIENT_ROOT_URL,
+  //   endpoint: 'sendAudioRoomNotification',
+  //   roomTitle: room.title,
+  // };
 
-  console.log('conversation starter user object', user);
-  const conversationStarter = {
-    recieverSlug: recepient.slug ?? '',
-    senderSlug: user?.slug ?? '',
-    firstName: user.firstName ?? user?.profile?.firstName,
-    lastName: user.lastName ?? user?.profile?.lastName,
-    //link: CLIENT_ROOT_URL + "/rooms/?id=" + room._id,
-    quote: null,
-    // messageId: uuid(),
-    //text: `Hi, ${cookies?.user?.firstName} has invited you to their audio room discussion on ${room.title}`,
-    text: messageText + '#AUDIOROOMID' + room.id,
-    //share: null,
-    emailNotificationData: emailNotificationData,
-  };
-
+  //console.log('conversation starter user object', currentUser);
+  // const conversationStarter = {
+  //   recieverSlug: recepient.slug ?? '',
+  //   senderSlug: currentUser?.slug ?? '',
+  //   firstName: currentUser.firstName ?? currentUser?.profile?.firstName,
+  //   lastName: currentUser.lastName ?? currentUser?.profile?.lastName,
+  //   //link: CLIENT_ROOT_URL + "/rooms/?id=" + room._id,
+  //   quote: null,
+  //   // messageId: uuid(),
+  //   //text: `Hi, ${cookies?.user?.firstName} has invited you to their audio room discussion on ${room.title}`,
+  //   text: messageText + '#AUDIOROOMID' + room.id,
+  //   //share: null,
+  //   emailNotificationData: emailNotificationData,
+  // };
+  sendMessage(recepient, messageText + '#AUDIOROOMID' + room.id);
   //store.dispatch(sendMessageToUser(conversationStarter));
   console.log('sent audio room text message notification not enabled.skipping');
 
-  let pushNotificationData = {
-    //title: `${conversationStarter.firstName} started an audio room`,
-    title: notificationTitle,
-    description: conversationStarter.text,
-    userSlug: conversationStarter.recieverSlug,
-    action: 'Join Room',
-    senderSlug: `${conversationStarter.senderSlug}`,
-    endUrl: `/rooms/?id=${room.id}`,
-    redirectUrl: null,
-  };
+  // let pushNotificationData = {
+  //   //title: `${conversationStarter.firstName} started an audio room`,
+  //   title: notificationTitle,
+  //   description: conversationStarter.text,
+  //   userSlug: conversationStarter.recieverSlug,
+  //   action: 'Join Room',
+  //   senderSlug: `${conversationStarter.senderSlug}`,
+  //   endUrl: `/rooms/?id=${room.id}`,
+  //   redirectUrl: null,
+  // };
 
   //sendNotification(pushNotificationData);
   console.log('sent audio room push notification not enabled.skipping');
@@ -245,8 +245,8 @@ export const sendAudioRoomNotification = (
     CLIENT_ROOT_URL,
     recepient.firstName ?? recepient.profile.firstName,
     recepient.email ?? '',
-    `${user.firstName ?? user?.profile?.firstName} ${
-      user.lastName ?? user?.profile?.lastName
+    `${currentUser.firstName ?? currentUser?.profile?.firstName} ${
+      currentUser.lastName ?? currentUser?.profile?.lastName
     }`,
     messageText,
     room.title

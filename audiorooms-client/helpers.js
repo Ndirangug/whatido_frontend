@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
-import { AUDIOROOM_API_URL } from '../constants/api';
+import uuid from 'react-uuid';
+import { API_URL, AUDIOROOM_API_URL } from '../constants/api';
 import store from '../store';
+import { postNewMessage, socket } from '../store/actions/messenger_actions';
+import { addMessageData } from '../store/reducers/messenger_reducer';
 
 export const cookies = new Cookies();
 
@@ -92,5 +95,54 @@ export const sendEmailInvitation = async (
   } catch (error) {
     console.log('error in insert room in helper', error);
     throw new Error(error.response.data.message);
+  }
+};
+
+export const sendMessage = async (recepient, messageText) => {
+  try {
+    let conversation;
+    const token = store.getState().auth.token;
+    console.log('token', token);
+    const currentUser = await store.getState().auth.currentUser;
+    const conversationUrl = `${API_URL}/conversations/find/${currentUser.slug}/${recepient.slug}`;
+
+    const response = await axios.get(
+      conversationUrl,
+      {},
+      { headers: { Authorization: token } }
+    );
+    conversation = response.data;
+    console.log('conversation in send audioroom', conversation);
+
+    const message = {
+      conversationId: conversation?._id || null,
+      messageId: uuid(),
+      sender: currentUser.slug,
+      reciever: recepient?.slug,
+      text: messageText,
+      withAvatar: false,
+      read: false,
+      quote: null,
+      senderName: {
+        firstName: currentUser.firstName,
+        lastName: currentUser.lastName,
+      },
+      blocked: [],
+    };
+    console.log('construed message', message);
+
+    // setSendingMessage((prev) => [...prev, { ...message, time: new Date() }]);
+    const res = await postNewMessage(message, token);
+    store.dispatch(addMessageData(res.data));
+    // setSendingMessage((prev) =>
+    //   prev.filter((m) => m.messageId !== res.data.messageId)
+    // );
+
+    socket.emit('sendMessage', {
+      data: res.data,
+      recieverSlug: recepient?.slug,
+    });
+  } catch (err) {
+    console.log('error in send message in audiorooms helper', err);
   }
 };

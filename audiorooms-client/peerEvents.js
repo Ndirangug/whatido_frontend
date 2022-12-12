@@ -60,6 +60,7 @@ export const setOnlinePeer = async (user, peerId = null, callback) => {
  * @returns {Promise} - An empty promise that resolves when the call is complete or an Error if the call fails
  */
 export const makeCall = async (user, room) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     // console.log(
     //   `making call to ${user.profile.firstName} ${user.profile.lastName}`
@@ -179,8 +180,9 @@ function setOnCallListener() {
 
 export async function joinRoom(room, role) {
   // store.dispatch(setConnecting(true));
-  console.log('currenmtuser in join room', store.getState().user);
+
   const currentUser = await store.getState().auth.currentUser;
+  console.log('currenmtuser in join room', currentUser);
 
   if (!currentUser) {
     console.log('user not logged in', currentUser);
@@ -190,7 +192,7 @@ export async function joinRoom(room, role) {
   console.log('set connecting', store.getState().audioRoom.connecting);
   //check if already in room and also not in process of joining
   const userIds = getUsersInRoom(room);
-  console.log('check if peer already in room', userIds);
+  console.log(`check if peer ${currentUser._id} already in room`, userIds);
 
   setTimeout(() => {
     if (!userIds.includes(currentUser._id)) {
@@ -361,13 +363,13 @@ function emitJoinRoom(room, role) {
     return;
   }
 
-  console.log('emit join room', user);
+  console.log('emit join room', room);
   socket.emit('user-joined-audio-room', {
-    roomId: room._id,
+    roomId: room.id ?? room._id,
     user: {
-      firstName: user.profile.firstName,
-      lastName: user.profile.lastName,
-      id: user._id,
+      firstName: user.firstName ?? user.profile.firstName,
+      lastName: user.lastName ?? user.profile.lastName,
+      id: user.id ?? user._id,
       peerId: user.peerId,
       audioRoomRole: user.audioRoomRole,
       profileImage: user.imageUrl ? user.imageUrl.cdnUrl : '',

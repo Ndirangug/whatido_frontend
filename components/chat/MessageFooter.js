@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 import styled from 'styled-components';
+import store from '../../store';
 import { postNewMessage, socket } from '../../store/actions/messenger_actions';
 import { addMessageData } from '../../store/reducers/messenger_reducer';
 import { MessageFooterContainer } from '../../styles/messegner.styles';
@@ -48,6 +49,7 @@ function MessageFooter({
     };
     setSendingMessage((prev) => [...prev, { ...message, time: new Date() }]);
     const res = await postNewMessage(message, token);
+    
     dispatch(addMessageData(res.data));
     setSendingMessage((prev) =>
       prev.filter((m) => m.messageId !== res.data.messageId)
