@@ -1,5 +1,4 @@
 import axios from 'axios';
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { lazy, Suspense, useEffect, useMemo } from 'react';
@@ -23,13 +22,14 @@ const SignupModal = lazy(() => import('../components/auth/signup/index'));
 const FeedModal = lazy(() => import('../components/feed/index'));
 const ShareModal = lazy(() => import('../components/utils/modals/share/index'));
 
+import { AudioCallSetup } from '../audiorooms-client/utils/useAudioCallSetup';
 import { EstablishingAudioConnection } from '../components/audioChat/loadingScreen';
-const useAudioCallSetup = dynamic(
-  () => import('../audiorooms-client/utils/useAudioCallSetup'),
-  {
-    ssr: false,
-  }
-);
+// const useAudioCallSetup = dynamic(
+//   () => import('../audiorooms-client/utils/useAudioCallSetup'),
+//   {
+//     ssr: false,
+//   }
+// );
 
 const fetcher = (url, token) => {
   return axios
@@ -54,7 +54,8 @@ function MyApp({ Component, pageProps }) {
   }, [cookies]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useAudioCallSetup instanceof Function && useAudioCallSetup();
+  // console.log('useAudioCallSetup', AudioCallSetup);
+  // AudioCallSetup instanceof Function && AudioCallSetup();
 
   return (
     <>
@@ -115,6 +116,7 @@ function MyApp({ Component, pageProps }) {
                   id="audio-chatroom-notifications-element"
                 ></audio>
                 <EstablishingAudioConnection />
+                <AudioCallSetup />
                 <Footer />
               </SWRConfig>
             </PersistGate>

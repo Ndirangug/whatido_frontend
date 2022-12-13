@@ -30,7 +30,7 @@ import { toggleMuteAudio } from './';
 export const socket = io(AUDIOROOM_API_URL);
 
 socket.on('connect', () => {
-  console.log('[AUDIOROOM] WEBSOCKET CLIENT CONNETED' + socket.connected);
+  console.log('[AUDIOROOM] WEBSOCKET CLIENT CONNETED ' + socket.id);
   store.dispatch(updateSocketId(socket.id)); // true
 });
 

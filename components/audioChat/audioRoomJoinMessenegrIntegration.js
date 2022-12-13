@@ -51,7 +51,7 @@ export function useAudioRoomLinkParser(message) {
   if (message.includes('#AUDIOROOMID')) {
     //extract the link
     const [messageText, roomId] = message.split('#AUDIOROOMID');
-    console.log(`extracted audio room id ${roomId} and text ${messageText}`);
+    //console.log(`extracted audio room id ${roomId} and text ${messageText}`);
     return { messageText, roomId };
   }
   return null;

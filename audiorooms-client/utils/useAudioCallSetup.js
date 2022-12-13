@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { peer, setOnlinePeer } from '../peerEvents';
-import { socket } from '../socketEvents';
 
-export const useAudioCallSetup = () => {
+export const AudioCallSetup = () => {
   //const user = useSelector((state) => state.user.profile);
   const socketId = useSelector((state) => state.audioRoom.socketId);
   const user = useSelector((state) => state.auth.currentUser);
@@ -11,6 +9,16 @@ export const useAudioCallSetup = () => {
   console.log(`socketid ${socketId} and user is:`, user);
 
   useEffect(() => {
+    const { peer, setOnlinePeer } = require('../peerEvents');
+    const { socket } = require('../socketEvents');
+    const fetchPeerFromLocalStorage = () => {
+      const peer = localStorage.getItem('peer');
+      if (peer) {
+        return JSON.parse(peer);
+      }
+      return undefined;
+    };
+
     if (user._id && typeof peer === 'undefined' && socketId) {
       socket.emit('user-ready', { userId: user._id, socketId });
 
@@ -28,12 +36,6 @@ export const useAudioCallSetup = () => {
       );
     }
   }, [user, socketId]);
-};
 
-function fetchPeerFromLocalStorage() {
-  const peer = localStorage.getItem('peer');
-  if (peer) {
-    return JSON.parse(peer);
-  }
-  return undefined;
-}
+  return <></>;
+};

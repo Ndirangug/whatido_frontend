@@ -155,13 +155,11 @@ const AudioChat = ({ expert, user }) => {
 
 export const showChatRoom = async (expert) => {
   const container = document.getElementById('audio-chatroom-container');
-  console.log('place cll to');
-  console.log(expert);
-
+  console.log('place call to', expert);
   // fetch authenticated user
   const currentUser = await store.getState().auth.currentUser;
-  console.log('place call from');
-  console.log(currentUser);
+  console.log('place call from', currentUser);
+
 
   if (currentUser && Object.keys(currentUser).length) {
     ReactDOM.render(

@@ -37,8 +37,10 @@ function MessageScreen({ recieverSlug }) {
       expertise: expert?.expertFocusExpertise,
       category: expert?.expertCategories,
       online: expert?.onlineStatus,
+      id: expert?._id,
     });
   }, [
+    expert?._id,
     expert?.email,
     expert?.expertCategories,
     expert?.expertFocusExpertise,

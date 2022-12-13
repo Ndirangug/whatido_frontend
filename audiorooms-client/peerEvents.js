@@ -113,6 +113,11 @@ export const makeCall = async (user, room) => {
 
     mediaConnections[call.peer] = call;
   } catch (err) {
+    if (err.toString().toLowerCase().includes('device not found')) {
+      toast.error(
+        "Can't find your microphone. Confirm your microphone is working from your device's audio settings"
+      );
+    }
     throw err;
   }
 };
@@ -198,7 +203,7 @@ export async function joinRoom(room, role) {
     if (!userIds.includes(currentUser._id)) {
       emitJoinRoom(room, role);
       callOtherParticipants(room);
-      renderRoomOnCall(room, role);
+      renderRoomOnCall(room, role); //maybe if user hasn't pinged in lsr x minutes, remove them from the call
     } else {
       console.log('already in room');
     }

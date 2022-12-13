@@ -25,13 +25,11 @@ const cookies = new Cookies().getAll();
     @returns {Promise} - An  promise that resolves to a Room object when successful or an Error if creating the room fails
 */
 export const createRoom = async (roomInfo, _callBack = null) => {
-  console.log('creating room inside creating room');
-  console.log(roomInfo);
+  console.log('creating room inside creating room', roomInfo);
 
   try {
     const room = await insertRoom(roomInfo);
-    console.log('created room in create room');
-    console.log(room);
+    console.log('created room in create room', room);
 
     return room.data;
   } catch (error) {
@@ -42,12 +40,12 @@ export const createRoom = async (roomInfo, _callBack = null) => {
 // invite participant
 export const inviteParticipant = async (
   roomInfo,
-  user,
+  recepient,
   role = 'Audience',
   forceRecreatePeer = true,
   _callBack = () => {}
 ) => {
-  if ('_id' in user) user['id'] = user._id; //map _id filed to id field
+  //map _id filed to id field
 
   try {
     const hostName = `${
@@ -58,6 +56,7 @@ export const inviteParticipant = async (
       store.getState().auth.currentUser.profile.lastName
     }`;
     console.log('host name is ', hostName);
+    console.log('recepeint inviting', recepient);
 
     const sendInvitation = async () => {
       socket
@@ -66,7 +65,7 @@ export const inviteParticipant = async (
           'invite-to-call',
           {
             hostId: store.getState().auth.currentUser._id,
-            recepientId: user._id,
+            recepientId: recepient.id ?? recepient._id,
             room: roomInfo,
             role,
           },
@@ -85,7 +84,7 @@ export const inviteParticipant = async (
             console.log('invite to call response', response);
             if (response === CALL_REJECTED) {
               sendAudioRoomNotification(
-                user,
+                recepient,
                 roomInfo,
                 `Hi, You rejected your invitation to an audio room conversation on ${roomInfo.title} from ${cookies?.user?.firstName}. Click the link below to join the room or access the recording`,
                 `${hostName} invited you to an audio room conversation on ${roomInfo.title}`
@@ -107,14 +106,14 @@ export const inviteParticipant = async (
 
     console.log('sending invite notifications');
     sendAudioRoomNotification(
-      user,
+      recepient,
       roomInfo,
       `Hi.${hostName} invited you to an audio room conversation on ${roomInfo.title}. Click the link below to join the room or access the recording`,
       `${hostName} invited you to an audio room conversation on ${roomInfo.title}`
     );
 
-    store.dispatch(addToWaitlist(user));
-    return { ...user, audioRoomRole: role };
+    store.dispatch(addToWaitlist(recepient));
+    return { ...recepient, audioRoomRole: role };
   } catch (error) {
     console.log('error inviting participant', error);
     throw error;
@@ -148,8 +147,8 @@ export const toggleMuteAudio = (userId, roomId) => {
 
 export const leaveRoom = (room, user, closeRoom = false) => {
   socket.emit('user-left-audio-room', {
-    roomId: room._id,
-    userId: user._id,
+    roomId: room.id ?? room._id,
+    userId: user.id ?? user._id,
     closeRoom,
   });
   store.dispatch(clearRoom());
